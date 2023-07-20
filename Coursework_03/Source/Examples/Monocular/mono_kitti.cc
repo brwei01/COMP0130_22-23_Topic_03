@@ -131,8 +131,12 @@ int main(int argc, char **argv) {
 
   // Save camera trajectory
   // SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+  // SLAM.SaveTrajectoryTUM(string(argv[3]));
 
-  SLAM.SaveTrajectoryTUM(string(argv[3]));
+  // Save to KITTI pose file
+  SLAM.SaveTrajectoryKITTI(string(argv[3]));
+
+
   return EX_OK;
 }
 
