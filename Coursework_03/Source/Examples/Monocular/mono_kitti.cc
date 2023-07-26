@@ -26,6 +26,9 @@
 #include <iostream>
 #include <sysexits.h>
 
+#include <sys/socket.h>
+#include <sys/un.h>
+
 #include <opencv2/core/core.hpp>
 
 #include "System.h"
@@ -33,10 +36,177 @@
 namespace fs = ::boost::filesystem;
 using namespace std;
 
+
+
+
+// ADDING 2 FUNCTIONS: 
+// LoadBoundingBoxFromPython, MakeDetect_result
+void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result)
+{
+  if(resultFromPython.empty())
+  {
+    cerr << "no string from python!" << endl;
+  }
+
+  cout << "running LoadBoundingBoxFromPython" << endl;
+
+  vector<double> result_parameter;
+  int sum = 0; 
+  int num_bit = 0;
+
+  for(char c: resultFromPython)
+  {
+    // read nums. e.g. 780 = ((7*10 + 8)*10) + 4;
+    if(c >= '0' && c <= '9')
+    {
+      num_bit = c - '0';
+      sum = sum * 10 + num_bit;
+    }
+    else if (c == ' ')
+    {
+      result_parameter.push_back(sum);
+      sum = 0;
+      num_bit = 0;
+    }
+  }
+
+  detect_result.first = result_parameter;
+  cout << "detect_result.first size is: " << detect_result.first.size() << endl;
+
+  string idx_begin = "class: "; // read the class of the object;
+  int idx = resultFromPython.find(idx_begin);
+  string idx_end = "0.";
+
+  int idx2 = resultFromPython.find(idx_end);
+  string class_label;
+
+  for (int j = idx + 6; j < idx2-1; ++j)
+  {
+    class_label += resultFromPython[j];
+  }
+
+  int class_id = -1; // store the class of obj detected
+
+  if (class_label == "tv" ||
+    class_label == "refrigerator" ||
+    class_label == "teddy bear" ||
+    class_label == "laptop"){
+      class_id = 1;
+    }
+
+  if (class_label == "chair" ||
+  class_label == "car"){
+    class_id = 2;
+  }
+
+  if (class_label == "person"){
+    class_id = 3;
+  }
+
+  detect_result.second = class_id;
+  cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
+
+}
+
+
+
+
+void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd)
+{
+  detect_result.clear();
+  
+  std::pair<vector<double>, int> detect_result_str;
+  int byte;
+  char send_buf[128], ch_recv[1024];
+
+  sprintf(send_buf, "ok"); // sprintf sends the message to send_buf
+  if((byte=write(sockfd, send_buf, sizeof(send_buf)))==-1)
+  {
+    perror("write");
+    exit(EXIT_FAILURE);
+  }
+
+  if((byte=read(sockfd, &ch_recv, 1000))==-1)
+  {
+    perror("read");
+    exit(EXIT_FAILURE);
+  }
+  // cout << "**ch_recv is : \n" << ch_recv << endl;
+
+  char *ptr;
+  ptr = strtok(ch_recv, "*"); // str split
+  while(ptr != NULL)
+  {
+    printf("ptr=%s\n", ptr);
+
+    if (strlen(ptr) > 20)
+    {
+      cout << strlen(ptr) << endl;
+      string ptr_str = ptr;
+      LoadBoundingBoxFromPython(ptr_str, detect_result_str);
+    }
+
+    detect_result.emplace_back(detect_result_str);
+    // cout <<   "hh: " << ptr_str << endl;
+    ptr = strtok(NULL, "*");
+    }
+
+    // cout << "detect_result size is: " << detect_result.size() << endl;
+    // for (int k = 0; k < detect_result.size(); ++k)
+    // cout << "detect_result is: \n" << detect_result[k].second << endl;
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
 int main(int argc, char **argv) {
+
+  
+  // SOCKET INITIALIZATION
+  int sockfd;
+  int len;
+  struct sockaddr_un address;
+  int result;
+  int i, byte;
+  char send_buf[128], ch_recv[1024];
+
+  if((sockfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1)
+  {
+    perror("socket");
+    exit(EXIT_FAILURE);
+  }
+
+  // setup server_address
+  address.sun_family = AF_UNIX;
+  strcpy(address.sun_path, "/home/borui/Dev/server_socket");
+  len = sizeof(address);
+
+  result = connect(sockfd, (struct sockaddr *)&address, len);
+
+  if (result == -1)
+  {
+    printf("please ensure the server is up\n");
+    perror("connect");
+    exit(EXIT_FAILURE);
+  }
+
+
+
   if (argc != 4) {
     cerr << endl
           << "Usage: " << argv[0] << " settings_files path_to_sequence results_file" << endl;
