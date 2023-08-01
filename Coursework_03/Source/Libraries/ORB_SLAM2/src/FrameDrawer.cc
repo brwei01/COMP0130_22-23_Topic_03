@@ -21,6 +21,8 @@
 #include "FrameDrawer.h"
 #include "Tracking.h"
 
+#include "Object.h"
+
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
@@ -92,10 +94,34 @@ cv::Mat FrameDrawer::DrawFrame() {
         pt2.x = vCurrentKeys[i].pt.x + r;
         pt2.y = vCurrentKeys[i].pt.y + r;
 
+        // *********************************
+        // MODIFICATIONS: draw bounding box
+        for (int k=0; k<objects_curFD.size(); ++k)
+        {
+          //cout << "k is" << j << endl;
+          if (objects_curFD[k] -> ndetect_class == 3)
+          {
+            cv::Point pt11, pt22;
+            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
+            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
+            cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
+          }
+
+          if (objects_curFD[k] -> ndetect_class == 1)
+          {
+            cv::Point pt11, pt22;
+            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
+            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
+            cv::rectangle(im, pt11, pt22, cv::Scalar(200 ,0 ,100));
+          }
+
+        }
+        
+        /*
         // This is a match to a MapPoint in the map
         if (vbMap[i]) {
           cv::rectangle(im, pt1, pt2, cv::Scalar(0, 255, 0));
-          cv::circle(im, vCurrentKeys[i].pt, 2, cv::Scalar(0, 255, 0), -1);
+          cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0, 255, 0), -1);
           mnTracked++;
         } else // This is match to a "visual odometry" MapPoint created in the
                // last frame
@@ -104,10 +130,27 @@ cv::Mat FrameDrawer::DrawFrame() {
           cv::circle(im, vCurrentKeys[i].pt, 2, cv::Scalar(255, 0, 0), -1);
           mnTrackedVO++;
         }
+        */
+
+        // *********************
+        // MODIFICATIONS: make the selected dot red
+        if (vbInDynamic_mvKeys[i])
+        {
+          cv::rectangle(im, pt1, pt2, cv::Scalar(0,0,200));
+          cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0,0,200), -1);
+          mnTracked++;
+        }
+        else
+        {
+          cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
+          cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0,255,0),-1);
+          mnTracked++;
+        }
       }
-    }
+    } // enum all feature points
   }
 
+  // write in status info
   cv::Mat imWithInfo;
   DrawTextInfo(im, state, imWithInfo);
 
@@ -150,6 +193,16 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText) {
 
 void FrameDrawer::Update(Tracking *pTracker) {
   unique_lock<mutex> lock(mMutex);
+
+
+  //*****************************
+  // MODIFICATIONS: added necessary variables
+  objects_curFD = pTracker -> mCurrentFrame.objects_cur_;
+  vbInDynamic_mvKeys = pTracker -> mCurrentFrame.vbInDynamic_mvKeys; 
+  // END MODIFICATION
+  //*****************************
+
+
   pTracker->mImGray.copyTo(mIm);
   mvCurrentKeys = pTracker->mCurrentFrame.mvKeys;
   N = mvCurrentKeys.size();

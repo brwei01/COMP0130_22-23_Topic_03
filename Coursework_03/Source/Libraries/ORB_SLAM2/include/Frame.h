@@ -21,7 +21,9 @@
 #ifndef FRAME_H
 #define FRAME_H
 
+#include <memory>
 #include <vector>
+#include <map>
 
 #include "DBoW2/BowVector.h"
 #include "DBoW2/FeatureVector.h"
@@ -29,6 +31,7 @@
 #include "MapPoint.h"
 #include "ORBVocabulary.h"
 #include "ORBextractor.h"
+#include "Object.h"
 
 #include <opencv2/opencv.hpp>
 
@@ -38,6 +41,7 @@ namespace ORB_SLAM2 {
 
 class MapPoint;
 class KeyFrame;
+class Object;
 
 class Frame {
 public:
@@ -60,7 +64,11 @@ public:
   // Constructor for Monocular cameras.
   Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor *extractor,
         ORBVocabulary *voc, cv::Mat &K, cv::Mat &distCoef, const float &bf,
-        const float &thDepth);
+        const float &thDepth,
+        // add param
+        const std::vector<std::pair<std::vector<double>, int>>& detect_result
+        // end add param
+        );
 
   // Extract ORB on the image. 0 for left image and 1 for right image.
   void ExtractORB(int flag, const cv::Mat &im);
@@ -105,6 +113,15 @@ public:
   // Backprojects a keypoint (if stereo/depth info available) into 3D world
   // coordinates.
   cv::Mat UnprojectStereo(const int &i);
+
+
+  // *****************************
+  // MODIFICATION
+  bool IsInBox(const int& i, int& box_id); // whether point is in bbox
+  bool IsInDynamic(const int& i); // whether point is in dynamic features(persons)
+  bool IsInStatic(const int& i);
+  // END MODIFICATION
+  // *****************************
 
 public:
   // Vocabulary used for relocalization.
@@ -187,6 +204,23 @@ public:
   std::vector<float> mvInvScaleFactors;
   std::vector<float> mvLevelSigma2;
   std::vector<float> mvInvLevelSigma2;
+
+
+  // *************************
+  // MODIFICATIONS
+  // vector<std::shared_ptr<Object>> objects_cur_detect_;
+  std::vector<std::shared_ptr<Object>> objects_cur_; //store objects in each Frame
+  std::map<int, int> matches_out_box;
+  std::map<int, std::pair<int, int>> matches_in_box;
+  std::vector<std::vector<int>> points_in_box;
+  std::map<int, std::pair<int,int>> matches_in_dynamic;
+
+  std::vector<bool> vbInDynamic_mvKeys; //points located within the area of dynamic obj
+  // std::vector<bool> vbInStatic_mvKeys;
+  std::vector<cv::KeyPoint> mvKeys_after;
+  // std::vector<int> vInStatic_mvKeysUn;
+  // MODIFICATIONS
+  // *************************
 
   // Undistorted Image Bounds (computed once).
   static float mnMinX;

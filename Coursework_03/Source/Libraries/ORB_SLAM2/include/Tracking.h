@@ -61,7 +61,11 @@ public:
                           const double &timestamp);
   cv::Mat GrabImageRGBD(const cv::Mat &imRGB, const cv::Mat &imD,
                         const double &timestamp);
-  cv::Mat GrabImageMonocular(const cv::Mat &im, const double &timestamp);
+  cv::Mat GrabImageMonocular(const cv::Mat &im, const double &timestamp,
+                            // add new param
+                            const vector<std::pair<vector<double>, int>>& detect_result
+                            // finish adding new param
+                            );
 
   void SetLocalMapper(LocalMapping *pLocalMapper);
   void SetLoopClosing(LoopClosing *pLoopClosing);
@@ -87,10 +91,12 @@ public:
     LOST = 3
   };
 
+  // current tracking state
   eTrackingState mState;
+  // the tracking state of last frame, which is used when drawing current frame
   eTrackingState mLastProcessedState;
 
-  // Input sensor
+  // Input sensor: mono, stereo, rgbd
   int mSensor;
 
   // Current Frame
@@ -145,6 +151,13 @@ protected:
 
   bool NeedNewKeyFrame();
   void CreateNewKeyFrame();
+
+
+  // *******************************
+  // MODIFICATION: judge dyna points within frame
+  void JudgeDynamicObject();
+  // END MODIFICATION
+  // *******************************
 
   // In case of performing only localization, this flag is true when there are
   // no matches to points in the map. Still tracking will continue if there are

@@ -21,10 +21,12 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+// public library support
 #include <opencv2/core/core.hpp>
 #include <string>
 #include <thread>
 
+// ORB-SLAM2 system libs
 #include "FrameDrawer.h"
 #include "KeyFrameDatabase.h"
 #include "LocalMapping.h"
@@ -52,26 +54,35 @@ public:
 public:
   // Initialize the SLAM system. It launches the Local Mapping, Loop Closing and
   // Viewer threads.
-  System(const std::string &strVocFile, const std::string &strSettingsFile,
-         const eSensor sensor, const bool bUseViewer = true);
+  System(const std::string &strVocFile, 
+         const std::string &strSettingsFile,
+         const eSensor sensor, 
+         const bool bUseViewer = true);
 
   // Proccess the given stereo frame. Images must be synchronized and rectified.
   // Input images: RGB (CV_8UC3) or grayscale (CV_8U). RGB is converted to
   // grayscale. Returns the camera pose (empty if tracking fails).
-  cv::Mat TrackStereo(const cv::Mat &imLeft, const cv::Mat &imRight,
+  cv::Mat TrackStereo(const cv::Mat &imLeft, 
+                      const cv::Mat &imRight,
                       const double &timestamp);
 
   // Process the given rgbd frame. Depthmap must be registered to the RGB frame.
   // Input image: RGB (CV_8UC3) or grayscale (CV_8U). RGB is converted to
   // grayscale. Input depthmap: Float (CV_32F). Returns the camera pose (empty
   // if tracking fails).
-  cv::Mat TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap,
+  cv::Mat TrackRGBD(const cv::Mat &im, 
+                    const cv::Mat &depthmap,
                     const double &timestamp);
 
   // Proccess the given monocular frame
   // Input images: RGB (CV_8UC3) or grayscale (CV_8U). RGB is converted to
   // grayscale. Returns the camera pose (empty if tracking fails).
-  cv::Mat TrackMonocular(const cv::Mat &im, const double &timestamp);
+  cv::Mat TrackMonocular(const cv::Mat &im, 
+                         const double &timestam,
+                         // ADD NEW PARAM
+                         const vector<std::pair<vector<double>, int>>& detect_result
+                         // END ADDING NEW PARAM
+                         );
 
   // This stops local mapping thread (map building) and performs only camera
   // tracking.

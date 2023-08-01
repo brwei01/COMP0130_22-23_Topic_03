@@ -28,6 +28,7 @@
 #include <opencv2/core/core.hpp>
 
 #include "System.h"
+#include "Object.h"
 
 namespace fs = ::boost::filesystem;
 using namespace ::std;
@@ -35,9 +36,12 @@ using namespace ::std;
 void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
+void LoadBoundingBox(const string& strPathToDetectResult, 
+                    std::vector<std::pair<std::vector<double>, int>>& detect_result);
+
 int main(int argc, char **argv) {
-  if (argc != 4) {
-    cerr << endl << "Usage: " << argv[0] << " settings_files path_to_sequence results_file" << endl;
+  if (argc != 5) {
+    cerr << endl << "Usage: " << argv[0] << " settings_files path_to_sequence results_file yolov5_detect_result_files " << endl;
     return EX_USAGE;
   }
 
@@ -69,7 +73,27 @@ int main(int argc, char **argv) {
   std::thread runthread([&]() { // Start in new thread
 
     cv::Mat im;
+
+    // ***************************************
+    // MODIFICATIONS: ADD VARIABLE detect_result
+    std::vector<std::pair<vector<double>, int>> detect_result;
+    // END ADDING VARAIBLE
+    // ***************************************
+
     for (int ni = 0; ni < nImages; ni++) {
+
+      // ******************************* 
+      // MODIFICATION: LOAD BOUNDING BOX
+      string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
+      LoadBoundingBox(strPathToDetectionResult, detect_result);
+      if (detect_result.empty())
+      {
+        cerr << endl << "Failed to load bounding box" << endl;
+        return 1;
+      }
+      // END MODIFICATION
+      // ********************************
+
       // Read image from file
       im = cv::imread(string(argv[2]) + "/" + vstrImageFilenames[ni],
                       cv::IMREAD_UNCHANGED);
@@ -90,7 +114,7 @@ int main(int argc, char **argv) {
       chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
 
       // Pass the image to the SLAM system
-      SLAM.TrackMonocular(im, tframe);
+      SLAM.TrackMonocular(im, tframe, detect_result);
 
       chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
 
@@ -144,6 +168,7 @@ int main(int argc, char **argv) {
   return EX_OK;
 }
 
+
 void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps) {
   // Check the file exists
@@ -180,3 +205,74 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
     }
   }
 }
+
+
+
+// *******************************************
+// MODIFICATIONS
+void LoadBoundingBox(const string& strPathToDetectionResult, 
+                    std::vector<std::pair<vector<double>, int>>& detect_result)
+{
+  ifstream infile;
+  infile.open(strPathToDetectionResult);
+  
+  if(!infile.is_open())
+  {
+    cout<<"yolo detection result files failed to open"<<endl;
+    exit(233);
+  }
+  vector<double> result_parameter;
+  string line;
+  while(getline(infile, line))
+  {
+    int sum = 0, num_bit = 0;
+    for (char c: line)
+    {
+      if (c >= '0' && c <= '9')
+      {
+        num_bit = c - '0';
+        sum = sum * 10 + num_bit;
+      }
+      else if (c = ' ')
+      {
+        result_parameter.push_back(sum);
+        sum = 0;
+        num_bit = 0;
+      }
+    }
+
+    string idx_begin = "class:";
+    int idx = line.find(idx_begin);
+    string idx_end = "0.";
+    int idx2 = line.find(idx_end);
+    string class_label;
+    for (int j = idx + 6; j < idx2-1; ++j)
+    {
+      class_label += line[j];
+    }
+    // cout << "**" << class_label << "**";
+
+    int class_id = -1;//存入识别物体的种类
+    if (class_label == "person") { //高动态物体:人,动物等
+        class_id = 3;
+    }
+
+    if (class_label == "tv" ||   //低动态物体(在程序中可以假设为一直静态的物体):tv,refrigerator
+        class_label == "refrigerator" || 
+        class_label == "teddy bear") {
+        class_id = 1;
+    }
+
+    if (class_label == "chair" || //中动态物体,在程序中不做先验动态静态判断
+        class_label == "car"){
+        class_id =2;
+    }
+
+    detect_result.emplace_back(result_parameter,class_id);
+    result_parameter.clear();
+    line.clear();
+  }
+  infile.close();
+}
+// END MODIFICATIONS
+// *******************************************

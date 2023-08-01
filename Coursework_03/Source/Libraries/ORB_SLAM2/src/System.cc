@@ -20,12 +20,14 @@
 
 #include "System.h"
 #include "Converter.h"
+#include "Object.h"
 #include <boost/filesystem.hpp>
 #include <chrono>
 #include <ctime>
 #include <iomanip>
 #include <pangolin/pangolin.h>
 #include <thread>
+#include <unistd.h>
 
 namespace fs = ::boost::filesystem;
 using namespace ::std;
@@ -33,9 +35,13 @@ using namespace ::std;
 namespace ORB_SLAM2 {
 
 System::System(const string &strVocFile, const string &strSettingsFile,
-               const eSensor sensor, const bool bUseViewer)
-    : mSensor(sensor), mpViewer(static_cast<Viewer *>(NULL)), mbReset(false),
-      mbActivateLocalizationMode(false), mbDeactivateLocalizationMode(false) {
+               const eSensor sensor, const bool bUseViewer):     
+      mSensor(sensor), 
+      mpViewer(static_cast<Viewer *>(NULL)), 
+      mbReset(false),
+      mbActivateLocalizationMode(false), 
+      mbDeactivateLocalizationMode(false) 
+{
   // Output welcome message
   cout << endl
        << "ORB-SLAM2 Copyright (C) 2014-2016 Raul Mur-Artal, University of "
@@ -251,6 +257,7 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap,
     }
   }
 
+
   cv::Mat Tcw = mpTracker->GrabImageRGBD(im, depthmap, timestamp);
 
   unique_lock<mutex> lock2(mMutexState);
@@ -260,7 +267,10 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap,
   return Tcw;
 }
 
-cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp) {
+cv::Mat System::TrackMonocular(const cv::Mat &im, 
+                              const double &timestamp,
+                              const vector<std::pair<vector<double>, int>>& detect_result) 
+{
   if (mSensor != MONOCULAR) {
     cerr << "ERROR: you called TrackMonocular but input sensor was not set to "
             "Monocular."
@@ -298,7 +308,52 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp) {
     }
   }
 
-  cv::Mat Tcw = mpTracker->GrabImageMonocular(im, timestamp);
+  // ****************************************
+  // MODIFICATION: adding object bounding box
+
+  std::vector<std::vector<double>> vfirst;
+  std::vector<int> vsecond;
+  std::vector<std::vector<double>> vperson_box;
+  std::vector<int> vperson_class;
+
+  /*
+  // clean the leftover features from the last frame
+  vector <int>().swap(vperson_class);
+  vperson_box.clear();
+  vfirst.clear();
+  vsecond.clear();
+  obj->vdetect_parameter.clear();
+  obj->ndetect_class.clear(); 
+  */
+
+
+  /*
+  for (int k=0; k<detect_result.size(); ++k)
+  {
+    vfirst.push_back(detect_result[k].first);
+    vsecond.push_back(detect_result[k].second);
+
+    if (detect_result[k].second == 3)
+    {
+      vperson_box.push_back(detect_result[k].first);
+      vperson_class.push_back(detect_result[k].second);
+    }
+
+    cout << "number of persons detected under current frame: " << vperson_class.size() << endl;
+    
+    std::shared_ptr<Object> obj = make_shared<Object>(vperson_box, vperson_class); // obj stores the bb for persons
+    // cout << "obj -> ndetect_class is: " << obj->ndetect_class.size() << endl;
+  }
+  // END OF MODIFICATION
+  // ******************************************************
+  */
+
+  // Camera position estimation:
+  cv::Mat Tcw = mpTracker->GrabImageMonocular(im, timestamp,
+                                              // ADD NEW PARAM
+                                              detect_result
+                                              // END ADDING NEW PARAM 
+                                              );
 
   unique_lock<mutex> lock2(mMutexState);
   mTrackingState = mpTracker->mState;

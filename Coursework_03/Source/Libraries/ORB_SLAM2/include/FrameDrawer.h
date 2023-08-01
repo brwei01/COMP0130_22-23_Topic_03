@@ -24,6 +24,7 @@
 #include "Map.h"
 #include "MapPoint.h"
 #include "Tracking.h"
+#include "Object.h"
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/features2d/features2d.hpp>
@@ -34,6 +35,8 @@ namespace ORB_SLAM2 {
 
 class Tracking;
 class Viewer;
+class Frame;
+class Object;
 
 class FrameDrawer {
 public:
@@ -52,6 +55,18 @@ protected:
   cv::Mat mIm;
   int N;
   std::vector<cv::KeyPoint> mvCurrentKeys;
+
+  //************************
+  //MODIFICATIONS
+  map<int, std::pair<int,int>> matches_n_box;
+  vector<std::shared_ptr<Object>> objects_curFD;
+  vector<bool> vbInDynamic_mvKeys;
+  //END MODIFICATIONS
+  //************************
+
+
+
+
   std::vector<bool> mvbMap, mvbVO;
   bool mbOnlyTracking;
   int mnTracked, mnTrackedVO;

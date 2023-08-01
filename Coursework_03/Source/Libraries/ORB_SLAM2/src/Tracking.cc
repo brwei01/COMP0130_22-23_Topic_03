@@ -35,6 +35,7 @@
 #include <chrono>
 #include <iostream>
 #include <mutex>
+#include <cmath>
 #include <thread>
 
 using namespace ::std;
@@ -57,6 +58,11 @@ Tracking::Tracking(System *pSys, ORBVocabulary *pVoc, FrameDrawer *pFrameDrawer,
   float cx = fSettings["Camera.cx"];
   float cy = fSettings["Camera.cy"];
 
+  //  |fx 0  cx|
+  //K=|0  fy cy|
+  //  |0  0  1 |
+
+  // establish the camera's interior params matrix
   cv::Mat K = cv::Mat::eye(3, 3, CV_32F);
   K.at<float>(0, 0) = fx;
   K.at<float>(1, 1) = fy;
@@ -64,12 +70,16 @@ Tracking::Tracking(System *pSys, ORBVocabulary *pVoc, FrameDrawer *pFrameDrawer,
   K.at<float>(1, 2) = cy;
   K.copyTo(mK);
 
+
+  // image rectify
   cv::Mat DistCoef(4, 1, CV_32F);
   DistCoef.at<float>(0) = fSettings["Camera.k1"];
   DistCoef.at<float>(1) = fSettings["Camera.k2"];
   DistCoef.at<float>(2) = fSettings["Camera.p1"];
   DistCoef.at<float>(3) = fSettings["Camera.p2"];
   const float k3 = fSettings["Camera.k3"];
+
+  // some cameras wont have the k3 term in distortion coefficient
   if (k3 != 0) {
     DistCoef.resize(5);
     DistCoef.at<float>(4) = k3;
@@ -163,6 +173,7 @@ cv::Mat Tracking::GrabImageStereo(const cv::Mat &imRectLeft,
   mImGray = imRectLeft;
   cv::Mat imGrayRight = imRectRight;
 
+  // transfer RGB/RGBA into grayscale imgs
   if (mImGray.channels() == 3) {
     if (mbRGB) {
       cvtColor(mImGray, mImGray, cv::COLOR_RGB2GRAY);
@@ -190,6 +201,15 @@ cv::Mat Tracking::GrabImageStereo(const cv::Mat &imRectLeft,
   return mCurrentFrame.mTcw.clone();
 }
 
+
+
+// RGBD TRACKING
+// TRACKING STEP 1.
+// INPUT the left RGB or RGBA img
+// transfer the img into mImGray and imDepth
+// initialize mCurrentFrame
+// operate the tracking process
+// OUTPUT a transformation matrix between world coords sys and the camera coords sys at the current frame 
 cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB, const cv::Mat &imD,
                                 const double &timestamp) {
   mImGray = imRGB;
@@ -207,21 +227,42 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB, const cv::Mat &imD,
       cvtColor(mImGray, mImGray, cv::COLOR_BGRA2GRAY);
   }
 
+
+
+  // TRACKING STEP2: transfer the disparity of Depth Camera into Depth (under the real scale)
   if ((fabs(mDepthMapFactor - 1.0f) > 1e-5) || imDepth.type() != CV_32F)
     imDepth.convertTo(imDepth, CV_32F, mDepthMapFactor);
 
-  mCurrentFrame = Frame(mImGray, imDepth, timestamp, mpORBextractorLeft,
-                        mpORBVocabulary, mK, mDistCoef, mbf, mThDepth);
+  // TRACKING STEP3: establish the frame
+  mCurrentFrame = Frame(mImGray, 
+                        imDepth, 
+                        timestamp, 
+                        mpORBextractorLeft,
+                        mpORBVocabulary, 
+                        mK, 
+                        mDistCoef, 
+                        mbf,               // cam baseline * focal line
+                        mThDepth);
 
+  // TRACKING STEP4: OPERATE TRACKING
   Track();
-
+  
+  // Return position under the current Frame
   return mCurrentFrame.mTcw.clone();
 }
 
+
+// MONOCULAR TRACKING
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im,
-                                     const double &timestamp) {
+                                     const double &timestamp,
+                                     // add new param
+                                     const vector<std::pair<vector<double>, int>>& detect_result
+                                     // END ADDING NEW PARAM
+                                     ) {
   mImGray = im;
 
+
+  // STEP1: convert colourful pics into grayscale
   if (mImGray.channels() == 3) {
     if (mbRGB)
       cvtColor(mImGray, mImGray, cv::COLOR_RGB2GRAY);
@@ -234,34 +275,63 @@ cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im,
       cvtColor(mImGray, mImGray, cv::COLOR_BGRA2GRAY);
   }
 
+  // STEP2: establish the Frame
   if (mState == NOT_INITIALIZED || mState == NO_IMAGES_YET)
-    mCurrentFrame = Frame(mImGray, timestamp, mpIniORBextractor,
-                          mpORBVocabulary, mK, mDistCoef, mbf, mThDepth);
+    mCurrentFrame = Frame(mImGray, 
+                          timestamp, 
+                          mpIniORBextractor,
+                          mpORBVocabulary, 
+                          mK, 
+                          mDistCoef, 
+                          mbf, 
+                          mThDepth,
+                          // ADDING NEW PARAM
+                          detect_result
+                          // END ADDING NEW PARAM
+                          );
   else
-    mCurrentFrame = Frame(mImGray, timestamp, mpORBextractorLeft,
-                          mpORBVocabulary, mK, mDistCoef, mbf, mThDepth);
-
+    mCurrentFrame = Frame(mImGray, 
+                          timestamp, 
+                          mpORBextractorLeft,
+                          mpORBVocabulary, 
+                          mK, 
+                          mDistCoef, 
+                          mbf, 
+                          mThDepth,
+                          // ADDING NEW PARAM
+                          detect_result
+                          // END ADDING NEW PARAM
+                          );
+  // STEP3: Tracking
   Track();
 
   return mCurrentFrame.mTcw.clone();
 }
 
+
+
+// THE MAIN TRACKING FUNCTION.
+// 2 components: estimate motion, tracking local map
 void Tracking::Track() {
   if (mState == NO_IMAGES_YET) {
     mState = NOT_INITIALIZED;
   }
 
+  // stores the newest status of Tracking, used in FrameDrawer
   mLastProcessedState = mState;
 
   // Get Map Mutex -> Map cannot be changed
   unique_lock<mutex> lock(mpMap->mMutexMapUpdate);
 
+
+  // STEP1: INITIALIZATION
   if (mState == NOT_INITIALIZED) {
     if (mSensor == System::STEREO || mSensor == System::RGBD)
+      // the initialization of stereo and RGBD share the same ini function
       StereoInitialization();
     else
       MonocularInitialization();
-
+    // update the status stored in FrameDrawer
     mpFrameDrawer->Update(this);
 
     if (mState != OK)
@@ -276,6 +346,7 @@ void Tracking::Track() {
       // Local Mapping is activated. This is the normal behaviour, unless
       // you explicitly activate the "only tracking" mode.
 
+      //STEP2: Track enters the normal SLAM mode, with updates to the map 
       if (mState == OK) {
         // Local Mapping might have changed some MapPoints tracked in last frame
         CheckReplacedInLastFrame();
@@ -346,10 +417,12 @@ void Tracking::Track() {
       }
     }
 
+    // use the newest key frame as the ref keyframe for current frame
     mCurrentFrame.mpReferenceKF = mpReferenceKF;
 
     // If we have an initial estimation of the camera pose and matching. Track
     // the local map.
+    // STEP3. after getting the initialized pose through tracking, now track local map to get more matches and optimize the current pose
     if (!mbOnlyTracking) {
       if (bOK)
         bOK = TrackLocalMap();
@@ -368,6 +441,7 @@ void Tracking::Track() {
       mState = LOST;
 
     // Update drawer
+    // STEP 4: update the img, feaure points, map points in the viewer thread
     mpFrameDrawer->Update(this);
 
     // If tracking were good, check if we insert a keyframe
@@ -385,6 +459,7 @@ void Tracking::Track() {
       mpMapDrawer->SetCurrentCameraPose(mCurrentFrame.mTcw);
 
       // Clean VO matches
+      // STEP6. clear the map points cannot be observed
       for (int i = 0; i < mCurrentFrame.N; i++) {
         MapPoint *pMP = mCurrentFrame.mvpMapPoints[i];
         if (pMP)
@@ -395,6 +470,9 @@ void Tracking::Track() {
       }
 
       // Delete temporal MapPoints
+      // STEP7. clear the map points added for current temporary frame (RGBD and stereo only), 
+      // which are generated in constant speed tracking model
+      // Here, the map points are deleted from MapPoints database.
       for (list<MapPoint *>::iterator lit = mlpTemporalPoints.begin(),
                                       lend = mlpTemporalPoints.end();
            lit != lend; lit++) {
@@ -404,6 +482,7 @@ void Tracking::Track() {
       mlpTemporalPoints.clear();
 
       // Check if we need to insert a new keyframe
+      // STEP 8. check and insert new keyframe, new mappoints generated for stereo and RGBD
       if (NeedNewKeyFrame())
         CreateNewKeyFrame();
 
@@ -412,6 +491,7 @@ void Tracking::Track() {
       // finally decide if they are outliers or not. We don't want next frame to
       // estimate its position with those points so we discard them in the
       // frame.
+      // STEP 9. delete the map points distinguished as 'outliers' in bundle adjustment
       for (int i = 0; i < mCurrentFrame.N; i++) {
         if (mCurrentFrame.mvpMapPoints[i] && mCurrentFrame.mvbOutlier[i])
           mCurrentFrame.mvpMapPoints[i] = static_cast<MapPoint *>(NULL);
@@ -419,7 +499,9 @@ void Tracking::Track() {
     }
 
     // Reset if the camera get lost soon after initialization
+    // STEP 10. if tracking lost shortly after initialization, and relocation failed, then reset
     if (mState == LOST) {
+      // if too little KF info, reset directly
       if (mpMap->KeyFramesInMap() <= 5) {
         cout << "Track lost soon after initialisation, reseting..." << endl;
         mpSystem->Reset();
@@ -427,14 +509,17 @@ void Tracking::Track() {
       }
     }
 
+    // ensure ref kf is set
     if (!mCurrentFrame.mpReferenceKF)
       mCurrentFrame.mpReferenceKF = mpReferenceKF;
 
+    // save the data from last frame and iterate the current frame as last frame 
     mLastFrame = Frame(mCurrentFrame);
   }
 
   // Store frame pose information to retrieve the complete camera trajectory
   // afterwards.
+  // STEP 11: store pose info.
   if (!mCurrentFrame.mTcw.empty()) {
     cv::Mat Tcr =
         mCurrentFrame.mTcw * mCurrentFrame.mpReferenceKF->GetPoseInverse();
@@ -451,6 +536,9 @@ void Tracking::Track() {
   }
 }
 
+
+// THE INITIALIZATION FUNC FOR RGBD AND STEREO
+// depth info is available, generate mappoints directly
 void Tracking::StereoInitialization() {
   if (mCurrentFrame.N > 500) {
     // Set Frame pose to the origin
@@ -502,6 +590,8 @@ void Tracking::StereoInitialization() {
   }
 }
 
+
+//THE INITIALIZATION FUNCTION FOR MONOCULAR
 void Tracking::MonocularInitialization() {
 
   if (!mpInitializer) {
@@ -1440,5 +1530,14 @@ void Tracking::ChangeCalibration(const string &strSettingPath) {
 }
 
 void Tracking::InformOnlyTracking(const bool &flag) { mbOnlyTracking = flag; }
+
+
+// ***********************
+// MODIFICATIONS
+void Tracking::JudgeDynamicObject(){
+  // cv::findFundamentalMat()
+}
+// END MODIFICATIONS
+// ************************
 
 } // namespace ORB_SLAM2

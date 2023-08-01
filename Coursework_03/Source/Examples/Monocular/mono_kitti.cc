@@ -32,13 +32,318 @@
 #include <opencv2/core/core.hpp>
 
 #include "System.h"
+#include "Object.h"
 
 namespace fs = ::boost::filesystem;
 using namespace std;
 
+/*
+// ******************************************
+// TO MAKE FULLY ONLINE USING SOCKET SERVER
+// replace the LoadBoundingBoxFromPython method
+void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd);
+
+void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result);
+// END: TO MAKE FULLY ONLINE
+// *******************************************
+*/
+
+
+void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
+                vector<double> &vTimestamps);
+
+// ************************************************************
+// MODIFICATION: ADD NEW FUNCTION
+void LoadBoundingBox(const string& strPathToDetectResult, 
+                    std::vector<std::pair<std::vector<double>, int>>& detect_result);
+// END MODIFICATION
+// ************************************************************
+
+int main(int argc, char **argv) {
+
+  /*
+  // SOCKET INITIALIZATION
+  int sockfd;
+  int len;
+  struct sockaddr_un address;
+  int result;
+  int i, byte;
+  char send_buf[128], ch_recv[1024];
+
+  if((sockfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1)
+  {
+    perror("socket");
+    exit(EXIT_FAILURE);
+  }
+
+  // setup server_address
+  address.sun_family = AF_UNIX;
+  strcpy(address.sun_path, "/home/borui/Dev/server_socket");
+  len = sizeof(address);
+
+  result = connect(sockfd, (struct sockaddr *)&address, len);
+
+  if (result == -1)
+  {
+    printf("please ensure the server is up\n");
+    perror("connect");
+    exit(EXIT_FAILURE);
+  }
+  // END SOCKET SERVER INIT
+  */
+
+
+  if (argc != 5) {
+    cerr << endl
+          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file yolov5_detect_results" << endl;
+    return EX_USAGE;
+  }
+
+  // Retrieve paths to images
+  // store path to mono images and corresponding timestamps 
+  vector<string> vstrImageFilenames;
+  vector<double> vTimestamps;
+  // "string strAssciationFilename = string(argv[2])" from terminal input to get associated filename
+  // to load these information
+  LoadImages(string(argv[2]), vstrImageFilenames, vTimestamps);
+
+  int nImages = vstrImageFilenames.size();
+
+  // Create SLAM system. It initializes all system threads and gets ready to
+  // process frames.
+  string settingsFile = string(DEFAULT_MONO_SETTINGS_DIR) + string(argv[1]);
+  ORB_SLAM2::System SLAM(DEFAULT_ORB_VOCABULARY, settingsFile,
+                         ORB_SLAM2::System::MONOCULAR, true);
+
+  // Vector for tracking time statistics
+  vector<float> vTimesTrack;
+  vTimesTrack.resize(nImages);
+
+  cout << endl << "-------" << endl;
+  cout << "Start processing sequence ..." << endl;
+  cout << "Images in the sequence: " << nImages << endl << endl;
+
+  int main_error = 0;
+  std::thread runthread([&]() { // Start in new thread
+    // Main loop
+    cv::Mat im;
+
+    // ***************************************
+    // MODIFICATIONS: ADD VARIABLE detect_result
+    std::vector<std::pair<vector<double>, int>> detect_result;
+    // END ADDING VARAIBLE
+    // ***************************************  
 
 
 
+    for (int ni = 0; ni < nImages; ni++) {
+
+      // ******************************* 
+      // MODIFICATION: LOAD BOUNDING BOX
+      string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
+      LoadBoundingBox(strPathToDetectionResult, detect_result);
+      if (detect_result.empty())
+      {
+        cerr << endl << "Failed to load bounding box" << endl;
+        return 1;
+      }
+      // END MODIFICATION
+      // ********************************
+
+
+      // Read image from file
+      im = cv::imread(vstrImageFilenames[ni], cv::IMREAD_UNCHANGED);
+      double tframe = vTimestamps[ni];
+
+      // make sure the image is valid
+      if (im.empty()) {
+        cerr << endl
+             << "Failed to load image at: " << vstrImageFilenames[ni] << endl;
+        main_error = EX_DATAERR;
+        break;
+      }
+
+      if (SLAM.isFinished() == true) {
+	  break;
+      }
+      
+      chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
+
+      // Pass the image to the SLAM system
+      SLAM.TrackMonocular(im, tframe, detect_result);
+
+      chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
+
+      double ttrack =
+          chrono::duration_cast<chrono::duration<double>>(t2 - t1).count();
+
+      vTimesTrack[ni] = ttrack;
+
+      // Wait to load the next frame
+      double T = 0;
+      if (ni < nImages - 1)
+        T = vTimestamps[ni + 1] - tframe;
+      else if (ni > 0)
+        T = tframe - vTimestamps[ni - 1];
+
+      if (ttrack < T)
+        this_thread::sleep_for(chrono::duration<double>(T - ttrack));
+    }
+    SLAM.StopViewer();
+  });
+  SLAM.StartViewer();
+
+  cout << "Viewer started, waiting for thread." << endl;
+  runthread.join();
+  if (main_error != 0)
+    return main_error;
+  cout << "Tracking thread joined..." << endl;
+
+  // Stop all threads
+  SLAM.Shutdown();
+
+  // Tracking time statistics
+  sort(vTimesTrack.begin(), vTimesTrack.end());
+  float totaltime = 0;
+  for (int ni = 0; ni < nImages; ni++) {
+    totaltime += vTimesTrack[ni];
+  }
+  cout << "-------" << endl << endl;
+  cout << "median tracking time: " << vTimesTrack[nImages / 2] << endl;
+  cout << "mean tracking time: " << totaltime / nImages << endl;
+
+  // Save camera trajectory
+  // SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+  // SLAM.SaveTrajectoryTUM(string(argv[3]));
+
+  // Save to KITTI pose file
+  SLAM.SaveTrajectoryKITTI(string(argv[3]));
+
+
+  return EX_OK;
+}
+
+void LoadImages(const string &strPathToSequence,
+                vector<string> &vstrImageFilenames,
+                vector<double> &vTimestamps) {
+
+  // Check the file exists
+  if (fs::exists(strPathToSequence) == false) {
+    cerr << "FATAL: Could not find the timestamp file " << strPathToSequence
+         << endl;
+    exit(0);
+  }
+
+  ifstream fTimes;
+  string strPathTimeFile = strPathToSequence + "/times.txt";
+  if (fs::exists(strPathTimeFile) == false) {
+    cerr << "FATAL: Could not find the timestamp file " << strPathTimeFile
+         << endl;
+    exit(0);
+  }
+  fTimes.open(strPathTimeFile.c_str());
+  while (!fTimes.eof()) {
+    string s;
+    getline(fTimes, s);
+    if (!s.empty()) {
+      stringstream ss;
+      ss << s;
+      double t;
+      ss >> t;
+      vTimestamps.push_back(t);
+    }
+  }
+
+  string strPrefixLeft = strPathToSequence + "/image_0/";
+
+  const int nTimes = vTimestamps.size();
+  vstrImageFilenames.resize(nTimes);
+
+  for (int i = 0; i < nTimes; i++) {
+    stringstream ss;
+    ss << setfill('0') << setw(6) << i;
+    vstrImageFilenames[i] = strPrefixLeft + ss.str() + ".png";
+  }
+}
+
+
+
+
+// *******************************************
+// MODIFICATIONS
+void LoadBoundingBox(const string& strPathToDetectionResult, 
+                    std::vector<std::pair<vector<double>, int>>& detect_result)
+{
+  ifstream infile;
+  infile.open(strPathToDetectionResult);
+  
+  if(!infile.is_open())
+  {
+    cout<<"yolo detection result files failed to open"<<endl;
+    exit(233);
+  }
+  vector<double> result_parameter;
+  string line;
+  while(getline(infile, line))
+  {
+    int sum = 0, num_bit = 0;
+    for (char c: line)
+    {
+      if (c >= '0' && c <= '9')
+      {
+        num_bit = c - '0';
+        sum = sum * 10 + num_bit;
+      }
+      else if (c = ' ')
+      {
+        result_parameter.push_back(sum);
+        sum = 0;
+        num_bit = 0;
+      }
+    }
+
+    string idx_begin = "class:";
+    int idx = line.find(idx_begin);
+    string idx_end = "0.";
+    int idx2 = line.find(idx_end);
+    string class_label;
+    for (int j = idx + 6; j < idx2-1; ++j)
+    {
+      class_label += line[j];
+    }
+    // cout << "**" << class_label << "**";
+
+    int class_id = -1;//存入识别物体的种类
+    if (class_label == "person") { //高动态物体:人,动物等
+        class_id = 3;
+    }
+
+    if (class_label == "tv" ||   //低动态物体(在程序中可以假设为一直静态的物体):tv,refrigerator
+        class_label == "refrigerator" || 
+        class_label == "teddy bear") {
+        class_id = 1;
+    }
+
+    if (class_label == "chair" || //中动态物体,在程序中不做先验动态静态判断
+        class_label == "car"){
+        class_id =2;
+    }
+
+    detect_result.emplace_back(result_parameter,class_id);
+    result_parameter.clear();
+    line.clear();
+  }
+  infile.close();
+}
+// END MODIFICATIONS
+// *******************************************
+
+
+
+
+/*
+// ***************************************************************
+// TO MAKE FULLY ONLINE USING SOCKET SERVER
 // ADDING 2 FUNCTIONS: 
 // LoadBoundingBoxFromPython, MakeDetect_result
 void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result)
@@ -154,201 +459,8 @@ void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int
     // cout << "detect_result size is: " << detect_result.size() << endl;
     // for (int k = 0; k < detect_result.size(); ++k)
     // cout << "detect_result is: \n" << detect_result[k].second << endl;
-
-
-
-
 }
+// END: TO MAKE FULLY ONLINE
+// **********************************************************************************
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
-                vector<double> &vTimestamps);
-
-int main(int argc, char **argv) {
-
-  
-  // SOCKET INITIALIZATION
-  int sockfd;
-  int len;
-  struct sockaddr_un address;
-  int result;
-  int i, byte;
-  char send_buf[128], ch_recv[1024];
-
-  if((sockfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1)
-  {
-    perror("socket");
-    exit(EXIT_FAILURE);
-  }
-
-  // setup server_address
-  address.sun_family = AF_UNIX;
-  strcpy(address.sun_path, "/home/borui/Dev/server_socket");
-  len = sizeof(address);
-
-  result = connect(sockfd, (struct sockaddr *)&address, len);
-
-  if (result == -1)
-  {
-    printf("please ensure the server is up\n");
-    perror("connect");
-    exit(EXIT_FAILURE);
-  }
-
-
-
-  if (argc != 4) {
-    cerr << endl
-          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file" << endl;
-    return EX_USAGE;
-  }
-
-  // Retrieve paths to images
-  vector<string> vstrImageFilenames;
-  vector<double> vTimestamps;
-  LoadImages(string(argv[2]), vstrImageFilenames, vTimestamps);
-
-  int nImages = vstrImageFilenames.size();
-
-  // Create SLAM system. It initializes all system threads and gets ready to
-  // process frames.
-  string settingsFile = string(DEFAULT_MONO_SETTINGS_DIR) + string(argv[1]);
-  ORB_SLAM2::System SLAM(DEFAULT_ORB_VOCABULARY, settingsFile,
-                         ORB_SLAM2::System::MONOCULAR, true);
-
-  // Vector for tracking time statistics
-  vector<float> vTimesTrack;
-  vTimesTrack.resize(nImages);
-
-  cout << endl << "-------" << endl;
-  cout << "Start processing sequence ..." << endl;
-  cout << "Images in the sequence: " << nImages << endl << endl;
-
-  int main_error = 0;
-  std::thread runthread([&]() { // Start in new thread
-    // Main loop
-    cv::Mat im;
-    for (int ni = 0; ni < nImages; ni++) {
-      // Read image from file
-      im = cv::imread(vstrImageFilenames[ni], cv::IMREAD_UNCHANGED);
-      double tframe = vTimestamps[ni];
-
-      if (im.empty()) {
-        cerr << endl
-             << "Failed to load image at: " << vstrImageFilenames[ni] << endl;
-        main_error = EX_DATAERR;
-        break;
-      }
-
-      if (SLAM.isFinished() == true) {
-	  break;
-      }
-      
-      chrono::steady_clock::time_point t1 = chrono::steady_clock::now();
-
-      // Pass the image to the SLAM system
-      SLAM.TrackMonocular(im, tframe);
-
-      chrono::steady_clock::time_point t2 = chrono::steady_clock::now();
-
-      double ttrack =
-          chrono::duration_cast<chrono::duration<double>>(t2 - t1).count();
-
-      vTimesTrack[ni] = ttrack;
-
-      // Wait to load the next frame
-      double T = 0;
-      if (ni < nImages - 1)
-        T = vTimestamps[ni + 1] - tframe;
-      else if (ni > 0)
-        T = tframe - vTimestamps[ni - 1];
-
-      if (ttrack < T)
-        this_thread::sleep_for(chrono::duration<double>(T - ttrack));
-    }
-    SLAM.StopViewer();
-  });
-  SLAM.StartViewer();
-
-  cout << "Viewer started, waiting for thread." << endl;
-  runthread.join();
-  if (main_error != 0)
-    return main_error;
-  cout << "Tracking thread joined..." << endl;
-
-  // Stop all threads
-  SLAM.Shutdown();
-
-  // Tracking time statistics
-  sort(vTimesTrack.begin(), vTimesTrack.end());
-  float totaltime = 0;
-  for (int ni = 0; ni < nImages; ni++) {
-    totaltime += vTimesTrack[ni];
-  }
-  cout << "-------" << endl << endl;
-  cout << "median tracking time: " << vTimesTrack[nImages / 2] << endl;
-  cout << "mean tracking time: " << totaltime / nImages << endl;
-
-  // Save camera trajectory
-  // SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
-  // SLAM.SaveTrajectoryTUM(string(argv[3]));
-
-  // Save to KITTI pose file
-  SLAM.SaveTrajectoryKITTI(string(argv[3]));
-
-
-  return EX_OK;
-}
-
-void LoadImages(const string &strPathToSequence,
-                vector<string> &vstrImageFilenames,
-                vector<double> &vTimestamps) {
-
-  // Check the file exists
-  if (fs::exists(strPathToSequence) == false) {
-    cerr << "FATAL: Could not find the timestamp file " << strPathToSequence
-         << endl;
-    exit(0);
-  }
-
-  ifstream fTimes;
-  string strPathTimeFile = strPathToSequence + "/times.txt";
-  if (fs::exists(strPathTimeFile) == false) {
-    cerr << "FATAL: Could not find the timestamp file " << strPathTimeFile
-         << endl;
-    exit(0);
-  }
-  fTimes.open(strPathTimeFile.c_str());
-  while (!fTimes.eof()) {
-    string s;
-    getline(fTimes, s);
-    if (!s.empty()) {
-      stringstream ss;
-      ss << s;
-      double t;
-      ss >> t;
-      vTimestamps.push_back(t);
-    }
-  }
-
-  string strPrefixLeft = strPathToSequence + "/image_0/";
-
-  const int nTimes = vTimestamps.size();
-  vstrImageFilenames.resize(nTimes);
-
-  for (int i = 0; i < nTimes; i++) {
-    stringstream ss;
-    ss << setfill('0') << setw(6) << i;
-    vstrImageFilenames[i] = strPrefixLeft + ss.str() + ".png";
-  }
-}
