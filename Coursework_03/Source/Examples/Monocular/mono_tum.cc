@@ -84,6 +84,7 @@ int main(int argc, char **argv) {
 
       // ******************************* 
       // MODIFICATION: LOAD BOUNDING BOX
+      
       string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
       LoadBoundingBox(strPathToDetectionResult, detect_result);
       if (detect_result.empty())
