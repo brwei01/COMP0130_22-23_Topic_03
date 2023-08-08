@@ -11,7 +11,7 @@
  *
  * ORB-SLAM2 is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABIeLITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
@@ -32,7 +32,7 @@
 #include <opencv2/core/core.hpp>
 
 #include "System.h"
-#include "Object.h"
+#include "Frame.h"
 
 namespace fs = ::boost::filesystem;
 using namespace std;
@@ -58,6 +58,11 @@ void LoadBoundingBox(const string& strPathToDetectResult,
                     std::vector<std::pair<std::vector<double>, int>>& detect_result);
 // END MODIFICATION
 // ************************************************************
+
+// ====================================
+// FOR TEST
+void PrintDetectionResults(const std::vector<std::pair<std::vector<double>, int>>& detect_result);
+// =====================================
 
 int main(int argc, char **argv) {
 
@@ -128,11 +133,15 @@ int main(int argc, char **argv) {
     // Main loop
     cv::Mat im;
 
+
+    /*
     // ***************************************
     // MODIFICATIONS: ADD VARIABLE detect_result
     std::vector<std::pair<vector<double>, int>> detect_result;
     // END ADDING VARAIBLE
     // ***************************************  
+    */
+
 
 
 
@@ -141,12 +150,24 @@ int main(int argc, char **argv) {
       // ******************************* 
       // MODIFICATION: LOAD BOUNDING BOX
       string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
+      // Clear the detect_result vector before loading new bounding boxes
+      std::vector<std::pair<std::vector<double>, int>> detect_result;
       LoadBoundingBox(strPathToDetectionResult, detect_result);
+
+      // ======================================
+      // THIS IS TO TEST IF THE RESULTS FROM LAST FILE STAYS FOR NEW LOOOP
+      // PrintDetectionResults(detect_result);    
+      // ======================================
+
+
+      /*
       if (detect_result.empty())
       {
         cerr << endl << "Failed to load bounding box" << endl;
         return 1;
       }
+      */
+
       // END MODIFICATION
       // ********************************
 
@@ -213,11 +234,11 @@ int main(int argc, char **argv) {
   cout << "mean tracking time: " << totaltime / nImages << endl;
 
   // Save camera trajectory
-  // SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
-  // SLAM.SaveTrajectoryTUM(string(argv[3]));
+  SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+  SLAM.SaveTrajectoryTUM(string(argv[3]));
 
   // Save to KITTI pose file
-  SLAM.SaveTrajectoryKITTI(string(argv[3]));
+  //SLAM.SaveTrajectoryKITTI(string(argv[3]));
 
 
   return EX_OK;
@@ -235,7 +256,8 @@ void LoadImages(const string &strPathToSequence,
   }
 
   ifstream fTimes;
-  string strPathTimeFile = strPathToSequence + "/times.txt";
+  // string strPathTimeFile = strPathToSequence + "/times.txt";
+  string strPathTimeFile = strPathToSequence + "/times_f.txt";
   if (fs::exists(strPathTimeFile) == false) {
     cerr << "FATAL: Could not find the timestamp file " << strPathTimeFile
          << endl;
@@ -277,10 +299,11 @@ void LoadBoundingBox(const string& strPathToDetectionResult,
   ifstream infile;
   infile.open(strPathToDetectionResult);
   
+  
   if(!infile.is_open())
   {
-    cout<<"yolo detection result files failed to open"<<endl;
-    exit(233);
+    std::cout<<R"(yolo detection result files failed to open at: )"<<strPathToDetectionResult<<std::endl;
+    // exit(233);
   }
   vector<double> result_parameter;
   string line;
@@ -326,7 +349,7 @@ void LoadBoundingBox(const string& strPathToDetectionResult,
 
     if (class_label == "chair" || //中动态物体,在程序中不做先验动态静态判断
         class_label == "car"){
-        class_id =2;
+        class_id = 2;
     }
 
     detect_result.emplace_back(result_parameter,class_id);
@@ -338,7 +361,28 @@ void LoadBoundingBox(const string& strPathToDetectionResult,
 // END MODIFICATIONS
 // *******************************************
 
+// FOR TEST
+// =========================
+void PrintDetectionResults(const std::vector<std::pair<std::vector<double>, int>>& detect_result)
+{
+  for (const auto& detection : detect_result)
+  {
+    const std::vector<double>& result_parameter = detection.first;
+    int class_id = detection.second;
 
+    // Print the detection parameters
+    std::cout << "Detection Parameters: ";
+    for (const double param : result_parameter)
+    {
+      std::cout << param << " ";
+    }
+    std::cout << std::endl;
+
+    // Print the class ID
+    std::cout << "Class ID: " << class_id << std::endl;
+  }
+}
+// =========================
 
 
 /*

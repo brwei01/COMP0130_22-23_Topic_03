@@ -71,6 +71,7 @@ cv::Mat FrameDrawer::DrawFrame() {
   if (im.channels() < 3) // this should be always true
     cvtColor(im, im, cv::COLOR_GRAY2BGR);
 
+
   // Draw
   if (state == Tracking::NOT_INITIALIZED) // INITIALIZING
   {
@@ -87,23 +88,48 @@ cv::Mat FrameDrawer::DrawFrame() {
     const float r = 5;
     const int n = vCurrentKeys.size();
     for (int i = 0; i < n; i++) {
+      
+      // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl;
+      
       if (vbVO[i] || vbMap[i]) {
+        
+        std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
+        
         cv::Point2f pt1, pt2;
         pt1.x = vCurrentKeys[i].pt.x - r;
         pt1.y = vCurrentKeys[i].pt.y - r;
         pt2.x = vCurrentKeys[i].pt.x + r;
         pt2.y = vCurrentKeys[i].pt.y + r;
-
+        
+      
+        
         // *********************************
         // MODIFICATIONS: draw bounding box
-        for (int k=0; k<objects_curFD.size(); ++k)
+        int k_start = 0;
+        while (k_start < objects_curFD.size())
         {
-          //cout << "k is" << j << endl;
-          if (objects_curFD[k] -> ndetect_class == 3)
+          int k = k_start;
+          // std::cout << "k is" << k << std::endl;
+          
+          /*
+          // THIS IS TO CHECK THE CONTENT OF 'objects_curFD'
+          std::cout << "the object is: ";
+          for (const auto& param : objects_curFD[k]->vdetect_parameter) {
+              std::cout << param << " ";
+          }
+          std::cout << objects_curFD[k]->ndetect_class << std::endl;          
+          // THIS CAN BE ANNOTATED
+          */
+
+
+          if (objects_curFD[k] -> ndetect_class == 2)
           {
             cv::Point pt11, pt22;
-            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
-            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
+            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[5], objects_curFD[k]->vdetect_parameter[10]);
+            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[17], objects_curFD[k]->vdetect_parameter[25]);
+
+            //std::cout << "car detected!" << pt11 << pt22 << std::endl;
+
             cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
           }
 
@@ -114,8 +140,10 @@ cv::Mat FrameDrawer::DrawFrame() {
             pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
             cv::rectangle(im, pt11, pt22, cv::Scalar(200 ,0 ,100));
           }
-
+          k_start = k + 1;
         }
+        
+
         
         /*
         // This is a match to a MapPoint in the map
@@ -136,12 +164,14 @@ cv::Mat FrameDrawer::DrawFrame() {
         // MODIFICATIONS: make the selected dot red
         if (vbInDynamic_mvKeys[i])
         {
+          std::cout << "dynamic point found!" << std::endl;
           cv::rectangle(im, pt1, pt2, cv::Scalar(0,0,200));
           cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0,0,200), -1);
           mnTracked++;
         }
         else
         {
+          std::cout<< "no dynamic point found" << std::endl;
           cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
           cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0,255,0),-1);
           mnTracked++;

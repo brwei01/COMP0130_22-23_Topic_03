@@ -28,6 +28,9 @@
 
 #include <System.h>
 
+#include "Frame.h"
+#include "Object.h"
+
 using namespace std;
 
 void LoadImages(const string &strAssociationFilename,

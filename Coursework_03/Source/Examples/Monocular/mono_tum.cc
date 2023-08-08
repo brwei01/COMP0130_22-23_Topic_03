@@ -24,10 +24,14 @@
 #include <fstream>
 #include <iostream>
 #include <sysexits.h>
-
+#include <unistd.h>
 #include <opencv2/core/core.hpp>
 
-#include "System.h"
+#include <memory>
+
+#include <System.h>
+
+#include "Frame.h"
 #include "Object.h"
 
 namespace fs = ::boost::filesystem;
@@ -49,6 +53,7 @@ int main(int argc, char **argv) {
   vector<string> vstrImageFilenames;
   vector<double> vTimestamps;
   string strFile = string(argv[2]) + "/rgb.txt";
+  // string strFile = string(argv[2]) + "/times.txt";
   LoadImages(strFile, vstrImageFilenames, vTimestamps);
 
   int nImages = vstrImageFilenames.size();
@@ -86,6 +91,7 @@ int main(int argc, char **argv) {
       // MODIFICATION: LOAD BOUNDING BOX
       
       string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
+      std::cout << strPathToDetectionResult << std::endl;
       LoadBoundingBox(strPathToDetectionResult, detect_result);
       if (detect_result.empty())
       {
@@ -161,8 +167,9 @@ int main(int argc, char **argv) {
   cout << "mean tracking time: " << totaltime / nImages << endl;
 
   // Save camera trajectory
-  // SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+  SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
   SLAM.SaveTrajectoryTUM(string(argv[3]));
+
 
   cout << "All done" << endl;
   
@@ -172,13 +179,15 @@ int main(int argc, char **argv) {
 
 void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps) {
-  // Check the file exists
-  if (fs::exists(strFile) == false) {
+  
+    // Check the file exists
+    if (fs::exists(strFile) == false) {
     cerr << "FATAL: Could not find the timestamp file " << strFile << endl;
     exit(0);
   }
 
-  ifstream f;
+
+  std::ifstream f;
   f.open(strFile.c_str());
 
   // skip first three lines
@@ -214,14 +223,17 @@ void LoadImages(const string &strFile, vector<string> &vstrImageFilenames,
 void LoadBoundingBox(const string& strPathToDetectionResult, 
                     std::vector<std::pair<vector<double>, int>>& detect_result)
 {
-  ifstream infile;
+  std::ifstream infile;
   infile.open(strPathToDetectionResult);
   
+
   if(!infile.is_open())
   {
-    cout<<"yolo detection result files failed to open"<<endl;
+    cout<<"yolo detection result files failed to open at: "<< strPathToDetectionResult <<endl;
     exit(233);
   }
+  
+
   vector<double> result_parameter;
   string line;
   while(getline(infile, line))
