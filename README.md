@@ -8,3 +8,11 @@ See the [wiki](https://github.com/UCL/COMP0130_22-23_Topic_03/wiki) for further 
 # yolov5 modi
 the modifications made to yolov5 library
 these include a socket server version 
+
+
+# Running the UNIX socket version
+run the following in your terminal, it is necessary to save the confidence level:
+cd path_to_yolov5_folder
+python detect.py --source path_to_data --save_txt --save_conf
+
+
