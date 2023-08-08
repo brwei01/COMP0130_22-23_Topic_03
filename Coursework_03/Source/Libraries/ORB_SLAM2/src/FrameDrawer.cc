@@ -125,10 +125,10 @@ cv::Mat FrameDrawer::DrawFrame() {
           if (objects_curFD[k] -> ndetect_class == 2)
           {
             cv::Point pt11, pt22;
-            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[5], objects_curFD[k]->vdetect_parameter[10]);
-            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[17], objects_curFD[k]->vdetect_parameter[25]);
+            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
+            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
 
-            //std::cout << "car detected!" << pt11 << pt22 << std::endl;
+            std::cout << "car detected!" << pt11 << pt22 << std::endl;
 
             cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
           }

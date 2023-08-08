@@ -52,7 +52,7 @@ from utils.general import (LOGGER, Profile, check_file, check_img_size, check_im
 from utils.plots import Annotator, colors, save_one_box
 from utils.torch_utils import select_device, smart_inference_mode
 
-'''
+
 serverAddr = '/home/borui/Dev/server_socket'
 server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
 print(server)
@@ -68,7 +68,6 @@ if server.listen(5):
 print('waiting for connection')
 conn, addr = server.accept()
 print(conn, addr)
-'''
 
 
 @smart_inference_mode()
@@ -113,6 +112,9 @@ def run(
     # Directories
     save_dir = increment_path(Path(project) / name, exist_ok=exist_ok)  # increment run
     (save_dir / 'labels' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)  # make dir
+    # ****************
+    (save_dir / 'detect_result' if save_txt else save_dir).mkdir(parents=True, exist_ok=True)
+
 
     # Load model
     device = select_device(device)
@@ -133,17 +135,16 @@ def run(
     vid_path, vid_writer = [None] * bs, [None] * bs
 
 
-
+    
     # ===========================
     # THE MODIFIED TXT_PATH:
-    timestamps = "/home/borui/Data/dataset/sequences/03/times.txt"
+    timestamps = "/home/borui/Data/dataset/sequences/03/times_f.txt"
     ts_f = open(timestamps)
     lines = ts_f.readlines()
     cursor = 0
     # END MODIFICATION TXT_PATH
     # ===========================
-
-
+    
 
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
@@ -181,12 +182,18 @@ def run(
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
 
+            '''
             # THE ORIGINAL TXT_PATH:
-            # txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
+            txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
+            '''
 
+            
+            # ===========================
             # THE MODIFIED TXT_PATH:
             print(cursor, lines[cursor])
-            txt_path = str(save_dir / 'labels' / lines[cursor] ) + ('' if dataset.mode == 'image' else f'_{frame}')
+            txt_path = str(save_dir / 'labels' / lines[cursor].strip() ) + ('' if dataset.mode == 'image' else f'_{frame}')
+            # ===========================
+            
 
             s += '%gx%g ' % im.shape[2:]  # print string
             gn = torch.tensor(im0.shape)[[1, 0, 1, 0]]  # normalization gain whwh
@@ -202,7 +209,14 @@ def run(
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
 
                 # Write results
+                dresult_send = ""
                 for *xyxy, conf, cls in reversed(det):
+                    
+                    # =========================
+                    # get the class name
+                    c = int(cls)
+                    class_name = names[c]
+                    # =========================
                     
                     '''
                     # THIS IS THE ORIGINAL PARAM SAVE_TXT
@@ -211,30 +225,47 @@ def run(
                         line = (cls, *xywh, conf) if save_conf else (cls, *xywh)  # label format
                         with open(f'{txt_path}.txt', 'a') as f:
                             f.write(('%g ' * len(line)).rstrip() % line + '\n')
-                    '''
+                    '''               
                     
 
+                    # =================================================
                     # THIS IS THE MODIFIED VERSION OF SAVE_TXT FUNC
                     if save_txt:
                         if save_conf:
                             line = (*xyxy, cls, conf)
                             left, top, right, bottom, class_id, confidence = line
-                            line = f"left:{left} top:{top} right:{right} bottom:{bottom} class:{class_id} {confidence:.2f}"
+                            line = f"left:{int(left)} top:{int(top)} right:{int(right)} bottom:{int(bottom)} class:{class_name} {confidence:.2f}"
                         else:
                             line = (*xyxy, cls)
                             left, top, right, bottom, class_id= line
-                            line = f"left:{left} top:{top} right:{right} bottom:{bottom} class:{class_id}"
+                            line = f"left:{int(left)} top:{int(top)} right:{int(right)} bottom:{int(bottom)} class:{class_name}"
 
                         with open(f'{txt_path}.txt', 'a') as f:
                             #f.write(('%g ' * len(line)).rstrip() % line + '\n')
                             f.write(line + '\n')
-                
+                        
+                        line = line + "*"
+
+                    dresult_send = dresult_send + line 
+                    # =================================================
+                    
                     if save_img or save_crop or view_img:  # Add bbox to image
                         c = int(cls)  # integer class
                         label = None if hide_labels else (names[c] if hide_conf else f'{names[c]} {conf:.2f}')
                         annotator.box_label(xyxy, label, color=colors(c, True))
                     if save_crop:
                         save_one_box(xyxy, imc, file=save_dir / 'crops' / names[c] / f'{p.stem}.jpg', BGR=True)
+            
+
+            # ===========================================
+            # SERVER SENDING DATA
+            data = conn.recv(1024)[0:3].decode("ascii")
+            print("**In python: ", data)
+            print("***result is: \n", dresult_send)
+            conn.send(dresult_send.encode())
+            print("Done")
+            # ===========================================
+
 
             # Stream results
             im0 = annotator.result()
@@ -268,15 +299,19 @@ def run(
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
 
+        
         # ====================
+        # MODIFIED TXT_PATH
         cursor += 1
         # ====================
+        
 
-
+    '''
     # ========================
     # CLOSE THE TIMESTAMP FILE
     ts_f.close()
     # ========================
+    '''
 
     # Print results
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image

@@ -770,10 +770,10 @@ bool Frame::IsInDynamic(const int& i)
     if (obj_class == 3 || obj_class == 2)
     {
       vector<double> box = objects_cur_[k]->vdetect_parameter;
-      double left = box[5];
-      double top = box[10];
-      double right = box[17];
-      double bottom = box[25];
+      double left = box[0];
+      double top = box[1];
+      double right = box[2];
+      double bottom = box[3];
 
       if (kp_u > left - 2 && kp_u < right+2 && kp_v > top - 2 && kp_v < bottom + 2)
       {
@@ -801,10 +801,10 @@ bool Frame::IsInStatic(const int& i)
     if (obj_class == 1)
     {
       vector<double> box = objects_cur_[k]->vdetect_parameter; // get the bbox of obj
-      double left = box[5];
-      double top = box[10];
-      double right = box[17];
-      double bottom = box[25];
+      double left = box[0];
+      double top = box[1];
+      double right = box[2];
+      double bottom = box[3];
 
       if (kp_u > left - 2 && kp_u < right + 2 && kp_v > top - 2 && kp_v < bottom + 2)
       {

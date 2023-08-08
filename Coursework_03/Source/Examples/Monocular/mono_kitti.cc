@@ -37,7 +37,7 @@
 namespace fs = ::boost::filesystem;
 using namespace std;
 
-/*
+
 // ******************************************
 // TO MAKE FULLY ONLINE USING SOCKET SERVER
 // replace the LoadBoundingBoxFromPython method
@@ -46,27 +46,23 @@ void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int
 void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result);
 // END: TO MAKE FULLY ONLINE
 // *******************************************
-*/
-
-
 void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
+
+/*
 // ************************************************************
+// THIS IS THE OFFLINE VERSION
 // MODIFICATION: ADD NEW FUNCTION
 void LoadBoundingBox(const string& strPathToDetectResult, 
                     std::vector<std::pair<std::vector<double>, int>>& detect_result);
 // END MODIFICATION
 // ************************************************************
+*/
 
-// ====================================
-// FOR TEST
-void PrintDetectionResults(const std::vector<std::pair<std::vector<double>, int>>& detect_result);
-// =====================================
 
 int main(int argc, char **argv) {
 
-  /*
   // SOCKET INITIALIZATION
   int sockfd;
   int len;
@@ -95,14 +91,24 @@ int main(int argc, char **argv) {
     exit(EXIT_FAILURE);
   }
   // END SOCKET SERVER INIT
-  */
 
+  if(argc != 4) {
+    cerr << endl
+          << "Usage: " << argv[0] << " setting_files path_to_sequence results_file_dir" << endl;
+    return EX_USAGE;
+  }
 
-  if (argc != 5) {
+  // ==================================
+  // OFFLINE -- requires extra statement 'yolov5_detect_result'
+  /*
+    if (argc != 5) {
     cerr << endl
           << "Usage: " << argv[0] << " settings_files path_to_sequence results_file yolov5_detect_results" << endl;
     return EX_USAGE;
   }
+  */
+  // ===================================
+
 
   // Retrieve paths to images
   // store path to mono images and corresponding timestamps 
@@ -133,34 +139,28 @@ int main(int argc, char **argv) {
     // Main loop
     cv::Mat im;
 
-
-    /*
-    // ***************************************
-    // MODIFICATIONS: ADD VARIABLE detect_result
-    std::vector<std::pair<vector<double>, int>> detect_result;
-    // END ADDING VARAIBLE
-    // ***************************************  
-    */
-
-
-
-
     for (int ni = 0; ni < nImages; ni++) {
 
+      std::vector<std::pair<std::vector<double>, int>> detect_result;
+      MakeDetect_result(detect_result, sockfd);
+      
+      // ========================================
+      // USED FOR OFFLINE VERSION
+      /*
       // ******************************* 
       // MODIFICATION: LOAD BOUNDING BOX
       string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
+      // ***************************************
+      // MODIFICATIONS: ADD VARIABLE detect_result
       // Clear the detect_result vector before loading new bounding boxes
       std::vector<std::pair<std::vector<double>, int>> detect_result;
+      // END ADDING VARAIBLE
+      // ***************************************  
       LoadBoundingBox(strPathToDetectionResult, detect_result);
-
-      // ======================================
-      // THIS IS TO TEST IF THE RESULTS FROM LAST FILE STAYS FOR NEW LOOOP
-      // PrintDetectionResults(detect_result);    
-      // ======================================
-
+      */
 
       /*
+      // this part annotated to avoid programme quitting where no detections seen
       if (detect_result.empty())
       {
         cerr << endl << "Failed to load bounding box" << endl;
@@ -170,6 +170,7 @@ int main(int argc, char **argv) {
 
       // END MODIFICATION
       // ********************************
+      // ====================================================
 
 
       // Read image from file
@@ -291,7 +292,139 @@ void LoadImages(const string &strPathToSequence,
 
 
 
+// ***************************************************************
+// TO MAKE FULLY ONLINE USING SOCKET SERVER
+// ADDING 2 FUNCTIONS: 
+// LoadBoundingBoxFromPython, MakeDetect_result
+void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result)
+{
+  if(resultFromPython.empty())
+  {
+    cerr << "no string from python!" << endl;
+  }
+
+  cout << "running LoadBoundingBoxFromPython" << endl;
+
+  vector<double> result_parameter;
+  int sum = 0; 
+  int num_bit = 0;
+
+  int idx_bbxEnd = resultFromPython.find("class:");
+  for(char c: resultFromPython.substr(0,idx_bbxEnd))
+  {
+    // read nums. e.g. 780 = ((7*10 + 8)*10) + 4;
+    if(c >= '0' && c <= '9')
+    {
+      num_bit = c - '0';
+      sum = sum * 10 + num_bit;
+    }
+    else if (c == ' ')
+    {
+      result_parameter.push_back(sum);
+      sum = 0;
+      num_bit = 0;
+    }
+  }
+
+  detect_result.first = result_parameter;
+  cout << "detect_result.first size is: " << detect_result.first.size() << endl;
+
+  cout << "result parameter: ";
+  for (const double& value : result_parameter)
+  {
+    cout << " " << value;
+  }
+  cout << endl;
+
+  string idx_begin = "class:"; // read the class of the object;
+  int idx = resultFromPython.find(idx_begin);
+  string idx_end = "0.";
+
+  int idx2 = resultFromPython.find(idx_end);
+  string class_label;
+
+  for (int j = idx + 6; j < idx2-1; ++j)
+  {
+    class_label += resultFromPython[j];
+  }
+
+  int class_id = -1; // store the class of obj detected
+
+  if (class_label == "tv" ||
+    class_label == "refrigerator" ||
+    class_label == "teddy bear" ||
+    class_label == "laptop"){
+      class_id = 1;
+    }
+
+  if (class_label == "chair" ||
+  class_label == "car"){
+    class_id = 2;
+  }
+
+  if (class_label == "person"){
+    class_id = 3;
+  }
+
+  detect_result.second = class_id;
+  cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
+
+}
+
+
+void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd)
+{
+  detect_result.clear();
+  
+  std::pair<vector<double>, int> detect_result_str;
+  int byte;
+  char send_buf[128], ch_recv[1024];
+
+  sprintf(send_buf, "ok"); // sprintf sends the message to send_buf
+  if((byte=write(sockfd, send_buf, sizeof(send_buf)))==-1)
+  {
+    perror("write");
+    exit(EXIT_FAILURE);
+  }
+
+  if((byte=read(sockfd, &ch_recv, 1000))==-1)
+  {
+    perror("read");
+    exit(EXIT_FAILURE);
+  }
+  // cout << "**ch_recv is : \n" << ch_recv << endl;
+
+  char *ptr;
+  ptr = strtok(ch_recv, "*"); // str split
+  while(ptr != NULL)
+  {
+    printf("ptr=%s\n", ptr);
+
+    if (strlen(ptr) > 20)
+    {
+      // cout << strlen(ptr) << endl;
+      string ptr_str = ptr;
+      LoadBoundingBoxFromPython(ptr_str, detect_result_str);
+    }
+
+    detect_result.emplace_back(detect_result_str);
+    // cout <<   "hh: " << ptr_str << endl;
+    ptr = strtok(NULL, "*");
+    }
+
+    // cout << "detect_result size is: " << detect_result.size() << endl;
+    // for (int k = 0; k < detect_result.size(); ++k)
+    // cout << "detect_result is: \n" << detect_result[k].second << endl;
+}
+// END: TO MAKE FULLY ONLINE
+// **********************************************************************************
+
+
+
+/*
 // *******************************************
+// TO USE THE FOLLOWING VERSION,
+// YOLO DETECT FILES MUST BE IN PLACE.
 // MODIFICATIONS
 void LoadBoundingBox(const string& strPathToDetectionResult, 
                     std::vector<std::pair<vector<double>, int>>& detect_result)
@@ -383,128 +516,4 @@ void PrintDetectionResults(const std::vector<std::pair<std::vector<double>, int>
   }
 }
 // =========================
-
-
-/*
-// ***************************************************************
-// TO MAKE FULLY ONLINE USING SOCKET SERVER
-// ADDING 2 FUNCTIONS: 
-// LoadBoundingBoxFromPython, MakeDetect_result
-void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result)
-{
-  if(resultFromPython.empty())
-  {
-    cerr << "no string from python!" << endl;
-  }
-
-  cout << "running LoadBoundingBoxFromPython" << endl;
-
-  vector<double> result_parameter;
-  int sum = 0; 
-  int num_bit = 0;
-
-  for(char c: resultFromPython)
-  {
-    // read nums. e.g. 780 = ((7*10 + 8)*10) + 4;
-    if(c >= '0' && c <= '9')
-    {
-      num_bit = c - '0';
-      sum = sum * 10 + num_bit;
-    }
-    else if (c == ' ')
-    {
-      result_parameter.push_back(sum);
-      sum = 0;
-      num_bit = 0;
-    }
-  }
-
-  detect_result.first = result_parameter;
-  cout << "detect_result.first size is: " << detect_result.first.size() << endl;
-
-  string idx_begin = "class: "; // read the class of the object;
-  int idx = resultFromPython.find(idx_begin);
-  string idx_end = "0.";
-
-  int idx2 = resultFromPython.find(idx_end);
-  string class_label;
-
-  for (int j = idx + 6; j < idx2-1; ++j)
-  {
-    class_label += resultFromPython[j];
-  }
-
-  int class_id = -1; // store the class of obj detected
-
-  if (class_label == "tv" ||
-    class_label == "refrigerator" ||
-    class_label == "teddy bear" ||
-    class_label == "laptop"){
-      class_id = 1;
-    }
-
-  if (class_label == "chair" ||
-  class_label == "car"){
-    class_id = 2;
-  }
-
-  if (class_label == "person"){
-    class_id = 3;
-  }
-
-  detect_result.second = class_id;
-  cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
-
-}
-
-
-
-
-void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd)
-{
-  detect_result.clear();
-  
-  std::pair<vector<double>, int> detect_result_str;
-  int byte;
-  char send_buf[128], ch_recv[1024];
-
-  sprintf(send_buf, "ok"); // sprintf sends the message to send_buf
-  if((byte=write(sockfd, send_buf, sizeof(send_buf)))==-1)
-  {
-    perror("write");
-    exit(EXIT_FAILURE);
-  }
-
-  if((byte=read(sockfd, &ch_recv, 1000))==-1)
-  {
-    perror("read");
-    exit(EXIT_FAILURE);
-  }
-  // cout << "**ch_recv is : \n" << ch_recv << endl;
-
-  char *ptr;
-  ptr = strtok(ch_recv, "*"); // str split
-  while(ptr != NULL)
-  {
-    printf("ptr=%s\n", ptr);
-
-    if (strlen(ptr) > 20)
-    {
-      cout << strlen(ptr) << endl;
-      string ptr_str = ptr;
-      LoadBoundingBoxFromPython(ptr_str, detect_result_str);
-    }
-
-    detect_result.emplace_back(detect_result_str);
-    // cout <<   "hh: " << ptr_str << endl;
-    ptr = strtok(NULL, "*");
-    }
-
-    // cout << "detect_result size is: " << detect_result.size() << endl;
-    // for (int k = 0; k < detect_result.size(); ++k)
-    // cout << "detect_result is: \n" << detect_result[k].second << endl;
-}
-// END: TO MAKE FULLY ONLINE
-// **********************************************************************************
 */
-
