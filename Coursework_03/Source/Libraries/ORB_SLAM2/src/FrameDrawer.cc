@@ -93,15 +93,13 @@ cv::Mat FrameDrawer::DrawFrame() {
       
       if (vbVO[i] || vbMap[i]) {
         
-        std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
+        // std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
         
         cv::Point2f pt1, pt2;
         pt1.x = vCurrentKeys[i].pt.x - r;
         pt1.y = vCurrentKeys[i].pt.y - r;
         pt2.x = vCurrentKeys[i].pt.x + r;
         pt2.y = vCurrentKeys[i].pt.y + r;
-        
-      
         
         // *********************************
         // MODIFICATIONS: draw bounding box
@@ -128,7 +126,7 @@ cv::Mat FrameDrawer::DrawFrame() {
             pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
             pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
 
-            std::cout << "car detected!" << pt11 << pt22 << std::endl;
+            // std::cout << "car detected!" << pt11 << pt22 << std::endl;
 
             cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
           }
@@ -247,7 +245,14 @@ void FrameDrawer::Update(Tracking *pTracker) {
     for (int i = 0; i < N; i++) {
       MapPoint *pMP = pTracker->mCurrentFrame.mvpMapPoints[i];
       if (pMP) {
+        
+
+        
         if (!pTracker->mCurrentFrame.mvbOutlier[i]) {
+          
+          float distance = pMP->GetDistance();
+          std::cout << "distance to camera" << distance << std::endl;
+
           if (pMP->Observations() > 0)
             mvbMap[i] = true;
           else
@@ -258,5 +263,6 @@ void FrameDrawer::Update(Tracking *pTracker) {
   }
   mState = static_cast<int>(pTracker->mLastProcessedState);
 }
+
 
 } // namespace ORB_SLAM2

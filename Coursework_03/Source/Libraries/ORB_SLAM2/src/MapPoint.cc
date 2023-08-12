@@ -61,6 +61,7 @@ MapPoint::MapPoint(const cv::Mat &Pos, Map *pMap, Frame *pFrame,
 
   cv::Mat PC = Pos - Ow;
   const float dist = cv::norm(PC);
+
   const int level = pFrame->mvKeysUn[idxF].octave;
   const float levelScaleFactor = pFrame->mvScaleFactors[level];
   const int nLevels = pFrame->mnScaleLevels;
@@ -74,6 +75,10 @@ MapPoint::MapPoint(const cv::Mat &Pos, Map *pMap, Frame *pFrame,
   // conflicts with id.
   unique_lock<mutex> lock(mpMap->mMutexPointCreation);
   mnId = nNextId++;
+}
+
+float MapPoint::GetDistance() const {
+  return dist;
 }
 
 void MapPoint::SetWorldPos(const cv::Mat &Pos) {

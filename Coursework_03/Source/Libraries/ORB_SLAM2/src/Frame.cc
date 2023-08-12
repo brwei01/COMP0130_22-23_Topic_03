@@ -356,6 +356,8 @@ bool Frame::isInFrustum(MapPoint *pMP, float viewingCosLimit) {
   const cv::Mat PO = P - mOw;
   const float dist = cv::norm(PO);
 
+  // std::cout << "the distance from point to camera is: " << dist <<std::endl;
+
   if (dist < minDistance || dist > maxDistance)
     return false;
 
@@ -814,6 +816,7 @@ bool Frame::IsInStatic(const int& i)
   }
   return in_static; 
 }
+
 // END MODIFICATIONS
 // *******************************************
 } // namespace ORB_SLAM2

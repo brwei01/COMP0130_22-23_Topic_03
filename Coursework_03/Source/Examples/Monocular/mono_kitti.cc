@@ -257,8 +257,8 @@ void LoadImages(const string &strPathToSequence,
   }
 
   ifstream fTimes;
-  // string strPathTimeFile = strPathToSequence + "/times.txt";
-  string strPathTimeFile = strPathToSequence + "/times_f.txt";
+  string strPathTimeFile = strPathToSequence + "/times.txt";
+  // string strPathTimeFile = strPathToSequence + "/times_f.txt";
   if (fs::exists(strPathTimeFile) == false) {
     cerr << "FATAL: Could not find the timestamp file " << strPathTimeFile
          << endl;
