@@ -42,7 +42,10 @@ cv::Mat FrameDrawer::DrawFrame() {
   vector<cv::KeyPoint> vIniKeys; // Initialization: KeyPoints in reference frame
   vector<int>
       vMatches; // Initialization: correspondeces with reference keypoints
-  vector<cv::KeyPoint> vCurrentKeys; // KeyPoints in current frame
+  //vector<cv::KeyPoint> vCurrentKeys; // KeyPoints in current frame
+  // ************************************
+  vector<KeyPointsWithInfo> vCurrentKeys;
+  // ************************************
   vector<bool> vbVO, vbMap;          // Tracked MapPoints in current frame
   int state;                         // Tracking state
 
@@ -77,7 +80,7 @@ cv::Mat FrameDrawer::DrawFrame() {
   {
     for (unsigned int i = 0; i < vMatches.size(); i++) {
       if (vMatches[i] >= 0) {
-        cv::line(im, vIniKeys[i].pt, vCurrentKeys[vMatches[i]].pt,
+        cv::line(im, vIniKeys[i].pt, vCurrentKeys[vMatches[i]].keypoints[0].pt,
                  cv::Scalar(0, 255, 0));
       }
     }
@@ -87,19 +90,20 @@ cv::Mat FrameDrawer::DrawFrame() {
     mnTrackedVO = 0;
     const float r = 5;
     const int n = vCurrentKeys.size();
+
     for (int i = 0; i < n; i++) {
-      
-      // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl;
-      
+      // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl; 
       if (vbVO[i] || vbMap[i]) {
-        
         // std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
-        
+        // TO CHECK THE mvCurrentKeys IS UPDATED:
+        // float dist2cam0 = mvCurrentKeys[i].info;
+        // std::cout << "****************dist to cam:" << dist2cam0 << std::endl;
+
         cv::Point2f pt1, pt2;
-        pt1.x = vCurrentKeys[i].pt.x - r;
-        pt1.y = vCurrentKeys[i].pt.y - r;
-        pt2.x = vCurrentKeys[i].pt.x + r;
-        pt2.y = vCurrentKeys[i].pt.y + r;
+        pt1.x = vCurrentKeys[i].keypoints[0].pt.x - r;
+        pt1.y = vCurrentKeys[i].keypoints[0].pt.y - r;
+        pt2.x = vCurrentKeys[i].keypoints[0].pt.x + r;
+        pt2.y = vCurrentKeys[i].keypoints[0].pt.y + r;
         
         // *********************************
         // MODIFICATIONS: draw bounding box
@@ -122,15 +126,49 @@ cv::Mat FrameDrawer::DrawFrame() {
 
           if (objects_curFD[k] -> ndetect_class == 2)
           {
+            bool updated = false;
+            float dist2cam = 999.0f;
+            for (int j=0; j < n; j++){
+              float kp_u = vCurrentKeys[j].keypoints[0].pt.x;
+              float kp_v = vCurrentKeys[j].keypoints[0].pt.y;
+              
+              vector<double> box = objects_curFD[k]->vdetect_parameter;
+              double left = box[0];
+              double top = box[1];
+              double right = box[2];
+              double bottom = box[3];
+              if (kp_u > left - 2 && kp_u < right+2 && kp_v > top - 2 && kp_v < bottom + 2) // if point in bbx
+              {
+                if (mvCurrentKeys[j].info < dist2cam && !std::isnan(mvCurrentKeys[j].info) && mvCurrentKeys[j].info>0) // and theres a minimum distance can be updated
+                {
+                  dist2cam = mvCurrentKeys[j].info;
+                  updated = true;
+                  // std::cout << "$$$$$$$$$$$$$$$dist to cam:" << dist2cam << std::endl;  
+                }  
+              }
+            }
+            
+            // draw bounding box
             cv::Point pt11, pt22;
             pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
             pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
-
             // std::cout << "car detected!" << pt11 << pt22 << std::endl;
-
             cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
+            
+            // Add text displaying dist2cam over the bounding box
+            if(updated){
+              std::string labelText = "Distance: " + std::to_string(dist2cam);
+              int font = cv::FONT_HERSHEY_SIMPLEX;
+              double fontScale = 0.5;
+              int thickness = 1;
+              cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
+              cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
+            }
+            
           }
-
+          
+          // ==================================================
+          // ANOTHER CONDITION
           if (objects_curFD[k] -> ndetect_class == 1)
           {
             cv::Point pt11, pt22;
@@ -140,8 +178,6 @@ cv::Mat FrameDrawer::DrawFrame() {
           }
           k_start = k + 1;
         }
-        
-
         
         /*
         // This is a match to a MapPoint in the map
@@ -162,16 +198,16 @@ cv::Mat FrameDrawer::DrawFrame() {
         // MODIFICATIONS: make the selected dot red
         if (vbInDynamic_mvKeys[i])
         {
-          std::cout << "dynamic point found!" << std::endl;
+          // std::cout << "dynamic point found!" << std::endl;
           cv::rectangle(im, pt1, pt2, cv::Scalar(0,0,200));
-          cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0,0,200), -1);
+          cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,0,200), -1);
           mnTracked++;
         }
         else
         {
-          std::cout<< "no dynamic point found" << std::endl;
+          // std::cout<< "no dynamic point found" << std::endl;
           cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
-          cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0,255,0),-1);
+          cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,255,0),-1);
           mnTracked++;
         }
       }
@@ -232,7 +268,21 @@ void FrameDrawer::Update(Tracking *pTracker) {
 
 
   pTracker->mImGray.copyTo(mIm);
-  mvCurrentKeys = pTracker->mCurrentFrame.mvKeys;
+
+
+  // mvCurrentKeys = pTracker->mCurrentFrame.mvKeys;
+  // ***********************************************
+  const std::vector<cv::KeyPoint>& cvKeys = pTracker->mCurrentFrame.mvKeys;
+  mvCurrentKeys.clear();
+
+  for (const cv::KeyPoint& cvKey:cvKeys){
+    std::vector<cv::KeyPoint> keypointsWithInfo;
+    keypointsWithInfo.push_back(cvKey); // push cvKey to the vector
+    int extraInfo = -999.0f; // Default value if no valid MapPoint
+    mvCurrentKeys.emplace_back(keypointsWithInfo, extraInfo);
+  }
+  
+  
   N = mvCurrentKeys.size();
   mvbVO = vector<bool>(N, false);
   mvbMap = vector<bool>(N, false);
@@ -245,13 +295,15 @@ void FrameDrawer::Update(Tracking *pTracker) {
     for (int i = 0; i < N; i++) {
       MapPoint *pMP = pTracker->mCurrentFrame.mvpMapPoints[i];
       if (pMP) {
-        
-
-        
         if (!pTracker->mCurrentFrame.mvbOutlier[i]) {
-          
-          float distance = pMP->GetDistance();
-          std::cout << "distance to camera" << distance << std::endl;
+
+          // *********
+          float dist2cam = pMP->GetDistance();
+          // std::cout << "Before Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
+          mvCurrentKeys[i].info = dist2cam;
+          // std::cout << "After Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
+          // **********
+          // std::cout << "distance to camera" << dist2cam << std::endl;
 
           if (pMP->Observations() > 0)
             mvbMap[i] = true;

@@ -33,6 +33,17 @@
 
 namespace ORB_SLAM2 {
 
+// **********************
+// DEFINE A NEW STRUCT -- TO STORE THE DIST
+struct KeyPointsWithInfo {
+  std::vector<cv::KeyPoint> keypoints;
+  float info;
+
+  KeyPointsWithInfo(const std::vector<cv::KeyPoint>& kps, float extraInfo): 
+  keypoints(kps),info(extraInfo){}
+};
+// ***********************
+
 class Tracking;
 class Viewer;
 class Frame;
@@ -54,7 +65,11 @@ protected:
   // Info of the frame to be drawn
   cv::Mat mIm;
   int N;
-  std::vector<cv::KeyPoint> mvCurrentKeys;
+  // std::vector<cv::KeyPoint> mvCurrentKeys;
+  std::vector<KeyPointsWithInfo> mvCurrentKeys;
+
+
+
 
   //************************
   //MODIFICATIONS
