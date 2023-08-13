@@ -138,7 +138,7 @@ def run(
     
     # ===========================
     # THE MODIFIED TXT_PATH:
-    timestamps = "/home/borui/Data/dataset/sequences/03/times_f.txt"
+    timestamps = "/home/borui/Data/dataset/sequences/00/times.txt"
     ts_f = open(timestamps)
     lines = ts_f.readlines()
     cursor = 0
