@@ -77,10 +77,6 @@ MapPoint::MapPoint(const cv::Mat &Pos, Map *pMap, Frame *pFrame,
   mnId = nNextId++;
 }
 
-float MapPoint::GetDistance() const {
-  return dist;
-}
-
 void MapPoint::SetWorldPos(const cv::Mat &Pos) {
   unique_lock<mutex> lock2(mGlobalMutex);
   unique_lock<mutex> lock(mMutexPos);

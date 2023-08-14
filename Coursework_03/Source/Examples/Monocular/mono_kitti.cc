@@ -239,7 +239,7 @@ int main(int argc, char **argv) {
   SLAM.SaveTrajectoryTUM(string(argv[3]));
 
   // Save to KITTI pose file
-  //SLAM.SaveTrajectoryKITTI(string(argv[3]));
+  // SLAM.SaveTrajectoryKITTI(string(argv[3]));
 
 
   return EX_OK;

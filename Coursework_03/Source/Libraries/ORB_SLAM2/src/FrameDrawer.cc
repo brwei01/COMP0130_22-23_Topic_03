@@ -107,12 +107,8 @@ cv::Mat FrameDrawer::DrawFrame() {
         
         // *********************************
         // MODIFICATIONS: draw bounding box
-        int k_start = 0;
-        while (k_start < objects_curFD.size())
+        for (int k = 0; k < objects_curFD.size(); ++k)
         {
-          int k = k_start;
-          // std::cout << "k is" << k << std::endl;
-          
           /*
           // THIS IS TO CHECK THE CONTENT OF 'objects_curFD'
           std::cout << "the object is: ";
@@ -126,6 +122,7 @@ cv::Mat FrameDrawer::DrawFrame() {
 
           if (objects_curFD[k] -> ndetect_class == 2)
           {
+          
             bool updated = false;
             float dist2cam = 999.0f;
             for (int j=0; j < n; j++){
@@ -143,10 +140,10 @@ cv::Mat FrameDrawer::DrawFrame() {
                 {
                   dist2cam = mvCurrentKeys[j].info;
                   updated = true;
-                  // std::cout << "$$$$$$$$$$$$$$$dist to cam:" << dist2cam << std::endl;  
                 }  
               }
             }
+          
             
             // draw bounding box
             cv::Point pt11, pt22;
@@ -155,6 +152,7 @@ cv::Mat FrameDrawer::DrawFrame() {
             // std::cout << "car detected!" << pt11 << pt22 << std::endl;
             cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
             
+          
             // Add text displaying dist2cam over the bounding box
             if(updated){
               std::string labelText = "Distance: " + std::to_string(dist2cam);
@@ -164,6 +162,17 @@ cv::Mat FrameDrawer::DrawFrame() {
               cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
               cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
             }
+
+            // Check if dist2cam is smaller than 10 and add a "Caution" prompt
+            if (dist2cam < 10) {
+              std::string cautionText = "Caution";
+              int cautionFont = cv::FONT_HERSHEY_SIMPLEX;
+              double cautionFontScale = 0.5;
+              int cautionThickness = 1;
+              cv::Point cautionTextPosition(pt11.x, pt11.y - 20); // Adjust the position as needed
+              cv::putText(im, cautionText, cautionTextPosition, cautionFont, cautionFontScale, cv::Scalar(0, 0, 255), cautionThickness);
+            }
+          
             
           }
           
@@ -176,7 +185,6 @@ cv::Mat FrameDrawer::DrawFrame() {
             pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
             cv::rectangle(im, pt11, pt22, cv::Scalar(200 ,0 ,100));
           }
-          k_start = k + 1;
         }
         
         /*
@@ -198,9 +206,23 @@ cv::Mat FrameDrawer::DrawFrame() {
         // MODIFICATIONS: make the selected dot red
         if (vbInDynamic_mvKeys[i])
         {
+          /*
+          // Get distance and convert to string
+          float dist2cam = vCurrentKeys[i].info;
+          std::string distStr = "Dist: " + std::to_string(dist2cam);
+          */
+          
+          // Draw points
           // std::cout << "dynamic point found!" << std::endl;
           cv::rectangle(im, pt1, pt2, cv::Scalar(0,0,200));
           cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,0,200), -1);
+
+          /*
+          // Draw dist2cam text above the point
+          cv::Point textPos(pt1.x, pt1.y - 10); // Adjust the position as needed
+          cv::putText(im, distStr, textPos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 200), 1);
+          */
+
           mnTracked++;
         }
         else
@@ -296,12 +318,18 @@ void FrameDrawer::Update(Tracking *pTracker) {
       MapPoint *pMP = pTracker->mCurrentFrame.mvpMapPoints[i];
       if (pMP) {
         if (!pTracker->mCurrentFrame.mvbOutlier[i]) {
-
           // *********
-          float dist2cam = pMP->GetDistance();
-          // std::cout << "Before Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
+          // calculate distance:
+          cv::Mat Ow = pTracker->mCurrentFrame.GetCameraCenter(); 
+          cv::Mat Pos = pMP->GetWorldPos(); 
+          std::cout << "Ow[" << i << "]: " << Ow << std::endl;
+          std::cout << "Pos[" << i << "]: " << Pos << std::endl;
+          cv::Mat PC = Pos - Ow;
+          const float dist2cam = cv::norm(PC);
+          std::cout << "Dist["<< i <<"]: " << dist2cam << std::endl;
+          //std::cout << "Before Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
           mvCurrentKeys[i].info = dist2cam;
-          // std::cout << "After Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
+          //std::cout << "After Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
           // **********
           // std::cout << "distance to camera" << dist2cam << std::endl;
 

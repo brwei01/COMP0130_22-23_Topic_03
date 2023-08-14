@@ -658,38 +658,59 @@ void Tracking::MonocularInitialization() {
   }
 }
 
+/*
+  * @brief generate MapPoints by trianglization after accomplishing mono initialization 
+  *
+*/
 void Tracking::CreateInitialMapMonocular() {
   // Create KeyFrames
+  // currentFrame and referrence frames are both considered key frames
   KeyFrame *pKFini = new KeyFrame(mInitialFrame, mpMap, mpKeyFrameDB);
   KeyFrame *pKFcur = new KeyFrame(mCurrentFrame, mpMap, mpKeyFrameDB);
 
+  // STEP1: convert initial and current (key)frames' descriptor into BoW
   pKFini->ComputeBoW();
   pKFcur->ComputeBoW();
 
-  // Insert KFs in the map
+  // STEP2: Insert KFs in the map
   mpMap->AddKeyFrame(pKFini);
   mpMap->AddKeyFrame(pKFcur);
 
   // Create MapPoints and asscoiate to keyframes
+  // STEP3: use the 3d points from initialization to create MapPoints
+  // mvIniMatches[i] is to show the mathces of the 2 initial frames' feature points
   for (size_t i = 0; i < mvIniMatches.size(); i++) {
-    if (mvIniMatches[i] < 0)
+    if (mvIniMatches[i] < 0) // if no matches, skip
       continue;
 
     // Create MapPoint.
-    cv::Mat worldPos(mvIniP3D[i]);
+    // the trianglation method. trianglated point initialized as world coords.
+    cv::Mat worldPos(mvIniP3D[i]); 
 
+    // 3.1: build MapPoint from 3d point
     MapPoint *pMP = new MapPoint(worldPos, pKFcur, mpMap);
 
+    // 3.2: add attributes to MapPoint
+    // -- a. the keyFrame where the point is observed
+    // -- b. the descriptor of the MapPoint
+    // -- c. the observation angle and depth range of this MapPoint 
+    
+    // the KeyFrames' 2d feature point and the according 3d point
     pKFini->AddMapPoint(pMP, i);
     pKFcur->AddMapPoint(pMP, mvIniMatches[i]);
 
+    // a. the MapPoint can be observed by which feature point in which KeyFrame
     pMP->AddObservation(pKFini, i);
     pMP->AddObservation(pKFcur, mvIniMatches[i]);
-
+    
+    // b. select the representative descriptor from many feature points that can observe this MapPoint
     pMP->ComputeDistinctiveDescriptors();
+    // c. Update observation angle and depth range
     pMP->UpdateNormalAndDepth();
 
     // Fill Current Frame structure
+    // mvIniMatches, subscriptor i shows the idx of feature point in init ref keyframe.
+    // mvIniMatches[i] shows the idx of feature point in init curr keyframe.
     mCurrentFrame.mvpMapPoints[mvIniMatches[i]] = pMP;
     mCurrentFrame.mvbOutlier[mvIniMatches[i]] = false;
 
@@ -698,6 +719,10 @@ void Tracking::CreateInitialMapMonocular() {
   }
 
   // Update Connections
+  // 3.3: Update the connection between keyframes
+  // build a link between 3d point and keyframe. 
+  // each link has a weight, which is the number of sharing 3d Points
+  // between the keyframe and the current frame;
   pKFini->UpdateConnections();
   pKFcur->UpdateConnections();
 
@@ -705,24 +730,63 @@ void Tracking::CreateInitialMapMonocular() {
   cout << "New Map created with " << mpMap->MapPointsInMap() << " points"
        << endl;
 
+
+  // STEP4: Global BA Optimization,
+  // optimize all poses and 3d points
   Optimizer::GlobalBundleAdjustemnt(mpMap, 20);
 
-  // Set median depth to 1
-  float medianDepth = pKFini->ComputeSceneMedianDepth(2);
-  float invMedianDepth = 1.0f / medianDepth;
 
+  
+  // Set median depth to 1
+  // STEP5: get the median depth of the scene
+  // used for scale normalization
+  float medianDepth = pKFini->ComputeSceneMedianDepth(2);
+  float invMedianDepth = 10.9f / medianDepth;
+
+  // mean depth greater than 0
+  // MapPoints can be observed in current frame greater than 100
   if (medianDepth < 0 || pKFcur->TrackedMapPoints(1) < 100) {
     cout << "Wrong initialization, reseting..." << endl;
     Reset();
     return;
   }
+  
+
+
+/*
+// ******************************************************
+// MODIFICAITONS ========================================
+// instead of calculating median depth, 
+// calculate the odometry scale
+float odometryScale;
+if(m_motion_model.has_external_velocity()){
+  _ComputeInitialMapScaleFromExtPoses(&odometryScale);
+} else if(m_motion_model.has_external_velocity()){
+  _ComputeInitialMapScaleFromExtVel(&odometryScale);
+} else {
+  odometryScale = 1.0;
+}
+// END MODITICATIONS ====================================
+// ******************************************************
+*/
+
+
+
+
+
+
+
 
   // Scale initial baseline
+  // STEP6: normalize the transformation between 2 frames to a scale with avg depth less than 1
   cv::Mat Tc2w = pKFcur->GetPose();
+  // c/z y/z normalize z to 1
   Tc2w.col(3).rowRange(0, 3) = Tc2w.col(3).rowRange(0, 3) * invMedianDepth;
   pKFcur->SetPose(Tc2w);
 
   // Scale points
+  // STEP7: normalize the scale of 3d points to 1
+  // pkFini and pKFcur both will do here
   vector<MapPoint *> vpAllMapPoints = pKFini->GetMapPointMatches();
   for (size_t iMP = 0; iMP < vpAllMapPoints.size(); iMP++) {
     if (vpAllMapPoints[iMP]) {
@@ -731,6 +795,7 @@ void Tracking::CreateInitialMapMonocular() {
     }
   }
 
+  // STEP8: insert keyframe into the map, update normalized pose and MapPoints
   mpLocalMapper->InsertKeyFrame(pKFini);
   mpLocalMapper->InsertKeyFrame(pKFcur);
 
@@ -740,6 +805,7 @@ void Tracking::CreateInitialMapMonocular() {
 
   mvpLocalKeyFrames.push_back(pKFcur);
   mvpLocalKeyFrames.push_back(pKFini);
+  // all points in initial map are local map points after mono-initialization
   mvpLocalMapPoints = mpMap->GetAllMapPoints();
   mpReferenceKF = pKFcur;
   mCurrentFrame.mpReferenceKF = pKFcur;
@@ -752,8 +818,9 @@ void Tracking::CreateInitialMapMonocular() {
 
   mpMap->mvpKeyFrameOrigins.push_back(pKFini);
 
-  mState = OK;
+  mState = OK; // end initialization
 }
+
 
 void Tracking::CheckReplacedInLastFrame() {
   for (int i = 0; i < mLastFrame.N; i++) {

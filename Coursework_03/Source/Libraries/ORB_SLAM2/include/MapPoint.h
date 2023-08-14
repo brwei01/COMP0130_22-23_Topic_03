@@ -38,8 +38,6 @@ class MapPoint {
 public:
   MapPoint(const cv::Mat &Pos, KeyFrame *pRefKF, Map *pMap);
   MapPoint(const cv::Mat &Pos, Map *pMap, Frame *pFrame, const int &idxF);
-  // **********************
-  float GetDistance() const;
 
   void SetWorldPos(const cv::Mat &Pos);
   cv::Mat GetWorldPos();
@@ -107,9 +105,6 @@ public:
   long unsigned int mnBAGlobalForKF;
 
   static std::mutex mGlobalMutex;
-
-private:
-  float dist;
 
 protected:
   // Position in absolute coordinates
