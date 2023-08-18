@@ -63,6 +63,15 @@ void LoadBoundingBox(const string& strPathToDetectResult,
 
 int main(int argc, char **argv) {
 
+  // Save the logs to file
+  // create an ofstream obj to open the log file
+  std::ofstream outputFile("/home/borui/Dev/COMP0130_22-23_Topic_03/Coursework_03/Results/console_log.txt");
+  // Redirect std::cout to the file stream
+  std::streambuf* originalCoutBuffer = std::cout.rdbuf();
+  std::cout.rdbuf(outputFile.rdbuf());
+  
+
+
   // SOCKET INITIALIZATION
   int sockfd;
   int len;
@@ -251,6 +260,11 @@ int main(int argc, char **argv) {
 
   // Save to KITTI pose file
   //SLAM.SaveTrajectoryKITTI(string(argv[3]));
+
+  // Restore the original std::cout buffer
+  std::cout.rdbuf(originalCoutBuffer);
+  // Close the output file stream
+  outputFile.close();
 
   return EX_OK;
 }

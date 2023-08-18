@@ -1,0 +1,3241 @@
+
+ORB-SLAM2 Copyright (C) 2014-2016 Raul Mur-Artal, University of Zaragoza.
+(modifications carried out at UCL, 2022)
+This program comes with ABSOLUTELY NO WARRANTY;
+This is free software, and you are welcome to redistribute it
+under certain conditions. See LICENSE.txt.
+
+Input sensor was set to: Monocular
+
+Loading ORB Vocabulary. This could take a while...
+Using the binary cache file
+
+Camera Parameters: 
+- fx: 721.538
+- fy: 721.538
+- cx: 609.559
+- cy: 172.854
+- k1: 0
+- k2: 0
+- p1: 0
+- p2: 0
+- fps: 10
+- color order: RGB (ignored if grayscale)
+
+ORB Extractor Parameters: 
+- Number of Features: 2000
+- Scale Levels: 8
+- Scale Factor: 1.2
+- Initial Fast Threshold: 20
+- Minimum Fast Threshold: 7
+
+-------
+Start processing sequence ...
+Images in the sequence: 801
+
+*************Processing Image: 000000********
+*************Processing Image: 000001********
+InitializerLogger
+New Map created with 128 points
+**************************RE: Distance between points: 0.997631
+**************************GT: Distance between points: 0.963323
+***********median depth computed: 12.3001
+*************Processing Image: 000002********
+*************Processing Image: 000003********
+ ********* This is bounding box: [647, 179][701, 219]
+ ========= min distance to camera: 4.74069========= 
+ ********* This is bounding box: [760, 186][1075, 363]
+ ========= min distance to camera: 4.74069========= 
+ ********* This is bounding box: [647, 179][701, 219]
+ ========= min distance to camera: 4.74069========= 
+ ********* This is bounding box: [760, 186][1075, 363]
+ ========= min distance to camera: 4.74069========= 
+ ********* This is bounding box: [646, 176][704, 217]
+ ========= min distance to camera: 5.32621========= 
+*************Processing Image: 000004********
+ ********* This is bounding box: [779, 184][1163, 373]
+ ========= min distance to camera: 5.32621========= 
+ ********* This is bounding box: [646, 176][704, 217]
+ ========= min distance to camera: 3.9053========= 
+ ********* This is bounding box: [779, 184][1163, 373]
+ ========= min distance to camera: 3.9053========= 
+ ********* This is bounding box: [646, 176][704, 217]
+ ========= min distance to camera: 3.9053========= 
+ ********* This is bounding box: [779, 184][1163, 373]
+ ========= min distance to camera: 3.9053========= 
+*************Processing Image: 000005********
+ ********* This is bounding box: [652, 178][706, 213]
+ ========= min distance to camera: 4.06239========= 
+ ********* This is bounding box: [801, 182][1242, 369]
+ ========= min distance to camera: 4.06239========= 
+ ********* This is bounding box: [652, 178][706, 213]
+ ========= min distance to camera: 4.06239========= 
+ ********* This is bounding box: [801, 182][1242, 369]
+ ========= min distance to camera: 4.06239========= 
+*************Processing Image: 000006********
+ ********* This is bounding box: [653, 171][710, 216]
+ ========= min distance to camera: 4.02177========= 
+ ********* This is bounding box: [834, 185][1241, 372]
+ ========= min distance to camera: 4.02177========= 
+ ********* This is bounding box: [653, 171][710, 216]
+ ========= min distance to camera: 4.02177========= 
+ ********* This is bounding box: [834, 185][1241, 372]
+ ========= min distance to camera: 4.02177========= 
+*************Processing Image: 000007********
+ ********* This is bounding box: [656, 166][715, 220]
+ ========= min distance to camera: 3.41231========= 
+ ********* This is bounding box: [871, 184][1242, 372]
+ ========= min distance to camera: 3.41231========= 
+ ********* This is bounding box: [656, 166][715, 220]
+ ========= min distance to camera: 3.41231========= 
+ ********* This is bounding box: [871, 184][1242, 372]
+ ========= min distance to camera: 3.41231========= 
+*************Processing Image: 000008********
+ ********* This is bounding box: [659, 177][721, 225]
+ ========= min distance to camera: 19.6767========= 
+ ********* This is bounding box: [926, 189][1239, 371]
+ ========= min distance to camera: 19.6767========= 
+ ********* This is bounding box: [659, 177][721, 225]
+ ========= min distance to camera: 19.6767========= 
+ ********* This is bounding box: [926, 189][1239, 371]
+ ========= min distance to camera: 19.6767========= 
+*************Processing Image: 000009********
+ ********* This is bounding box: [661, 175][728, 227]
+ ========= min distance to camera: 10.2992========= 
+ ********* This is bounding box: [1002, 198][1240, 372]
+ ========= min distance to camera: 10.2992========= 
+*************Processing Image: 000010********
+ ********* This is bounding box: [666, 176][733, 228]
+ ========= min distance to camera: 15.5661========= 
+ ********* This is bounding box: [666, 176][733, 228]
+ ========= min distance to camera: 15.5661========= 
+ ********* This is bounding box: [666, 176][733, 228]
+ ========= min distance to camera: 15.5661========= 
+*************Processing Image: 000011********
+ ********* This is bounding box: [669, 170][740, 229]
+ ========= min distance to camera: 17.2206========= 
+ ********* This is bounding box: [669, 170][740, 229]
+ ========= min distance to camera: 17.2206========= 
+*************Processing Image: 000012********
+ ********* This is bounding box: [674, 173][746, 229]
+ ========= min distance to camera: 16.2001========= 
+*************Processing Image: 000013********
+ ********* This is bounding box: [677, 170][753, 232]
+ ========= min distance to camera: 14.8703========= 
+ ********* This is bounding box: [677, 170][753, 232]
+ ========= min distance to camera: 14.8703========= 
+*************Processing Image: 000014********
+ ********* This is bounding box: [679, 173][766, 235]
+ ========= min distance to camera: 14.0069========= 
+ ********* This is bounding box: [679, 173][766, 235]
+ ========= min distance to camera: 14.0069========= 
+*************Processing Image: 000015********
+ ********* This is bounding box: [658, 178][693, 215]
+ ========= min distance to camera: 13.727========= 
+ ********* This is bounding box: [686, 174][773, 239]
+ ========= min distance to camera: 13.727========= 
+ ********* This is bounding box: [658, 178][693, 215]
+ ========= min distance to camera: 13.727========= 
+ ********* This is bounding box: [686, 174][773, 239]
+ ========= min distance to camera: 13.727========= 
+*************Processing Image: 000016********
+ ********* This is bounding box: [657, 174][701, 217]
+ ========= min distance to camera: 12.4553========= 
+ ********* This is bounding box: [688, 177][784, 245]
+ ========= min distance to camera: 12.4553========= 
+ ********* This is bounding box: [657, 174][701, 217]
+ ========= min distance to camera: 12.4553========= 
+ ********* This is bounding box: [688, 177][784, 245]
+ ========= min distance to camera: 12.4553========= 
+*************Processing Image: 000017********
+ ********* This is bounding box: [659, 173][705, 218]
+ ========= min distance to camera: 11.6361========= 
+ ********* This is bounding box: [695, 177][798, 252]
+ ========= min distance to camera: 11.6361========= 
+ ********* This is bounding box: [659, 173][705, 218]
+ ========= min distance to camera: 11.6361========= 
+ ********* This is bounding box: [695, 177][798, 252]
+ ========= min distance to camera: 11.6361========= 
+ ********* This is bounding box: [659, 173][705, 218]
+ ========= min distance to camera: 11.6361========= 
+ ********* This is bounding box: [695, 177][798, 252]
+ ========= min distance to camera: 11.6361========= 
+*************Processing Image: 000018********
+ ********* This is bounding box: [662, 169][711, 218]
+ ========= min distance to camera: 10.7291========= 
+ ********* This is bounding box: [701, 181][812, 258]
+ ========= min distance to camera: 10.7291========= 
+ ********* This is bounding box: [662, 169][711, 218]
+ ========= min distance to camera: 10.7291========= 
+*************Processing Image: 000019********
+ ********* This is bounding box: [667, 170][716, 222]
+ ========= min distance to camera: 9.94831========= 
+ ********* This is bounding box: [708, 179][827, 265]
+ ========= min distance to camera: 9.94831========= 
+ ********* This is bounding box: [667, 170][716, 222]
+ ========= min distance to camera: 9.94831========= 
+ ********* This is bounding box: [708, 179][827, 265]
+ ========= min distance to camera: 9.94831========= 
+*************Processing Image: 000020********
+ ********* This is bounding box: [669, 170][726, 222]
+ ========= min distance to camera: 9.25647========= 
+ ********* This is bounding box: [718, 181][847, 272]
+ ========= min distance to camera: 9.25647========= 
+ ********* This is bounding box: [718, 181][847, 272]
+ ========= min distance to camera: 9.25647========= 
+ ********* This is bounding box: [669, 170][726, 222]
+ ========= min distance to camera: 9.25647========= 
+ ********* This is bounding box: [718, 181][847, 272]
+ ========= min distance to camera: 9.25647========= 
+ ********* This is bounding box: [718, 181][847, 272]
+ ========= min distance to camera: 9.25647========= 
+*************Processing Image: 000021********
+ ********* This is bounding box: [673, 170][731, 226]
+ ========= min distance to camera: 9.0016========= 
+ ********* This is bounding box: [721, 187][867, 279]
+ ========= min distance to camera: 9.0016========= 
+ ********* This is bounding box: [721, 187][867, 279]
+ ========= min distance to camera: 9.0016========= 
+ ********* This is bounding box: [673, 170][731, 226]
+ ========= min distance to camera: 9.0016========= 
+ ********* This is bounding box: [721, 187][867, 279]
+ ========= min distance to camera: 9.0016========= 
+ ********* This is bounding box: [721, 187][867, 279]
+ ========= min distance to camera: 9.0016========= 
+*************Processing Image: 000022********
+ ********* This is bounding box: [673, 171][741, 228]
+ ========= min distance to camera: 8.25663========= 
+ ********* This is bounding box: [733, 188][895, 290]
+ ========= min distance to camera: 8.25663========= 
+*************Processing Image: 000023********
+ ********* This is bounding box: [679, 172][745, 231]
+ ========= min distance to camera: 7.59783========= 
+ ********* This is bounding box: [737, 185][927, 302]
+ ========= min distance to camera: 7.59783========= 
+ ********* This is bounding box: [737, 185][927, 302]
+ ========= min distance to camera: 7.59783========= 
+ ********* This is bounding box: [679, 172][745, 231]
+ ========= min distance to camera: 7.59783========= 
+ ********* This is bounding box: [737, 185][927, 302]
+ ========= min distance to camera: 7.59783========= 
+ ********* This is bounding box: [737, 185][927, 302]
+ ========= min distance to camera: 7.59783========= 
+*************Processing Image: 000024********
+ ********* This is bounding box: [45, 211][179, 274]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [107, 196][253, 269]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [687, 168][753, 234]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [752, 191][966, 318]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [752, 191][966, 318]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [45, 211][179, 274]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [107, 196][253, 269]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [687, 168][753, 234]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [752, 191][966, 318]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [752, 191][966, 318]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [45, 211][179, 274]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [107, 196][253, 269]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [687, 168][753, 234]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [752, 191][966, 318]
+ ========= min distance to camera: 6.87719========= 
+ ********* This is bounding box: [752, 191][966, 318]
+ ========= min distance to camera: 6.87719========= 
+*************Processing Image: 000025********
+ ********* This is bounding box: [68, 193][247, 278]
+ ========= min distance to camera: 6.27708========= 
+ ********* This is bounding box: [690, 167][767, 237]
+ ========= min distance to camera: 6.27708========= 
+ ********* This is bounding box: [762, 198][1015, 338]
+ ========= min distance to camera: 6.27708========= 
+ ********* This is bounding box: [68, 193][247, 278]
+ ========= min distance to camera: 6.27708========= 
+ ********* This is bounding box: [690, 167][767, 237]
+ ========= min distance to camera: 6.27708========= 
+ ********* This is bounding box: [762, 198][1015, 338]
+ ========= min distance to camera: 6.27708========= 
+*************Processing Image: 000026********
+ ********* This is bounding box: [0, 213][49, 254]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [22, 197][223, 287]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [696, 167][778, 240]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [776, 197][1076, 359]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [776, 197][1076, 359]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [0, 213][49, 254]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [22, 197][223, 287]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [696, 167][778, 240]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [776, 197][1076, 359]
+ ========= min distance to camera: 5.59671========= 
+ ********* This is bounding box: [776, 197][1076, 359]
+ ========= min distance to camera: 5.59671========= 
+*************Processing Image: 000027********
+ ********* This is bounding box: [0, 199][194, 295]
+ ========= min distance to camera: 4.93975========= 
+ ********* This is bounding box: [701, 163][791, 241]
+ ========= min distance to camera: 4.93975========= 
+ ********* This is bounding box: [795, 198][1170, 369]
+ ========= min distance to camera: 4.93975========= 
+ ********* This is bounding box: [0, 199][194, 295]
+ ========= min distance to camera: 4.93975========= 
+ ********* This is bounding box: [701, 163][791, 241]
+ ========= min distance to camera: 4.93975========= 
+ ********* This is bounding box: [795, 198][1170, 369]
+ ========= min distance to camera: 4.93975========= 
+*************Processing Image: 000028********
+ ********* This is bounding box: [0, 201][169, 302]
+ ========= min distance to camera: 4.39754========= 
+ ********* This is bounding box: [815, 195][1240, 370]
+ ========= min distance to camera: 4.39754========= 
+ ********* This is bounding box: [710, 163][805, 243]
+ ========= min distance to camera: 4.39754========= 
+ ********* This is bounding box: [0, 201][169, 302]
+ ========= min distance to camera: 4.39754========= 
+ ********* This is bounding box: [815, 195][1240, 370]
+ ========= min distance to camera: 4.39754========= 
+ ********* This is bounding box: [710, 163][805, 243]
+ ========= min distance to camera: 4.39754========= 
+*************Processing Image: 000029********
+ ********* This is bounding box: [841, 191][1240, 371]
+ ========= min distance to camera: 6.70266========= 
+ ********* This is bounding box: [0, 198][126, 308]
+ ========= min distance to camera: 6.70266========= 
+ ********* This is bounding box: [715, 164][819, 247]
+ ========= min distance to camera: 6.70266========= 
+ ********* This is bounding box: [841, 191][1240, 371]
+ ========= min distance to camera: 6.70266========= 
+ ********* This is bounding box: [0, 198][126, 308]
+ ========= min distance to camera: 6.70266========= 
+ ********* This is bounding box: [715, 164][819, 247]
+ ========= min distance to camera: 6.70266========= 
+*************Processing Image: 000030********
+ ********* This is bounding box: [0, 201][85, 308]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [873, 201][1241, 373]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [720, 164][838, 253]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [720, 164][838, 253]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [0, 201][85, 308]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [873, 201][1241, 373]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [720, 164][838, 253]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [720, 164][838, 253]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [0, 201][85, 308]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [873, 201][1241, 373]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [720, 164][838, 253]
+ ========= min distance to camera: 6.00031========= 
+ ********* This is bounding box: [720, 164][838, 253]
+ ========= min distance to camera: 6.00031========= 
+*************Processing Image: 000031********
+ ********* This is bounding box: [727, 169][862, 264]
+ ========= min distance to camera: 10.6385========= 
+ ********* This is bounding box: [911, 218][1239, 373]
+ ========= min distance to camera: 10.6385========= 
+ ********* This is bounding box: [727, 169][862, 264]
+ ========= min distance to camera: 10.6385========= 
+ ********* This is bounding box: [911, 218][1239, 373]
+ ========= min distance to camera: 10.6385========= 
+*************Processing Image: 000032********
+ ********* This is bounding box: [984, 242][1240, 370]
+ ========= min distance to camera: 10.0784========= 
+ ********* This is bounding box: [734, 169][876, 270]
+ ========= min distance to camera: 10.0784========= 
+ ********* This is bounding box: [984, 242][1240, 370]
+ ========= min distance to camera: 10.0784========= 
+ ********* This is bounding box: [734, 169][876, 270]
+ ========= min distance to camera: 10.0784========= 
+*************Processing Image: 000033********
+ ********* This is bounding box: [1078, 329][1240, 372]
+ ========= min distance to camera: 8.35658========= 
+ ********* This is bounding box: [742, 171][898, 276]
+ ========= min distance to camera: 8.35658========= 
+ ********* This is bounding box: [1078, 329][1240, 372]
+ ========= min distance to camera: 8.35658========= 
+ ********* This is bounding box: [742, 171][898, 276]
+ ========= min distance to camera: 8.35658========= 
+*************Processing Image: 000034********
+ ********* This is bounding box: [752, 173][925, 282]
+ ========= min distance to camera: 7.61158========= 
+ ********* This is bounding box: [752, 173][925, 282]
+ ========= min distance to camera: 7.61158========= 
+*************Processing Image: 000035********
+ ********* This is bounding box: [733, 154][779, 180]
+ ========= min distance to camera: 6.95617========= 
+ ********* This is bounding box: [763, 172][954, 299]
+ ========= min distance to camera: 6.95617========= 
+*************Processing Image: 000036********
+ ********* This is bounding box: [776, 171][994, 308]
+ ========= min distance to camera: 6.8319========= 
+ ********* This is bounding box: [776, 171][994, 308]
+ ========= min distance to camera: 6.8319========= 
+*************Processing Image: 000037********
+ ********* This is bounding box: [790, 172][1040, 325]
+ ========= min distance to camera: 6.55242========= 
+ ********* This is bounding box: [790, 172][1040, 325]
+ ========= min distance to camera: 6.55242========= 
+ ********* This is bounding box: [790, 172][1040, 325]
+ ========= min distance to camera: 6.55242========= 
+*************Processing Image: 000038********
+ ********* This is bounding box: [807, 170][1103, 339]
+ ========= min distance to camera: 5.92268========= 
+*************Processing Image: 000039********
+ ********* This is bounding box: [824, 171][1167, 361]
+ ========= min distance to camera: 5.48248========= 
+ ********* This is bounding box: [824, 171][1167, 361]
+ ========= min distance to camera: 5.48248========= 
+ ********* This is bounding box: [824, 171][1167, 361]
+ ========= min distance to camera: 5.48248========= 
+*************Processing Image: 000040********
+ ********* This is bounding box: [846, 175][1233, 370]
+ ========= min distance to camera: 4.91991========= 
+ ********* This is bounding box: [846, 175][1233, 370]
+ ========= min distance to camera: 4.91991========= 
+*************Processing Image: 000041********
+ ********* This is bounding box: [874, 176][1239, 370]
+ ========= min distance to camera: 4.44829========= 
+ ********* This is bounding box: [874, 176][1239, 370]
+ ========= min distance to camera: 4.44829========= 
+*************Processing Image: 000042********
+*************Processing Image: 000043********
+ ********* This is bounding box: [943, 179][1239, 371]
+ ========= min distance to camera: 4.03374========= 
+ ********* This is bounding box: [943, 179][1239, 371]
+ ========= min distance to camera: 4.03374========= 
+*************Processing Image: 000044********
+*************Processing Image: 000045********
+ ********* This is bounding box: [769, 151][828, 173]
+ ========= min distance to camera: 10.7819========= 
+ ********* This is bounding box: [1043, 177][1240, 370]
+ ========= min distance to camera: 10.7819========= 
+ ********* This is bounding box: [769, 151][828, 173]
+ ========= min distance to camera: 10.7819========= 
+ ********* This is bounding box: [1043, 177][1240, 370]
+ ========= min distance to camera: 10.7819========= 
+*************Processing Image: 000046********
+*************Processing Image: 000047********
+*************Processing Image: 000048********
+*************Processing Image: 000049********
+*************Processing Image: 000050********
+*************Processing Image: 000051********
+ ********* This is bounding box: [763, 148][837, 177]
+ ========= min distance to camera: 14.7134========= 
+ ********* This is bounding box: [763, 148][837, 177]
+ ========= min distance to camera: 14.7134========= 
+*************Processing Image: 000052********
+ ********* This is bounding box: [1, 218][56, 282]
+ ========= min distance to camera: 14.1897========= 
+ ********* This is bounding box: [764, 149][837, 177]
+ ========= min distance to camera: 14.1897========= 
+ ********* This is bounding box: [1, 218][56, 282]
+ ========= min distance to camera: 14.1897========= 
+ ********* This is bounding box: [764, 149][837, 177]
+ ========= min distance to camera: 14.1897========= 
+*************Processing Image: 000053********
+ ********* This is bounding box: [11, 179][188, 261]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [762, 150][836, 179]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [0, 206][83, 288]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [0, 206][83, 288]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [11, 179][188, 261]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [762, 150][836, 179]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [0, 206][83, 288]
+ ========= min distance to camera: 17.0734========= 
+ ********* This is bounding box: [0, 206][83, 288]
+ ========= min distance to camera: 17.0734========= 
+*************Processing Image: 000054********
+*************Processing Image: 000055********
+ ********* This is bounding box: [756, 146][829, 177]
+ ========= min distance to camera: 23.1247========= 
+ ********* This is bounding box: [1, 182][152, 293]
+ ========= min distance to camera: 23.1247========= 
+ ********* This is bounding box: [1, 182][152, 293]
+ ========= min distance to camera: 23.1247========= 
+ ********* This is bounding box: [756, 146][829, 177]
+ ========= min distance to camera: 23.1247========= 
+ ********* This is bounding box: [1, 182][152, 293]
+ ========= min distance to camera: 23.1247========= 
+ ********* This is bounding box: [1, 182][152, 293]
+ ========= min distance to camera: 23.1247========= 
+*************Processing Image: 000056********
+ ********* This is bounding box: [750, 147][828, 178]
+ ========= min distance to camera: 16.2747========= 
+ ********* This is bounding box: [1, 199][184, 298]
+ ========= min distance to camera: 16.2747========= 
+ ********* This is bounding box: [1, 199][184, 298]
+ ========= min distance to camera: 16.2747========= 
+ ********* This is bounding box: [750, 147][828, 178]
+ ========= min distance to camera: 16.2747========= 
+ ********* This is bounding box: [1, 199][184, 298]
+ ========= min distance to camera: 16.2747========= 
+ ********* This is bounding box: [1, 199][184, 298]
+ ========= min distance to camera: 16.2747========= 
+*************Processing Image: 000057********
+ ********* This is bounding box: [747, 146][824, 179]
+ ========= min distance to camera: 16.4345========= 
+ ********* This is bounding box: [0, 194][225, 302]
+ ========= min distance to camera: 16.4345========= 
+ ********* This is bounding box: [0, 194][225, 302]
+ ========= min distance to camera: 16.4345========= 
+ ********* This is bounding box: [747, 146][824, 179]
+ ========= min distance to camera: 16.4345========= 
+ ********* This is bounding box: [0, 194][225, 302]
+ ========= min distance to camera: 16.4345========= 
+ ********* This is bounding box: [0, 194][225, 302]
+ ========= min distance to camera: 16.4345========= 
+*************Processing Image: 000058********
+ ********* This is bounding box: [743, 148][823, 180]
+ ========= min distance to camera: 19.8949========= 
+ ********* This is bounding box: [2, 191][263, 301]
+ ========= min distance to camera: 19.8949========= 
+ ********* This is bounding box: [2, 191][263, 301]
+ ========= min distance to camera: 19.8949========= 
+ ********* This is bounding box: [743, 148][823, 180]
+ ========= min distance to camera: 19.8949========= 
+ ********* This is bounding box: [2, 191][263, 301]
+ ========= min distance to camera: 19.8949========= 
+ ********* This is bounding box: [2, 191][263, 301]
+ ========= min distance to camera: 19.8949========= 
+*************Processing Image: 000059********
+ ********* This is bounding box: [745, 153][815, 182]
+ ========= min distance to camera: 16.6805========= 
+ ********* This is bounding box: [0, 194][306, 305]
+ ========= min distance to camera: 16.6805========= 
+ ********* This is bounding box: [0, 194][306, 305]
+ ========= min distance to camera: 16.6805========= 
+*************Processing Image: 000060********
+ ********* This is bounding box: [735, 154][810, 185]
+ ========= min distance to camera: 18.9855========= 
+ ********* This is bounding box: [0, 192][346, 312]
+ ========= min distance to camera: 18.9855========= 
+ ********* This is bounding box: [0, 192][346, 312]
+ ========= min distance to camera: 18.9855========= 
+ ********* This is bounding box: [735, 154][810, 185]
+ ========= min distance to camera: 18.9855========= 
+ ********* This is bounding box: [0, 192][346, 312]
+ ========= min distance to camera: 18.9855========= 
+ ********* This is bounding box: [0, 192][346, 312]
+ ========= min distance to camera: 18.9855========= 
+*************Processing Image: 000061********
+ ********* This is bounding box: [1, 190][398, 317]
+ ========= min distance to camera: 17.6798========= 
+ ********* This is bounding box: [1, 190][398, 317]
+ ========= min distance to camera: 17.6798========= 
+*************Processing Image: 000062********
+ ********* This is bounding box: [11, 190][447, 320]
+ ========= min distance to camera: 17.923========= 
+ ********* This is bounding box: [11, 190][447, 320]
+ ========= min distance to camera: 17.923========= 
+*************Processing Image: 000063********
+ ********* This is bounding box: [718, 150][795, 184]
+ ========= min distance to camera: 15.7062========= 
+ ********* This is bounding box: [72, 191][505, 324]
+ ========= min distance to camera: 15.7062========= 
+ ********* This is bounding box: [718, 150][795, 184]
+ ========= min distance to camera: 15.7062========= 
+ ********* This is bounding box: [72, 191][505, 324]
+ ========= min distance to camera: 15.7062========= 
+*************Processing Image: 000064********
+ ********* This is bounding box: [713, 150][794, 184]
+ ========= min distance to camera: 15.3952========= 
+ ********* This is bounding box: [136, 191][568, 330]
+ ========= min distance to camera: 15.3952========= 
+ ********* This is bounding box: [713, 150][794, 184]
+ ========= min distance to camera: 15.3952========= 
+ ********* This is bounding box: [136, 191][568, 330]
+ ========= min distance to camera: 15.3952========= 
+*************Processing Image: 000065********
+ ********* This is bounding box: [714, 149][791, 184]
+ ========= min distance to camera: 23.9678========= 
+ ********* This is bounding box: [209, 191][644, 334]
+ ========= min distance to camera: 23.9678========= 
+ ********* This is bounding box: [209, 191][644, 334]
+ ========= min distance to camera: 23.9678========= 
+ ********* This is bounding box: [714, 149][791, 184]
+ ========= min distance to camera: 23.9678========= 
+ ********* This is bounding box: [209, 191][644, 334]
+ ========= min distance to camera: 23.9678========= 
+ ********* This is bounding box: [209, 191][644, 334]
+ ========= min distance to camera: 23.9678========= 
+*************Processing Image: 000066********
+ ********* This is bounding box: [705, 150][782, 186]
+ ========= min distance to camera: 7.1926========= 
+ ********* This is bounding box: [284, 189][723, 340]
+ ========= min distance to camera: 7.1926========= 
+ ********* This is bounding box: [705, 150][782, 186]
+ ========= min distance to camera: 7.1926========= 
+ ********* This is bounding box: [284, 189][723, 340]
+ ========= min distance to camera: 7.1926========= 
+*************Processing Image: 000067********
+ ********* This is bounding box: [695, 153][774, 184]
+ ========= min distance to camera: 6.62464========= 
+ ********* This is bounding box: [361, 192][811, 344]
+ ========= min distance to camera: 6.62464========= 
+ ********* This is bounding box: [695, 153][774, 184]
+ ========= min distance to camera: 6.62464========= 
+ ********* This is bounding box: [361, 192][811, 344]
+ ========= min distance to camera: 6.62464========= 
+*************Processing Image: 000068********
+ ********* This is bounding box: [687, 153][770, 184]
+ ========= min distance to camera: 6.69094========= 
+ ********* This is bounding box: [443, 193][895, 342]
+ ========= min distance to camera: 6.69094========= 
+*************Processing Image: 000069********
+ ********* This is bounding box: [528, 191][977, 347]
+ ========= min distance to camera: 25.0866========= 
+ ********* This is bounding box: [528, 191][977, 347]
+ ========= min distance to camera: 25.0866========= 
+*************Processing Image: 000070********
+ ********* This is bounding box: [610, 193][1071, 351]
+ ========= min distance to camera: 24.875========= 
+ ********* This is bounding box: [610, 193][1071, 351]
+ ========= min distance to camera: 24.875========= 
+*************Processing Image: 000071********
+*************Processing Image: 000071********
+ ********* This is bounding box: [664, 160][744, 189]
+ ========= min distance to camera: 21.3818========= 
+ ********* This is bounding box: [679, 192][1160, 352]
+ ========= min distance to camera: 21.3818========= 
+ ********* This is bounding box: [664, 160][744, 189]
+ ========= min distance to camera: 21.3818========= 
+ ********* This is bounding box: [679, 192][1160, 352]
+ ========= min distance to camera: 21.3818========= 
+ ********* This is bounding box: [664, 160][744, 189]
+ ========= min distance to camera: 21.3818========= 
+ ********* This is bounding box: [753, 197][1230, 355]
+ ========= min distance to camera: 18.8384========= 
+*************Processing Image: 000072********
+ ********* This is bounding box: [650, 156][732, 190]
+ ========= min distance to camera: 12.8928========= 
+ ********* This is bounding box: [753, 197][1230, 355]
+ ========= min distance to camera: 12.8928========= 
+ ********* This is bounding box: [650, 156][732, 190]
+ ========= min distance to camera: 12.8928========= 
+ ********* This is bounding box: [753, 197][1230, 355]
+ ========= min distance to camera: 12.8928========= 
+*************Processing Image: 000073********
+ ********* This is bounding box: [633, 156][718, 190]
+ ========= min distance to camera: 20.1168========= 
+ ********* This is bounding box: [832, 193][1237, 357]
+ ========= min distance to camera: 20.1168========= 
+*************Processing Image: 000074********
+ ********* This is bounding box: [619, 158][705, 190]
+ ========= min distance to camera: 27.8103========= 
+ ********* This is bounding box: [904, 196][1241, 358]
+ ========= min distance to camera: 27.8103========= 
+ ********* This is bounding box: [619, 158][705, 190]
+ ========= min distance to camera: 27.8103========= 
+ ********* This is bounding box: [904, 196][1241, 358]
+ ========= min distance to camera: 27.8103========= 
+ ********* This is bounding box: [619, 158][705, 190]
+ ========= min distance to camera: 27.8103========= 
+ ********* This is bounding box: [904, 196][1241, 358]
+ ========= min distance to camera: 27.8103========= 
+*************Processing Image: 000075********
+ ********* This is bounding box: [973, 195][1240, 356]
+ ========= min distance to camera: 34.8482========= 
+ ********* This is bounding box: [973, 195][1240, 356]
+ ========= min distance to camera: 34.8482========= 
+*************Processing Image: 000076********
+ ********* This is bounding box: [1043, 195][1242, 340]
+ ========= min distance to camera: 27.2329========= 
+*************Processing Image: 000077********
+*************Processing Image: 000078********
+*************Processing Image: 000079********
+ ********* This is bounding box: [540, 160][621, 190]
+ ========= min distance to camera: 31.1285========= 
+ ********* This is bounding box: [540, 160][621, 190]
+ ========= min distance to camera: 31.1285========= 
+*************Processing Image: 000080********
+ ********* This is bounding box: [523, 157][603, 189]
+ ========= min distance to camera: 30.0622========= 
+ ********* This is bounding box: [523, 157][603, 189]
+ ========= min distance to camera: 30.0622========= 
+*************Processing Image: 000081********
+ ********* This is bounding box: [496, 156][580, 188]
+ ========= min distance to camera: 17.9408========= 
+ ********* This is bounding box: [496, 156][580, 188]
+ ========= min distance to camera: 17.9408========= 
+*************Processing Image: 000082********
+ ********* This is bounding box: [470, 154][556, 189]
+ ========= min distance to camera: 30.454========= 
+ ********* This is bounding box: [470, 154][556, 189]
+ ========= min distance to camera: 30.454========= 
+*************Processing Image: 000083********
+ ********* This is bounding box: [443, 156][528, 189]
+ ========= min distance to camera: 29.3586========= 
+ ********* This is bounding box: [443, 156][528, 189]
+ ========= min distance to camera: 29.3586========= 
+*************Processing Image: 000084********
+ ********* This is bounding box: [411, 154][506, 190]
+ ========= min distance to camera: 26.7172========= 
+*************Processing Image: 000085********
+ ********* This is bounding box: [377, 156][480, 191]
+ ========= min distance to camera: 33.3262========= 
+ ********* This is bounding box: [377, 156][480, 191]
+ ========= min distance to camera: 33.3262========= 
+ ********* This is bounding box: [377, 156][480, 191]
+ ========= min distance to camera: 33.3262========= 
+*************Processing Image: 000086********
+ ********* This is bounding box: [347, 158][450, 194]
+ ========= min distance to camera: 27.4811========= 
+*************Processing Image: 000087********
+ ********* This is bounding box: [310, 158][415, 195]
+ ========= min distance to camera: 32.9799========= 
+ ********* This is bounding box: [310, 158][415, 195]
+ ========= min distance to camera: 28.8759========= 
+ ********* This is bounding box: [310, 158][415, 195]
+ ========= min distance to camera: 28.8759========= 
+*************Processing Image: 000088********
+ ********* This is bounding box: [270, 158][378, 196]
+ ========= min distance to camera: 29.234========= 
+ ********* This is bounding box: [270, 158][378, 196]
+ ========= min distance to camera: 29.234========= 
+*************Processing Image: 000089********
+ ********* This is bounding box: [1218, 202][1241, 286]
+ ========= min distance to camera: 28.995========= 
+ ********* This is bounding box: [221, 157][333, 195]
+ ========= min distance to camera: 28.995========= 
+ ********* This is bounding box: [1218, 202][1241, 286]
+ ========= min distance to camera: 28.995========= 
+ ********* This is bounding box: [221, 157][333, 195]
+ ========= min distance to camera: 28.995========= 
+*************Processing Image: 000090********
+ ********* This is bounding box: [172, 155][292, 194]
+ ========= min distance to camera: 28.7452========= 
+ ********* This is bounding box: [1187, 208][1242, 284]
+ ========= min distance to camera: 28.7452========= 
+*************Processing Image: 000091********
+ ********* This is bounding box: [120, 153][242, 193]
+ ========= min distance to camera: 28.4997========= 
+ ********* This is bounding box: [1151, 210][1242, 282]
+ ========= min distance to camera: 28.4997========= 
+ ********* This is bounding box: [120, 153][242, 193]
+ ========= min distance to camera: 28.4997========= 
+ ********* This is bounding box: [1151, 210][1242, 282]
+ ========= min distance to camera: 28.4997========= 
+*************Processing Image: 000092********
+ ********* This is bounding box: [1202, 188][1242, 271]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1200, 180][1242, 211]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [56, 151][186, 193]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1112, 203][1228, 277]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1112, 203][1228, 277]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1202, 188][1242, 271]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1200, 180][1242, 211]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [56, 151][186, 193]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1112, 203][1228, 277]
+ ========= min distance to camera: 28.2509========= 
+ ********* This is bounding box: [1112, 203][1228, 277]
+ ========= min distance to camera: 28.2509========= 
+*************Processing Image: 000093********
+ ********* This is bounding box: [1141, 178][1183, 205]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1, 150][124, 194]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1073, 202][1176, 271]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1073, 202][1176, 271]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1141, 178][1183, 205]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1, 150][124, 194]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1073, 202][1176, 271]
+ ========= min distance to camera: 30.5072========= 
+ ********* This is bounding box: [1073, 202][1176, 271]
+ ========= min distance to camera: 30.5072========= 
+*************Processing Image: 000094********
+*************Processing Image: 000095********
+*************Processing Image: 000096********
+*************Processing Image: 000097********
+*************Processing Image: 000098********
+*************Processing Image: 000099********
+*************Processing Image: 000100********
+ ********* This is bounding box: [798, 170][847, 208]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [804, 169][835, 188]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [923, 187][999, 223]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [795, 190][856, 239]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [795, 190][856, 239]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [798, 170][847, 208]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [804, 169][835, 188]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [923, 187][999, 223]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [795, 190][856, 239]
+ ========= min distance to camera: 19.5687========= 
+ ********* This is bounding box: [795, 190][856, 239]
+ ========= min distance to camera: 19.5687========= 
+*************Processing Image: 000101********
+ ********* This is bounding box: [762, 174][813, 219]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [901, 184][956, 212]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [766, 168][794, 186]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [758, 189][821, 236]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [758, 189][821, 236]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [762, 174][813, 219]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [901, 184][956, 212]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [766, 168][794, 186]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [758, 189][821, 236]
+ ========= min distance to camera: 19.1216========= 
+ ********* This is bounding box: [758, 189][821, 236]
+ ========= min distance to camera: 19.1216========= 
+*************Processing Image: 000102********
+*************Processing Image: 000103********
+*************Processing Image: 000104********
+ ********* This is bounding box: [777, 183][807, 203]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [673, 165][698, 185]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [804, 176][862, 201]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [671, 181][726, 228]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [671, 181][726, 228]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [777, 183][807, 203]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [673, 165][698, 185]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [804, 176][862, 201]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [671, 181][726, 228]
+ ========= min distance to camera: 38.8858========= 
+ ********* This is bounding box: [671, 181][726, 228]
+ ========= min distance to camera: 38.8858========= 
+*************Processing Image: 000105********
+ ********* This is bounding box: [779, 177][833, 202]
+ ========= min distance to camera: 44.2157========= 
+ ********* This is bounding box: [752, 185][779, 204]
+ ========= min distance to camera: 44.2157========= 
+ ********* This is bounding box: [647, 178][701, 230]
+ ========= min distance to camera: 44.2157========= 
+ ********* This is bounding box: [779, 177][833, 202]
+ ========= min distance to camera: 44.2157========= 
+ ********* This is bounding box: [752, 185][779, 204]
+ ========= min distance to camera: 44.2157========= 
+ ********* This is bounding box: [647, 178][701, 230]
+ ========= min distance to camera: 44.2157========= 
+*************Processing Image: 000106********
+*************Processing Image: 000107********
+ ********* This is bounding box: [744, 172][794, 192]
+ ========= min distance to camera: 38.3834========= 
+ ********* This is bounding box: [606, 168][661, 224]
+ ========= min distance to camera: 38.3834========= 
+ ********* This is bounding box: [744, 172][794, 192]
+ ========= min distance to camera: 38.3834========= 
+ ********* This is bounding box: [606, 168][661, 224]
+ ========= min distance to camera: 38.3834========= 
+*************Processing Image: 000108********
+ ********* This is bounding box: [596, 163][622, 182]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [593, 165][632, 196]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [733, 170][779, 189]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [593, 172][645, 222]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [593, 172][645, 222]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [596, 163][622, 182]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [593, 165][632, 196]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [733, 170][779, 189]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [593, 172][645, 222]
+ ========= min distance to camera: 38.005========= 
+ ********* This is bounding box: [593, 172][645, 222]
+ ========= min distance to camera: 38.005========= 
+*************Processing Image: 000109********
+ ********* This is bounding box: [720, 171][771, 190]
+ ========= min distance to camera: 37.4655========= 
+ ********* This is bounding box: [582, 166][611, 186]
+ ========= min distance to camera: 37.4655========= 
+ ********* This is bounding box: [581, 177][631, 224]
+ ========= min distance to camera: 37.4655========= 
+ ********* This is bounding box: [720, 171][771, 190]
+ ========= min distance to camera: 37.4655========= 
+ ********* This is bounding box: [582, 166][611, 186]
+ ========= min distance to camera: 37.4655========= 
+ ********* This is bounding box: [581, 177][631, 224]
+ ========= min distance to camera: 37.4655========= 
+*************Processing Image: 000110********
+*************Processing Image: 000111********
+ ********* This is bounding box: [703, 172][757, 191]
+ ========= min distance to camera: 37.8575========= 
+ ********* This is bounding box: [561, 167][610, 221]
+ ========= min distance to camera: 37.8575========= 
+ ********* This is bounding box: [703, 172][757, 191]
+ ========= min distance to camera: 37.8575========= 
+ ********* This is bounding box: [561, 167][610, 221]
+ ========= min distance to camera: 37.8575========= 
+*************Processing Image: 000112********
+ ********* This is bounding box: [697, 174][750, 194]
+ ========= min distance to camera: 23.3173========= 
+ ********* This is bounding box: [305, 181][372, 210]
+ ========= min distance to camera: 23.3173========= 
+ ********* This is bounding box: [554, 172][603, 226]
+ ========= min distance to camera: 23.3173========= 
+ ********* This is bounding box: [697, 174][750, 194]
+ ========= min distance to camera: 23.3173========= 
+ ********* This is bounding box: [305, 181][372, 210]
+ ========= min distance to camera: 23.3173========= 
+ ********* This is bounding box: [554, 172][603, 226]
+ ========= min distance to camera: 23.3173========= 
+*************Processing Image: 000113********
+*************Processing Image: 000114********
+*************Processing Image: 000115********
+ ********* This is bounding box: [267, 182][343, 215]
+ ========= min distance to camera: 23.816========= 
+ ********* This is bounding box: [539, 166][584, 221]
+ ========= min distance to camera: 23.816========= 
+*************Processing Image: 000116********
+ ********* This is bounding box: [254, 185][322, 214]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [691, 169][747, 193]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [535, 162][583, 217]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [254, 185][322, 214]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [691, 169][747, 193]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [535, 162][583, 217]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [254, 185][322, 214]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [691, 169][747, 193]
+ ========= min distance to camera: 24.4564========= 
+ ********* This is bounding box: [535, 162][583, 217]
+ ========= min distance to camera: 24.4564========= 
+*************Processing Image: 000117********
+ ********* This is bounding box: [693, 163][753, 189]
+ ========= min distance to camera: 36.1686========= 
+ ********* This is bounding box: [534, 155][578, 211]
+ ========= min distance to camera: 36.1686========= 
+*************Processing Image: 000118********
+ ********* This is bounding box: [692, 161][754, 188]
+ ========= min distance to camera: 35.513========= 
+ ********* This is bounding box: [533, 153][574, 208]
+ ========= min distance to camera: 35.513========= 
+ ********* This is bounding box: [692, 161][754, 188]
+ ========= min distance to camera: 35.513========= 
+ ********* This is bounding box: [533, 153][574, 208]
+ ========= min distance to camera: 35.513========= 
+*************Processing Image: 000119********
+ ********* This is bounding box: [695, 162][754, 188]
+ ========= min distance to camera: 34.7059========= 
+ ********* This is bounding box: [531, 155][573, 209]
+ ========= min distance to camera: 34.7059========= 
+ ********* This is bounding box: [695, 162][754, 188]
+ ========= min distance to camera: 34.7059========= 
+ ********* This is bounding box: [531, 155][573, 209]
+ ========= min distance to camera: 34.7059========= 
+*************Processing Image: 000120********
+ ********* This is bounding box: [267, 178][306, 210]
+ ========= min distance to camera: 21.7735========= 
+ ********* This is bounding box: [694, 168][760, 199]
+ ========= min distance to camera: 21.7735========= 
+ ********* This is bounding box: [531, 161][572, 213]
+ ========= min distance to camera: 21.7735========= 
+ ********* This is bounding box: [267, 178][306, 210]
+ ========= min distance to camera: 21.7735========= 
+ ********* This is bounding box: [694, 168][760, 199]
+ ========= min distance to camera: 21.7735========= 
+ ********* This is bounding box: [531, 161][572, 213]
+ ========= min distance to camera: 21.7735========= 
+*************Processing Image: 000121********
+ ********* This is bounding box: [260, 185][297, 215]
+ ========= min distance to camera: 22.229========= 
+ ********* This is bounding box: [530, 167][574, 221]
+ ========= min distance to camera: 22.229========= 
+ ********* This is bounding box: [260, 185][297, 215]
+ ========= min distance to camera: 22.229========= 
+ ********* This is bounding box: [530, 167][574, 221]
+ ========= min distance to camera: 22.229========= 
+*************Processing Image: 000122********
+*************Processing Image: 000123********
+ ********* This is bounding box: [539, 165][572, 186]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [705, 169][776, 205]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [169, 183][282, 223]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [530, 166][574, 217]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [530, 166][574, 217]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [539, 165][572, 186]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [705, 169][776, 205]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [169, 183][282, 223]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [530, 166][574, 217]
+ ========= min distance to camera: 20.6585========= 
+ ********* This is bounding box: [530, 166][574, 217]
+ ========= min distance to camera: 20.6585========= 
+*************Processing Image: 000124********
+ ********* This is bounding box: [712, 167][779, 196]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [156, 179][278, 225]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [530, 161][573, 213]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [530, 161][573, 213]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [712, 167][779, 196]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [156, 179][278, 225]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [530, 161][573, 213]
+ ========= min distance to camera: 20.0405========= 
+ ********* This is bounding box: [530, 161][573, 213]
+ ========= min distance to camera: 20.0405========= 
+*************Processing Image: 000125********
+ ********* This is bounding box: [540, 156][574, 182]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [719, 165][786, 190]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [139, 178][266, 224]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [531, 159][574, 212]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [531, 159][574, 212]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [540, 156][574, 182]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [719, 165][786, 190]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [139, 178][266, 224]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [531, 159][574, 212]
+ ========= min distance to camera: 18.6924========= 
+ ********* This is bounding box: [531, 159][574, 212]
+ ========= min distance to camera: 18.6924========= 
+*************Processing Image: 000126********
+ ********* This is bounding box: [721, 168][793, 200]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [529, 167][575, 213]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [121, 184][257, 234]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [121, 184][257, 234]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [721, 168][793, 200]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [529, 167][575, 213]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [121, 184][257, 234]
+ ========= min distance to camera: 18.0588========= 
+ ********* This is bounding box: [121, 184][257, 234]
+ ========= min distance to camera: 18.0588========= 
+*************Processing Image: 000127********
+ ********* This is bounding box: [729, 171][796, 201]
+ ========= min distance to camera: 18.1732========= 
+ ********* This is bounding box: [181, 189][244, 234]
+ ========= min distance to camera: 18.1732========= 
+ ********* This is bounding box: [540, 165][576, 193]
+ ========= min distance to camera: 18.1732========= 
+ ********* This is bounding box: [110, 189][247, 239]
+ ========= min distance to camera: 18.1732========= 
+ ********* This is bounding box: [530, 169][577, 217]
+ ========= min distance to camera: 18.1732========= 
+*************Processing Image: 000128********
+ ********* This is bounding box: [729, 172][806, 205]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [542, 166][578, 196]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [531, 171][576, 216]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [92, 185][234, 241]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [729, 172][806, 205]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [542, 166][578, 196]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [531, 171][576, 216]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [92, 185][234, 241]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [729, 172][806, 205]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [542, 166][578, 196]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [531, 171][576, 216]
+ ========= min distance to camera: 18.5205========= 
+ ********* This is bounding box: [92, 185][234, 241]
+ ========= min distance to camera: 18.5205========= 
+*************Processing Image: 000129********
+ ********* This is bounding box: [735, 169][811, 207]
+ ========= min distance to camera: 18.4557========= 
+ ********* This is bounding box: [550, 160][581, 185]
+ ========= min distance to camera: 18.4557========= 
+ ********* This is bounding box: [530, 174][577, 212]
+ ========= min distance to camera: 18.4557========= 
+ ********* This is bounding box: [66, 181][224, 240]
+ ========= min distance to camera: 18.4557========= 
+*************Processing Image: 000130********
+ ********* This is bounding box: [552, 159][583, 188]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [531, 172][579, 211]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [41, 181][211, 242]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [41, 181][211, 242]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [552, 159][583, 188]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [531, 172][579, 211]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [41, 181][211, 242]
+ ========= min distance to camera: 14.5669========= 
+ ********* This is bounding box: [41, 181][211, 242]
+ ========= min distance to camera: 14.5669========= 
+*************Processing Image: 000131********
+ ********* This is bounding box: [546, 160][584, 207]
+ ========= min distance to camera: 14.0438========= 
+ ********* This is bounding box: [13, 183][196, 254]
+ ========= min distance to camera: 14.0438========= 
+ ********* This is bounding box: [530, 174][579, 212]
+ ========= min distance to camera: 14.0438========= 
+ ********* This is bounding box: [758, 168][839, 207]
+ ========= min distance to camera: 21.5148========= 
+
+*************Processing Image: 000132********
+ ========= min distance to camera: 21.5148========= 
+ ********* This is bounding box: [555, 163][587, 196]
+ ========= min distance to camera: 21.5148========= 
+ ********* This is bounding box: [75, 191][179, 258]
+ ========= min distance to camera: 21.5148========= 
+ ********* This is bounding box: [531, 176][577, 214]
+ ========= min distance to camera: 21.5148========= 
+ ********* This is bounding box: [531, 176][577, 214]
+ ========= min distance to camera: 21.5148========= 
+ ********* This is bounding box: [758, 168][839, 207]
+ ========= min distance to camera: 16.7285========= 
+ ********* This is bounding box: [555, 163][587, 196]
+ ========= min distance to camera: 16.7285========= 
+ ********* This is bounding box: [75, 191][179, 258]
+ ========= min distance to camera: 16.7285========= 
+ ********* This is bounding box: [531, 176][577, 214]
+ ========= min distance to camera: 16.7285========= 
+ ********* This is bounding box: [531, 176][577, 214]
+ ========= min distance to camera: 16.7285========= 
+*************Processing Image: 000133********
+ ********* This is bounding box: [556, 164][590, 196]
+ ========= min distance to camera: 17.3663========= 
+ ********* This is bounding box: [531, 177][577, 214]
+ ========= min distance to camera: 17.3663========= 
+ ********* This is bounding box: [22, 190][160, 260]
+ ========= min distance to camera: 17.3663========= 
+ ********* This is bounding box: [556, 164][590, 196]
+ ========= min distance to camera: 16.1264========= 
+ ********* This is bounding box: [531, 177][577, 214]
+ ========= min distance to camera: 16.1264========= 
+ ********* This is bounding box: [22, 190][160, 260]
+ ========= min distance to camera: 16.1264========= 
+*************Processing Image: 000134********
+ ********* This is bounding box: [771, 169][863, 206]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [561, 164][592, 196]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [532, 177][576, 212]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [2, 188][143, 264]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [2, 188][143, 264]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [771, 169][863, 206]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [561, 164][592, 196]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [532, 177][576, 212]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [2, 188][143, 264]
+ ========= min distance to camera: 15.6362========= 
+ ********* This is bounding box: [2, 188][143, 264]
+ ========= min distance to camera: 15.6362========= 
+*************Processing Image: 000135********
+ ********* This is bounding box: [727, 175][804, 218]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [781, 168][870, 214]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [561, 161][595, 194]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [531, 173][575, 210]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [0, 191][122, 269]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [727, 175][804, 218]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [781, 168][870, 214]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [561, 161][595, 194]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [531, 173][575, 210]
+ ========= min distance to camera: 15.0346========= 
+ ********* This is bounding box: [0, 191][122, 269]
+ ========= min distance to camera: 15.0346========= 
+*************Processing Image: 000136********
+ ********* This is bounding box: [728, 178][796, 214]
+ ========= min distance to camera: 15.1096========= 
+ ********* This is bounding box: [787, 167][882, 213]
+ ========= min distance to camera: 15.1096========= 
+ ********* This is bounding box: [562, 162][598, 195]
+ ========= min distance to camera: 15.1096========= 
+ ********* This is bounding box: [530, 174][574, 211]
+ ========= min distance to camera: 15.1096========= 
+ ********* This is bounding box: [1, 194][96, 279]
+ ========= min distance to camera: 15.1096========= 
+ ********* This is bounding box: [728, 178][796, 214]
+ ========= min distance to camera: 14.8729========= 
+ ********* This is bounding box: [787, 167][882, 213]
+ ========= min distance to camera: 14.8729========= 
+ ********* This is bounding box: [562, 162][598, 195]
+ ========= min distance to camera: 14.8729========= 
+ ********* This is bounding box: [530, 174][574, 211]
+ ========= min distance to camera: 14.8729========= 
+ ********* This is bounding box: [1, 194][96, 279]
+ ========= min distance to camera: 14.8729========= 
+*************Processing Image: 000137********
+ ********* This is bounding box: [785, 167][900, 216]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [563, 162][599, 200]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [530, 174][573, 212]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [1, 200][71, 285]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [1, 200][71, 285]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [785, 167][900, 216]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [563, 162][599, 200]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [530, 174][573, 212]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [1, 200][71, 285]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [1, 200][71, 285]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [785, 167][900, 216]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [563, 162][599, 200]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [530, 174][573, 212]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [1, 200][71, 285]
+ ========= min distance to camera: 14.7836========= 
+ ********* This is bounding box: [1, 200][71, 285]
+ ========= min distance to camera: 14.7836========= 
+*************Processing Image: 000138********
+ ********* This is bounding box: [797, 168][908, 216]
+ ========= min distance to camera: 17.5662========= 
+ ********* This is bounding box: [0, 205][38, 296]
+ ========= min distance to camera: 17.5662========= 
+ ********* This is bounding box: [564, 160][604, 198]
+ ========= min distance to camera: 17.5662========= 
+ ********* This is bounding box: [527, 173][573, 212]
+ ========= min distance to camera: 17.5662========= 
+ ********* This is bounding box: [527, 173][573, 212]
+ ========= min distance to camera: 17.5662========= 
+*************Processing Image: 000139********
+ ********* This is bounding box: [783, 165][928, 216]
+ ========= min distance to camera: 16.4857========= 
+ ********* This is bounding box: [564, 158][607, 196]
+ ========= min distance to camera: 16.4857========= 
+ ********* This is bounding box: [525, 173][573, 212]
+ ========= min distance to camera: 16.4857========= 
+ ********* This is bounding box: [783, 165][928, 216]
+ ========= min distance to camera: 16.4857========= 
+ ********* This is bounding box: [564, 158][607, 196]
+ ========= min distance to camera: 16.4857========= 
+ ********* This is bounding box: [525, 173][573, 212]
+ ========= min distance to camera: 16.4857========= 
+*************Processing Image: 000140********
+ ********* This is bounding box: [762, 170][866, 224]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [802, 163][942, 223]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [565, 158][608, 196]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [524, 173][573, 212]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [524, 173][573, 212]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [762, 170][866, 224]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [802, 163][942, 223]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [565, 158][608, 196]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [524, 173][573, 212]
+ ========= min distance to camera: 15.7956========= 
+ ********* This is bounding box: [524, 173][573, 212]
+ ========= min distance to camera: 15.7956========= 
+*************Processing Image: 000141********
+ ********* This is bounding box: [808, 161][959, 227]
+ ========= min distance to camera: 15.1222========= 
+ ********* This is bounding box: [565, 158][610, 199]
+ ========= min distance to camera: 15.1222========= 
+ ********* This is bounding box: [523, 173][573, 213]
+ ========= min distance to camera: 15.1222========= 
+ ********* This is bounding box: [808, 161][959, 227]
+ ========= min distance to camera: 15.1222========= 
+ ********* This is bounding box: [565, 158][610, 199]
+ ========= min distance to camera: 15.1222========= 
+ ********* This is bounding box: [523, 173][573, 213]
+ ========= min distance to camera: 15.1222========= 
+*************Processing Image: 000142********
+ ********* This is bounding box: [781, 176][855, 228]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [789, 163][977, 233]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [566, 158][611, 199]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [523, 174][573, 214]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [781, 176][855, 228]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [789, 163][977, 233]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [566, 158][611, 199]
+ ========= min distance to camera: 14.4701========= 
+ ********* This is bounding box: [523, 174][573, 214]
+ ========= min distance to camera: 14.4701========= 
+*************Processing Image: 000143********
+ ********* This is bounding box: [788, 183][839, 229]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [824, 162][999, 235]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [567, 160][613, 202]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [522, 174][573, 213]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [522, 174][573, 213]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [788, 183][839, 229]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [824, 162][999, 235]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [567, 160][613, 202]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [522, 174][573, 213]
+ ========= min distance to camera: 13.8174========= 
+ ********* This is bounding box: [522, 174][573, 213]
+ ========= min distance to camera: 13.8174========= 
+*************Processing Image: 000144********
+ ********* This is bounding box: [819, 160][1019, 236]
+ ========= min distance to camera: 13.4611========= 
+ ********* This is bounding box: [570, 158][617, 200]
+ ========= min distance to camera: 13.4611========= 
+ ********* This is bounding box: [521, 173][573, 212]
+ ========= min distance to camera: 13.4611========= 
+ ********* This is bounding box: [521, 173][573, 212]
+ ========= min distance to camera: 13.4611========= 
+ ********* This is bounding box: [819, 160][1019, 236]
+ ========= min distance to camera: 13.4611========= 
+ ********* This is bounding box: [820, 159][1045, 239]
+ ========= min distance to camera: 8.77114========= 
+ ********* This is bounding box: [519, 173][570, 211]
+ ========= min distance to camera: 8.77114========= 
+*************Processing Image: 000145********
+ ********* This is bounding box: [572, 158][619, 200]
+ ========= min distance to camera: 12.8431========= 
+ ********* This is bounding box: [820, 159][1045, 239]
+ ========= min distance to camera: 12.8431========= 
+ ********* This is bounding box: [519, 173][570, 211]
+ ========= min distance to camera: 12.8431========= 
+ ********* This is bounding box: [519, 173][570, 211]
+ ========= min distance to camera: 12.8431========= 
+*************Processing Image: 000146********
+ ********* This is bounding box: [832, 161][1072, 248]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [574, 157][622, 201]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [518, 172][569, 210]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [518, 172][569, 210]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [832, 161][1072, 248]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [574, 157][622, 201]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [518, 172][569, 210]
+ ========= min distance to camera: 12.1386========= 
+ ********* This is bounding box: [518, 172][569, 210]
+ ========= min distance to camera: 12.1386========= 
+*************Processing Image: 000147********
+ ********* This is bounding box: [854, 162][1133, 256]
+ ========= min distance to camera: 11.5105========= 
+ ********* This is bounding box: [576, 157][624, 203]
+ ========= min distance to camera: 11.5105========= 
+ ********* This is bounding box: [518, 175][566, 212]
+ ========= min distance to camera: 11.5105========= 
+ ********* This is bounding box: [518, 175][566, 212]
+ ========= min distance to camera: 11.5105========= 
+ ********* This is bounding box: [854, 162][1133, 256]
+ ========= min distance to camera: 11.4748========= 
+ ********* This is bounding box: [576, 157][624, 203]
+ ========= min distance to camera: 11.4748========= 
+ ********* This is bounding box: [518, 175][566, 212]
+ ========= min distance to camera: 11.4748========= 
+ ********* This is bounding box: [518, 175][566, 212]
+ ========= min distance to camera: 11.4748========= 
+*************Processing Image: 000148********
+ ********* This is bounding box: [855, 163][1180, 259]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [577, 161][628, 205]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [517, 177][566, 215]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [517, 177][566, 215]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [855, 163][1180, 259]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [577, 161][628, 205]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [517, 177][566, 215]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [517, 177][566, 215]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [855, 163][1180, 259]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [577, 161][628, 205]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [517, 177][566, 215]
+ ========= min distance to camera: 10.8116========= 
+ ********* This is bounding box: [517, 177][566, 215]
+ ========= min distance to camera: 10.8116========= 
+*************Processing Image: 000149********
+ ********* This is bounding box: [869, 166][1233, 290]
+ ========= min distance to camera: 9.99112========= 
+ ********* This is bounding box: [577, 163][632, 208]
+ ========= min distance to camera: 9.99112========= 
+ ********* This is bounding box: [516, 177][565, 216]
+ ========= min distance to camera: 9.99112========= 
+ ********* This is bounding box: [516, 177][565, 216]
+ ========= min distance to camera: 9.99112========= 
+ ********* This is bounding box: [869, 166][1233, 290]
+ ========= min distance to camera: 9.99112========= 
+ ********* This is bounding box: [577, 163][632, 208]
+ ========= min distance to camera: 9.99112========= 
+ ********* This is bounding box: [517, 178][565, 216]
+ ========= min distance to camera: 10.4494========= 
+*************Processing Image: 000150********
+ ********* This is bounding box: [894, 170][1241, 310]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [578, 164][635, 211]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [517, 178][565, 216]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [517, 178][565, 216]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [894, 170][1241, 310]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [578, 164][635, 211]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [517, 178][565, 216]
+ ========= min distance to camera: 8.95253========= 
+ ********* This is bounding box: [517, 178][565, 216]
+ ========= min distance to camera: 8.95253========= 
+*************Processing Image: 000151********
+ ********* This is bounding box: [919, 173][1240, 297]
+ ========= min distance to camera: 8.52942========= 
+ ********* This is bounding box: [580, 162][638, 211]
+ ========= min distance to camera: 8.52942========= 
+ ********* This is bounding box: [516, 177][563, 214]
+ ========= min distance to camera: 8.52942========= 
+*************Processing Image: 000152********
+ ********* This is bounding box: [948, 195][1074, 281]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [581, 161][641, 213]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [945, 174][1241, 285]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [515, 178][562, 214]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [948, 195][1074, 281]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [581, 161][641, 213]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [945, 174][1241, 285]
+ ========= min distance to camera: 8.2997========= 
+ ********* This is bounding box: [515, 178][562, 214]
+ ========= min distance to camera: 8.2997========= 
+*************Processing Image: 000153********
+ ********* This is bounding box: [987, 195][1127, 291]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [982, 177][1236, 297]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [515, 179][563, 216]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [583, 161][645, 213]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [987, 195][1127, 291]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [982, 177][1236, 297]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [515, 179][563, 216]
+ ========= min distance to camera: 8.02059========= 
+ ********* This is bounding box: [583, 161][645, 213]
+ ========= min distance to camera: 8.02059========= 
+*************Processing Image: 000154********
+ ********* This is bounding box: [586, 161][649, 216]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [1015, 176][1241, 315]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [514, 179][562, 217]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [514, 179][562, 217]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [586, 161][649, 216]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [1015, 176][1241, 315]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [514, 179][562, 217]
+ ========= min distance to camera: 7.59817========= 
+ ********* This is bounding box: [514, 179][562, 217]
+ ========= min distance to camera: 7.59817========= 
+*************Processing Image: 000155********
+ ********* This is bounding box: [589, 160][652, 217]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [1054, 196][1242, 325]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [515, 177][562, 216]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [515, 177][562, 216]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [589, 160][652, 217]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [1054, 196][1242, 325]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [515, 177][562, 216]
+ ========= min distance to camera: 9.12859========= 
+ ********* This is bounding box: [515, 177][562, 216]
+ ========= min distance to camera: 9.12859========= 
+*************Processing Image: 000156********
+ ********* This is bounding box: [594, 160][656, 217]
+ ========= min distance to camera: 8.55562========= 
+ ********* This is bounding box: [1107, 225][1241, 323]
+ ========= min distance to camera: 8.55562========= 
+ ********* This is bounding box: [515, 177][563, 216]
+ ========= min distance to camera: 8.55562========= 
+*************Processing Image: 000157********
+ ********* This is bounding box: [1168, 242][1241, 336]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [599, 161][665, 219]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [516, 179][563, 218]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [516, 179][563, 218]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [1168, 242][1241, 336]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [599, 161][665, 219]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [516, 179][563, 218]
+ ========= min distance to camera: 23.2587========= 
+ ********* This is bounding box: [516, 179][563, 218]
+ ========= min distance to camera: 23.2587========= 
+*************Processing Image: 000158********
+ ********* This is bounding box: [601, 169][670, 228]
+ ========= min distance to camera: 22.4768========= 
+ ********* This is bounding box: [518, 186][566, 223]
+ ========= min distance to camera: 22.4768========= 
+ ********* This is bounding box: [601, 169][670, 228]
+ ========= min distance to camera: 22.4768========= 
+ ********* This is bounding box: [518, 186][566, 223]
+ ========= min distance to camera: 22.4768========= 
+*************Processing Image: 000159********
+ ********* This is bounding box: [606, 172][679, 233]
+ ========= min distance to camera: 21.8867========= 
+ ********* This is bounding box: [520, 187][569, 227]
+ ========= min distance to camera: 21.8867========= 
+ ********* This is bounding box: [606, 172][679, 233]
+ ========= min distance to camera: 21.8867========= 
+ ********* This is bounding box: [520, 187][569, 227]
+ ========= min distance to camera: 21.8867========= 
+*************Processing Image: 000160********
+ ********* This is bounding box: [612, 173][686, 237]
+ ========= min distance to camera: 21.0906========= 
+ ********* This is bounding box: [523, 189][572, 228]
+ ========= min distance to camera: 21.0906========= 
+ ********* This is bounding box: [612, 173][686, 237]
+ ========= min distance to camera: 21.0906========= 
+ ********* This is bounding box: [523, 189][572, 228]
+ ========= min distance to camera: 21.0906========= 
+*************Processing Image: 000161********
+ ********* This is bounding box: [616, 173][695, 236]
+ ========= min distance to camera: 20.2928========= 
+ ********* This is bounding box: [527, 187][574, 227]
+ ========= min distance to camera: 20.2928========= 
+ ********* This is bounding box: [616, 173][695, 236]
+ ========= min distance to camera: 20.2928========= 
+ ********* This is bounding box: [527, 187][574, 227]
+ ========= min distance to camera: 20.2928========= 
+*************Processing Image: 000162********
+ ********* This is bounding box: [624, 171][703, 237]
+ ========= min distance to camera: 19.4804========= 
+ ********* This is bounding box: [529, 188][578, 227]
+ ========= min distance to camera: 19.4804========= 
+ ********* This is bounding box: [624, 171][703, 237]
+ ========= min distance to camera: 19.4804========= 
+ ********* This is bounding box: [529, 188][578, 227]
+ ========= min distance to camera: 19.4804========= 
+*************Processing Image: 000163********
+ ********* This is bounding box: [741, 163][768, 187]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [630, 169][715, 238]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [531, 186][580, 224]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [531, 186][580, 224]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [741, 163][768, 187]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [630, 169][715, 238]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [531, 186][580, 224]
+ ========= min distance to camera: 18.6754========= 
+ ********* This is bounding box: [531, 186][580, 224]
+ ========= min distance to camera: 18.6754========= 
+*************Processing Image: 000164********
+ ********* This is bounding box: [535, 182][584, 220]
+ ========= min distance to camera: 18.1694========= 
+ ********* This is bounding box: [637, 164][727, 236]
+ ========= min distance to camera: 18.1694========= 
+ ********* This is bounding box: [637, 164][727, 236]
+ ========= min distance to camera: 18.1694========= 
+ ********* This is bounding box: [535, 182][584, 220]
+ ========= min distance to camera: 18.1694========= 
+ ********* This is bounding box: [637, 164][727, 236]
+ ========= min distance to camera: 18.1694========= 
+ ********* This is bounding box: [637, 164][727, 236]
+ ========= min distance to camera: 18.1694========= 
+*************Processing Image: 000165********
+ ********* This is bounding box: [643, 158][736, 235]
+ ========= min distance to camera: 17.3708========= 
+ ********* This is bounding box: [537, 176][587, 215]
+ ========= min distance to camera: 17.3708========= 
+ ********* This is bounding box: [537, 176][587, 215]
+ ========= min distance to camera: 17.3708========= 
+*************Processing Image: 000166********
+ ********* This is bounding box: [650, 154][748, 235]
+ ========= min distance to camera: 15.9018========= 
+ ********* This is bounding box: [539, 175][590, 214]
+ ========= min distance to camera: 15.9018========= 
+ ********* This is bounding box: [650, 154][748, 235]
+ ========= min distance to camera: 15.9018========= 
+ ********* This is bounding box: [539, 175][590, 214]
+ ========= min distance to camera: 15.9018========= 
+ ********* This is bounding box: [650, 154][748, 235]
+ ========= min distance to camera: 15.9018========= 
+ ********* This is bounding box: [539, 175][590, 214]
+ ========= min distance to camera: 15.9018========= 
+*************Processing Image: 000167********
+ ********* This is bounding box: [656, 155][761, 237]
+ ========= min distance to camera: 15.2716========= 
+ ********* This is bounding box: [544, 177][593, 214]
+ ========= min distance to camera: 15.2716========= 
+ ********* This is bounding box: [544, 177][593, 214]
+ ========= min distance to camera: 15.2716========= 
+*************Processing Image: 000168********
+ ********* This is bounding box: [664, 158][774, 248]
+ ========= min distance to camera: 14.5759========= 
+ ********* This is bounding box: [544, 182][596, 220]
+ ========= min distance to camera: 14.5759========= 
+ ********* This is bounding box: [664, 158][774, 248]
+ ========= min distance to camera: 14.5759========= 
+ ********* This is bounding box: [544, 182][596, 220]
+ ========= min distance to camera: 14.5759========= 
+*************Processing Image: 000169********
+ ********* This is bounding box: [669, 159][788, 254]
+ ========= min distance to camera: 13.8365========= 
+ ********* This is bounding box: [547, 183][596, 221]
+ ========= min distance to camera: 13.8365========= 
+ ********* This is bounding box: [669, 159][788, 254]
+ ========= min distance to camera: 13.8365========= 
+ ********* This is bounding box: [547, 183][596, 221]
+ ========= min distance to camera: 13.8365========= 
+*************Processing Image: 000170********
+ ********* This is bounding box: [549, 185][598, 223]
+ ========= min distance to camera: 12.349========= 
+ ********* This is bounding box: [676, 165][802, 260]
+ ========= min distance to camera: 12.349========= 
+ ********* This is bounding box: [549, 185][598, 223]
+ ========= min distance to camera: 12.2357========= 
+ ********* This is bounding box: [676, 165][802, 260]
+ ========= min distance to camera: 12.2357========= 
+ ********* This is bounding box: [686, 161][824, 263]
+ ========= min distance to camera: 11.491========= 
+*************Processing Image: 000171********
+ ********* This is bounding box: [550, 182][601, 223]
+ ========= min distance to camera: 11.4316========= 
+ ********* This is bounding box: [686, 161][824, 263]
+ ========= min distance to camera: 11.4316========= 
+*************Processing Image: 000172********
+ ********* This is bounding box: [551, 184][602, 222]
+ ========= min distance to camera: 10.6847========= 
+ ********* This is bounding box: [691, 158][836, 264]
+ ========= min distance to camera: 10.6847========= 
+ ********* This is bounding box: [551, 184][602, 222]
+ ========= min distance to camera: 10.6847========= 
+ ********* This is bounding box: [691, 158][836, 264]
+ ========= min distance to camera: 10.6847========= 
+ ********* This is bounding box: [551, 184][602, 222]
+ ========= min distance to camera: 10.6847========= 
+ ********* This is bounding box: [691, 158][836, 264]
+ ========= min distance to camera: 10.6847========= 
+*************Processing Image: 000173********
+ ********* This is bounding box: [699, 153][857, 269]
+ ========= min distance to camera: 10.9601========= 
+ ********* This is bounding box: [551, 179][604, 219]
+ ========= min distance to camera: 10.9601========= 
+ ********* This is bounding box: [699, 153][857, 269]
+ ========= min distance to camera: 10.9601========= 
+ ********* This is bounding box: [551, 179][604, 219]
+ ========= min distance to camera: 10.9601========= 
+*************Processing Image: 000174********
+ ********* This is bounding box: [553, 173][602, 213]
+ ========= min distance to camera: 10.2338========= 
+ ********* This is bounding box: [708, 145][873, 270]
+ ========= min distance to camera: 10.2338========= 
+*************Processing Image: 000175********
+ ********* This is bounding box: [716, 144][899, 277]
+ ========= min distance to camera: 9.87181========= 
+ ********* This is bounding box: [552, 171][604, 209]
+ ========= min distance to camera: 9.87181========= 
+ ********* This is bounding box: [716, 144][899, 277]
+ ========= min distance to camera: 9.87181========= 
+ ********* This is bounding box: [552, 171][604, 209]
+ ========= min distance to camera: 9.87181========= 
+*************Processing Image: 000176********
+ ********* This is bounding box: [722, 144][923, 284]
+ ========= min distance to camera: 9.29288========= 
+ ********* This is bounding box: [552, 171][604, 209]
+ ========= min distance to camera: 9.29288========= 
+ ********* This is bounding box: [722, 144][923, 284]
+ ========= min distance to camera: 9.29288========= 
+ ********* This is bounding box: [552, 171][604, 209]
+ ========= min distance to camera: 9.29288========= 
+*************Processing Image: 000177********
+ ********* This is bounding box: [732, 142][954, 296]
+ ========= min distance to camera: 8.4766========= 
+ ********* This is bounding box: [550, 171][604, 210]
+ ========= min distance to camera: 8.4766========= 
+ ********* This is bounding box: [732, 142][954, 296]
+ ========= min distance to camera: 8.4766========= 
+ ********* This is bounding box: [741, 144][986, 308]
+ ========= min distance to camera: 8.4766========= 
+ ********* This is bounding box: [550, 176][602, 212]
+ ========= min distance to camera: 8.10737========= 
+*************Processing Image: 000178********
+ ********* This is bounding box: [741, 144][986, 308]
+ ========= min distance to camera: 7.91788========= 
+ ********* This is bounding box: [550, 176][602, 212]
+ ========= min distance to camera: 7.91788========= 
+*************Processing Image: 000179********
+ ********* This is bounding box: [751, 146][1028, 326]
+ ========= min distance to camera: 7.39442========= 
+ ********* This is bounding box: [547, 178][601, 215]
+ ========= min distance to camera: 7.39442========= 
+ ********* This is bounding box: [751, 146][1028, 326]
+ ========= min distance to camera: 7.39442========= 
+ ********* This is bounding box: [547, 178][601, 215]
+ ========= min distance to camera: 7.39442========= 
+*************Processing Image: 000180********
+ ********* This is bounding box: [762, 146][1072, 347]
+ ========= min distance to camera: 6.57858========= 
+ ********* This is bounding box: [544, 185][599, 220]
+ ========= min distance to camera: 6.57858========= 
+ ********* This is bounding box: [762, 146][1072, 347]
+ ========= min distance to camera: 6.57858========= 
+ ********* This is bounding box: [544, 185][599, 220]
+ ========= min distance to camera: 6.57858========= 
+*************Processing Image: 000181********
+ ********* This is bounding box: [765, 141][1132, 364]
+ ========= min distance to camera: 5.96092========= 
+ ********* This is bounding box: [542, 186][597, 223]
+ ========= min distance to camera: 5.96092========= 
+ ********* This is bounding box: [542, 186][597, 223]
+ ========= min distance to camera: 5.96092========= 
+ ********* This is bounding box: [765, 141][1132, 364]
+ ========= min distance to camera: 5.96092========= 
+ ********* This is bounding box: [542, 186][597, 223]
+ ========= min distance to camera: 5.96092========= 
+ ********* This is bounding box: [542, 186][597, 223]
+ ========= min distance to camera: 5.96092========= 
+*************Processing Image: 000182********
+*************Processing Image: 000183********
+*************Processing Image: 000184********
+*************Processing Image: 000185********
+*************Processing Image: 000186********
+ ********* This is bounding box: [526, 182][579, 217]
+ ========= min distance to camera: 48.5719========= 
+*************Processing Image: 000187********
+ ********* This is bounding box: [925, 133][1238, 372]
+ ========= min distance to camera: 4.72919========= 
+*************Processing Image: 000188********
+ ********* This is bounding box: [925, 133][1238, 372]
+ ========= min distance to camera: 4.21192========= 
+ ********* This is bounding box: [514, 182][570, 219]
+ ========= min distance to camera: 4.21192========= 
+*************Processing Image: 000189********
+ ********* This is bounding box: [964, 141][1242, 370]
+ ========= min distance to camera: 48.2218========= 
+ ********* This is bounding box: [504, 184][563, 223]
+ ========= min distance to camera: 48.2218========= 
+ ********* This is bounding box: [964, 141][1242, 370]
+ ========= min distance to camera: 48.2218========= 
+ ********* This is bounding box: [504, 184][563, 223]
+ ========= min distance to camera: 48.2218========= 
+*************Processing Image: 000190********
+*************Processing Image: 000191********
+*************Processing Image: 000192********
+*************Processing Image: 000193********
+*************Processing Image: 000194********
+*************Processing Image: 000195********
+*************Processing Image: 000196********
+ ********* This is bounding box: [457, 177][516, 218]
+ ========= min distance to camera: 65.0853========= 
+ ********* This is bounding box: [457, 177][516, 218]
+ ========= min distance to camera: 65.0853========= 
+*************Processing Image: 000197********
+*************Processing Image: 000198********
+*************Processing Image: 000199********
+ ********* This is bounding box: [442, 170][495, 221]
+ ========= min distance to camera: 69.6123========= 
+ ********* This is bounding box: [442, 170][495, 221]
+ ========= min distance to camera: 69.6123========= 
+ ********* This is bounding box: [442, 170][495, 221]
+ ========= min distance to camera: 69.6123========= 
+ ********* This is bounding box: [442, 170][495, 221]
+ ========= min distance to camera: 69.6123========= 
+*************Processing Image: 000200********
+ ********* This is bounding box: [1041, 301][1242, 371]
+ ========= min distance to camera: 9.95039========= 
+ ********* This is bounding box: [436, 177][488, 221]
+ ========= min distance to camera: 9.95039========= 
+ ********* This is bounding box: [1041, 301][1242, 371]
+ ========= min distance to camera: 9.95039========= 
+ ********* This is bounding box: [436, 177][488, 221]
+ ========= min distance to camera: 9.95039========= 
+*************Processing Image: 000201********
+*************Processing Image: 000202********
+*************Processing Image: 000203********
+ ********* This is bounding box: [429, 176][481, 222]
+ ========= min distance to camera: 20.2874========= 
+ ********* This is bounding box: [429, 176][481, 222]
+ ========= min distance to camera: 20.2874========= 
+*************Processing Image: 000204********
+ ********* This is bounding box: [432, 179][480, 222]
+ ========= min distance to camera: 20.2161========= 
+ ********* This is bounding box: [432, 179][480, 222]
+ ========= min distance to camera: 20.2161========= 
+*************Processing Image: 000205********
+*************Processing Image: 000206********
+*************Processing Image: 000207********
+*************Processing Image: 000208********
+*************Processing Image: 000209********
+*************Processing Image: 000210********
+*************Processing Image: 000211********
+*************Processing Image: 000212********
+*************Processing Image: 000213********
+*************Processing Image: 000214********
+*************Processing Image: 000215********
+*************Processing Image: 000216********
+ ********* This is bounding box: [507, 170][569, 222]
+ ========= min distance to camera: 14.1806========= 
+ ********* This is bounding box: [507, 170][569, 222]
+ ========= min distance to camera: 14.1806========= 
+ ********* This is bounding box: [507, 170][569, 222]
+ ========= min distance to camera: 14.1806========= 
+ ********* This is bounding box: [507, 170][569, 222]
+ ========= min distance to camera: 14.1806========= 
+*************Processing Image: 000217********
+ ********* This is bounding box: [515, 173][582, 218]
+ ========= min distance to camera: 191.561========= 
+ ********* This is bounding box: [515, 173][582, 218]
+ ========= min distance to camera: 191.561========= 
+*************Processing Image: 000218********
+ ********* This is bounding box: [527, 170][597, 214]
+ ========= min distance to camera: 53.4795========= 
+ ********* This is bounding box: [527, 170][597, 214]
+ ========= min distance to camera: 53.4795========= 
+*************Processing Image: 000219********
+*************Processing Image: 000220********
+ ********* This is bounding box: [550, 151][628, 206]
+ ========= min distance to camera: 52.0603========= 
+ ********* This is bounding box: [550, 151][628, 206]
+ ========= min distance to camera: 52.0603========= 
+*************Processing Image: 000221********
+ ********* This is bounding box: [561, 157][640, 205]
+ ========= min distance to camera: 53.4191========= 
+ ********* This is bounding box: [561, 157][640, 205]
+ ========= min distance to camera: 53.4191========= 
+*************Processing Image: 000222********
+ ********* This is bounding box: [54, 228][101, 313]
+ ========= min distance to camera: 23.5413========= 
+*************Processing Image: 000223********
+ ********* This is bounding box: [415, 165][440, 182]
+ ========= min distance to camera: 9.24666========= 
+ ********* This is bounding box: [582, 144][664, 197]
+ ========= min distance to camera: 9.24666========= 
+ ********* This is bounding box: [582, 144][664, 197]
+ ========= min distance to camera: 9.24666========= 
+*************Processing Image: 000224********
+*************Processing Image: 000225********
+ ********* This is bounding box: [651, 160][692, 190]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [685, 166][709, 187]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [422, 167][449, 182]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [603, 149][685, 196]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [651, 160][692, 190]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [685, 166][709, 187]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [422, 167][449, 182]
+ ========= min distance to camera: 22.5033========= 
+ ********* This is bounding box: [603, 149][685, 196]
+ ========= min distance to camera: 22.5033========= 
+*************Processing Image: 000226********
+*************Processing Image: 000227********
+ ********* This is bounding box: [712, 175][734, 197]
+ ========= min distance to camera: 23.662========= 
+ ********* This is bounding box: [635, 164][690, 204]
+ ========= min distance to camera: 23.662========= 
+ ********* This is bounding box: [712, 175][734, 197]
+ ========= min distance to camera: 23.662========= 
+ ********* This is bounding box: [635, 164][690, 204]
+ ========= min distance to camera: 23.662========= 
+*************Processing Image: 000228********
+ ********* This is bounding box: [675, 162][727, 202]
+ ========= min distance to camera: 22.9099========= 
+ ********* This is bounding box: [720, 176][746, 200]
+ ========= min distance to camera: 22.9099========= 
+ ********* This is bounding box: [433, 176][463, 197]
+ ========= min distance to camera: 22.9099========= 
+ ********* This is bounding box: [649, 163][710, 205]
+ ========= min distance to camera: 22.9099========= 
+ ********* This is bounding box: [649, 163][710, 205]
+ ========= min distance to camera: 22.9099========= 
+*************Processing Image: 000229********
+ ********* This is bounding box: [435, 176][465, 194]
+ ========= min distance to camera: 22.1643========= 
+ ********* This is bounding box: [665, 166][714, 203]
+ ========= min distance to camera: 22.1643========= 
+ ********* This is bounding box: [706, 161][753, 200]
+ ========= min distance to camera: 22.1643========= 
+ ********* This is bounding box: [435, 176][465, 194]
+ ========= min distance to camera: 22.1643========= 
+ ********* This is bounding box: [665, 166][714, 203]
+ ========= min distance to camera: 22.1643========= 
+ ********* This is bounding box: [706, 161][753, 200]
+ ========= min distance to camera: 22.1643========= 
+*************Processing Image: 000230********
+ ********* This is bounding box: [438, 176][467, 195]
+ ========= min distance to camera: 21.4401========= 
+ ********* This is bounding box: [672, 164][739, 204]
+ ========= min distance to camera: 21.4401========= 
+ ********* This is bounding box: [715, 162][766, 200]
+ ========= min distance to camera: 21.4401========= 
+*************Processing Image: 000231********
+ ********* This is bounding box: [693, 167][753, 207]
+ ========= min distance to camera: 19.2647========= 
+ ********* This is bounding box: [729, 162][778, 204]
+ ========= min distance to camera: 19.2647========= 
+ ********* This is bounding box: [441, 178][470, 198]
+ ========= min distance to camera: 19.2647========= 
+ ********* This is bounding box: [693, 167][753, 207]
+ ========= min distance to camera: 19.2647========= 
+ ********* This is bounding box: [729, 162][778, 204]
+ ========= min distance to camera: 19.2647========= 
+ ********* This is bounding box: [441, 178][470, 198]
+ ========= min distance to camera: 19.2647========= 
+*************Processing Image: 000232********
+ ********* This is bounding box: [442, 179][470, 201]
+ ========= min distance to camera: 18.5337========= 
+ ********* This is bounding box: [708, 169][761, 209]
+ ========= min distance to camera: 18.5337========= 
+ ********* This is bounding box: [743, 165][789, 206]
+ ========= min distance to camera: 18.5337========= 
+ ********* This is bounding box: [442, 179][470, 201]
+ ========= min distance to camera: 18.5337========= 
+ ********* This is bounding box: [708, 169][761, 209]
+ ========= min distance to camera: 18.5337========= 
+ ********* This is bounding box: [743, 165][789, 206]
+ ========= min distance to camera: 18.5337========= 
+*************Processing Image: 000233********
+ ********* This is bounding box: [443, 180][472, 202]
+ ========= min distance to camera: 21.1257========= 
+ ********* This is bounding box: [728, 163][798, 210]
+ ========= min distance to camera: 21.1257========= 
+*************Processing Image: 000234********
+ ********* This is bounding box: [445, 178][472, 200]
+ ========= min distance to camera: 60.6499========= 
+ ********* This is bounding box: [771, 160][811, 206]
+ ========= min distance to camera: 60.6499========= 
+ ********* This is bounding box: [445, 178][472, 200]
+ ========= min distance to camera: 60.6499========= 
+ ********* This is bounding box: [771, 160][811, 206]
+ ========= min distance to camera: 60.6499========= 
+ ********* This is bounding box: [445, 178][472, 200]
+ ========= min distance to camera: 60.6499========= 
+ ********* This is bounding box: [771, 160][811, 206]
+ ========= min distance to camera: 60.6499========= 
+*************Processing Image: 000235********
+ ********* This is bounding box: [449, 176][478, 198]
+ ========= min distance to camera: 64.6182========= 
+ ********* This is bounding box: [784, 156][823, 203]
+ ========= min distance to camera: 64.6182========= 
+ ********* This is bounding box: [449, 176][478, 198]
+ ========= min distance to camera: 64.6182========= 
+ ********* This is bounding box: [784, 156][823, 203]
+ ========= min distance to camera: 64.6182========= 
+*************Processing Image: 000236********
+ ********* This is bounding box: [450, 174][479, 196]
+ ========= min distance to camera: 63.93========= 
+ ********* This is bounding box: [450, 174][479, 196]
+ ========= min distance to camera: 63.93========= 
+*************Processing Image: 000237********
+ ********* This is bounding box: [451, 171][482, 196]
+ ========= min distance to camera: 63.2282========= 
+*************Processing Image: 000238********
+ ********* This is bounding box: [452, 174][484, 197]
+ ========= min distance to camera: 62.552========= 
+ ********* This is bounding box: [452, 174][484, 197]
+ ========= min distance to camera: 62.552========= 
+*************Processing Image: 000239********
+ ********* This is bounding box: [454, 175][482, 199]
+ ========= min distance to camera: 65.2692========= 
+ ********* This is bounding box: [454, 175][482, 199]
+ ========= min distance to camera: 65.2692========= 
+*************Processing Image: 000240********
+ ********* This is bounding box: [456, 175][480, 198]
+ ========= min distance to camera: 62.967========= 
+ ********* This is bounding box: [456, 175][480, 198]
+ ========= min distance to camera: 62.967========= 
+*************Processing Image: 000241********
+ ********* This is bounding box: [455, 174][480, 198]
+ ========= min distance to camera: 62.3144========= 
+*************Processing Image: 000242********
+ ********* This is bounding box: [456, 174][482, 199]
+ ========= min distance to camera: 61.6879========= 
+ ********* This is bounding box: [456, 174][482, 199]
+ ========= min distance to camera: 61.6879========= 
+*************Processing Image: 000243********
+ ********* This is bounding box: [456, 174][481, 199]
+ ========= min distance to camera: 60.6609========= 
+ ********* This is bounding box: [456, 174][481, 199]
+ ========= min distance to camera: 60.6609========= 
+*************Processing Image: 000244********
+ ********* This is bounding box: [457, 176][484, 199]
+ ========= min distance to camera: 60.0405========= 
+*************Processing Image: 000245********
+ ********* This is bounding box: [457, 176][490, 202]
+ ========= min distance to camera: 59.4481========= 
+ ********* This is bounding box: [457, 176][490, 202]
+ ========= min distance to camera: 59.4481========= 
+*************Processing Image: 000246********
+ ********* This is bounding box: [457, 177][489, 201]
+ ========= min distance to camera: 58.81========= 
+ ********* This is bounding box: [457, 177][489, 201]
+ ========= min distance to camera: 58.81========= 
+ ********* This is bounding box: [457, 177][489, 201]
+ ========= min distance to camera: 58.81========= 
+*************Processing Image: 000247********
+ ********* This is bounding box: [459, 178][491, 202]
+ ========= min distance to camera: 60.1812========= 
+ ********* This is bounding box: [459, 178][491, 202]
+ ========= min distance to camera: 60.1812========= 
+*************Processing Image: 000248********
+ ********* This is bounding box: [460, 179][493, 203]
+ ========= min distance to camera: 14.2168========= 
+ ********* This is bounding box: [460, 179][493, 203]
+ ========= min distance to camera: 14.2168========= 
+*************Processing Image: 000249********
+ ********* This is bounding box: [460, 178][495, 203]
+ ========= min distance to camera: 20.4857========= 
+*************Processing Image: 000250********
+ ********* This is bounding box: [461, 178][500, 206]
+ ========= min distance to camera: 62.523========= 
+ ********* This is bounding box: [461, 178][500, 206]
+ ========= min distance to camera: 62.523========= 
+*************Processing Image: 000251********
+ ********* This is bounding box: [465, 179][498, 205]
+ ========= min distance to camera: 57.9451========= 
+ ********* This is bounding box: [465, 179][498, 205]
+ ========= min distance to camera: 57.9451========= 
+*************Processing Image: 000252********
+ ********* This is bounding box: [467, 180][497, 205]
+ ========= min distance to camera: 58.6294========= 
+ ********* This is bounding box: [467, 180][497, 205]
+ ========= min distance to camera: 58.6294========= 
+*************Processing Image: 000253********
+ ********* This is bounding box: [469, 183][503, 209]
+ ========= min distance to camera: 60.7769========= 
+ ********* This is bounding box: [469, 183][503, 209]
+ ========= min distance to camera: 60.7769========= 
+*************Processing Image: 000254********
+ ********* This is bounding box: [471, 185][506, 210]
+ ========= min distance to camera: 57.5314========= 
+ ********* This is bounding box: [471, 185][506, 210]
+ ========= min distance to camera: 57.5314========= 
+*************Processing Image: 000255********
+ ********* This is bounding box: [475, 188][506, 214]
+ ========= min distance to camera: 57.0006========= 
+ ********* This is bounding box: [475, 188][506, 214]
+ ========= min distance to camera: 57.0006========= 
+*************Processing Image: 000256********
+ ********* This is bounding box: [480, 192][510, 216]
+ ========= min distance to camera: 59.08========= 
+ ********* This is bounding box: [480, 192][510, 216]
+ ========= min distance to camera: 59.08========= 
+*************Processing Image: 000257********
+ ********* This is bounding box: [483, 194][510, 218]
+ ========= min distance to camera: 56.8701========= 
+ ********* This is bounding box: [483, 194][510, 218]
+ ========= min distance to camera: 56.8701========= 
+*************Processing Image: 000258********
+ ********* This is bounding box: [488, 197][529, 225]
+ ========= min distance to camera: 37.1547========= 
+ ********* This is bounding box: [488, 197][529, 225]
+ ========= min distance to camera: 37.1547========= 
+*************Processing Image: 000259********
+ ********* This is bounding box: [494, 195][522, 219]
+ ========= min distance to camera: 36.5856========= 
+*************Processing Image: 000260********
+ ********* This is bounding box: [497, 190][532, 215]
+ ========= min distance to camera: 36.0076========= 
+ ********* This is bounding box: [497, 190][532, 215]
+ ========= min distance to camera: 36.0076========= 
+*************Processing Image: 000261********
+ ********* This is bounding box: [501, 187][531, 213]
+ ========= min distance to camera: 53.8581========= 
+ ********* This is bounding box: [501, 187][531, 213]
+ ========= min distance to camera: 53.8581========= 
+*************Processing Image: 000262********
+ ********* This is bounding box: [505, 183][535, 206]
+ ========= min distance to camera: 53.3054========= 
+*************Processing Image: 000263********
+ ********* This is bounding box: [509, 179][543, 203]
+ ========= min distance to camera: 48.4025========= 
+ ********* This is bounding box: [509, 179][543, 203]
+ ========= min distance to camera: 48.4025========= 
+*************Processing Image: 000264********
+ ********* This is bounding box: [515, 179][556, 205]
+ ========= min distance to camera: 37.229========= 
+ ********* This is bounding box: [515, 179][556, 205]
+ ========= min distance to camera: 37.229========= 
+*************Processing Image: 000265********
+ ********* This is bounding box: [520, 183][551, 207]
+ ========= min distance to camera: 53.2319========= 
+ ********* This is bounding box: [520, 183][551, 207]
+ ========= min distance to camera: 53.2319========= 
+*************Processing Image: 000266********
+ ********* This is bounding box: [525, 184][564, 211]
+ ========= min distance to camera: 37.4628========= 
+ ********* This is bounding box: [525, 184][564, 211]
+ ========= min distance to camera: 37.4628========= 
+*************Processing Image: 000267********
+ ********* This is bounding box: [530, 186][555, 211]
+ ========= min distance to camera: 51.9623========= 
+ ********* This is bounding box: [530, 186][555, 211]
+ ========= min distance to camera: 51.9623========= 
+*************Processing Image: 000268********
+ ********* This is bounding box: [535, 185][560, 210]
+ ========= min distance to camera: 51.2957========= 
+*************Processing Image: 000269********
+ ********* This is bounding box: [541, 185][569, 209]
+ ========= min distance to camera: 53.3133========= 
+ ********* This is bounding box: [541, 185][569, 209]
+ ========= min distance to camera: 53.3133========= 
+*************Processing Image: 000270********
+ ********* This is bounding box: [546, 183][581, 207]
+ ========= min distance to camera: 35.4861========= 
+ ********* This is bounding box: [546, 183][581, 207]
+ ========= min distance to camera: 35.4861========= 
+ ********* This is bounding box: [546, 183][581, 207]
+ ========= min distance to camera: 35.4861========= 
+*************Processing Image: 000271********
+ ********* This is bounding box: [552, 181][581, 207]
+ ========= min distance to camera: 51.2025========= 
+*************Processing Image: 000272********
+ ********* This is bounding box: [560, 181][589, 206]
+ ========= min distance to camera: 50.5385========= 
+ ********* This is bounding box: [560, 181][589, 206]
+ ========= min distance to camera: 50.5385========= 
+*************Processing Image: 000273********
+ ********* This is bounding box: [566, 182][598, 207]
+ ========= min distance to camera: 50.1364========= 
+ ********* This is bounding box: [566, 182][598, 207]
+ ========= min distance to camera: 50.1364========= 
+*************Processing Image: 000274********
+ ********* This is bounding box: [573, 182][603, 207]
+ ========= min distance to camera: 49.3627========= 
+ ********* This is bounding box: [573, 182][603, 207]
+ ========= min distance to camera: 49.3627========= 
+*************Processing Image: 000275********
+ ********* This is bounding box: [577, 182][610, 208]
+ ========= min distance to camera: 48.6116========= 
+ ********* This is bounding box: [577, 182][610, 208]
+ ========= min distance to camera: 48.6116========= 
+*************Processing Image: 000276********
+ ********* This is bounding box: [585, 182][611, 208]
+ ========= min distance to camera: 47.8582========= 
+ ********* This is bounding box: [585, 182][611, 208]
+ ========= min distance to camera: 47.8582========= 
+ ********* This is bounding box: [585, 182][611, 208]
+ ========= min distance to camera: 47.8582========= 
+*************Processing Image: 000277********
+ ********* This is bounding box: [587, 181][622, 209]
+ ========= min distance to camera: 46.2967========= 
+*************Processing Image: 000278********
+ ********* This is bounding box: [590, 180][620, 207]
+ ========= min distance to camera: 45.5036========= 
+ ********* This is bounding box: [590, 180][620, 207]
+ ========= min distance to camera: 45.5036========= 
+*************Processing Image: 000279********
+ ********* This is bounding box: [590, 181][628, 209]
+ ========= min distance to camera: 44.6921========= 
+ ********* This is bounding box: [590, 181][628, 209]
+ ========= min distance to camera: 44.6921========= 
+*************Processing Image: 000280********
+ ********* This is bounding box: [597, 181][624, 209]
+ ========= min distance to camera: 43.8839========= 
+ ********* This is bounding box: [597, 181][624, 209]
+ ========= min distance to camera: 43.8839========= 
+*************Processing Image: 000281********
+ ********* This is bounding box: [599, 178][630, 206]
+ ========= min distance to camera: 42.4602========= 
+ ********* This is bounding box: [599, 178][630, 206]
+ ========= min distance to camera: 42.4602========= 
+*************Processing Image: 000282********
+ ********* This is bounding box: [601, 176][633, 203]
+ ========= min distance to camera: 41.6098========= 
+*************Processing Image: 000283********
+ ********* This is bounding box: [605, 177][635, 202]
+ ========= min distance to camera: 40.3144========= 
+ ********* This is bounding box: [605, 177][635, 202]
+ ========= min distance to camera: 40.3144========= 
+*************Processing Image: 000284********
+ ********* This is bounding box: [605, 177][639, 205]
+ ========= min distance to camera: 39.4642========= 
+*************Processing Image: 000285********
+ ********* This is bounding box: [610, 176][645, 207]
+ ========= min distance to camera: 38.1887========= 
+ ********* This is bounding box: [610, 176][645, 207]
+ ========= min distance to camera: 38.1887========= 
+*************Processing Image: 000286********
+ ********* This is bounding box: [615, 177][647, 206]
+ ========= min distance to camera: 37.2928========= 
+ ********* This is bounding box: [615, 177][647, 206]
+ ========= min distance to camera: 37.2928========= 
+*************Processing Image: 000287********
+ ********* This is bounding box: [618, 175][650, 202]
+ ========= min distance to camera: 36.4204========= 
+ ********* This is bounding box: [618, 175][650, 202]
+ ========= min distance to camera: 36.4204========= 
+*************Processing Image: 000288********
+ ********* This is bounding box: [624, 171][656, 202]
+ ========= min distance to camera: 34.3828========= 
+*************Processing Image: 000289********
+ ********* This is bounding box: [627, 167][660, 194]
+ ========= min distance to camera: 38.3931========= 
+ ********* This is bounding box: [627, 167][660, 194]
+ ========= min distance to camera: 38.3931========= 
+*************Processing Image: 000290********
+ ********* This is bounding box: [662, 161][690, 192]
+ ========= min distance to camera: 32.5215========= 
+ ********* This is bounding box: [631, 164][665, 192]
+ ========= min distance to camera: 32.5215========= 
+ ********* This is bounding box: [662, 161][690, 192]
+ ========= min distance to camera: 32.5215========= 
+ ********* This is bounding box: [631, 164][665, 192]
+ ========= min distance to camera: 32.5215========= 
+*************Processing Image: 000291********
+ ********* This is bounding box: [636, 163][672, 196]
+ ========= min distance to camera: 31.6103========= 
+ ********* This is bounding box: [636, 163][672, 196]
+ ========= min distance to camera: 31.6103========= 
+*************Processing Image: 000292********
+ ********* This is bounding box: [640, 168][677, 199]
+ ========= min distance to camera: 30.7181========= 
+ ********* This is bounding box: [640, 168][677, 199]
+ ========= min distance to camera: 30.7181========= 
+*************Processing Image: 000293********
+ ********* This is bounding box: [645, 174][686, 209]
+ ========= min distance to camera: 30.0183========= 
+ ********* This is bounding box: [645, 174][686, 209]
+ ========= min distance to camera: 30.0183========= 
+*************Processing Image: 000294********
+ ********* This is bounding box: [685, 175][719, 207]
+ ========= min distance to camera: 26.5062========= 
+ ********* This is bounding box: [654, 177][690, 210]
+ ========= min distance to camera: 26.5062========= 
+ ********* This is bounding box: [685, 175][719, 207]
+ ========= min distance to camera: 26.5062========= 
+ ********* This is bounding box: [654, 177][690, 210]
+ ========= min distance to camera: 26.5062========= 
+*************Processing Image: 000295********
+ ********* This is bounding box: [660, 173][703, 209]
+ ========= min distance to camera: 28.1946========= 
+ ********* This is bounding box: [660, 173][703, 209]
+ ========= min distance to camera: 28.1946========= 
+ ********* This is bounding box: [660, 173][703, 209]
+ ========= min distance to camera: 28.1946========= 
+ ********* This is bounding box: [660, 173][703, 209]
+ ========= min distance to camera: 28.1946========= 
+*************Processing Image: 000296********
+ ********* This is bounding box: [669, 173][710, 208]
+ ========= min distance to camera: 27.0696========= 
+ ********* This is bounding box: [669, 173][710, 208]
+ ========= min distance to camera: 27.0696========= 
+*************Processing Image: 000297********
+ ********* This is bounding box: [675, 172][721, 209]
+ ========= min distance to camera: 26.1546========= 
+ ********* This is bounding box: [675, 172][721, 209]
+ ========= min distance to camera: 26.1546========= 
+*************Processing Image: 000298********
+ ********* This is bounding box: [684, 177][728, 216]
+ ========= min distance to camera: 25.2471========= 
+ ********* This is bounding box: [684, 177][728, 216]
+ ========= min distance to camera: 25.2471========= 
+*************Processing Image: 000299********
+ ********* This is bounding box: [730, 177][759, 207]
+ ========= min distance to camera: 29.8036========= 
+ ********* This is bounding box: [689, 177][736, 217]
+ ========= min distance to camera: 29.8036========= 
+*************Processing Image: 000300********
+ ********* This is bounding box: [737, 180][765, 206]
+ ========= min distance to camera: 28.8806========= 
+ ********* This is bounding box: [696, 175][740, 216]
+ ========= min distance to camera: 28.8806========= 
+ ********* This is bounding box: [696, 175][740, 216]
+ ========= min distance to camera: 28.8806========= 
+ ********* This is bounding box: [737, 180][765, 206]
+ ========= min distance to camera: 28.8806========= 
+ ********* This is bounding box: [696, 175][740, 216]
+ ========= min distance to camera: 28.8806========= 
+ ********* This is bounding box: [696, 175][740, 216]
+ ========= min distance to camera: 28.8806========= 
+*************Processing Image: 000301********
+ ********* This is bounding box: [701, 171][751, 215]
+ ========= min distance to camera: 27.0665========= 
+*************Processing Image: 000302********
+ ********* This is bounding box: [747, 169][777, 200]
+ ========= min distance to camera: 37.641========= 
+ ********* This is bounding box: [705, 169][755, 212]
+ ========= min distance to camera: 37.641========= 
+ ********* This is bounding box: [705, 169][755, 212]
+ ========= min distance to camera: 37.641========= 
+ ********* This is bounding box: [747, 169][777, 200]
+ ========= min distance to camera: 37.641========= 
+ ********* This is bounding box: [705, 169][755, 212]
+ ========= min distance to camera: 37.641========= 
+ ********* This is bounding box: [705, 169][755, 212]
+ ========= min distance to camera: 37.641========= 
+*************Processing Image: 000303********
+ ********* This is bounding box: [753, 167][781, 198]
+ ========= min distance to camera: 27.5375========= 
+ ********* This is bounding box: [710, 167][764, 212]
+ ========= min distance to camera: 27.5375========= 
+ ********* This is bounding box: [710, 167][764, 212]
+ ========= min distance to camera: 27.5375========= 
+ ********* This is bounding box: [753, 167][781, 198]
+ ========= min distance to camera: 27.5375========= 
+ ********* This is bounding box: [710, 167][764, 212]
+ ========= min distance to camera: 27.5375========= 
+ ********* This is bounding box: [710, 167][764, 212]
+ ========= min distance to camera: 27.5375========= 
+*************Processing Image: 000304********
+ ********* This is bounding box: [714, 164][769, 213]
+ ========= min distance to camera: 24.3851========= 
+ ********* This is bounding box: [714, 164][769, 213]
+ ========= min distance to camera: 24.3851========= 
+ ********* This is bounding box: [714, 164][769, 213]
+ ========= min distance to camera: 24.3851========= 
+ ********* This is bounding box: [714, 164][769, 213]
+ ========= min distance to camera: 24.3851========= 
+*************Processing Image: 000305********
+ ********* This is bounding box: [718, 162][774, 215]
+ ========= min distance to camera: 23.0468========= 
+ ********* This is bounding box: [718, 162][774, 215]
+ ========= min distance to camera: 23.0468========= 
+*************Processing Image: 000306********
+ ********* This is bounding box: [719, 160][779, 219]
+ ========= min distance to camera: 22.1402========= 
+ ********* This is bounding box: [719, 160][779, 219]
+ ========= min distance to camera: 22.1402========= 
+*************Processing Image: 000307********
+ ********* This is bounding box: [723, 166][787, 221]
+ ========= min distance to camera: 22.4099========= 
+*************Processing Image: 000308********
+ ********* This is bounding box: [725, 167][795, 224]
+ ========= min distance to camera: 19.671========= 
+ ********* This is bounding box: [725, 167][795, 224]
+ ========= min distance to camera: 19.671========= 
+ ********* This is bounding box: [725, 167][795, 224]
+ ========= min distance to camera: 19.671========= 
+*************Processing Image: 000309********
+ ********* This is bounding box: [728, 165][802, 224]
+ ========= min distance to camera: 19.8942========= 
+*************Processing Image: 000310********
+ ********* This is bounding box: [729, 166][806, 228]
+ ========= min distance to camera: 18.9748========= 
+ ********* This is bounding box: [729, 166][806, 228]
+ ========= min distance to camera: 18.9748========= 
+*************Processing Image: 000311********
+ ********* This is bounding box: [731, 164][813, 230]
+ ========= min distance to camera: 17.7156========= 
+*************Processing Image: 000312********
+ ********* This is bounding box: [734, 161][824, 233]
+ ========= min distance to camera: 17.1581========= 
+ ********* This is bounding box: [734, 161][824, 233]
+ ========= min distance to camera: 16.803========= 
+ ********* This is bounding box: [734, 161][824, 233]
+ ========= min distance to camera: 16.803========= 
+*************Processing Image: 000313********
+ ********* This is bounding box: [735, 159][831, 236]
+ ========= min distance to camera: 16.1215========= 
+*************Processing Image: 000314********
+ ********* This is bounding box: [735, 162][841, 241]
+ ========= min distance to camera: 15.2441========= 
+ ********* This is bounding box: [735, 162][841, 241]
+ ========= min distance to camera: 15.2441========= 
+*************Processing Image: 000315********
+ ********* This is bounding box: [742, 170][855, 256]
+ ========= min distance to camera: 14.3659========= 
+ ********* This is bounding box: [742, 170][855, 256]
+ ========= min distance to camera: 14.3659========= 
+*************Processing Image: 000316********
+ ********* This is bounding box: [741, 173][868, 266]
+ ========= min distance to camera: 12.9472========= 
+ ********* This is bounding box: [741, 173][868, 266]
+ ========= min distance to camera: 12.9472========= 
+*************Processing Image: 000317********
+ ********* This is bounding box: [743, 172][884, 270]
+ ========= min distance to camera: 12.073========= 
+ ********* This is bounding box: [743, 172][884, 270]
+ ========= min distance to camera: 12.073========= 
+*************Processing Image: 000318********
+ ********* This is bounding box: [756, 169][902, 273]
+ ========= min distance to camera: 11.1868========= 
+ ********* This is bounding box: [756, 169][902, 273]
+ ========= min distance to camera: 11.1868========= 
+*************Processing Image: 000319********
+ ********* This is bounding box: [741, 180][790, 234]
+ ========= min distance to camera: 10.6654========= 
+ ********* This is bounding box: [768, 166][920, 280]
+ ========= min distance to camera: 10.6654========= 
+ ********* This is bounding box: [741, 180][790, 234]
+ ========= min distance to camera: 10.6654========= 
+ ********* This is bounding box: [768, 166][920, 280]
+ ========= min distance to camera: 10.6654========= 
+*************Processing Image: 000320********
+ ********* This is bounding box: [746, 180][798, 239]
+ ========= min distance to camera: 9.69165========= 
+ ********* This is bounding box: [776, 166][949, 285]
+ ========= min distance to camera: 9.69165========= 
+ ********* This is bounding box: [746, 180][798, 239]
+ ========= min distance to camera: 9.69165========= 
+ ********* This is bounding box: [776, 166][949, 285]
+ ========= min distance to camera: 9.69165========= 
+*************Processing Image: 000321********
+ ********* This is bounding box: [747, 180][811, 240]
+ ========= min distance to camera: 8.93916========= 
+ ********* This is bounding box: [788, 164][978, 299]
+ ========= min distance to camera: 8.93916========= 
+ ********* This is bounding box: [747, 180][811, 240]
+ ========= min distance to camera: 8.93916========= 
+ ********* This is bounding box: [788, 164][978, 299]
+ ========= min distance to camera: 8.93916========= 
+*************Processing Image: 000322********
+ ********* This is bounding box: [747, 181][821, 244]
+ ========= min distance to camera: 8.23611========= 
+ ********* This is bounding box: [799, 162][1019, 311]
+ ========= min distance to camera: 8.23611========= 
+ ********* This is bounding box: [747, 181][821, 244]
+ ========= min distance to camera: 8.23611========= 
+ ********* This is bounding box: [799, 162][1019, 311]
+ ========= min distance to camera: 8.23611========= 
+*************Processing Image: 000323********
+ ********* This is bounding box: [755, 183][834, 250]
+ ========= min distance to camera: 7.1881========= 
+ ********* This is bounding box: [809, 161][1067, 331]
+ ========= min distance to camera: 7.1881========= 
+ ********* This is bounding box: [755, 183][834, 250]
+ ========= min distance to camera: 7.1881========= 
+ ********* This is bounding box: [809, 161][1067, 331]
+ ========= min distance to camera: 7.1881========= 
+*************Processing Image: 000324********
+ ********* This is bounding box: [756, 186][847, 257]
+ ========= min distance to camera: 6.65371========= 
+ ********* This is bounding box: [821, 159][1129, 355]
+ ========= min distance to camera: 6.65371========= 
+*************Processing Image: 000325********
+ ********* This is bounding box: [764, 186][861, 265]
+ ========= min distance to camera: 5.90962========= 
+ ********* This is bounding box: [840, 158][1216, 369]
+ ========= min distance to camera: 5.90962========= 
+ ********* This is bounding box: [764, 186][861, 265]
+ ========= min distance to camera: 5.90962========= 
+ ********* This is bounding box: [840, 158][1216, 369]
+ ========= min distance to camera: 5.90962========= 
+*************Processing Image: 000326********
+ ********* This is bounding box: [770, 188][887, 271]
+ ========= min distance to camera: 5.21614========= 
+ ********* This is bounding box: [861, 157][1240, 370]
+ ========= min distance to camera: 5.21614========= 
+ ********* This is bounding box: [770, 188][887, 271]
+ ========= min distance to camera: 5.21614========= 
+ ********* This is bounding box: [861, 157][1240, 370]
+ ========= min distance to camera: 5.21614========= 
+*************Processing Image: 000327********
+ ********* This is bounding box: [887, 154][1240, 370]
+ ========= min distance to camera: 4.55359========= 
+ ********* This is bounding box: [774, 187][904, 281]
+ ========= min distance to camera: 4.55359========= 
+ ********* This is bounding box: [887, 154][1240, 370]
+ ========= min distance to camera: 4.55359========= 
+ ********* This is bounding box: [774, 187][904, 281]
+ ========= min distance to camera: 4.55359========= 
+*************Processing Image: 000328********
+*************Processing Image: 000329********
+ ********* This is bounding box: [786, 200][953, 304]
+ ========= min distance to camera: 10.4853========= 
+ ********* This is bounding box: [962, 168][1242, 372]
+ ========= min distance to camera: 10.4853========= 
+ ********* This is bounding box: [786, 200][953, 304]
+ ========= min distance to camera: 10.4853========= 
+ ********* This is bounding box: [962, 168][1242, 372]
+ ========= min distance to camera: 10.4853========= 
+*************Processing Image: 000330********
+*************Processing Image: 000331********
+ ********* This is bounding box: [1103, 280][1242, 369]
+ ========= min distance to camera: 11.4819========= 
+ ********* This is bounding box: [800, 206][1024, 338]
+ ========= min distance to camera: 11.4819========= 
+ ********* This is bounding box: [1103, 280][1242, 369]
+ ========= min distance to camera: 11.4819========= 
+ ********* This is bounding box: [800, 206][1024, 338]
+ ========= min distance to camera: 11.4819========= 
+ ********* This is bounding box: [1103, 280][1242, 369]
+ ========= min distance to camera: 11.4819========= 
+ ********* This is bounding box: [800, 206][1024, 338]
+ ========= min distance to camera: 11.4819========= 
+*************Processing Image: 000332********
+ ********* This is bounding box: [812, 205][1072, 351]
+ ========= min distance to camera: 7.09505========= 
+*************Processing Image: 000333********
+ ********* This is bounding box: [825, 202][1143, 367]
+ ========= min distance to camera: 6.15498========= 
+ ********* This is bounding box: [825, 202][1143, 367]
+ ========= min distance to camera: 6.15498========= 
+*************Processing Image: 000334********
+ ********* This is bounding box: [856, 203][1229, 370]
+ ========= min distance to camera: 5.74763========= 
+ ********* This is bounding box: [856, 203][1229, 370]
+ ========= min distance to camera: 5.74763========= 
+*************Processing Image: 000335********
+ ********* This is bounding box: [865, 208][1241, 371]
+ ========= min distance to camera: 4.80073========= 
+ ********* This is bounding box: [865, 208][1241, 371]
+ ========= min distance to camera: 4.80073========= 
+*************Processing Image: 000336********
+*************Processing Image: 000337********
+*************Processing Image: 000338********
+*************Processing Image: 000339********
+*************Processing Image: 000340********
+*************Processing Image: 000341********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 9.64653========= 
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 9.64653========= 
+*************Processing Image: 000342********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 11.9012========= 
+*************Processing Image: 000343********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 10.8004========= 
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 10.8004========= 
+*************Processing Image: 000344********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 10.0321========= 
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 10.0321========= 
+*************Processing Image: 000345********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 9.31754========= 
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 9.31754========= 
+*************Processing Image: 000346********
+*************Processing Image: 000347********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 10.475========= 
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 10.475========= 
+*************Processing Image: 000348********
+*************Processing Image: 000349********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 9.13941========= 
+*************Processing Image: 000350********
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 8.46096========= 
+ ********* This is bounding box: [995, 268][1240, 375]
+ ========= min distance to camera: 8.46096========= 
+*************Processing Image: 000351********
+*************Processing Image: 000352********
+*************Processing Image: 000353********
+*************Processing Image: 000354********
+*************Processing Image: 000355********
+*************Processing Image: 000356********
+*************Processing Image: 000357********
+*************Processing Image: 000358********
+*************Processing Image: 000359********
+*************Processing Image: 000360********
+*************Processing Image: 000361********
+*************Processing Image: 000362********
+*************Processing Image: 000363********
+*************Processing Image: 000364********
+*************Processing Image: 000365********
+*************Processing Image: 000366********
+*************Processing Image: 000367********
+*************Processing Image: 000368********
+*************Processing Image: 000369********
+*************Processing Image: 000370********
+ ********* This is bounding box: [1073, 292][1240, 371]
+ ========= min distance to camera: 8.95401========= 
+*************Processing Image: 000371********
+*************Processing Image: 000372********
+*************Processing Image: 000373********
+*************Processing Image: 000374********
+*************Processing Image: 000375********
+*************Processing Image: 000376********
+*************Processing Image: 000377********
+*************Processing Image: 000378********
+*************Processing Image: 000379********
+*************Processing Image: 000380********
+*************Processing Image: 000381********
+*************Processing Image: 000382********
+*************Processing Image: 000383********
+*************Processing Image: 000384********
+*************Processing Image: 000385********
+*************Processing Image: 000386********
+*************Processing Image: 000387********
+*************Processing Image: 000388********
+*************Processing Image: 000389********
+*************Processing Image: 000390********
+*************Processing Image: 000391********
+*************Processing Image: 000392********
+*************Processing Image: 000393********
+*************Processing Image: 000394********
+*************Processing Image: 000395********
+*************Processing Image: 000396********
+ ********* This is bounding box: [719, 181][742, 206]
+ ========= min distance to camera: 35.1627========= 
+*************Processing Image: 000397********
+ ********* This is bounding box: [715, 182][739, 205]
+ ========= min distance to camera: 13.35========= 
+*************Processing Image: 000398********
+*************Processing Image: 000399********
+*************Processing Image: 000400********
+ ********* This is bounding box: [713, 175][739, 199]
+ ========= min distance to camera: 30.0806========= 
+*************Processing Image: 000401********
+*************Processing Image: 000402********
+ ********* This is bounding box: [705, 180][739, 209]
+ ========= min distance to camera: 10.9727========= 
+*************Processing Image: 000403********
+ ********* This is bounding box: [704, 179][738, 206]
+ ========= min distance to camera: 27.1224========= 
+*************Processing Image: 000404********
+ ********* This is bounding box: [700, 176][740, 206]
+ ========= min distance to camera: 31.865========= 
+*************Processing Image: 000405********
+*************Processing Image: 000406********
+ ********* This is bounding box: [718, 185][744, 218]
+ ========= min distance to camera: 26.4381========= 
+ ********* This is bounding box: [697, 183][741, 212]
+ ========= min distance to camera: 26.4381========= 
+*************Processing Image: 000407********
+*************Processing Image: 000408********
+ ********* This is bounding box: [694, 180][729, 207]
+ ========= min distance to camera: 33.8636========= 
+*************Processing Image: 000409********
+ ********* This is bounding box: [692, 182][729, 208]
+ ========= min distance to camera: 33.0644========= 
+*************Processing Image: 000410********
+ ********* This is bounding box: [693, 182][723, 207]
+ ========= min distance to camera: 28.1801========= 
+*************Processing Image: 000411********
+*************Processing Image: 000412********
+ ********* This is bounding box: [692, 180][721, 206]
+ ========= min distance to camera: 30.3731========= 
+*************Processing Image: 000413********
+ ********* This is bounding box: [693, 182][723, 206]
+ ========= min distance to camera: 28.9618========= 
+*************Processing Image: 000414********
+ ********* This is bounding box: [722, 192][778, 237]
+ ========= min distance to camera: 19.2138========= 
+ ********* This is bounding box: [693, 177][727, 206]
+ ========= min distance to camera: 19.2138========= 
+*************Processing Image: 000415********
+*************Processing Image: 000416********
+ ********* This is bounding box: [724, 188][772, 225]
+ ========= min distance to camera: 22.6449========= 
+ ********* This is bounding box: [693, 181][731, 209]
+ ========= min distance to camera: 22.6449========= 
+*************Processing Image: 000417********
+ ********* This is bounding box: [727, 186][772, 223]
+ ========= min distance to camera: 26.9086========= 
+ ********* This is bounding box: [696, 181][762, 213]
+ ========= min distance to camera: 26.9086========= 
+ ********* This is bounding box: [694, 181][731, 209]
+ ========= min distance to camera: 26.9086========= 
+*************Processing Image: 000418********
+*************Processing Image: 000419********
+*************Processing Image: 000420********
+*************Processing Image: 000421********
+*************Processing Image: 000422********
+*************Processing Image: 000423********
+*************Processing Image: 000424********
+ ********* This is bounding box: [702, 182][743, 219]
+ ========= min distance to camera: 30.2175========= 
+*************Processing Image: 000425********
+ ********* This is bounding box: [740, 191][769, 220]
+ ========= min distance to camera: 28.8406========= 
+ ********* This is bounding box: [704, 183][745, 220]
+ ========= min distance to camera: 28.8406========= 
+*************Processing Image: 000426********
+ ********* This is bounding box: [704, 180][749, 219]
+ ========= min distance to camera: 28.2892========= 
+*************Processing Image: 000427********
+ ********* This is bounding box: [1028, 172][1134, 301]
+ ========= min distance to camera: 27.0565========= 
+ ********* This is bounding box: [704, 178][750, 218]
+ ========= min distance to camera: 27.0565========= 
+*************Processing Image: 000428********
+ ********* This is bounding box: [704, 172][752, 216]
+ ========= min distance to camera: 26.1129========= 
+ ********* This is bounding box: [1073, 164][1241, 317]
+ ========= min distance to camera: 26.1129========= 
+*************Processing Image: 000429********
+ ********* This is bounding box: [704, 174][758, 219]
+ ========= min distance to camera: 24.2535========= 
+*************Processing Image: 000430********
+ ********* This is bounding box: [705, 176][761, 221]
+ ========= min distance to camera: 24.5721========= 
+*************Processing Image: 000431********
+ ********* This is bounding box: [705, 176][765, 223]
+ ========= min distance to camera: 19.822========= 
+*************Processing Image: 000432********
+ ********* This is bounding box: [705, 174][767, 224]
+ ========= min distance to camera: 22.7769========= 
+*************Processing Image: 000433********
+ ********* This is bounding box: [707, 172][770, 225]
+ ========= min distance to camera: 22.5432========= 
+*************Processing Image: 000434********
+ ********* This is bounding box: [707, 172][775, 227]
+ ========= min distance to camera: 21.6094========= 
+*************Processing Image: 000435********
+ ********* This is bounding box: [708, 171][780, 229]
+ ========= min distance to camera: 20.6755========= 
+*************Processing Image: 000436********
+ ********* This is bounding box: [709, 169][787, 231]
+ ========= min distance to camera: 20.9548========= 
+*************Processing Image: 000437********
+*************Processing Image: 000438********
+ ********* This is bounding box: [713, 166][795, 236]
+ ========= min distance to camera: 20.0168========= 
+ ********* This is bounding box: [717, 173][802, 242]
+ ========= min distance to camera: 18.4073========= 
+*************Processing Image: 000439********
+*************Processing Image: 000440********
+ ********* This is bounding box: [720, 173][811, 251]
+ ========= min distance to camera: 17.4815========= 
+*************Processing Image: 000441********
+ ********* This is bounding box: [722, 173][821, 258]
+ ========= min distance to camera: 14.8495========= 
+*************Processing Image: 000442********
+ ********* This is bounding box: [727, 175][831, 259]
+ ========= min distance to camera: 14.0246========= 
+*************Processing Image: 000443********
+ ********* This is bounding box: [728, 175][845, 263]
+ ========= min distance to camera: 13.1137========= 
+*************Processing Image: 000444********
+ ********* This is bounding box: [738, 173][860, 268]
+ ========= min distance to camera: 12.6428========= 
+*************Processing Image: 000445********
+ ********* This is bounding box: [744, 172][876, 276]
+ ========= min distance to camera: 11.7057========= 
+*************Processing Image: 000446********
+ ********* This is bounding box: [744, 152][803, 199]
+ ========= min distance to camera: 10.8138========= 
+ ********* This is bounding box: [747, 175][898, 284]
+ ========= min distance to camera: 7.71055========= 
+*************Processing Image: 000447********
+ ********* This is bounding box: [755, 177][954, 311]
+ ========= min distance to camera: 8.84671========= 
+*************Processing Image: 000448********
+ ********* This is bounding box: [749, 145][814, 208]
+ ========= min distance to camera: 7.99861========= 
+ ********* This is bounding box: [762, 169][991, 321]
+ ========= min distance to camera: 7.99861========= 
+*************Processing Image: 000449********
+ ********* This is bounding box: [770, 165][1041, 332]
+ ========= min distance to camera: 7.11171========= 
+*************Processing Image: 000450********
+ ********* This is bounding box: [784, 164][1107, 359]
+ ========= min distance to camera: 6.31537========= 
+*************Processing Image: 000451********
+ ********* This is bounding box: [801, 173][1197, 369]
+ ========= min distance to camera: 5.51009========= 
+*************Processing Image: 000452********
+ ********* This is bounding box: [811, 180][1238, 371]
+ ========= min distance to camera: 4.74525========= 
+*************Processing Image: 000453********
+*************Processing Image: 000454********
+ ********* This is bounding box: [861, 186][1240, 371]
+ ========= min distance to camera: 5.50399========= 
+*************Processing Image: 000455********
+*************Processing Image: 000456********
+*************Processing Image: 000457********
+*************Processing Image: 000458********
+*************Processing Image: 000459********
+*************Processing Image: 000460********
+*************Processing Image: 000461********
+ ********* This is bounding box: [963, 230][1240, 369]
+ ========= min distance to camera: 8.52006========= 
+*************Processing Image: 000462********
+*************Processing Image: 000463********
+*************Processing Image: 000464********
+*************Processing Image: 000465********
+*************Processing Image: 000466********
+*************Processing Image: 000467********
+*************Processing Image: 000468********
+*************Processing Image: 000469********
+*************Processing Image: 000470********
+*************Processing Image: 000471********
+*************Processing Image: 000472********
+*************Processing Image: 000473********
+*************Processing Image: 000474********
+*************Processing Image: 000475********
+*************Processing Image: 000476********
+*************Processing Image: 000477********
+*************Processing Image: 000478********
+*************Processing Image: 000479********
+*************Processing Image: 000480********
+*************Processing Image: 000481********
+*************Processing Image: 000482********
+*************Processing Image: 000483********
+*************Processing Image: 000484********
+*************Processing Image: 000485********
+*************Processing Image: 000486********
+*************Processing Image: 000487********
+*************Processing Image: 000488********
+*************Processing Image: 000489********
+*************Processing Image: 000490********
+*************Processing Image: 000491********
+*************Processing Image: 000492********
+*************Processing Image: 000493********
+*************Processing Image: 000494********
+*************Processing Image: 000495********
+*************Processing Image: 000496********
+*************Processing Image: 000497********
+*************Processing Image: 000498********
+*************Processing Image: 000499********
+*************Processing Image: 000500********
+*************Processing Image: 000501********
+*************Processing Image: 000502********
+*************Processing Image: 000503********
+*************Processing Image: 000504********
+*************Processing Image: 000505********
+*************Processing Image: 000506********
+*************Processing Image: 000507********
+*************Processing Image: 000508********
+*************Processing Image: 000509********
+*************Processing Image: 000510********
+*************Processing Image: 000511********
+*************Processing Image: 000512********
+*************Processing Image: 000513********
+*************Processing Image: 000514********
+*************Processing Image: 000515********
+*************Processing Image: 000516********
+*************Processing Image: 000517********
+*************Processing Image: 000518********
+*************Processing Image: 000519********
+*************Processing Image: 000520********
+*************Processing Image: 000521********
+*************Processing Image: 000522********
+*************Processing Image: 000523********
+*************Processing Image: 000524********
+*************Processing Image: 000525********
+*************Processing Image: 000526********
+*************Processing Image: 000527********
+*************Processing Image: 000528********
+*************Processing Image: 000529********
+*************Processing Image: 000530********
+*************Processing Image: 000531********
+*************Processing Image: 000532********
+*************Processing Image: 000533********
+*************Processing Image: 000534********
+*************Processing Image: 000535********
+*************Processing Image: 000536********
+*************Processing Image: 000537********
+*************Processing Image: 000538********
+*************Processing Image: 000539********
+*************Processing Image: 000540********
+*************Processing Image: 000541********
+*************Processing Image: 000542********
+*************Processing Image: 000543********
+*************Processing Image: 000544********
+*************Processing Image: 000545********
+*************Processing Image: 000546********
+*************Processing Image: 000547********
+*************Processing Image: 000548********
+*************Processing Image: 000549********
+*************Processing Image: 000550********
+*************Processing Image: 000551********
+*************Processing Image: 000552********
+*************Processing Image: 000553********
+*************Processing Image: 000554********
+*************Processing Image: 000555********
+*************Processing Image: 000556********
+*************Processing Image: 000557********
+ ********* This is bounding box: [1204, 167][1242, 234]
+ ========= min distance to camera: 19.2683========= 
+*************Processing Image: 000558********
+*************Processing Image: 000559********
+*************Processing Image: 000560********
+*************Processing Image: 000561********
+*************Processing Image: 000562********
+*************Processing Image: 000563********
+*************Processing Image: 000564********
+*************Processing Image: 000565********
+*************Processing Image: 000566********
+*************Processing Image: 000567********
+*************Processing Image: 000568********
+*************Processing Image: 000569********
+*************Processing Image: 000570********
+*************Processing Image: 000571********
+*************Processing Image: 000572********
+*************Processing Image: 000573********
+*************Processing Image: 000574********
+*************Processing Image: 000575********
+*************Processing Image: 000576********
+*************Processing Image: 000577********
+*************Processing Image: 000578********
+*************Processing Image: 000579********
+*************Processing Image: 000580********
+*************Processing Image: 000581********
+*************Processing Image: 000582********
+*************Processing Image: 000583********
+*************Processing Image: 000584********
+*************Processing Image: 000585********
+*************Processing Image: 000586********
+*************Processing Image: 000587********
+*************Processing Image: 000588********
+*************Processing Image: 000589********
+*************Processing Image: 000590********
+*************Processing Image: 000591********
+*************Processing Image: 000592********
+*************Processing Image: 000593********
+*************Processing Image: 000594********
+*************Processing Image: 000595********
+*************Processing Image: 000596********
+*************Processing Image: 000597********
+*************Processing Image: 000598********
+*************Processing Image: 000599********
+*************Processing Image: 000600********
+*************Processing Image: 000601********
+*************Processing Image: 000602********
+*************Processing Image: 000603********
+*************Processing Image: 000604********
+*************Processing Image: 000605********
+*************Processing Image: 000606********
+*************Processing Image: 000607********
+*************Processing Image: 000608********
+*************Processing Image: 000609********
+*************Processing Image: 000610********
+*************Processing Image: 000611********
+*************Processing Image: 000612********
+*************Processing Image: 000613********
+*************Processing Image: 000614********
+*************Processing Image: 000615********
+*************Processing Image: 000616********
+*************Processing Image: 000617********
+*************Processing Image: 000618********
+*************Processing Image: 000619********
+*************Processing Image: 000620********
+*************Processing Image: 000621********
+*************Processing Image: 000622********
+*************Processing Image: 000623********
+*************Processing Image: 000624********
+*************Processing Image: 000625********
+*************Processing Image: 000626********
+*************Processing Image: 000627********
+*************Processing Image: 000628********
+*************Processing Image: 000629********
+*************Processing Image: 000630********
+*************Processing Image: 000631********
+*************Processing Image: 000632********
+*************Processing Image: 000633********
+*************Processing Image: 000634********
+*************Processing Image: 000635********
+*************Processing Image: 000636********
+*************Processing Image: 000637********
+*************Processing Image: 000638********
+*************Processing Image: 000639********
+*************Processing Image: 000640********
+*************Processing Image: 000641********
+*************Processing Image: 000642********
+*************Processing Image: 000643********
+*************Processing Image: 000644********
+*************Processing Image: 000645********
+*************Processing Image: 000646********
+*************Processing Image: 000647********
+*************Processing Image: 000648********
+*************Processing Image: 000649********
+*************Processing Image: 000650********
+*************Processing Image: 000651********
+*************Processing Image: 000652********
+*************Processing Image: 000653********
+*************Processing Image: 000654********
+*************Processing Image: 000655********
+*************Processing Image: 000656********
+*************Processing Image: 000657********
+*************Processing Image: 000658********
+*************Processing Image: 000659********
+*************Processing Image: 000660********
+*************Processing Image: 000661********
+*************Processing Image: 000662********
+*************Processing Image: 000663********
+*************Processing Image: 000664********
+ ********* This is bounding box: [467, 177][508, 201]
+ ========= min distance to camera: 27.5125========= 
+*************Processing Image: 000665********
+ ********* This is bounding box: [450, 174][496, 201]
+ ========= min distance to camera: 27.0543========= 
+*************Processing Image: 000666********
+*************Processing Image: 000667********
+ ********* This is bounding box: [450, 174][496, 201]
+ ========= min distance to camera: 25.1913========= 
+*************Processing Image: 000668********
+*************Processing Image: 000669********
+ ********* This is bounding box: [450, 174][496, 201]
+ ========= min distance to camera: 19.0843========= 
+*************Processing Image: 000670********
+*************Processing Image: 000671********
+ ********* This is bounding box: [450, 174][496, 201]
+ ========= min distance to camera: 24.2894========= 
+*************Processing Image: 000672********
+*************Processing Image: 000673********
+ ********* This is bounding box: [450, 174][496, 201]
+ ========= min distance to camera: 22.8321========= 
+*************Processing Image: 000674********
+ ********* This is bounding box: [450, 174][496, 201]
+ ========= min distance to camera: 22.5896========= 
+*************Processing Image: 000675********
+*************Processing Image: 000676********
+*************Processing Image: 000677********
+*************Processing Image: 000678********
+*************Processing Image: 000679********
+*************Processing Image: 000680********
+*************Processing Image: 000681********
+*************Processing Image: 000682********
+*************Processing Image: 000683********
+ ********* This is bounding box: [286, 188][383, 223]
+ ========= min distance to camera: 15.3678========= 
+*************Processing Image: 000684********
+ ********* This is bounding box: [286, 188][383, 223]
+ ========= min distance to camera: 13.9722========= 
+*************Processing Image: 000685********
+ ********* This is bounding box: [286, 188][383, 223]
+ ========= min distance to camera: 12.6139========= 
+*************Processing Image: 000686********
+*************Processing Image: 000687********
+*************Processing Image: 000688********
+*************Processing Image: 000689********
+*************Processing Image: 000690********
+*************Processing Image: 000691********
+*************Processing Image: 000692********
+*************Processing Image: 000693********
+*************Processing Image: 000694********
+*************Processing Image: 000695********
+*************Processing Image: 000696********
+*************Processing Image: 000697********
+*************Processing Image: 000698********
+*************Processing Image: 000699********
+*************Processing Image: 000700********
+*************Processing Image: 000701********
+*************Processing Image: 000702********
+*************Processing Image: 000703********
+*************Processing Image: 000704********
+*************Processing Image: 000705********
+*************Processing Image: 000706********
+*************Processing Image: 000707********
+*************Processing Image: 000708********
+*************Processing Image: 000709********
+*************Processing Image: 000710********
+*************Processing Image: 000711********
+*************Processing Image: 000712********
+*************Processing Image: 000713********
+*************Processing Image: 000714********
+*************Processing Image: 000715********
+*************Processing Image: 000716********
+*************Processing Image: 000717********
+*************Processing Image: 000718********
+*************Processing Image: 000719********
+*************Processing Image: 000720********
+*************Processing Image: 000721********
+*************Processing Image: 000722********
+*************Processing Image: 000723********
+*************Processing Image: 000724********
+*************Processing Image: 000725********
+*************Processing Image: 000726********
+*************Processing Image: 000727********
+*************Processing Image: 000728********
+*************Processing Image: 000729********
+*************Processing Image: 000730********
+*************Processing Image: 000731********
+*************Processing Image: 000732********
+*************Processing Image: 000733********
+*************Processing Image: 000734********
+*************Processing Image: 000735********
+*************Processing Image: 000736********
+*************Processing Image: 000737********
+*************Processing Image: 000738********
+*************Processing Image: 000739********
+*************Processing Image: 000740********
+*************Processing Image: 000741********
+*************Processing Image: 000742********
+*************Processing Image: 000743********
+*************Processing Image: 000744********
+*************Processing Image: 000745********
+*************Processing Image: 000746********
+*************Processing Image: 000747********
+*************Processing Image: 000748********
+*************Processing Image: 000749********
+*************Processing Image: 000750********
+*************Processing Image: 000751********
+*************Processing Image: 000752********
+*************Processing Image: 000753********
+*************Processing Image: 000754********
+*************Processing Image: 000755********
+*************Processing Image: 000756********
+*************Processing Image: 000757********
+*************Processing Image: 000758********
+*************Processing Image: 000759********
+*************Processing Image: 000760********
+*************Processing Image: 000761********
+*************Processing Image: 000762********
+*************Processing Image: 000763********
+*************Processing Image: 000764********
+*************Processing Image: 000765********
+*************Processing Image: 000766********
+*************Processing Image: 000767********
+*************Processing Image: 000768********
+*************Processing Image: 000769********
+*************Processing Image: 000770********
+*************Processing Image: 000771********
+*************Processing Image: 000772********
+*************Processing Image: 000773********
+*************Processing Image: 000774********
+*************Processing Image: 000775********
+*************Processing Image: 000776********
+*************Processing Image: 000777********
+*************Processing Image: 000778********
+*************Processing Image: 000779********
+*************Processing Image: 000780********
+*************Processing Image: 000781********
+*************Processing Image: 000782********
+*************Processing Image: 000783********
+*************Processing Image: 000784********
+*************Processing Image: 000785********
+*************Processing Image: 000786********
+*************Processing Image: 000787********
+*************Processing Image: 000788********
+*************Processing Image: 000789********
+*************Processing Image: 000790********
+*************Processing Image: 000791********
+*************Processing Image: 000792********
+*************Processing Image: 000793********
+*************Processing Image: 000794********
+*************Processing Image: 000795********
+*************Processing Image: 000796********
+*************Processing Image: 000797********
+*************Processing Image: 000798********
+*************Processing Image: 000799********
+*************Processing Image: 000800********
+System::StopViewer()
+System::StopViewer() done
+Viewer thread finished.
+Viewer started, waiting for thread.
+Tracking thread joined...
+-------
+
+median tracking time: 0.0905273
+mean tracking time: 0.116995
+
+Saving keyframe trajectory to KeyFrameTrajectory.txt ...
+
+trajectory saved!
+
+Saving camera trajectory to Results/Result_KITTI03_test.txt ...
+
+trajectory saved!
