@@ -740,8 +740,45 @@ void Tracking::CreateInitialMapMonocular() {
   // Set median depth to 1
   // STEP5: get the median depth of the scene
   // used for scale normalization
+
+  // ******************************************************
+  // MODIFICAITONS ========================================
+  // instead of calculating median depth, 
+  // calculate the odometry scale
+
+  
+  cv::Mat pose1_oW = pKFini->GetCameraCenter(); 
+  cv::Mat pose2_oW = pKFcur->GetCameraCenter();
+  float distance = cv::norm(pose2_oW-pose1_oW);
+
+  std::cout << "**************************RE: Distance between points: " << distance << std::endl;
+  float dx_gt = -0.01712164-(-0.01101102); 
+  float dy_gt = -0.03304158-(-0.01712164);
+  float dz_gt = 1.924885 - 0.961713;
+
+  float dist0 = sqrt(dx_gt*dx_gt + dy_gt*dy_gt + dz_gt*dz_gt);
+  std::cout << "**************************GT: Distance between points: " << dist0 << std::endl;
+
+
+  float odometryScale;
+  odometryScale = 10.5f;
+  // odometryScale = dist0/1.0f;
+  // std::cout << "the initial Scale factor is: " << odometryScale << std::endl;
+  /*
+  if(m_motion_model.has_external_velocity()){
+    _ComputeInitialMapScaleFromExtPoses(&odometryScale);
+  } else if(m_motion_model.has_external_velocity()){
+    _ComputeInitialMapScaleFromExtVel(&odometryScale);
+  } else {
+    odometryScale = 1.0;
+  }
+  */
+  // END MODITICATIONS ====================================
+  // ******************************************************
   float medianDepth = pKFini->ComputeSceneMedianDepth(2);
-  float invMedianDepth = 10.9f / medianDepth;
+  std::cout << "***********median depth computed: " << medianDepth << std::endl;
+  float invMedianDepth = odometryScale * 1.0f/ medianDepth;
+
 
   // mean depth greater than 0
   // MapPoints can be observed in current frame greater than 100
@@ -750,31 +787,6 @@ void Tracking::CreateInitialMapMonocular() {
     Reset();
     return;
   }
-  
-
-
-/*
-// ******************************************************
-// MODIFICAITONS ========================================
-// instead of calculating median depth, 
-// calculate the odometry scale
-float odometryScale;
-if(m_motion_model.has_external_velocity()){
-  _ComputeInitialMapScaleFromExtPoses(&odometryScale);
-} else if(m_motion_model.has_external_velocity()){
-  _ComputeInitialMapScaleFromExtVel(&odometryScale);
-} else {
-  odometryScale = 1.0;
-}
-// END MODITICATIONS ====================================
-// ******************************************************
-*/
-
-
-
-
-
-
 
 
   // Scale initial baseline
@@ -1602,8 +1614,44 @@ void Tracking::InformOnlyTracking(const bool &flag) { mbOnlyTracking = flag; }
 // ***********************
 // MODIFICATIONS
 void Tracking::JudgeDynamicObject(){
-  // cv::findFundamentalMat()
+  // cv::findFundamentalMat();
 }
+
+
+
+/*
+void alignTwoPointTrajectories(
+    
+) {
+    const TrajectoryPoint& model_point1;
+    const TrajectoryPoint& model_point2;
+    const TrajectoryPoint& data_point1;
+    const TrajectoryPoint& data_point2;
+    Eigen::Matrix2d& rotation_matrix;
+    Eigen::Vector2d& translation_vector;
+    double& scale;
+    double& translational_error;
+
+    // Calculate translation
+    translation_vector = data_point1 - model_point1;
+
+    // Calculate scale
+    double scale_data = (data_point2 - data_point1).norm();
+    double scale_model = (model_point2 - model_point1).norm();
+    scale = scale_data / scale_model;
+
+    // Calculate rotation
+    double angle_data = std::atan2(data_point2.y - data_point1.y, data_point2.x - data_point1.x);
+    double angle_model = std::atan2(model_point2.y - model_point1.y, model_point2.x - model_point1.x);
+    double rotation_angle = angle_data - angle_model;
+    rotation_matrix << std::cos(rotation_angle), -std::sin(rotation_angle),
+                       std::sin(rotation_angle), std::cos(rotation_angle);
+
+    // Calculate translational error
+    Eigen::Vector2d transformed_model_point = scale * (rotation_matrix * model_point1) + translation_vector;
+    translational_error = (data_point1 - transformed_model_point).norm();
+}
+*/
 // END MODIFICATIONS
 // ************************
 

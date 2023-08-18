@@ -222,6 +222,7 @@ public:
   // MODIFICATIONS
   // *************************
 
+
   // Undistorted Image Bounds (computed once).
   static float mnMinX;
   static float mnMaxX;

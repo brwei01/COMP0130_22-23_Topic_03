@@ -141,6 +141,15 @@ int main(int argc, char **argv) {
 
     for (int ni = 0; ni < nImages; ni++) {
 
+      // LOG: Image Series Number
+      size_t lastSlashPos = vstrImageFilenames[ni].rfind('/');
+      std::string ImageFilename = vstrImageFilenames[ni].substr(lastSlashPos + 1);
+      size_t extensionPos = ImageFilename.rfind('.');
+      std::string SeriesNumber = ImageFilename.substr(0, extensionPos);
+      std::cout << "*************Processing Image: " << SeriesNumber << "********" <<std::endl;
+      // frameInfo << SeriesNumber << std::endl;
+
+
       std::vector<std::pair<std::vector<double>, int>> detect_result;
       MakeDetect_result(detect_result, sockfd);
       
@@ -213,6 +222,8 @@ int main(int argc, char **argv) {
     }
     SLAM.StopViewer();
   });
+  
+
   SLAM.StartViewer();
 
   cout << "Viewer started, waiting for thread." << endl;
@@ -239,8 +250,7 @@ int main(int argc, char **argv) {
   SLAM.SaveTrajectoryTUM(string(argv[3]));
 
   // Save to KITTI pose file
-  // SLAM.SaveTrajectoryKITTI(string(argv[3]));
-
+  //SLAM.SaveTrajectoryKITTI(string(argv[3]));
 
   return EX_OK;
 }
@@ -302,14 +312,14 @@ void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<
   {
     cerr << "no string from python!" << endl;
   }
-
-  cout << "running LoadBoundingBoxFromPython" << endl;
+  // cout << "running LoadBoundingBoxFromPython" << endl;
 
   vector<double> result_parameter;
   int sum = 0; 
   int num_bit = 0;
 
   int idx_bbxEnd = resultFromPython.find("class:");
+
   for(char c: resultFromPython.substr(0,idx_bbxEnd))
   {
     // read nums. e.g. 780 = ((7*10 + 8)*10) + 4;
@@ -326,30 +336,27 @@ void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<
     }
   }
 
-  detect_result.first = result_parameter;
-  cout << "detect_result.first size is: " << detect_result.first.size() << endl;
-
-  cout << "result parameter: ";
+  /*
+  std::cout << "result parameter: ";
   for (const double& value : result_parameter)
   {
-    cout << " " << value;
+    std::cout << " " << value;
   }
-  cout << endl;
+  std::cout << std::endl;
+  */
 
+  detect_result.first = result_parameter;
   string idx_begin = "class:"; // read the class of the object;
   int idx = resultFromPython.find(idx_begin);
   string idx_end = "0.";
-
   int idx2 = resultFromPython.find(idx_end);
   string class_label;
-
   for (int j = idx + 6; j < idx2-1; ++j)
   {
     class_label += resultFromPython[j];
   }
 
   int class_id = -1; // store the class of obj detected
-
   if (class_label == "tv" ||
     class_label == "refrigerator" ||
     class_label == "teddy bear" ||
@@ -367,8 +374,7 @@ void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<
   }
 
   detect_result.second = class_id;
-  cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
-
+  // cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
 }
 
 
@@ -393,12 +399,11 @@ void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int
     exit(EXIT_FAILURE);
   }
   // cout << "**ch_recv is : \n" << ch_recv << endl;
-
   char *ptr;
   ptr = strtok(ch_recv, "*"); // str split
   while(ptr != NULL)
   {
-    printf("ptr=%s\n", ptr);
+    // printf("ptr=%s\n", ptr);
 
     if (strlen(ptr) > 20)
     {

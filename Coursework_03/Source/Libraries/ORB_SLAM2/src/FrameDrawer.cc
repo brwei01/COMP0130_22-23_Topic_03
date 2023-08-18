@@ -90,151 +90,161 @@ cv::Mat FrameDrawer::DrawFrame() {
     mnTrackedVO = 0;
     const float r = 5;
     const int n = vCurrentKeys.size();
-
-    for (int i = 0; i < n; i++) {
-      // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl; 
-      if (vbVO[i] || vbMap[i]) {
-        // std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
-        // TO CHECK THE mvCurrentKeys IS UPDATED:
-        // float dist2cam0 = mvCurrentKeys[i].info;
-        // std::cout << "****************dist to cam:" << dist2cam0 << std::endl;
-
-        cv::Point2f pt1, pt2;
-        pt1.x = vCurrentKeys[i].keypoints[0].pt.x - r;
-        pt1.y = vCurrentKeys[i].keypoints[0].pt.y - r;
-        pt2.x = vCurrentKeys[i].keypoints[0].pt.x + r;
-        pt2.y = vCurrentKeys[i].keypoints[0].pt.y + r;
-        
-        // *********************************
-        // MODIFICATIONS: draw bounding box
-        for (int k = 0; k < objects_curFD.size(); ++k)
-        {
-          /*
-          // THIS IS TO CHECK THE CONTENT OF 'objects_curFD'
-          std::cout << "the object is: ";
-          for (const auto& param : objects_curFD[k]->vdetect_parameter) {
-              std::cout << param << " ";
-          }
-          std::cout << objects_curFD[k]->ndetect_class << std::endl;          
-          // THIS CAN BE ANNOTATED
-          */
-
-
-          if (objects_curFD[k] -> ndetect_class == 2)
-          {
-          
-            bool updated = false;
-            float dist2cam = 999.0f;
-            for (int j=0; j < n; j++){
-              float kp_u = vCurrentKeys[j].keypoints[0].pt.x;
-              float kp_v = vCurrentKeys[j].keypoints[0].pt.y;
-              
-              vector<double> box = objects_curFD[k]->vdetect_parameter;
-              double left = box[0];
-              double top = box[1];
-              double right = box[2];
-              double bottom = box[3];
-              if (kp_u > left - 2 && kp_u < right+2 && kp_v > top - 2 && kp_v < bottom + 2) // if point in bbx
-              {
-                if (mvCurrentKeys[j].info < dist2cam && !std::isnan(mvCurrentKeys[j].info) && mvCurrentKeys[j].info>0) // and theres a minimum distance can be updated
-                {
-                  dist2cam = mvCurrentKeys[j].info;
-                  updated = true;
-                }  
-              }
-            }
-          
-            
-            // draw bounding box
-            cv::Point pt11, pt22;
-            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
-            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
-            // std::cout << "car detected!" << pt11 << pt22 << std::endl;
-            cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
-            
-          
-            // Add text displaying dist2cam over the bounding box
-            if(updated){
-              std::string labelText = "Distance: " + std::to_string(dist2cam);
-              int font = cv::FONT_HERSHEY_SIMPLEX;
-              double fontScale = 0.5;
-              int thickness = 1;
-              cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
-              cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
-            }
-
-            // Check if dist2cam is smaller than 10 and add a "Caution" prompt
-            if (dist2cam < 10) {
-              std::string cautionText = "Caution";
-              int cautionFont = cv::FONT_HERSHEY_SIMPLEX;
-              double cautionFontScale = 0.5;
-              int cautionThickness = 1;
-              cv::Point cautionTextPosition(pt11.x, pt11.y - 20); // Adjust the position as needed
-              cv::putText(im, cautionText, cautionTextPosition, cautionFont, cautionFontScale, cv::Scalar(0, 0, 255), cautionThickness);
-            }
-          
-            
-          }
-          
-          // ==================================================
-          // ANOTHER CONDITION
-          if (objects_curFD[k] -> ndetect_class == 1)
-          {
-            cv::Point pt11, pt22;
-            pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
-            pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
-            cv::rectangle(im, pt11, pt22, cv::Scalar(200 ,0 ,100));
-          }
-        }
-        
-        /*
-        // This is a match to a MapPoint in the map
-        if (vbMap[i]) {
-          cv::rectangle(im, pt1, pt2, cv::Scalar(0, 255, 0));
-          cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0, 255, 0), -1);
-          mnTracked++;
-        } else // This is match to a "visual odometry" MapPoint created in the
-               // last frame
-        {
-          cv::rectangle(im, pt1, pt2, cv::Scalar(255, 0, 0));
-          cv::circle(im, vCurrentKeys[i].pt, 2, cv::Scalar(255, 0, 0), -1);
-          mnTrackedVO++;
-        }
-        */
-
-        // *********************
-        // MODIFICATIONS: make the selected dot red
-        if (vbInDynamic_mvKeys[i])
-        {
-          /*
-          // Get distance and convert to string
-          float dist2cam = vCurrentKeys[i].info;
-          std::string distStr = "Dist: " + std::to_string(dist2cam);
-          */
-          
-          // Draw points
-          // std::cout << "dynamic point found!" << std::endl;
-          cv::rectangle(im, pt1, pt2, cv::Scalar(0,0,200));
-          cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,0,200), -1);
-
-          /*
-          // Draw dist2cam text above the point
-          cv::Point textPos(pt1.x, pt1.y - 10); // Adjust the position as needed
-          cv::putText(im, distStr, textPos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 200), 1);
-          */
-
-          mnTracked++;
-        }
-        else
-        {
-          // std::cout<< "no dynamic point found" << std::endl;
-          cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
-          cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,255,0),-1);
-          mnTracked++;
-        }
+    
+    // *********************************
+    // MODIFICATIONS: draw bounding box
+    for (int k = 0; k < objects_curFD.size(); ++k)
+    { 
+      /*
+      // THIS IS TO CHECK THE CONTENT OF 'objects_curFD'
+      std::cout << "the object is: ";
+      for (const auto& param : objects_curFD[k]->vdetect_parameter) {
+          std::cout << param << " ";
       }
-    } // enum all feature points
-  }
+      std::cout << objects_curFD[k]->ndetect_class << std::endl;          
+      // THIS CAN BE ANNOTATED
+      */
+      if (objects_curFD[k] -> ndetect_class == 2)
+      {
+        bool updated = false;
+        float dist2cam = 999.0f;
+
+        for (int i=0; i<n; i++)
+        {
+          // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl; 
+          if (vbVO[i] || vbMap[i]) 
+          {
+            // std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
+            // TO CHECK THE mvCurrentKeys IS UPDATED:
+            // float dist2cam0 = mvCurrentKeys[i].info;
+            // std::cout << "****************dist to cam:" << dist2cam0 << std::endl;
+            
+            cv::Point2f pt1, pt2;
+            pt1.x = vCurrentKeys[i].keypoints[0].pt.x - r;
+            pt1.y = vCurrentKeys[i].keypoints[0].pt.y - r;
+            pt2.x = vCurrentKeys[i].keypoints[0].pt.x + r;
+            pt2.y = vCurrentKeys[i].keypoints[0].pt.y + r;
+
+            /*
+            // This is a match to a MapPoint in the map
+            if (vbMap[i]) {
+              cv::rectangle(im, pt1, pt2, cv::Scalar(0, 255, 0));
+              cv::circle(im, vCurrentKeys[i].pt, 1, cv::Scalar(0, 255, 0), -1);
+              mnTracked++;
+            } else // This is match to a "visual odometry" MapPoint created in the
+                    // last frame
+            {
+              cv::rectangle(im, pt1, pt2, cv::Scalar(255, 0, 0));
+              cv::circle(im, vCurrentKeys[i].pt, 2, cv::Scalar(255, 0, 0), -1);
+              mnTrackedVO++;
+            }
+            */
+
+            // *********************
+            // MODIFICATIONS: make the selected dot red
+            if (vbInDynamic_mvKeys[i])
+            {
+              /*
+              // Get distance and convert to string
+              float dist2cam = vCurrentKeys[i].info;
+              std::string distStr = "Dist: " + std::to_string(dist2cam);
+              */
+
+              // update the dist to cam of this point
+              if (mvCurrentKeys[i].info < dist2cam && !std::isnan(mvCurrentKeys[i].info) && mvCurrentKeys[i].info>0) // and theres a minimum distance can be updated
+              {
+                dist2cam = mvCurrentKeys[i].info;
+                updated = true;
+              }  
+              // Draw points
+              // std::cout << "dynamic point found!" << std::endl;
+              cv::rectangle(im, pt1, pt2, cv::Scalar(0,0,200));
+              cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,0,200), -1);
+              /*
+              // Draw dist2cam text above the point
+              cv::Point textPos(pt1.x, pt1.y - 10); // Adjust the position as needed
+              cv::putText(im, distStr, textPos, cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 0, 200), 1);
+              */
+              mnTracked++;
+            }
+            else
+            {
+              // std::cout<< "no dynamic point found" << std::endl;
+              cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
+              cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,255,0),-1);
+              mnTracked++;
+            }
+          }  
+        } // end enumerate points
+      
+        // draw bounding box
+        cv::Point pt11, pt22;
+        pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
+        pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
+        // std::cout << "car detected!" << pt11 << pt22 << std::endl;
+        cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
+      
+        // Add text displaying dist2cam over the bounding box
+        if(updated){
+          std::cout << " ********* This is bounding box: " << pt11 << pt22 << std::endl;
+          std::cout << " ========= min distance to camera: " << dist2cam << "========= "<< std::endl;
+          std::string labelText = "Distance: " + std::to_string(dist2cam);
+          int font = cv::FONT_HERSHEY_SIMPLEX;
+          double fontScale = 0.5;
+          int thickness = 1;
+          cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
+          cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
+        }
+
+        // Check if dist2cam is smaller than 10 and add a "Caution" prompt
+        if (dist2cam < 5) {
+          std::string cautionText = "Caution";
+          int cautionFont = cv::FONT_HERSHEY_SIMPLEX;
+          double cautionFontScale = 0.5;
+          int cautionThickness = 1;
+          cv::Point cautionTextPosition(pt11.x, pt11.y - 20); // Adjust the position as needed
+          cv::putText(im, cautionText, cautionTextPosition, cautionFont, cautionFontScale, cv::Scalar(0, 0, 255), cautionThickness);
+        }    
+      } // if detection result is car
+      
+
+      /* 
+      // ==================================================
+      // ADD ANOTHER CONDITION HERE
+      // if (objects_curFD[k] -> ndetect_class == 1)
+      else
+      {
+        for (int i=0; i<n; i++)
+        {
+          // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl; 
+          if (vbVO[i] || vbMap[i]) 
+          {
+            // std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
+            // TO CHECK THE mvCurrentKeys IS UPDATED:
+            // float dist2cam0 = mvCurrentKeys[i].info;
+            // std::cout << "****************dist to cam:" << dist2cam0 << std::endl;
+            cv::Point2f pt1, pt2;
+            pt1.x = vCurrentKeys[i].keypoints[0].pt.x - r;
+            pt1.y = vCurrentKeys[i].keypoints[0].pt.y - r;
+            pt2.x = vCurrentKeys[i].keypoints[0].pt.x + r;
+            pt2.y = vCurrentKeys[i].keypoints[0].pt.y + r;
+
+            // std::cout<< "no dynamic point found" << std::endl;
+            cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
+            cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,255,0),-1);
+            mnTracked++;
+          }  
+        
+        // cv::Point pt11, pt22;
+        // pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
+        // pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
+        // cv::rectangle(im, pt11, pt22, cv::Scalar(200 ,0 ,100));
+      }
+      // ===================================================
+      */
+
+    } // enum all bounding boxes
+  } // if tracking is ok
 
   // write in status info
   cv::Mat imWithInfo;
@@ -322,12 +332,12 @@ void FrameDrawer::Update(Tracking *pTracker) {
           // calculate distance:
           cv::Mat Ow = pTracker->mCurrentFrame.GetCameraCenter(); 
           cv::Mat Pos = pMP->GetWorldPos(); 
-          std::cout << "Ow[" << i << "]: " << Ow << std::endl;
-          std::cout << "Pos[" << i << "]: " << Pos << std::endl;
+          //std::cout << "Ow[" << i << "]: " << Ow << std::endl;
+          //std::cout << "Pos[" << i << "]: " << Pos << std::endl;
           cv::Mat PC = Pos - Ow;
           const float dist2cam = cv::norm(PC);
-          std::cout << "Dist["<< i <<"]: " << dist2cam << std::endl;
-          //std::cout << "Before Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
+          // std::cout << "Dist["<< i <<"]: " << dist2cam << std::endl;
+          // std::cout << "Before Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
           mvCurrentKeys[i].info = dist2cam;
           //std::cout << "After Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
           // **********
