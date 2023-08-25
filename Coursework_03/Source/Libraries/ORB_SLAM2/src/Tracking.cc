@@ -761,7 +761,10 @@ void Tracking::CreateInitialMapMonocular() {
 
 
   float odometryScale;
-  odometryScale = 10.5f;
+  // odometryScale = 10.5f; // this is for VO 03 
+  odometryScale = 15.6f;
+
+
   // odometryScale = dist0/1.0f;
   // std::cout << "the initial Scale factor is: " << odometryScale << std::endl;
   /*

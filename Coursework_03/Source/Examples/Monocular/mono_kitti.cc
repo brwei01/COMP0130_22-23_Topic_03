@@ -65,7 +65,7 @@ int main(int argc, char **argv) {
 
   // Save the logs to file
   // create an ofstream obj to open the log file
-  std::ofstream outputFile("/home/borui/Dev/COMP0130_22-23_Topic_03/Coursework_03/Results/console_log.txt");
+  std::ofstream outputFile("/home/brwei01/Dev/COMP0130_22-23_Topic_03/Coursework_03/Results/console_log.txt");
   // Redirect std::cout to the file stream
   std::streambuf* originalCoutBuffer = std::cout.rdbuf();
   std::cout.rdbuf(outputFile.rdbuf());
@@ -88,7 +88,7 @@ int main(int argc, char **argv) {
 
   // setup server_address
   address.sun_family = AF_UNIX;
-  strcpy(address.sun_path, "/home/borui/Dev/server_socket");
+  strcpy(address.sun_path, "/home/brwei01/Dev/server_socket");
   len = sizeof(address);
 
   result = connect(sockfd, (struct sockaddr *)&address, len);
@@ -155,7 +155,7 @@ int main(int argc, char **argv) {
       std::string ImageFilename = vstrImageFilenames[ni].substr(lastSlashPos + 1);
       size_t extensionPos = ImageFilename.rfind('.');
       std::string SeriesNumber = ImageFilename.substr(0, extensionPos);
-      std::cout << "*************Processing Image: " << SeriesNumber << "********" <<std::endl;
+      std::cout << "Processing Image NO.: " << SeriesNumber <<std::endl;
       // frameInfo << SeriesNumber << std::endl;
 
 
@@ -255,7 +255,7 @@ int main(int argc, char **argv) {
   cout << "mean tracking time: " << totaltime / nImages << endl;
 
   // Save camera trajectory
-  SLAM.SaveKeyFrameTrajectoryTUM("KeyFrameTrajectory.txt");
+  SLAM.SaveKeyFrameTrajectoryTUM("Results/KeyFrameTrajectory.txt");
   SLAM.SaveTrajectoryTUM(string(argv[3]));
 
   // Save to KITTI pose file
@@ -378,12 +378,15 @@ void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<
       class_id = 1;
     }
 
-  if (class_label == "chair" ||
-  class_label == "car"){
+  if (class_label == "car"){
+    class_id = 4;
+  }
+
+  if (class_label == "bicycle" || class_label == "person"){
     class_id = 2;
   }
 
-  if (class_label == "person"){
+  if (class_label == "motorcycle"){
     class_id = 3;
   }
 

@@ -777,7 +777,7 @@ bool Frame::IsInDynamic(const int& i)
       double right = box[2];
       double bottom = box[3];
 
-      if (kp_u > left - 2 && kp_u < right+2 && kp_v > top - 2 && kp_v < bottom + 2)
+      if (kp_u > left - 2 && kp_u < right + 2 && kp_v > top - 2 && kp_v < bottom + 2)
       {
         in_dynamic = true;
       }
