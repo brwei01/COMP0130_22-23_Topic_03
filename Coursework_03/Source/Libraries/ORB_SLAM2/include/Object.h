@@ -34,6 +34,27 @@ namespace ORB_SLAM2
         vector<double> GetDetectParameter();
         int GetDetectClass();      
     };
+
+    class Object3D
+    {
+    public:
+        Object3D();
+        Object3D(const int& nframe_id_, const vector<double>& vbbox_2d_, const vector<double>& vbbox_birdview_, const string& sdetect_class_);
+        ~Object3D();
+
+    public:
+        int nframe_id;
+        vector<double> vbbox_2d;
+        vector<double> vbbox_birdview;
+        string sdetect_class;
+
+    public:
+        int GetFrameID();
+        vector<double> Get2dBbox();
+        vector<double> GetBboxBV();
+        string GetDetectClassBV();
+    };
+
 }
 
 #endif

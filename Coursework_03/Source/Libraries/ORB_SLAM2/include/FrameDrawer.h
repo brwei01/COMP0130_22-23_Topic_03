@@ -37,17 +37,29 @@ namespace ORB_SLAM2 {
 // DEFINE A NEW STRUCT -- TO STORE THE DIST
 struct KeyPointsWithInfo {
   std::vector<cv::KeyPoint> keypoints;
+  std::vector<float> mapPointCoords; 
   float info;
 
-  KeyPointsWithInfo(const std::vector<cv::KeyPoint>& kps, float extraInfo): 
-  keypoints(kps),info(extraInfo){}
+  KeyPointsWithInfo(const std::vector<cv::KeyPoint>& kps, const std::vector<float>& ptCoords, float extraInfo): 
+  keypoints(kps), mapPointCoords(ptCoords), info(extraInfo)
+  {
+    /*
+    mapPointCoords.reserve(ptCoords.size() * 3);
+    for (const cv::Point3_<float>& pt : ptCoords) {
+        mapPointCoords.push_back(pt.x);
+        mapPointCoords.push_back(pt.y);
+        mapPointCoords.push_back(pt.z);
+    }
+    */
+
+  }
 };
 // ***********************
 
 class Tracking;
 class Viewer;
 class Frame;
-class Object;
+class Object3D;
 
 class FrameDrawer {
 public:
@@ -74,7 +86,7 @@ protected:
   //************************
   //MODIFICATIONS
   map<int, std::pair<int,int>> matches_n_box;
-  vector<std::shared_ptr<Object>> objects_curFD;
+  vector<std::shared_ptr<Object3D>> objects_curFD;
   vector<bool> vbInDynamic_mvKeys;
   //END MODIFICATIONS
   //************************

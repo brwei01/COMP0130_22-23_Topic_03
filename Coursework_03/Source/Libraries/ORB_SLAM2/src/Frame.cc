@@ -191,7 +191,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
              ORBextractor *extractor, ORBVocabulary *voc, cv::Mat &K,
              cv::Mat &distCoef, const float &bf, const float &thDepth,
              // add new variable: detect_result
-             const vector<std::pair<vector<double>, int>>& detect_result
+             std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result
              // end adding new variable
              )
     : mpORBvocabulary(voc), mpORBextractorLeft(extractor),
@@ -202,14 +202,18 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
   
   // ***************************
   // MODIFICATION: STEP0.5 ADDING DETECTION BOX INTO FRAME
-  vector<double> vobject_box;
-  int nobject_class;
+  int nframe_id;
+  vector<double> vbbox_2d;
+  vector<double> vbbox_birdview;
+  std::string sdetect_class;
 
   for(int k = 0; k<detect_result.size(); ++k)
   {
-    vobject_box = detect_result[k].first;
-    nobject_class = detect_result[k].second;
-    std::shared_ptr<Object> obj = make_shared<Object>(vobject_box, nobject_class);
+    nframe_id = std::get<0>(detect_result[k]);  
+    vbbox_2d = std::get<1>(detect_result[k]);  
+    vbbox_birdview = std::get<2>(detect_result[k]);  
+    sdetect_class = std::get<3>(detect_result[k]);  
+    std::shared_ptr<Object3D> obj = make_shared<Object3D>(nframe_id, vbbox_2d, vbbox_birdview, sdetect_class);
     objects_cur_.push_back(obj);
   }
   // END MODIFICATION
@@ -239,6 +243,8 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
 
   // ***************************
   // MODIFICATIONS: VERIFY IF OBJECT POINT IS IN DYNA BB
+  // WONT BE USED
+  /* 
   for (int k=0; k<mvKeys.size(); ++k)
   {
     if (IsInDynamic(k) == true && IsInStatic(k) == false)
@@ -252,6 +258,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
       // cout << "false" << endl;
     }
   }
+  */
   // END MODIFICATION
   // ***************************
 
@@ -726,7 +733,8 @@ cv::Mat Frame::UnprojectStereo(const int &i) {
 
 // *******************************************
 // MODIFICATIONS
-
+// WONT BE USED SINCE THIS PROJECT USES GT ANNOTATED DATA
+/*
 bool Frame:: IsInBox(const int& i, int& box_id)
 {
   // check whether keypoint is in boundng box (read from txt)
@@ -816,7 +824,7 @@ bool Frame::IsInStatic(const int& i)
   }
   return in_static; 
 }
-
+*/
 // END MODIFICATIONS
 // *******************************************
 } // namespace ORB_SLAM2

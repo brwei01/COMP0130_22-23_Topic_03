@@ -104,7 +104,7 @@ cv::Mat FrameDrawer::DrawFrame() {
       std::cout << objects_curFD[k]->ndetect_class << std::endl;          
       // THIS CAN BE ANNOTATED
       */
-      if (objects_curFD[k] -> ndetect_class == 2 || objects_curFD[k] -> ndetect_class == 3)
+      if (objects_curFD[k] -> sdetect_class == "Car" || objects_curFD[k] -> sdetect_class == "Cyclist")
       {
         bool updated = false;
         // initialize distance
@@ -120,6 +120,8 @@ cv::Mat FrameDrawer::DrawFrame() {
             // float dist2cam0 = mvCurrentKeys[i].info;
             // std::cout << "****************dist to cam:" << dist2cam0 << std::endl;
             
+
+            // 2D POINT ON FRAME
             cv::Point2f pt1, pt2;
             pt1.x = vCurrentKeys[i].keypoints[0].pt.x - r;
             pt1.y = vCurrentKeys[i].keypoints[0].pt.y - r;
@@ -144,8 +146,9 @@ cv::Mat FrameDrawer::DrawFrame() {
             // *********************
             // MODIFICATIONS: make the selected dot red
 
-
-            vector<double> box = objects_curFD[k]->vdetect_parameter;
+            // 2D BBOX ON FRAME
+            /*
+            vector<double> box = objects_curFD[k]->vbbox_2d;
             double left = box[0];
             double top = box[1];
             double right = box[2];
@@ -153,8 +156,25 @@ cv::Mat FrameDrawer::DrawFrame() {
 
             float kp_u = vCurrentKeys[i].keypoints[0].pt.x;
             float kp_v = vCurrentKeys[i].keypoints[0].pt.y;
+            */
 
-            if (kp_u > left + 2 && kp_u < right - 2 && kp_v > top + 2 && kp_v < bottom - 2)
+            // 3D BIRDVIEW BBOX ON MAP
+            vector<double> box_BV = objects_curFD[k] -> vbbox_birdview;
+            double left_BV = box_BV[0];
+            double top_BV = box_BV[1];
+            double right_BV = box_BV[2];
+            double bottom_BV = box_BV[3];
+
+            // 3Dp point coordinates 
+            float PcX = vCurrentKeys[i].mapPointCoords[0];
+            float PcY = vCurrentKeys[i].mapPointCoords[1];
+            float PcZ = vCurrentKeys[i].mapPointCoords[2];
+
+            std::cout << "***************** the birdview bbox: " << left_BV << top_BV << right_BV << bottom_BV << endl; 
+            std::cout << "================= the point under camera coords: " << PcX << PcZ << endl;
+
+            // if (kp_u > left + 2 && kp_u < right - 2 && kp_v > top + 2 && kp_v < bottom - 2)
+            if (PcX > left_BV && PcX < right_BV && PcZ > top_BV && PcZ < bottom_BV)
             {
               /*
               // Get distance and convert to string
@@ -195,8 +215,8 @@ cv::Mat FrameDrawer::DrawFrame() {
                 
           // draw bounding box
           cv::Point pt11, pt22;
-          pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
-          pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
+          pt11 = cv::Point(objects_curFD[k]->vbbox_2d[0], objects_curFD[k]->vbbox_2d[1]);
+          pt22 = cv::Point(objects_curFD[k]->vbbox_2d[2], objects_curFD[k]->vbbox_2d[3]);
           
           // Add text displaying dist2cam over the bounding box
           // std::cout << "car detected!" << pt11 << pt22 << std::endl;
@@ -223,45 +243,8 @@ cv::Mat FrameDrawer::DrawFrame() {
 
 
       } // if detection result is car
-      
-
-      /* 
-      // ==================================================
-      // ADD ANOTHER CONDITION HERE
-      // if (objects_curFD[k] -> ndetect_class == 1)
-      else
-      {
-        for (int i=0; i<n; i++)
-        {
-          // std::cout << "vCurrentKeys[" << i << "].pt = " << vCurrentKeys[i].pt << std::endl; 
-          if (vbVO[i] || vbMap[i]) 
-          {
-            // std::cout << "vbVO[" << i << "] = " << vbVO[i] << ", vbMap[" << i << "] = " << vbMap[i] << std::endl;
-            // TO CHECK THE mvCurrentKeys IS UPDATED:
-            // float dist2cam0 = mvCurrentKeys[i].info;
-            // std::cout << "****************dist to cam:" << dist2cam0 << std::endl;
-            cv::Point2f pt1, pt2;
-            pt1.x = vCurrentKeys[i].keypoints[0].pt.x - r;
-            pt1.y = vCurrentKeys[i].keypoints[0].pt.y - r;
-            pt2.x = vCurrentKeys[i].keypoints[0].pt.x + r;
-            pt2.y = vCurrentKeys[i].keypoints[0].pt.y + r;
-
-            // std::cout<< "no dynamic point found" << std::endl;
-            cv::rectangle(im, pt1, pt2, cv::Scalar(0,255,0));
-            cv::circle(im, vCurrentKeys[i].keypoints[0].pt, 1, cv::Scalar(0,255,0),-1);
-            mnTracked++;
-          }  
-        
-        // cv::Point pt11, pt22;
-        // pt11 = cv::Point(objects_curFD[k]->vdetect_parameter[0], objects_curFD[k]->vdetect_parameter[1]);
-        // pt22 = cv::Point(objects_curFD[k]->vdetect_parameter[2], objects_curFD[k]->vdetect_parameter[3]);
-        // cv::rectangle(im, pt11, pt22, cv::Scalar(200 ,0 ,100));
-      }
-      // ===================================================
-      */
-
     } // enum all bounding boxes
-  } // if tracking is ok
+  } // if tracking is ok, Draw
 
   // write in status info
   cv::Mat imWithInfo;
@@ -311,7 +294,7 @@ void FrameDrawer::Update(Tracking *pTracker) {
   //*****************************
   // MODIFICATIONS: added necessary variables
   objects_curFD = pTracker -> mCurrentFrame.objects_cur_;
-  vbInDynamic_mvKeys = pTracker -> mCurrentFrame.vbInDynamic_mvKeys; 
+  // vbInDynamic_mvKeys = pTracker -> mCurrentFrame.vbInDynamic_mvKeys; 
   // END MODIFICATION
   //*****************************
 
@@ -325,15 +308,17 @@ void FrameDrawer::Update(Tracking *pTracker) {
   for (const cv::KeyPoint& cvKey:cvKeys){
     std::vector<cv::KeyPoint> keypointsWithInfo;
     keypointsWithInfo.push_back(cvKey); // push cvKey to the vector
+    std::vector<float> ptCoords = {0.0f, 0.0f, 0.0f}; // Initialize pMP coords with zeros
     int extraInfo = -999.0f; // Default value if no valid MapPoint
-    mvCurrentKeys.emplace_back(keypointsWithInfo, extraInfo);
+    mvCurrentKeys.emplace_back(keypointsWithInfo, ptCoords, extraInfo);
   }
-  
   
   N = mvCurrentKeys.size();
   mvbVO = vector<bool>(N, false);
   mvbMap = vector<bool>(N, false);
   mbOnlyTracking = pTracker->mbOnlyTracking;
+  cv::Mat mRcw_curr = pTracker -> mCurrentFrame.GetRcw();
+  cv::Mat mtcw_curr = pTracker -> mCurrentFrame.GetTcw();
 
   if (pTracker->mLastProcessedState == Tracking::NOT_INITIALIZED) {
     mvIniKeys = pTracker->mInitialFrame.mvKeys;
@@ -358,6 +343,21 @@ void FrameDrawer::Update(Tracking *pTracker) {
           //std::cout << "After Update - info[" << i << "]: " << mvCurrentKeys[i].info << std::endl;
           // **********
           // std::cout << "distance to camera" << dist2cam << std::endl;
+
+          // 3D POINT BIRDVEW transfered from absolute coordinates to camera coordinate system
+          
+          
+          cv::Mat P = pMP->GetWorldPos();  
+          const cv::Mat Pc = mRcw_curr*P+mtcw_curr; 
+          const float &PcX = Pc.at<float>(0);
+          const float &PcY = Pc.at<float>(1);
+          const float &PcZ = Pc.at<float>(2);
+          
+          mvCurrentKeys[i].mapPointCoords = {PcX, PcY, PcZ};
+          
+
+
+          
 
           if (pMP->Observations() > 0)
             mvbMap[i] = true;

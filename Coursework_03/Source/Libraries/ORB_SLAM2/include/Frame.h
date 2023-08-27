@@ -41,7 +41,7 @@ namespace ORB_SLAM2 {
 
 class MapPoint;
 class KeyFrame;
-class Object;
+class Object3D;
 
 class Frame {
 public:
@@ -66,7 +66,7 @@ public:
         ORBVocabulary *voc, cv::Mat &K, cv::Mat &distCoef, const float &bf,
         const float &thDepth,
         // add param
-        const std::vector<std::pair<std::vector<double>, int>>& detect_result
+        std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result
         // end add param
         );
 
@@ -117,11 +117,19 @@ public:
 
   // *****************************
   // MODIFICATION
+  // WONT BE USED
+  // NOTICE !!! THIS IS LEFT UNCHANGED 
+  /*
   bool IsInBox(const int& i, int& box_id); // whether point is in bbox
   bool IsInDynamic(const int& i); // whether point is in dynamic features(persons)
   bool IsInStatic(const int& i);
+  */
   // END MODIFICATION
   // *****************************
+
+  // Public getter methods for accessing private members
+  cv::Mat GetRcw() const { return mRcw.clone(); }
+  cv::Mat GetTcw() const { return mtcw.clone(); }
 
 public:
   // Vocabulary used for relocalization.
@@ -208,14 +216,14 @@ public:
 
   // *************************
   // MODIFICATIONS
-  // vector<std::shared_ptr<Object>> objects_cur_detect_;
-  std::vector<std::shared_ptr<Object>> objects_cur_; //store objects in each Frame
+  // vector<std::shared_ptr<Object3D>> objects_cur_detect_;
+  std::vector<std::shared_ptr<Object3D>> objects_cur_; //store objects in each Frame
   std::map<int, int> matches_out_box;
   std::map<int, std::pair<int, int>> matches_in_box;
   std::vector<std::vector<int>> points_in_box;
   std::map<int, std::pair<int,int>> matches_in_dynamic;
 
-  std::vector<bool> vbInDynamic_mvKeys; //points located within the area of dynamic obj
+  // std::vector<bool> vbInDynamic_mvKeys; //points located within the area of dynamic obj
   // std::vector<bool> vbInStatic_mvKeys;
   std::vector<cv::KeyPoint> mvKeys_after;
   // std::vector<int> vInStatic_mvKeysUn;

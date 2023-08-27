@@ -18,6 +18,7 @@
  * along with ORB-SLAM2. If not, see <http://www.gnu.org/licenses/>.
  */
 
+
 #include <algorithm>
 #include <boost/filesystem.hpp>
 #include <chrono>
@@ -25,6 +26,8 @@
 #include <iomanip>
 #include <iostream>
 #include <sysexits.h>
+#include <sstream>
+#include <string>
 
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -38,27 +41,24 @@ namespace fs = ::boost::filesystem;
 using namespace std;
 
 
-// ******************************************
-// TO MAKE FULLY ONLINE USING SOCKET SERVER
-// replace the LoadBoundingBoxFromPython method
-void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd);
-
-void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result);
-// END: TO MAKE FULLY ONLINE
-// *******************************************
 void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
+void ReadBoundingBox(const string& strPathToDetectionResult, 
+                    std::vector<int>& frame_id, 
+                    vector<string>& type, 
+                    vector<vector<double>>& bbox_2d, 
+                    vector<vector<double>>& bbox_birdview);
 
-/*
-// ************************************************************
-// THIS IS THE OFFLINE VERSION
-// MODIFICATION: ADD NEW FUNCTION
-void LoadBoundingBox(const string& strPathToDetectResult, 
-                    std::vector<std::pair<std::vector<double>, int>>& detect_result);
-// END MODIFICATION
-// ************************************************************
-*/
+void LoadBoundingBoxBV(int frame_number,
+                     std::vector<int>& nframe_id,
+                     std::vector<std::string>& stype,
+                     std::vector<std::vector<double>>& vbbox_2d, 
+                     std::vector<std::vector<double>>& vbbox_birdview,
+                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result);
+
+std::vector<double> CreateBVBbox(double h, double w, double l, double x, double y, double z, double yaw);
+
 
 
 int main(int argc, char **argv) {
@@ -69,55 +69,13 @@ int main(int argc, char **argv) {
   // Redirect std::cout to the file stream
   std::streambuf* originalCoutBuffer = std::cout.rdbuf();
   std::cout.rdbuf(outputFile.rdbuf());
-  
 
-
-  // SOCKET INITIALIZATION
-  int sockfd;
-  int len;
-  struct sockaddr_un address;
-  int result;
-  int i, byte;
-  char send_buf[128], ch_recv[1024];
-
-  if((sockfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1)
-  {
-    perror("socket");
-    exit(EXIT_FAILURE);
-  }
-
-  // setup server_address
-  address.sun_family = AF_UNIX;
-  strcpy(address.sun_path, "/home/brwei01/Dev/server_socket");
-  len = sizeof(address);
-
-  result = connect(sockfd, (struct sockaddr *)&address, len);
-
-  if (result == -1)
-  {
-    printf("please ensure the server is up\n");
-    perror("connect");
-    exit(EXIT_FAILURE);
-  }
-  // END SOCKET SERVER INIT
-
-  if(argc != 4) {
-    cerr << endl
-          << "Usage: " << argv[0] << " setting_files path_to_sequence results_file_dir" << endl;
-    return EX_USAGE;
-  }
-
-  // ==================================
   // OFFLINE -- requires extra statement 'yolov5_detect_result'
-  /*
     if (argc != 5) {
     cerr << endl
-          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file yolov5_detect_results" << endl;
+          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file 3d_detection_results" << endl;
     return EX_USAGE;
   }
-  */
-  // ===================================
-
 
   // Retrieve paths to images
   // store path to mono images and corresponding timestamps 
@@ -129,8 +87,7 @@ int main(int argc, char **argv) {
 
   int nImages = vstrImageFilenames.size();
 
-  // Create SLAM system. It initializes all system threads and gets ready to
-  // process frames.
+  // Create SLAM system. It initializes all system threads and gets ready to process frames.
   string settingsFile = string(DEFAULT_MONO_SETTINGS_DIR) + string(argv[1]);
   ORB_SLAM2::System SLAM(DEFAULT_ORB_VOCABULARY, settingsFile,
                          ORB_SLAM2::System::MONOCULAR, true);
@@ -145,50 +102,48 @@ int main(int argc, char **argv) {
 
   int main_error = 0;
   std::thread runthread([&]() { // Start in new thread
-    // Main loop
+
+    // MODIFICATION: LOAD ANNOTATED GT DATA: 2DBBX, 3DBBX, CLASS
+    
+    string strPathToDetectionResult = argv[4];
+
+    // READ ALL ANNOTATED DATA
+    std::vector<int> nframe_id;
+    std::vector<std::string> stype;
+    std::vector<std::vector<double>> vbbox_2d; 
+    std::vector<std::vector<double>> vbbox_birdview;
+    // read data into these variables defined above
+    ReadBoundingBox(strPathToDetectionResult, nframe_id, stype, vbbox_2d, vbbox_birdview);
+
+    // Main loop: load images
     cv::Mat im;
-
     for (int ni = 0; ni < nImages; ni++) {
-
       // LOG: Image Series Number
       size_t lastSlashPos = vstrImageFilenames[ni].rfind('/');
       std::string ImageFilename = vstrImageFilenames[ni].substr(lastSlashPos + 1);
       size_t extensionPos = ImageFilename.rfind('.');
       std::string SeriesNumber = ImageFilename.substr(0, extensionPos);
       std::cout << "Processing Image NO.: " << SeriesNumber <<std::endl;
-      // frameInfo << SeriesNumber << std::endl;
-
-
-      std::vector<std::pair<std::vector<double>, int>> detect_result;
-      MakeDetect_result(detect_result, sockfd);
+      // END LOGGING
       
-      // ========================================
-      // USED FOR OFFLINE VERSION
-      /*
-      // ******************************* 
-      // MODIFICATION: LOAD BOUNDING BOX
-      string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
-      // ***************************************
-      // MODIFICATIONS: ADD VARIABLE detect_result
+      // ADD VARIABLE detect_result
       // Clear the detect_result vector before loading new bounding boxes
-      std::vector<std::pair<std::vector<double>, int>> detect_result;
-      // END ADDING VARAIBLE
-      // ***************************************  
-      LoadBoundingBox(strPathToDetectionResult, detect_result);
-      */
+      std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>> detect_result;
+
+      LoadBoundingBoxBV(ni, nframe_id, stype, vbbox_2d, vbbox_birdview, detect_result);
+
 
       /*
       // this part annotated to avoid programme quitting where no detections seen
+      // but can be left here for further developments
       if (detect_result.empty())
       {
         cerr << endl << "Failed to load bounding box" << endl;
         return 1;
       }
       */
-
       // END MODIFICATION
       // ********************************
-      // ====================================================
 
 
       // Read image from file
@@ -232,7 +187,6 @@ int main(int argc, char **argv) {
     SLAM.StopViewer();
   });
   
-
   SLAM.StartViewer();
 
   cout << "Viewer started, waiting for thread." << endl;
@@ -314,228 +268,112 @@ void LoadImages(const string &strPathToSequence,
 }
 
 
-
-
-// ***************************************************************
-// TO MAKE FULLY ONLINE USING SOCKET SERVER
-// ADDING 2 FUNCTIONS: 
-// LoadBoundingBoxFromPython, MakeDetect_result
-void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result)
-{
-  if(resultFromPython.empty())
-  {
-    cerr << "no string from python!" << endl;
-  }
-  // cout << "running LoadBoundingBoxFromPython" << endl;
-
-  vector<double> result_parameter;
-  int sum = 0; 
-  int num_bit = 0;
-
-  int idx_bbxEnd = resultFromPython.find("class:");
-
-  for(char c: resultFromPython.substr(0,idx_bbxEnd))
-  {
-    // read nums. e.g. 780 = ((7*10 + 8)*10) + 4;
-    if(c >= '0' && c <= '9')
-    {
-      num_bit = c - '0';
-      sum = sum * 10 + num_bit;
-    }
-    else if (c == ' ')
-    {
-      result_parameter.push_back(sum);
-      sum = 0;
-      num_bit = 0;
-    }
-  }
-
-  /*
-  std::cout << "result parameter: ";
-  for (const double& value : result_parameter)
-  {
-    std::cout << " " << value;
-  }
-  std::cout << std::endl;
-  */
-
-  detect_result.first = result_parameter;
-  string idx_begin = "class:"; // read the class of the object;
-  int idx = resultFromPython.find(idx_begin);
-  string idx_end = "0.";
-  int idx2 = resultFromPython.find(idx_end);
-  string class_label;
-  for (int j = idx + 6; j < idx2-1; ++j)
-  {
-    class_label += resultFromPython[j];
-  }
-
-  int class_id = -1; // store the class of obj detected
-  if (class_label == "tv" ||
-    class_label == "refrigerator" ||
-    class_label == "teddy bear" ||
-    class_label == "laptop"){
-      class_id = 1;
-    }
-
-  if (class_label == "car"){
-    class_id = 4;
-  }
-
-  if (class_label == "bicycle" || class_label == "person"){
-    class_id = 2;
-  }
-
-  if (class_label == "motorcycle"){
-    class_id = 3;
-  }
-
-  detect_result.second = class_id;
-  // cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
-}
-
-
-void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd)
-{
-  detect_result.clear();
-  
-  std::pair<vector<double>, int> detect_result_str;
-  int byte;
-  char send_buf[128], ch_recv[1024];
-
-  sprintf(send_buf, "ok"); // sprintf sends the message to send_buf
-  if((byte=write(sockfd, send_buf, sizeof(send_buf)))==-1)
-  {
-    perror("write");
-    exit(EXIT_FAILURE);
-  }
-
-  if((byte=read(sockfd, &ch_recv, 1000))==-1)
-  {
-    perror("read");
-    exit(EXIT_FAILURE);
-  }
-  // cout << "**ch_recv is : \n" << ch_recv << endl;
-  char *ptr;
-  ptr = strtok(ch_recv, "*"); // str split
-  while(ptr != NULL)
-  {
-    // printf("ptr=%s\n", ptr);
-
-    if (strlen(ptr) > 20)
-    {
-      // cout << strlen(ptr) << endl;
-      string ptr_str = ptr;
-      LoadBoundingBoxFromPython(ptr_str, detect_result_str);
-    }
-
-    detect_result.emplace_back(detect_result_str);
-    // cout <<   "hh: " << ptr_str << endl;
-    ptr = strtok(NULL, "*");
-    }
-
-    // cout << "detect_result size is: " << detect_result.size() << endl;
-    // for (int k = 0; k < detect_result.size(); ++k)
-    // cout << "detect_result is: \n" << detect_result[k].second << endl;
-}
-// END: TO MAKE FULLY ONLINE
-// **********************************************************************************
-
-
-
-/*
 // *******************************************
 // TO USE THE FOLLOWING VERSION,
-// YOLO DETECT FILES MUST BE IN PLACE.
+// YOLO DETECT FILES MUST BE PROVIDED.
 // MODIFICATIONS
-void LoadBoundingBox(const string& strPathToDetectionResult, 
-                    std::vector<std::pair<vector<double>, int>>& detect_result)
+void LoadBoundingBoxBV(int frame_number,
+                     std::vector<int>& nframe_id,
+                     std::vector<std::string>& stype,
+                     std::vector<std::vector<double>>& vbbox_2d, 
+                     std::vector<std::vector<double>>& vbbox_birdview,
+                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result)
+
+{
+    // Clear the detect_result vector before loading new bounding boxes
+    detect_result.clear();
+    // Iterate through the nframe_id vector to find matches
+    for (size_t i = 0; i < nframe_id.size(); ++i) {
+        if (nframe_id[i] == frame_number) {
+            // Match found, add corresponding data to detect_result
+            detect_result.emplace_back(nframe_id[i], vbbox_2d[i], vbbox_birdview[i], stype[i]);
+        }
+    }
+}
+
+// function to read boundint box
+void ReadBoundingBox(const string& strPathToDetectionResult, 
+                     vector<int>& frame_id, 
+                     vector<string>& type, 
+                     vector<vector<double>>& bbox_2d, 
+                     vector<vector<double>>& bbox_birdview)
 {
   ifstream infile;
   infile.open(strPathToDetectionResult);
   
-  
   if(!infile.is_open())
   {
-    std::cout<<R"(yolo detection result files failed to open at: )"<<strPathToDetectionResult<<std::endl;
-    // exit(233);
+    std::cout<<R"(yolo detection result files failed to open at: )" << strPathToDetectionResult << std::endl;
+    exit(233);
   }
-  vector<double> result_parameter;
-  string line;
-  while(getline(infile, line))
-  {
-    int sum = 0, num_bit = 0;
-    for (char c: line)
-    {
-      if (c >= '0' && c <= '9')
-      {
-        num_bit = c - '0';
-        sum = sum * 10 + num_bit;
+    std::string line; 
+    while (std::getline(infile, line)) {
+      std::istringstream iss(line);
+      int frame_val, track_id, truncated, occluded;
+      std::string type_val;
+      double alpha, bbox_left_val, bbox_top_val, bbox_right_val, bbox_bottom_val;
+      double height_val, width_val, length_val, pos_x_val, pos_y_val, pos_z_val, rot_y_val;
+
+
+      if (!(iss >> frame_val >> track_id >> type_val >> truncated >> occluded >> alpha
+          >> bbox_left_val >> bbox_top_val >> bbox_right_val >> bbox_bottom_val
+          >> height_val >> width_val >> length_val >> pos_x_val >> pos_y_val >> pos_z_val >> rot_y_val)) {
+          std::cerr << "Error reading line." << std::endl;
+          continue;
       }
-      else if (c = ' ')
-      {
-        result_parameter.push_back(sum);
-        sum = 0;
-        num_bit = 0;
-      }
-    }
 
-    string idx_begin = "class:";
-    int idx = line.find(idx_begin);
-    string idx_end = "0.";
-    int idx2 = line.find(idx_end);
-    string class_label;
-    for (int j = idx + 6; j < idx2-1; ++j)
-    {
-      class_label += line[j];
-    }
-    // cout << "**" << class_label << "**";
+      // save all frame ids
+      frame_id.push_back(frame_val);
+      // save all types
+      type.push_back(type_val);
 
-    int class_id = -1;//存入识别物体的种类
-    if (class_label == "person") { //高动态物体:人,动物等
-        class_id = 3;
-    }
+      // save all 2d bboxes
+      std::vector<double> bbox_2d_val;
+      bbox_2d_val.push_back(bbox_left_val);
+      bbox_2d_val.push_back(bbox_top_val);
+      bbox_2d_val.push_back(bbox_right_val);
+      bbox_2d_val.push_back(bbox_bottom_val);
 
-    if (class_label == "tv" ||   //低动态物体(在程序中可以假设为一直静态的物体):tv,refrigerator
-        class_label == "refrigerator" || 
-        class_label == "teddy bear") {
-        class_id = 1;
-    }
+      bbox_2d.push_back(bbox_2d_val);
 
-    if (class_label == "chair" || //中动态物体,在程序中不做先验动态静态判断
-        class_label == "car"){
-        class_id = 2;
+      // save all calculated birdview bboxes 
+      std::vector<double> bbox_birdview_val;
+      bbox_birdview_val = CreateBVBbox(height_val, width_val, length_val, pos_x_val, pos_y_val, pos_z_val, rot_y_val);
+      bbox_birdview.push_back(bbox_birdview_val);
     }
-
-    detect_result.emplace_back(result_parameter,class_id);
-    result_parameter.clear();
-    line.clear();
-  }
-  infile.close();
 }
-// END MODIFICATIONS
-// *******************************************
 
-// FOR TEST
-// =========================
-void PrintDetectionResults(const std::vector<std::pair<std::vector<double>, int>>& detect_result)
+
+// function to create birdview bounding box:
+std::vector<double> CreateBVBbox(double h, double w, double l, double x, double y, double z, double yaw) 
 {
-  for (const auto& detection : detect_result)
-  {
-    const std::vector<double>& result_parameter = detection.first;
-    int class_id = detection.second;
+  std::vector<double> bbox_2d(4, 0.0); // Initialize the 2D bounding box coordinates (left, top, right, bottom)
 
-    // Print the detection parameters
-    std::cout << "Detection Parameters: ";
-    for (const double param : result_parameter)
-    {
-      std::cout << param << " ";
-    }
-    std::cout << std::endl;
+  double cos_yaw = std::cos(yaw);
+  double sin_yaw = std::sin(yaw);
 
-    // Print the class ID
-    std::cout << "Class ID: " << class_id << std::endl;
+  // Compute 3D bounding box corners in local coordinates
+  double x_corners[] = {l / 2, l / 2, -l / 2, -l / 2};
+  double y_corners[] = {0, 0, 0, 0};
+  double z_corners[] = {w / 2, -w / 2, -w / 2, w / 2};
+
+  // Rotate the corners using yaw
+  for (int i = 0; i < 4; ++i) {
+      double rotated_x = cos_yaw * x_corners[i] + sin_yaw * z_corners[i] + x;
+      double rotated_z = -sin_yaw * x_corners[i] + cos_yaw * z_corners[i] + z;
+
+      // Compute the 2D bounding box coordinates
+      if (i == 0) {
+          bbox_2d[0] = rotated_x;
+          bbox_2d[1] = rotated_z;
+          bbox_2d[2] = rotated_x;
+          bbox_2d[3] = rotated_z;
+      } else {
+          if (rotated_x < bbox_2d[0]) bbox_2d[0] = rotated_x; // Left
+          if (rotated_x > bbox_2d[2]) bbox_2d[2] = rotated_x; // Right
+          if (rotated_z < bbox_2d[1]) bbox_2d[1] = rotated_z; // Top
+          if (rotated_z > bbox_2d[3]) bbox_2d[3] = rotated_z; // Bottom
+      }
   }
+  return bbox_2d;
 }
-// =========================
-*/
