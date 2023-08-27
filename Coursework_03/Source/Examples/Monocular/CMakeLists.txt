@@ -23,6 +23,10 @@ add_executable(mono_kitti mono_kitti.cc)
 target_link_libraries(mono_kitti ORB_SLAM2)
 set_target_properties(mono_kitti PROPERTIES OUTPUT_NAME mono_kitti${EXE_POSTFIX})
 
+add_executable(mono_kitti_3d mono_kitti_3d.cc)
+target_link_libraries(mono_kitti_3d ORB_SLAM2)
+set_target_properties(mono_kitti_3d PROPERTIES OUTPUT_NAME mono_kitti_3d${EXE_POSTFIX})
+
 # Install the yaml settings files
 install(TARGETS mono_tum mono_euroc mono_kitti RUNTIME DESTINATION ${BUILD_INSTALL_PREFIX}/bin)
 file(GLOB settings_files "*.yaml")
