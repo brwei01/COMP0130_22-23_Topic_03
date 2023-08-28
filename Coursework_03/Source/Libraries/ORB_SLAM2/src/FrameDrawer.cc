@@ -106,6 +106,13 @@ cv::Mat FrameDrawer::DrawFrame() {
       */
       if (objects_curFD[k] -> sdetect_class == "Car" || objects_curFD[k] -> sdetect_class == "Cyclist")
       {
+        // 3D BIRDVIEW BBOX ON MAP
+        vector<double> box_BV = objects_curFD[k] -> vbbox_birdview;
+        double left_BV = box_BV[0];
+        double top_BV = box_BV[1];
+        double right_BV = box_BV[2];
+        double bottom_BV = box_BV[3];
+        
         bool updated = false;
         // initialize distance
         float dist2cam = 999.0f;
@@ -157,13 +164,6 @@ cv::Mat FrameDrawer::DrawFrame() {
             float kp_u = vCurrentKeys[i].keypoints[0].pt.x;
             float kp_v = vCurrentKeys[i].keypoints[0].pt.y;
             */
-
-            // 3D BIRDVIEW BBOX ON MAP
-            vector<double> box_BV = objects_curFD[k] -> vbbox_birdview;
-            double left_BV = box_BV[0];
-            double top_BV = box_BV[1];
-            double right_BV = box_BV[2];
-            double bottom_BV = box_BV[3];
 
             // 3Dp point coordinates 
             float PcX = vCurrentKeys[i].mapPointCoords[0];
@@ -222,11 +222,19 @@ cv::Mat FrameDrawer::DrawFrame() {
           // std::cout << "car detected!" << pt11 << pt22 << std::endl;
           cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
           std::cout << "This is bounding box: " << pt11 << pt22 << std::endl;
+          std::cout << "Corresponding birdview bbox: " << left_BV << ' '<< top_BV << ' ' << right_BV << ' ' << bottom_BV << endl; 
           std::cout << "min distance to camera: " << std::to_string(dist2cam) << std::endl;
           std::string labelText = "Distance: " + std::to_string(dist2cam);
+          // show only 2 decimal places
+          size_t decimalPos = labelText.find('.');
+          if (decimalPos != std::string::npos && labelText.size() > decimalPos + 3) {
+              labelText = labelText.substr(0, decimalPos + 3);
+          }
+
+
           int font = cv::LINE_AA;
           double fontScale = 0.5;
-          int thickness = 1;
+          int thickness = 2;
           cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
           cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
 
@@ -235,7 +243,7 @@ cv::Mat FrameDrawer::DrawFrame() {
             std::string cautionText = "Caution";
             int cautionFont = cv::FONT_HERSHEY_SIMPLEX;
             double cautionFontScale = 0.5;
-            int cautionThickness = 1;
+            int cautionThickness = 2;
             cv::Point cautionTextPosition(pt11.x, pt11.y - 20); // Adjust the position as needed
             cv::putText(im, cautionText, cautionTextPosition, cautionFont, cautionFontScale, cv::Scalar(0, 0, 255), cautionThickness);
           }    
