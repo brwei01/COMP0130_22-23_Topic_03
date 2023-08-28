@@ -48,16 +48,18 @@ void ReadBoundingBox(const string& strPathToDetectionResult,
                     std::vector<int>& frame_id, 
                     vector<string>& type, 
                     vector<vector<double>>& bbox_2d, 
-                    vector<vector<double>>& bbox_birdview);
+                    vector<vector<vector<double>>>& bbox_3d,
+                    vector<vector<double>>& bbox_2d_BV);
 
 void LoadBoundingBoxBV(int frame_number,
                      std::vector<int>& nframe_id,
                      std::vector<std::string>& stype,
                      std::vector<std::vector<double>>& vbbox_2d, 
-                     std::vector<std::vector<double>>& vbbox_birdview,
-                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result);
+                     std::vector<std::vector<std::vector<double>>>& vbbox_3d,
+                     std::vector<std::vector<double>>& vbbox_2d_BV,
+                     std::vector<std::tuple<int, std::vector<double>, vector<vector<double>>, vector<double>, std::string>>& detect_result);
 
-std::vector<double> CreateBVBbox(double h, double w, double l, double x, double y, double z, double yaw);
+std::vector<std::vector<double>> Create3DBbox(double h, double w, double l, double x, double y, double z, double yaw);
 
 
 
@@ -111,9 +113,10 @@ int main(int argc, char **argv) {
     std::vector<int> nframe_id;
     std::vector<std::string> stype;
     std::vector<std::vector<double>> vbbox_2d; 
-    std::vector<std::vector<double>> vbbox_birdview;
+    std::vector<std::vector<std::vector<double>>> vbbox_3d;
+    std::vector<std::vector<double>> vbbox_2d_BV;
     // read data into these variables defined above
-    ReadBoundingBox(strPathToDetectionResult, nframe_id, stype, vbbox_2d, vbbox_birdview);
+    ReadBoundingBox(strPathToDetectionResult, nframe_id, stype, vbbox_2d, vbbox_3d, vbbox_2d_BV);
 
     // Main loop: load images
     cv::Mat im;
@@ -128,9 +131,9 @@ int main(int argc, char **argv) {
       
       // ADD VARIABLE detect_result
       // Clear the detect_result vector before loading new bounding boxes
-      std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>> detect_result;
+      std::vector<std::tuple<int, std::vector<double>, std::vector<std::vector<double>>, std::vector<double> ,std::string>> detect_result;
 
-      LoadBoundingBoxBV(ni, nframe_id, stype, vbbox_2d, vbbox_birdview, detect_result);
+      LoadBoundingBoxBV(ni, nframe_id, stype, vbbox_2d, vbbox_3d, vbbox_2d_BV, detect_result);
 
 
       /*
@@ -276,8 +279,9 @@ void LoadBoundingBoxBV(int frame_number,
                      std::vector<int>& nframe_id,
                      std::vector<std::string>& stype,
                      std::vector<std::vector<double>>& vbbox_2d, 
-                     std::vector<std::vector<double>>& vbbox_birdview,
-                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result)
+                     std::vector<std::vector<std::vector<double>>>& vbbox_3d,
+                     std::vector<std::vector<double>>& vbbox_2d_BV,
+                     std::vector<std::tuple<int, std::vector<double>, vector<vector<double>>, vector<double>, std::string>>& detect_result)
 
 {
     // Clear the detect_result vector before loading new bounding boxes
@@ -286,7 +290,7 @@ void LoadBoundingBoxBV(int frame_number,
     for (size_t i = 0; i < nframe_id.size(); ++i) {
         if (nframe_id[i] == frame_number) {
             // Match found, add corresponding data to detect_result
-            detect_result.emplace_back(nframe_id[i], vbbox_2d[i], vbbox_birdview[i], stype[i]);
+            detect_result.emplace_back(nframe_id[i], vbbox_2d[i], vbbox_3d[i], vbbox_2d_BV[i], stype[i]);
         }
     }
 }
@@ -296,7 +300,8 @@ void ReadBoundingBox(const string& strPathToDetectionResult,
                      vector<int>& frame_id, 
                      vector<string>& type, 
                      vector<vector<double>>& bbox_2d, 
-                     vector<vector<double>>& bbox_birdview)
+                     vector<vector<vector<double>>>& bbox_3d,
+                     vector<vector<double>>& bbox_2d_BV)
 {
   ifstream infile;
   infile.open(strPathToDetectionResult);
@@ -336,44 +341,42 @@ void ReadBoundingBox(const string& strPathToDetectionResult,
 
       bbox_2d.push_back(bbox_2d_val);
 
-      // save all calculated birdview bboxes 
-      std::vector<double> bbox_birdview_val;
-      bbox_birdview_val = CreateBVBbox(height_val, width_val, length_val, pos_x_val, pos_y_val, pos_z_val, rot_y_val);
-      bbox_birdview.push_back(bbox_birdview_val);
+      // save all calculated 3d bboxes 
+      std::vector<std::vector<double>> bbox_3d_val;
+      bbox_3d_val = Create3DBbox(height_val, width_val, length_val, pos_x_val, pos_y_val, pos_z_val, rot_y_val);
+      bbox_3d.push_back(bbox_3d_val);
+
+      std::vector<double> bbox_2d_BV_val;
+      bbox_2d_BV_val = {0,0,0,0};
+      bbox_2d_BV.push_back(bbox_2d_BV_val);
     }
 }
 
 
-// function to create birdview bounding box:
-std::vector<double> CreateBVBbox(double h, double w, double l, double x, double y, double z, double yaw) 
+
+// function to create 3d bounding box:
+std::vector<std::vector<double>> Create3DBbox(double h, double w, double l, double x, double y, double z, double yaw) 
 {
-  std::vector<double> bbox_2d(4, 0.0); // Initialize the 2D bounding box coordinates (left, top, right, bottom)
+    std::vector<std::vector<double>> bbox_3d(8, std::vector<double>(3, 0.0));
 
-  double cos_yaw = std::cos(yaw);
-  double sin_yaw = std::sin(yaw);
+    double cos_yaw = std::cos(yaw);
+    double sin_yaw = std::sin(yaw);
 
-  // Compute 3D bounding box corners in local coordinates
-  double x_corners[] = {l / 2, l / 2, -l / 2, -l / 2};
-  double y_corners[] = {0, 0, 0, 0};
-  double z_corners[] = {w / 2, -w / 2, -w / 2, w / 2};
+    double x_corners[] = { l / 2,  l / 2, -l / 2, -l / 2,  l / 2,  l / 2, -l / 2, -l / 2 };
+    double y_corners[] = {   0.0,    0.0,   0.0,    0.0, -h,     -h,    -h,     -h   };
+    double z_corners[] = {  w / 2, -w / 2, -w / 2,  w / 2,  w / 2, -w / 2, -w / 2,  w / 2 };
 
-  // Rotate the corners using yaw
-  for (int i = 0; i < 4; ++i) {
-      double rotated_x = cos_yaw * x_corners[i] + sin_yaw * z_corners[i] + x;
-      double rotated_z = -sin_yaw * x_corners[i] + cos_yaw * z_corners[i] + z;
+    for (int i = 0; i < 8; ++i) {
+        double rotated_x = cos_yaw * x_corners[i] - sin_yaw * z_corners[i] + x;
+        double rotated_y = y_corners[i] + y;
+        double rotated_z = sin_yaw * x_corners[i] + cos_yaw * z_corners[i] + z;
 
-      // Compute the 2D bounding box coordinates
-      if (i == 0) {
-          bbox_2d[0] = rotated_x;
-          bbox_2d[1] = rotated_z;
-          bbox_2d[2] = rotated_x;
-          bbox_2d[3] = rotated_z;
-      } else {
-          if (rotated_x < bbox_2d[0]) bbox_2d[0] = rotated_x; // Left
-          if (rotated_x > bbox_2d[2]) bbox_2d[2] = rotated_x; // Right
-          if (rotated_z < bbox_2d[1]) bbox_2d[1] = rotated_z; // Top
-          if (rotated_z > bbox_2d[3]) bbox_2d[3] = rotated_z; // Bottom
-      }
-  }
-  return bbox_2d;
+        bbox_3d[i][0] = rotated_x;
+        bbox_3d[i][1] = rotated_y;
+        bbox_3d[i][2] = rotated_z;
+    }
+    
+    return bbox_3d;
 }
+
+

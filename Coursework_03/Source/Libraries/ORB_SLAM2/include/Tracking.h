@@ -63,7 +63,7 @@ public:
                         const double &timestamp);
   cv::Mat GrabImageMonocular(const cv::Mat &im, const double &timestamp,
                             // add new param
-                            std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result
+                            std::vector<std::tuple<int, std::vector<double>, std::vector<std::vector<double>>, std::vector<double> ,std::string>> detect_result
                             // finish adding new param
                             );
 

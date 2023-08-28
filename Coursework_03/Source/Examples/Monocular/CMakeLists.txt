@@ -24,7 +24,9 @@ target_link_libraries(mono_kitti ORB_SLAM2)
 set_target_properties(mono_kitti PROPERTIES OUTPUT_NAME mono_kitti${EXE_POSTFIX})
 
 # Install the yaml settings files
+# install mono_kitti only
 # install(TARGETS mono_tum mono_euroc mono_kitti RUNTIME DESTINATION ${BUILD_INSTALL_PREFIX}/bin)
+install(TARGETS mono_kitti RUNTIME DESTINATION ${BUILD_INSTALL_PREFIX}/bin)
 file(GLOB settings_files "*.yaml")
 install(FILES ${settings_files} DESTINATION ${MONO_DEFAULT_SETTINGS_DIR})
 

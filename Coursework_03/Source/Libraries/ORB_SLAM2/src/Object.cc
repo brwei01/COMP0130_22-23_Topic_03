@@ -33,15 +33,17 @@ namespace ORB_SLAM2
     {
         nframe_id = 0;
         vbbox_2d = {0,0,0,0};
-        vbbox_birdview = {0,0,0,0};
+        vbbox_3d = {{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}};
+        vbbox_2d_BV = {0,0,0,0};
         sdetect_class = "DoNotCare";
     }
 
-    Object3D::Object3D( const int& nframe_id_,
+    Object3D::Object3D(const int& nframe_id_,
                     const std::vector<double>& vbbox_2d_,
-                    const std::vector<double>& vbbox_birdview_,
+                    const std::vector<std::vector<double>>& vbbox_3d_,
+                    const std::vector<double>& vbbox_2d_BV_,
                     const std::string& sdetect_class_):
-    nframe_id(nframe_id_), vbbox_2d(vbbox_2d_), vbbox_birdview(vbbox_birdview_), sdetect_class(sdetect_class_){}
+    nframe_id(nframe_id_), vbbox_2d(vbbox_2d_), vbbox_3d(vbbox_3d_), vbbox_2d_BV(vbbox_2d_BV_), sdetect_class(sdetect_class_){}
 
     Object3D::~Object3D(){}
 
@@ -55,15 +57,18 @@ namespace ORB_SLAM2
         return vbbox_2d;
     }
 
-    vector<double> Object3D::GetBboxBV()
+    vector<vector<double>> Object3D::Get3dBbox()
     {
-        return vbbox_birdview;
+        return vbbox_3d;
     }
 
-    string Object3D::GetDetectClassBV()
+    vector<double> Object3D::GetBVBbox()
+    {
+        return vbbox_2d_BV;
+    }
+
+    string Object3D::GetGTDetectClass()
     {
         return sdetect_class;
     }
-
-
 }

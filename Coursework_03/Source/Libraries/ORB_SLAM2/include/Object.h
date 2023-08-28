@@ -39,20 +39,26 @@ namespace ORB_SLAM2
     {
     public:
         Object3D();
-        Object3D(const int& nframe_id_, const vector<double>& vbbox_2d_, const vector<double>& vbbox_birdview_, const string& sdetect_class_);
+        Object3D(const int& nframe_id_, 
+                const vector<double>& vbbox_2d_, 
+                const vector<vector<double>>& vbbox_3d_, 
+                const vector<double>& vbbox_2d_BV_, 
+                const string& sdetect_class_);
         ~Object3D();
 
     public:
         int nframe_id;
         vector<double> vbbox_2d;
-        vector<double> vbbox_birdview;
+        vector<vector<double>> vbbox_3d;
+        vector<double> vbbox_2d_BV;
         string sdetect_class;
 
     public:
         int GetFrameID();
         vector<double> Get2dBbox();
-        vector<double> GetBboxBV();
-        string GetDetectClassBV();
+        vector<vector<double>> Get3dBbox();
+        vector<double> GetBVBbox();
+        string GetGTDetectClass();
     };
 
 }

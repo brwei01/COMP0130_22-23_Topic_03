@@ -51,7 +51,6 @@ struct KeyPointsWithInfo {
         mapPointCoords.push_back(pt.z);
     }
     */
-
   }
 };
 // ***********************

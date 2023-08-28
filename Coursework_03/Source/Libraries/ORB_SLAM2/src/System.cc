@@ -269,7 +269,7 @@ cv::Mat System::TrackRGBD(const cv::Mat &im, const cv::Mat &depthmap,
 
 cv::Mat System::TrackMonocular(const cv::Mat &im, 
                               const double &timestamp,
-                              std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result) 
+                              std::vector<std::tuple<int, std::vector<double>, std::vector<std::vector<double>>, std::vector<double> ,std::string>> detect_result) 
 {
   if (mSensor != MONOCULAR) {
     cerr << "ERROR: you called TrackMonocular but input sensor was not set to "
