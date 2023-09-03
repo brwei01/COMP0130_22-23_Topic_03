@@ -104,11 +104,22 @@ cv::Mat FrameDrawer::DrawFrame() {
       std::cout << objects_curFD[k]->ndetect_class << std::endl;          
       // THIS CAN BE ANNOTATED
       */
-      if (objects_curFD[k] -> ndetect_class == 2 || objects_curFD[k] -> ndetect_class == 3)
+
+
+      if (objects_curFD[k] -> sdetect_class == "car" || objects_curFD[k] -> sdetect_class == "person")
       {
         bool updated = false;
         // initialize distance
         float dist2cam = 999.0f;
+
+        vector<double> box = objects_curFD[k]->vdetect_parameter;
+        double left = box[0];
+        double top = box[1];
+        double right = box[2];
+        double bottom = box[3];
+
+        vector<vector<int>> mask_coords = objects_curFD[k]->vmask_coords;
+
         for (int i=0; i<n; i++)
         {
 
@@ -144,17 +155,31 @@ cv::Mat FrameDrawer::DrawFrame() {
             // *********************
             // MODIFICATIONS: make the selected dot red
 
+            int kp_u = vCurrentKeys[i].keypoints[0].pt.x;
+            int kp_v = vCurrentKeys[i].keypoints[0].pt.y;
+            // std::cout<<kp_u<<","<<kp_v<<endl;
 
-            vector<double> box = objects_curFD[k]->vdetect_parameter;
-            double left = box[0];
-            double top = box[1];
-            double right = box[2];
-            double bottom = box[3];
+            bool isInMaskCoords = false;
 
-            float kp_u = vCurrentKeys[i].keypoints[0].pt.x;
-            float kp_v = vCurrentKeys[i].keypoints[0].pt.y;
+            for (const auto& coords : mask_coords)
+            {
+                if (coords.size() == 2)
+                {
+                    int coord_u = coords[0];
+                    int coord_v = coords[1];
 
-            if (kp_u > left + 2 && kp_u < right - 2 && kp_v > top + 2 && kp_v < bottom - 2)
+                    if (kp_u == coord_u && kp_v == coord_v)
+                    {
+                        // (kp_u, kp_v) is in mask_coords
+                        isInMaskCoords = true;
+                        // You can perform actions here when the point is found in mask_coords
+                        break; // Exit the loop since we found a match
+                    }
+                }
+            }
+            
+
+            if (isInMaskCoords)
             {
               /*
               // Get distance and convert to string
@@ -204,9 +229,14 @@ cv::Mat FrameDrawer::DrawFrame() {
           std::cout << "This is bounding box: " << pt11 << pt22 << std::endl;
           std::cout << "min distance to camera: " << std::to_string(dist2cam) << std::endl;
           std::string labelText = "Distance: " + std::to_string(dist2cam);
+          // show only 2 decimal places
+          size_t decimalPos = labelText.find('.');
+          if (decimalPos != std::string::npos && labelText.size() > decimalPos + 3) {
+              labelText = labelText.substr(0, decimalPos + 3);
+          }
           int font = cv::LINE_AA;
           double fontScale = 0.5;
-          int thickness = 1;
+          int thickness = 2;
           cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
           cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
 

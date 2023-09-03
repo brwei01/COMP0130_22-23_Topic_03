@@ -80,7 +80,7 @@ public:
   cv::Mat TrackMonocular(const cv::Mat &im, 
                          const double &timestam,
                          // ADD NEW PARAM
-                         const vector<std::pair<vector<double>, int>>& detect_result
+                         const vector<tuple<vector<double>, string, vector<vector<int>>>>& detect_result
                          // END ADDING NEW PARAM
                          );
 

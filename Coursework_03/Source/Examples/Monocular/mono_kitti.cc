@@ -25,6 +25,7 @@
 #include <iomanip>
 #include <iostream>
 #include <sysexits.h>
+#include <regex>
 
 #include <sys/socket.h>
 #include <sys/un.h>
@@ -37,87 +38,36 @@
 namespace fs = ::boost::filesystem;
 using namespace std;
 
-
-// ******************************************
-// TO MAKE FULLY ONLINE USING SOCKET SERVER
-// replace the LoadBoundingBoxFromPython method
-void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd);
-
-void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result);
-// END: TO MAKE FULLY ONLINE
-// *******************************************
 void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
-
-/*
-// ************************************************************
-// THIS IS THE OFFLINE VERSION
 // MODIFICATION: ADD NEW FUNCTION
-void LoadBoundingBox(const string& strPathToDetectResult, 
-                    std::vector<std::pair<std::vector<double>, int>>& detect_result);
+void LoadBoundingBox(const std::string& strPathToDetectionResult,
+    vector<std::tuple<std::vector<double>, std::string, std::vector<std::vector<int>>>>& detect_result);
+
+void ParseMaskCoords(const std::string& maskCoordsStr, std::vector<std::vector<int>>& maskCoords);
+
+void PrintDetectionResults(const std::vector<std::tuple<std::vector<double>, std::string, std::vector<std::vector<int>>>>& detect_result);
 // END MODIFICATION
-// ************************************************************
-*/
 
 
 int main(int argc, char **argv) {
 
+  /*
   // Save the logs to file
   // create an ofstream obj to open the log file
-  std::ofstream outputFile("/home/brwei01/Dev/COMP0130_22-23_Topic_03/Coursework_03/Results/console_log.txt");
+  std::ofstream outputFile("/home/brwei01/Dev/SLAM_MASK/COMP0130_22-23_Topic_03/Coursework_03/Results/console_log.txt");
   // Redirect std::cout to the file stream
   std::streambuf* originalCoutBuffer = std::cout.rdbuf();
   std::cout.rdbuf(outputFile.rdbuf());
-  
+  */
 
-
-  // SOCKET INITIALIZATION
-  int sockfd;
-  int len;
-  struct sockaddr_un address;
-  int result;
-  int i, byte;
-  char send_buf[128], ch_recv[1024];
-
-  if((sockfd = socket(AF_UNIX, SOCK_STREAM, 0)) == -1)
-  {
-    perror("socket");
-    exit(EXIT_FAILURE);
-  }
-
-  // setup server_address
-  address.sun_family = AF_UNIX;
-  strcpy(address.sun_path, "/home/brwei01/Dev/server_socket");
-  len = sizeof(address);
-
-  result = connect(sockfd, (struct sockaddr *)&address, len);
-
-  if (result == -1)
-  {
-    printf("please ensure the server is up\n");
-    perror("connect");
-    exit(EXIT_FAILURE);
-  }
-  // END SOCKET SERVER INIT
-
-  if(argc != 4) {
-    cerr << endl
-          << "Usage: " << argv[0] << " setting_files path_to_sequence results_file_dir" << endl;
-    return EX_USAGE;
-  }
-
-  // ==================================
   // OFFLINE -- requires extra statement 'yolov5_detect_result'
-  /*
     if (argc != 5) {
     cerr << endl
-          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file yolov5_detect_results" << endl;
+          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file yolact_detect_results" << endl;
     return EX_USAGE;
   }
-  */
-  // ===================================
-
 
   // Retrieve paths to images
   // store path to mono images and corresponding timestamps 
@@ -159,23 +109,19 @@ int main(int argc, char **argv) {
       // frameInfo << SeriesNumber << std::endl;
 
 
-      std::vector<std::pair<std::vector<double>, int>> detect_result;
-      MakeDetect_result(detect_result, sockfd);
-      
-      // ========================================
-      // USED FOR OFFLINE VERSION
-      /*
-      // ******************************* 
       // MODIFICATION: LOAD BOUNDING BOX
-      string strPathToDetectionResult = argv[4] + std::to_string(vTimestamps[ni]) + ".txt"; // read detect result from yolov5
-      // ***************************************
+      string fname;
+      stringstream ss;
+      ss << setfill('0') << setw(10) << ni;
+      fname = ss.str() + ".txt";
+      string strPathToDetectionResult = argv[4] + fname; // read detect result from yolov5
+
       // MODIFICATIONS: ADD VARIABLE detect_result
       // Clear the detect_result vector before loading new bounding boxes
-      std::vector<std::pair<std::vector<double>, int>> detect_result;
+      vector<tuple<vector<double>, string, vector<vector<int>>>> detect_result;
+
       // END ADDING VARAIBLE
-      // ***************************************  
       LoadBoundingBox(strPathToDetectionResult, detect_result);
-      */
 
       /*
       // this part annotated to avoid programme quitting where no detections seen
@@ -185,10 +131,7 @@ int main(int argc, char **argv) {
         return 1;
       }
       */
-
-      // END MODIFICATION
-      // ********************************
-      // ====================================================
+      // END MODIFICATION LOAD BOUNDING BOX
 
 
       // Read image from file
@@ -261,13 +204,16 @@ int main(int argc, char **argv) {
   // Save to KITTI pose file
   //SLAM.SaveTrajectoryKITTI(string(argv[3]));
 
+  /*
   // Restore the original std::cout buffer
   std::cout.rdbuf(originalCoutBuffer);
   // Close the output file stream
   outputFile.close();
+  */
 
   return EX_OK;
 }
+
 
 void LoadImages(const string &strPathToSequence,
                 vector<string> &vstrImageFilenames,
@@ -308,234 +254,152 @@ void LoadImages(const string &strPathToSequence,
 
   for (int i = 0; i < nTimes; i++) {
     stringstream ss;
-    ss << setfill('0') << setw(6) << i;
+    ss << setfill('0') << setw(10) << i;
     vstrImageFilenames[i] = strPrefixLeft + ss.str() + ".png";
   }
 }
 
 
-
-
-// ***************************************************************
-// TO MAKE FULLY ONLINE USING SOCKET SERVER
-// ADDING 2 FUNCTIONS: 
-// LoadBoundingBoxFromPython, MakeDetect_result
-void LoadBoundingBoxFromPython(const string& resultFromPython, std::pair<vector<double>, int>& detect_result)
-{
-  if(resultFromPython.empty())
-  {
-    cerr << "no string from python!" << endl;
-  }
-  // cout << "running LoadBoundingBoxFromPython" << endl;
-
-  vector<double> result_parameter;
-  int sum = 0; 
-  int num_bit = 0;
-
-  int idx_bbxEnd = resultFromPython.find("class:");
-
-  for(char c: resultFromPython.substr(0,idx_bbxEnd))
-  {
-    // read nums. e.g. 780 = ((7*10 + 8)*10) + 4;
-    if(c >= '0' && c <= '9')
-    {
-      num_bit = c - '0';
-      sum = sum * 10 + num_bit;
-    }
-    else if (c == ' ')
-    {
-      result_parameter.push_back(sum);
-      sum = 0;
-      num_bit = 0;
-    }
-  }
-
-  /*
-  std::cout << "result parameter: ";
-  for (const double& value : result_parameter)
-  {
-    std::cout << " " << value;
-  }
-  std::cout << std::endl;
-  */
-
-  detect_result.first = result_parameter;
-  string idx_begin = "class:"; // read the class of the object;
-  int idx = resultFromPython.find(idx_begin);
-  string idx_end = "0.";
-  int idx2 = resultFromPython.find(idx_end);
-  string class_label;
-  for (int j = idx + 6; j < idx2-1; ++j)
-  {
-    class_label += resultFromPython[j];
-  }
-
-  int class_id = -1; // store the class of obj detected
-  if (class_label == "tv" ||
-    class_label == "refrigerator" ||
-    class_label == "teddy bear" ||
-    class_label == "laptop"){
-      class_id = 1;
-    }
-
-  if (class_label == "car"){
-    class_id = 4;
-  }
-
-  if (class_label == "bicycle" || class_label == "person"){
-    class_id = 2;
-  }
-
-  if (class_label == "motorcycle"){
-    class_id = 3;
-  }
-
-  detect_result.second = class_id;
-  // cout << "LoadBoundBoxFromPython class id is: " << class_id << endl;
-}
-
-
-void MakeDetect_result(vector<std::pair<vector<double>,int>>& detect_result, int sockfd)
-{
-  detect_result.clear();
-  
-  std::pair<vector<double>, int> detect_result_str;
-  int byte;
-  char send_buf[128], ch_recv[1024];
-
-  sprintf(send_buf, "ok"); // sprintf sends the message to send_buf
-  if((byte=write(sockfd, send_buf, sizeof(send_buf)))==-1)
-  {
-    perror("write");
-    exit(EXIT_FAILURE);
-  }
-
-  if((byte=read(sockfd, &ch_recv, 1000))==-1)
-  {
-    perror("read");
-    exit(EXIT_FAILURE);
-  }
-  // cout << "**ch_recv is : \n" << ch_recv << endl;
-  char *ptr;
-  ptr = strtok(ch_recv, "*"); // str split
-  while(ptr != NULL)
-  {
-    // printf("ptr=%s\n", ptr);
-
-    if (strlen(ptr) > 20)
-    {
-      // cout << strlen(ptr) << endl;
-      string ptr_str = ptr;
-      LoadBoundingBoxFromPython(ptr_str, detect_result_str);
-    }
-
-    detect_result.emplace_back(detect_result_str);
-    // cout <<   "hh: " << ptr_str << endl;
-    ptr = strtok(NULL, "*");
-    }
-
-    // cout << "detect_result size is: " << detect_result.size() << endl;
-    // for (int k = 0; k < detect_result.size(); ++k)
-    // cout << "detect_result is: \n" << detect_result[k].second << endl;
-}
-// END: TO MAKE FULLY ONLINE
-// **********************************************************************************
-
-
-
-/*
-// *******************************************
 // TO USE THE FOLLOWING VERSION,
-// YOLO DETECT FILES MUST BE IN PLACE.
+// YOLACT DETECT FILES MUST BE PROVIDED.
 // MODIFICATIONS
-void LoadBoundingBox(const string& strPathToDetectionResult, 
-                    std::vector<std::pair<vector<double>, int>>& detect_result)
+
+void ParseMaskCoords(const std::string& maskCoordsStr, std::vector<std::vector<int>>& maskCoords)
 {
-  ifstream infile;
-  infile.open(strPathToDetectionResult);
-  
-  
-  if(!infile.is_open())
-  {
-    std::cout<<R"(yolo detection result files failed to open at: )"<<strPathToDetectionResult<<std::endl;
-    // exit(233);
-  }
-  vector<double> result_parameter;
-  string line;
-  while(getline(infile, line))
-  {
-    int sum = 0, num_bit = 0;
-    for (char c: line)
+    maskCoords.clear();
+
+    // Define a regular expression pattern to match mask_coords
+    std::regex pattern("\\[(\\d+), (\\d+)\\]");
+
+    std::smatch matches;
+    std::string::const_iterator searchStart(maskCoordsStr.cbegin());
+
+    while (std::regex_search(searchStart, maskCoordsStr.cend(), matches, pattern))
     {
-      if (c >= '0' && c <= '9')
-      {
-        num_bit = c - '0';
-        sum = sum * 10 + num_bit;
-      }
-      else if (c = ' ')
-      {
-        result_parameter.push_back(sum);
-        sum = 0;
-        num_bit = 0;
-      }
-    }
+        std::vector<int> coordList;
+        int x, y;
 
-    string idx_begin = "class:";
-    int idx = line.find(idx_begin);
-    string idx_end = "0.";
-    int idx2 = line.find(idx_end);
-    string class_label;
-    for (int j = idx + 6; j < idx2-1; ++j)
-    {
-      class_label += line[j];
-    }
-    // cout << "**" << class_label << "**";
+        x = std::stoi(matches[1]);
+        y = std::stoi(matches[2]);
 
-    int class_id = -1;//存入识别物体的种类
-    if (class_label == "person") { //高动态物体:人,动物等
-        class_id = 3;
-    }
+        coordList.push_back(x);
+        coordList.push_back(y);
 
-    if (class_label == "tv" ||   //低动态物体(在程序中可以假设为一直静态的物体):tv,refrigerator
-        class_label == "refrigerator" || 
-        class_label == "teddy bear") {
-        class_id = 1;
-    }
+        maskCoords.push_back(coordList);
 
-    if (class_label == "chair" || //中动态物体,在程序中不做先验动态静态判断
-        class_label == "car"){
-        class_id = 2;
+        // Update the searchStart position to continue searching
+        searchStart = matches.suffix().first;
     }
-
-    detect_result.emplace_back(result_parameter,class_id);
-    result_parameter.clear();
-    line.clear();
-  }
-  infile.close();
 }
-// END MODIFICATIONS
-// *******************************************
+
+
+
+void LoadBoundingBox(const std::string& strPathToDetectionResult,
+    vector<std::tuple<std::vector<double>, std::string, std::vector<std::vector<int>>>>& detect_result)
+{
+    std::ifstream infile;
+    infile.open(strPathToDetectionResult);
+
+    if (!infile.is_open())
+    {
+        std::cout << R"(yolact detection result files failed to open at: )" << strPathToDetectionResult << std::endl;
+        // exit(233);
+    }
+
+    vector<tuple<vector<double>, string, vector<vector<int>>>> result_parameters;
+
+    std::string line;
+
+    while (std::getline(infile, line))
+    {
+        // Initialize variables to store bounding_box and class_label
+        vector<double> bounding_box;
+        string class_label;
+
+        // Parse the mask_coords part
+        size_t maskCoordsPos = line.find("mask_coords:");
+        if (maskCoordsPos != std::string::npos)
+        {
+            maskCoordsPos += 12; // Move past "mask_coords:"
+            std::string maskCoordsStr = line.substr(maskCoordsPos);
+
+            // Parse the bounding_box and class_label
+            std::regex bboxPattern("left:(\\d+) top:(\\d+) right:(\\d+) bottom:(\\d+) class: (\\w+) score: (\\d+\\.\\d+)");
+            std::smatch bboxMatches;
+
+            if (std::regex_search(line, bboxMatches, bboxPattern))
+            {
+                // Extract bounding box values (left, top, right, bottom) and class label
+                double left = std::stod(bboxMatches[1]);
+                double top = std::stod(bboxMatches[2]);
+                double right = std::stod(bboxMatches[3]);
+                double bottom = std::stod(bboxMatches[4]);
+                class_label = bboxMatches[5];
+
+                // Populate the bounding_box vector
+                bounding_box.push_back(left);
+                bounding_box.push_back(top);
+                bounding_box.push_back(right);
+                bounding_box.push_back(bottom);
+            }
+
+            // Create a vector to store the parsed mask coordinates
+            std::vector<std::vector<int>> maskCoords;
+            ParseMaskCoords(maskCoordsStr, maskCoords);
+
+            // Create a tuple with all the parsed information and add it to result_parameters
+            result_parameters.push_back(std::make_tuple(bounding_box, class_label, maskCoords));
+        }
+    }
+
+    // Move the result_parameters to detect_result
+    detect_result = std::move(result_parameters);
+    // PrintDetectionResults(detect_result);
+
+    infile.close();
+}
+
+
 
 // FOR TEST
 // =========================
-void PrintDetectionResults(const std::vector<std::pair<std::vector<double>, int>>& detect_result)
+void PrintDetectionResults(const vector<tuple<vector<double>, string, vector<vector<int>>>>& detect_result)
 {
-  for (const auto& detection : detect_result)
-  {
-    const std::vector<double>& result_parameter = detection.first;
-    int class_id = detection.second;
-
-    // Print the detection parameters
-    std::cout << "Detection Parameters: ";
-    for (const double param : result_parameter)
+    for (const auto& detection : detect_result)
     {
-      std::cout << param << " ";
-    }
-    std::cout << std::endl;
+        const vector<double>& result_parameters = std::get<0>(detection);
+        const string& class_label = std::get<1>(detection);
+        const vector<vector<int>>& mask_coords = std::get<2>(detection);
 
-    // Print the class ID
-    std::cout << "Class ID: " << class_id << std::endl;
-  }
+        // Print the detection parameters
+        std::cout << "Detection Parameters: ";
+        for (const double param : result_parameters)
+        {
+            std::cout << param << " ";
+        }
+        std::cout << std::endl;
+
+        // Print the class label
+        std::cout << "Class Label: " << class_label << std::endl;
+
+        // Print the mask coordinates
+        std::cout << "Mask Coordinates:" << std::endl;
+        for (const auto& coords : mask_coords)
+        {
+            for (const int coord : coords)
+            {
+                std::cout << coord << " ";
+            }
+            std::cout << std::endl;
+        }
+
+        std::cout << std::endl; // Separate each detection with an empty line
+    }
 }
+
+
 // =========================
-*/
+
+
+
+

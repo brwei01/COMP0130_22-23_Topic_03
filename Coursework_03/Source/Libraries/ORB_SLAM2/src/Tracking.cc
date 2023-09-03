@@ -256,7 +256,7 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB, const cv::Mat &imD,
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im,
                                      const double &timestamp,
                                      // add new param
-                                     const vector<std::pair<vector<double>, int>>& detect_result
+                                     const vector<tuple<vector<double>, string, vector<vector<int>>>>& detect_result
                                      // END ADDING NEW PARAM
                                      ) {
   mImGray = im;

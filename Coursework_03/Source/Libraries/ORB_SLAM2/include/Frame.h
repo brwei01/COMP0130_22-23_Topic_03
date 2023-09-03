@@ -35,6 +35,8 @@
 
 #include <opencv2/opencv.hpp>
 
+using namespace std;
+
 namespace ORB_SLAM2 {
 #define FRAME_GRID_ROWS 48
 #define FRAME_GRID_COLS 64
@@ -66,7 +68,7 @@ public:
         ORBVocabulary *voc, cv::Mat &K, cv::Mat &distCoef, const float &bf,
         const float &thDepth,
         // add param
-        const std::vector<std::pair<std::vector<double>, int>>& detect_result
+        const std::vector<std::tuple<std::vector<double>, std::string, std::vector<std::vector<int>>>>& detect_result
         // end add param
         );
 
@@ -113,15 +115,6 @@ public:
   // Backprojects a keypoint (if stereo/depth info available) into 3D world
   // coordinates.
   cv::Mat UnprojectStereo(const int &i);
-
-
-  // *****************************
-  // MODIFICATION
-  bool IsInBox(const int& i, int& box_id); // whether point is in bbox
-  bool IsInDynamic(const int& i); // whether point is in dynamic features(persons)
-  bool IsInStatic(const int& i);
-  // END MODIFICATION
-  // *****************************
 
 public:
   // Vocabulary used for relocalization.

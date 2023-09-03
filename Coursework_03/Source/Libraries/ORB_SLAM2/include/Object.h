@@ -15,24 +15,20 @@ namespace ORB_SLAM2
     {
         public:
         Object();
-        Object(vector<double> vdetect_parameter_, int ndetect_class_);
+        Object(vector<double> vdetect_parameter_, 
+                string sdetect_class_,
+                vector<vector<int>> vmask_coords);
         ~Object();
 
         public:
-        enum classname
-        {
-            person = 3,
-            car = 1
-        };
-
-        public:
         vector<double> vdetect_parameter;
-        int ndetect_class;
-        bool bdynamic_;
+        string sdetect_class;
+        vector<vector<int>> vmask_coords;
 
         public:
         vector<double> GetDetectParameter();
-        int GetDetectClass();      
+        string GetDetectClass();
+        vector<vector<int>> GetMaskCoords();      
     };
 }
 

@@ -191,7 +191,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
              ORBextractor *extractor, ORBVocabulary *voc, cv::Mat &K,
              cv::Mat &distCoef, const float &bf, const float &thDepth,
              // add new variable: detect_result
-             const vector<std::pair<vector<double>, int>>& detect_result
+             const vector<tuple<vector<double>, string, vector<vector<int>>>>& detect_result
              // end adding new variable
              )
     : mpORBvocabulary(voc), mpORBextractorLeft(extractor),
@@ -203,13 +203,16 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
   // ***************************
   // MODIFICATION: STEP0.5 ADDING DETECTION BOX INTO FRAME
   vector<double> vobject_box;
-  int nobject_class;
+  string sobject_class;
+  vector<vector<int>> vmask_coords;
 
   for(int k = 0; k<detect_result.size(); ++k)
   {
-    vobject_box = detect_result[k].first;
-    nobject_class = detect_result[k].second;
-    std::shared_ptr<Object> obj = make_shared<Object>(vobject_box, nobject_class);
+    const auto& detection = detect_result[k];
+    vobject_box = std::get<0>(detection);
+    sobject_class = std::get<1>(detection);
+    vmask_coords = std::get<2>(detection);
+    std::shared_ptr<Object> obj = make_shared<Object>(vobject_box, sobject_class, vmask_coords);
     objects_cur_.push_back(obj);
   }
   // END MODIFICATION
@@ -235,25 +238,6 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
   if (mvKeys.empty())
     return;
 
-
-
-  // ***************************
-  // MODIFICATIONS: VERIFY IF OBJECT POINT IS IN DYNA BB
-  for (int k=0; k<mvKeys.size(); ++k)
-  {
-    if (IsInDynamic(k) == true && IsInStatic(k) == false)
-    {
-      vbInDynamic_mvKeys.push_back(true);
-      // cout << "true" << endl;
-      // mvKeys[k] = cv::KeyPoint(-1,-1,-1);
-    }
-    else{
-      vbInDynamic_mvKeys.push_back(false);
-      // cout << "false" << endl;
-    }
-  }
-  // END MODIFICATION
-  // ***************************
 
   UndistortKeyPoints();
 
@@ -723,100 +707,4 @@ cv::Mat Frame::UnprojectStereo(const int &i) {
   } else
     return cv::Mat();
 }
-
-// *******************************************
-// MODIFICATIONS
-
-bool Frame:: IsInBox(const int& i, int& box_id)
-{
-  // check whether keypoint is in boundng box (read from txt)
-  // objects_cur_ stores object in each frame, which is introduced by frame.cc
-  const cv::KeyPoint& kp = mvKeysUn[i];
-  float kp_u = kp.pt.x;
-  float kp_v = kp.pt.y;
-  bool in_box = false;
-  
-  for (int k=0; k<objects_cur_.size(); ++k)
-  {
-    // enumerate all objects
-    vector<double> box = objects_cur_[k]->vdetect_parameter;
-    double left = box[0];
-    double top = box[1];
-    double right = box[2];
-    double bottom = box[3];
-    if (kp_u > left - 2 && kp_u < right + 2
-    && kp_v > top - 2 && kp_v < bottom + 2) {
-      in_box = true;
-      box_id = k;
-      break;
-    }
-  }
-  return in_box;
-}
-
-
-bool Frame::IsInDynamic(const int& i)
-{
-  // check if keypoint is in bounding_box_(can be read from yolo txt file)
-  // objects_cur_ stores object in each Frame, introduced by frame.cc
-  const cv::KeyPoint& kp = mvKeys[i];
-  float kp_u = kp.pt.x;
-  float kp_v = kp.pt.y;
-  bool in_dynamic = false;
-
-  for (int k=0; k<objects_cur_.size(); ++k)
-  {
-    // enum all objs
-    int obj_class = objects_cur_[k]->ndetect_class;
-
-    if (obj_class == 3 || obj_class == 2)
-    {
-      vector<double> box = objects_cur_[k]->vdetect_parameter;
-      double left = box[0];
-      double top = box[1];
-      double right = box[2];
-      double bottom = box[3];
-
-      if (kp_u > left - 2 && kp_u < right + 2 && kp_v > top - 2 && kp_v < bottom + 2)
-      {
-        in_dynamic = true;
-      }
-    }
-  }
-  return in_dynamic;
-}
-
-
-bool Frame::IsInStatic(const int& i)
-{
-  // check if keypoint is in bounding_box_(can be read from yolo txt file)
-  // objects_cur_ stores object in each Frame, introduced by frame.cc
-  const cv::KeyPoint& kp = mvKeys[i];
-  float kp_u = kp.pt.x;
-  float kp_v = kp.pt.y;
-  bool in_static = false;
-
-  for (int k = 0; k < objects_cur_.size(); ++k)
-  {
-    int obj_class = objects_cur_[k] -> ndetect_class;
-
-    if (obj_class == 1)
-    {
-      vector<double> box = objects_cur_[k]->vdetect_parameter; // get the bbox of obj
-      double left = box[0];
-      double top = box[1];
-      double right = box[2];
-      double bottom = box[3];
-
-      if (kp_u > left - 2 && kp_u < right + 2 && kp_v > top - 2 && kp_v < bottom + 2)
-      {
-        in_static = true;
-      }
-    }
-  }
-  return in_static; 
-}
-
-// END MODIFICATIONS
-// *******************************************
 } // namespace ORB_SLAM2

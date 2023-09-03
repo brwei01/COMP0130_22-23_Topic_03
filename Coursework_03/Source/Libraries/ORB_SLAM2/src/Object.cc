@@ -7,13 +7,13 @@ namespace ORB_SLAM2
 {
     Object::Object()
     {
-        bdynamic_ = false;
         vdetect_parameter = {0,0,0,0};
-        ndetect_class = -1;
+        sdetect_class = "None";
+        vmask_coords = {{0,0}};
     }
 
-    Object::Object(vector<double> vdetect_parameter_, int ndetect_class_):
-    vdetect_parameter(vdetect_parameter_), ndetect_class(ndetect_class_){}
+    Object::Object(vector<double> vdetect_parameter_, string sdetect_class_, vector<vector<int>> vmask_coords_):
+    vdetect_parameter(vdetect_parameter_), sdetect_class(sdetect_class_), vmask_coords(vmask_coords_){}
 
     Object::~Object(){}
 
@@ -22,8 +22,13 @@ namespace ORB_SLAM2
         return vdetect_parameter;
     }
 
-    int Object::GetDetectClass()
+    string Object::GetDetectClass()
     {
-        return ndetect_class;
+        return sdetect_class;
+    }
+
+    vector<vector<int>> Object::GetMaskCoords()
+    {
+        return vmask_coords;
     }
 }

@@ -1,1 +1,65 @@
-~InitializerLogger
+
+ORB-SLAM2 Copyright (C) 2014-2016 Raul Mur-Artal, University of Zaragoza.
+(modifications carried out at UCL, 2022)
+This program comes with ABSOLUTELY NO WARRANTY;
+This is free software, and you are welcome to redistribute it
+under certain conditions. See LICENSE.txt.
+
+Input sensor was set to: Monocular
+
+Loading ORB Vocabulary. This could take a while...
+Using the binary cache file
+
+Camera Parameters: 
+- fx: 721.538
+- fy: 721.538
+- cx: 609.559
+- cy: 172.854
+- k1: 0
+- k2: 0
+- p1: 0
+- p2: 0
+- fps: 10
+- color order: RGB (ignored if grayscale)
+
+ORB Extractor Parameters: 
+- Number of Features: 2000
+- Scale Levels: 8
+- Scale Factor: 1.2
+- Initial Fast Threshold: 20
+- Minimum Fast Threshold: 7
+
+-------
+Start processing sequence ...
+Images in the sequence: 154
+
+Processing Image NO.: 0000000000
+Processing Image NO.: 0000000001
+InitializerLogger
+Processing Image NO.: 0000000002
+Processing Image NO.: 0000000003
+Processing Image NO.: 0000000004
+Initializer::~Initializer
+Processing Image NO.: 0000000005
+Processing Image NO.: 0000000006
+Processing Image NO.: 0000000007
+Processing Image NO.: 0000000008
+Processing Image NO.: 0000000009
+Processing Image NO.: 0000000010
+Initializer::~Initializer
+Processing Image NO.: 0000000011
+Processing Image NO.: 0000000012
+Processing Image NO.: 0000000013
+Processing Image NO.: 0000000014
+New Map created with 103 points
+**************************RE: Distance between points: 0.976494
+**************************GT: Distance between points: 0.963323
+***********median depth computed: 16.3704
+Processing Image NO.: 0000000015
+Processing Image NO.: 0000000016
+Processing Image NO.: 0000000017
+Processing Image NO.: 0000000018
+Processing Image NO.: 0000000019
+Processing Image NO.: 0000000020
+Processing Image NO.: 0000000021
+Processing Image NO.: 0000000022
