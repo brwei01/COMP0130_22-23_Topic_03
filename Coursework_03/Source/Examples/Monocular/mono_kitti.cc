@@ -45,17 +45,19 @@ void LoadImages(const string &strSequence, vector<string> &vstrImageFilenames,
                 vector<double> &vTimestamps);
 
 void ReadBoundingBox(const string& strPathToDetectionResult, 
-                    std::vector<int>& frame_id, 
-                    vector<string>& type, 
-                    vector<vector<double>>& bbox_2d, 
-                    vector<vector<double>>& bbox_birdview);
+                     vector<int>& frame_id, 
+                     vector<string>& type, 
+                     vector<vector<double>>& bbox_2d,
+                     vector<vector<double>>& bbox_birdview,
+                     vector<int>& track_id);
 
 void LoadBoundingBoxBV(int frame_number,
                      std::vector<int>& nframe_id,
                      std::vector<std::string>& stype,
                      std::vector<std::vector<double>>& vbbox_2d, 
                      std::vector<std::vector<double>>& vbbox_birdview,
-                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result);
+                     std::vector<int>& ntrack_id,
+                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string, int>>& detect_result);
 
 std::vector<double> CreateBVBbox(double h, double w, double l, double x, double y, double z, double yaw);
 
@@ -63,19 +65,19 @@ std::vector<double> CreateBVBbox(double h, double w, double l, double x, double 
 
 int main(int argc, char **argv) {
 
+  // OFFLINE -- requires extra statement 'yolov5_detect_result'
+    if (argc != 8) {
+    cerr << endl
+          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file_kitti results_file_tum results_file_keyframe 3d_detection_input console_log" << endl;
+    return EX_USAGE;
+  }
+
   // Save the logs to file
   // create an ofstream obj to open the log file
-  std::ofstream outputFile("/home/brwei01/Dev/COMP0130_22-23_Topic_03/Coursework_03/Results/console_log.txt");
+  std::ofstream outputFile(argv[7]);
   // Redirect std::cout to the file stream
   std::streambuf* originalCoutBuffer = std::cout.rdbuf();
   std::cout.rdbuf(outputFile.rdbuf());
-
-  // OFFLINE -- requires extra statement 'yolov5_detect_result'
-    if (argc != 5) {
-    cerr << endl
-          << "Usage: " << argv[0] << " settings_files path_to_sequence results_file 3d_detection_results" << endl;
-    return EX_USAGE;
-  }
 
   // Retrieve paths to images
   // store path to mono images and corresponding timestamps 
@@ -105,15 +107,16 @@ int main(int argc, char **argv) {
 
     // MODIFICATION: LOAD ANNOTATED GT DATA: 2DBBX, 3DBBX, CLASS
     
-    string strPathToDetectionResult = argv[4];
+    string strPathToDetectionResult = argv[6];
 
     // READ ALL ANNOTATED DATA
     std::vector<int> nframe_id;
     std::vector<std::string> stype;
-    std::vector<std::vector<double>> vbbox_2d; 
+    std::vector<std::vector<double>> vbbox_2d;
     std::vector<std::vector<double>> vbbox_birdview;
+    std::vector<int> ntrack_id;
     // read data into these variables defined above
-    ReadBoundingBox(strPathToDetectionResult, nframe_id, stype, vbbox_2d, vbbox_birdview);
+    ReadBoundingBox(strPathToDetectionResult, nframe_id, stype, vbbox_2d, vbbox_birdview, ntrack_id);
 
     // Main loop: load images
     cv::Mat im;
@@ -128,9 +131,9 @@ int main(int argc, char **argv) {
       
       // ADD VARIABLE detect_result
       // Clear the detect_result vector before loading new bounding boxes
-      std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>> detect_result;
+      std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string, int>> detect_result;
 
-      LoadBoundingBoxBV(ni, nframe_id, stype, vbbox_2d, vbbox_birdview, detect_result);
+      LoadBoundingBoxBV(ni, nframe_id, stype, vbbox_2d, vbbox_birdview, ntrack_id, detect_result);
 
 
       /*
@@ -209,11 +212,11 @@ int main(int argc, char **argv) {
   cout << "mean tracking time: " << totaltime / nImages << endl;
 
   // Save camera trajectory
-  SLAM.SaveKeyFrameTrajectoryTUM("Results/KeyFrameTrajectory.txt");
-  SLAM.SaveTrajectoryTUM(string(argv[3]));
+  SLAM.SaveKeyFrameTrajectoryTUM(argv[5]);
+  SLAM.SaveTrajectoryTUM(string(argv[4]));
 
   // Save to KITTI pose file
-  //SLAM.SaveTrajectoryKITTI(string(argv[3]));
+  SLAM.SaveTrajectoryKITTI(string(argv[3]));
 
   // Restore the original std::cout buffer
   std::cout.rdbuf(originalCoutBuffer);
@@ -277,7 +280,8 @@ void LoadBoundingBoxBV(int frame_number,
                      std::vector<std::string>& stype,
                      std::vector<std::vector<double>>& vbbox_2d, 
                      std::vector<std::vector<double>>& vbbox_birdview,
-                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result)
+                     std::vector<int>& ntrack_id,
+                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string, int>>& detect_result)
 
 {
     // Clear the detect_result vector before loading new bounding boxes
@@ -286,7 +290,7 @@ void LoadBoundingBoxBV(int frame_number,
     for (size_t i = 0; i < nframe_id.size(); ++i) {
         if (nframe_id[i] == frame_number) {
             // Match found, add corresponding data to detect_result
-            detect_result.emplace_back(nframe_id[i], vbbox_2d[i], vbbox_birdview[i], stype[i]);
+            detect_result.emplace_back(nframe_id[i], vbbox_2d[i], vbbox_birdview[i], stype[i], ntrack_id[i]);
         }
     }
 }
@@ -295,8 +299,9 @@ void LoadBoundingBoxBV(int frame_number,
 void ReadBoundingBox(const string& strPathToDetectionResult, 
                      vector<int>& frame_id, 
                      vector<string>& type, 
-                     vector<vector<double>>& bbox_2d, 
-                     vector<vector<double>>& bbox_birdview)
+                     vector<vector<double>>& bbox_2d,
+                     vector<vector<double>>& bbox_birdview,
+                     vector<int>& track_id)
 {
   ifstream infile;
   infile.open(strPathToDetectionResult);
@@ -309,13 +314,13 @@ void ReadBoundingBox(const string& strPathToDetectionResult,
     std::string line; 
     while (std::getline(infile, line)) {
       std::istringstream iss(line);
-      int frame_val, track_id, truncated, occluded;
+      int frame_val, track_id_val, truncated, occluded;
       std::string type_val;
       double alpha, bbox_left_val, bbox_top_val, bbox_right_val, bbox_bottom_val;
       double height_val, width_val, length_val, pos_x_val, pos_y_val, pos_z_val, rot_y_val;
 
 
-      if (!(iss >> frame_val >> track_id >> type_val >> truncated >> occluded >> alpha
+      if (!(iss >> frame_val >> track_id_val >> type_val >> truncated >> occluded >> alpha
           >> bbox_left_val >> bbox_top_val >> bbox_right_val >> bbox_bottom_val
           >> height_val >> width_val >> length_val >> pos_x_val >> pos_y_val >> pos_z_val >> rot_y_val)) {
           std::cerr << "Error reading line." << std::endl;
@@ -326,6 +331,9 @@ void ReadBoundingBox(const string& strPathToDetectionResult,
       frame_id.push_back(frame_val);
       // save all types
       type.push_back(type_val);
+      // save all track_ids
+      track_id.push_back(track_id_val);
+
 
       // save all 2d bboxes
       std::vector<double> bbox_2d_val;

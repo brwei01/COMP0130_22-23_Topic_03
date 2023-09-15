@@ -1,0 +1,2766 @@
+
+ORB-SLAM2 Copyright (C) 2014-2016 Raul Mur-Artal, University of Zaragoza.
+(modifications carried out at UCL, 2022)
+This program comes with ABSOLUTELY NO WARRANTY;
+This is free software, and you are welcome to redistribute it
+under certain conditions. See LICENSE.txt.
+
+Input sensor was set to: Monocular
+
+Loading ORB Vocabulary. This could take a while...
+Using the binary cache file
+
+Camera Parameters: 
+- fx: 718.335
+- fy: 718.335
+- cx: 600.389
+- cy: 181.512
+- k1: 0
+- k2: 0
+- p1: 0
+- p2: 0
+- fps: 10
+- color order: RGB (ignored if grayscale)
+
+ORB Extractor Parameters: 
+- Number of Features: 2000
+- Scale Levels: 8
+- Scale Factor: 1.2
+- Initial Fast Threshold: 20
+- Minimum Fast Threshold: 7
+
+-------
+Start processing sequence ...
+Images in the sequence: 339
+
+Processing Image NO.: 000000
+Processing Image NO.: 000001
+InitializerLogger
+Processing Image NO.: 000002
+Initializer::~Initializer
+Processing Image NO.: 000003
+Processing Image NO.: 000004
+Processing Image NO.: 000005
+Initializer::~Initializer
+Processing Image NO.: 000006
+Processing Image NO.: 000007
+Processing Image NO.: 000008
+Initializer::~Initializer
+Processing Image NO.: 000009
+Processing Image NO.: 000010
+Processing Image NO.: 000011
+Initializer::~Initializer
+Processing Image NO.: 000012
+Processing Image NO.: 000013
+Processing Image NO.: 000014
+Initializer::~Initializer
+Processing Image NO.: 000015
+Processing Image NO.: 000016
+Processing Image NO.: 000017
+Initializer::~Initializer
+Processing Image NO.: 000018
+Processing Image NO.: 000019
+Processing Image NO.: 000020
+Initializer::~Initializer
+Processing Image NO.: 000021
+Processing Image NO.: 000022
+Processing Image NO.: 000023
+Initializer::~Initializer
+Processing Image NO.: 000024
+Processing Image NO.: 000025
+Processing Image NO.: 000026
+Initializer::~Initializer
+Processing Image NO.: 000027
+Processing Image NO.: 000028
+Processing Image NO.: 000029
+Initializer::~Initializer
+Processing Image NO.: 000030
+Processing Image NO.: 000031
+New Map created with 106 points
+**************************RE: Distance between points: 0.978494
+**************************GT: Distance between points: 0.963323
+***********median depth computed: 18.3427
+Processing Image NO.: 000032
+Processing Image NO.: 000033
+Processing Image NO.: 000034
+Processing Image NO.: 000035
+Processing Image NO.: 000036
+Processing Image NO.: 000037
+Mean after IQR outlier removal: 45.399
+Sorted distances in ascending order: 45.399
+This is track_id: 0
+This is bounding box: [340, 181][457, 245]
+min distance to camera: 45.399021
+Processing Image NO.: 000038
+Mean after IQR outlier removal: 28.2761
+Sorted distances in ascending order: 4.7037, 39.1443, 40.9803
+This is track_id: 0
+This is bounding box: [152, 186][377, 296]
+min distance to camera: 28.276110
+Processing Image NO.: 000039
+Mean after IQR outlier removal: 29.4342
+Sorted distances in ascending order: 29.4342
+This is track_id: 0
+This is bounding box: [0, 190][304, 356]
+min distance to camera: 29.434185
+Processing Image NO.: 000040
+Mean after IQR outlier removal: 14.5795
+Sorted distances in ascending order: 14.4675, 14.6914
+This is track_id: 0
+This is bounding box: [0, 198][165, 373]
+min distance to camera: 14.579477
+Processing Image NO.: 000041
+Mean after IQR outlier removal: 14.5795
+Sorted distances in ascending order: 14.4675, 14.6914
+This is track_id: 0
+This is bounding box: [0, 198][165, 373]
+min distance to camera: 14.579477
+Processing Image NO.: 000042
+Processing Image NO.: 000043
+Processing Image NO.: 000044
+Processing Image NO.: 000045
+Processing Image NO.: 000046
+Processing Image NO.: 000047
+Processing Image NO.: 000048
+Processing Image NO.: 000049
+Processing Image NO.: 000050
+Processing Image NO.: 000051
+Processing Image NO.: 000052
+Processing Image NO.: 000053
+Processing Image NO.: 000054
+Processing Image NO.: 000055
+Processing Image NO.: 000056
+Processing Image NO.: 000057
+Processing Image NO.: 000058
+Processing Image NO.: 000059
+Processing Image NO.: 000060
+Processing Image NO.: 000061
+Processing Image NO.: 000062
+Processing Image NO.: 000063
+Processing Image NO.: 000064
+Processing Image NO.: 000065
+Processing Image NO.: 000066
+Processing Image NO.: 000067
+Processing Image NO.: 000068
+Processing Image NO.: 000069
+Processing Image NO.: 000070
+Processing Image NO.: 000071
+Processing Image NO.: 000072
+Processing Image NO.: 000073
+Mean after IQR outlier removal: 35.4369
+Sorted distances in ascending order: 35.4369
+This is track_id: 3
+This is bounding box: [612, 168][640, 193]
+min distance to camera: 35.436859
+Mean after IQR outlier removal: 35.0546
+Sorted distances in ascending order: 35.0546
+This is track_id: 3
+This is bounding box: [612, 167][641, 193]
+min distance to camera: 35.054592
+Mean after IQR outlier removal: 16.3013
+Sorted distances in ascending order: 13.7853, 18.8172
+This is track_id: 4
+This is bounding box: [491, 172][532, 201]
+min distance to camera: 16.301296
+Processing Image NO.: 000074
+Mean after IQR outlier removal: 33.7624
+Sorted distances in ascending order: 33.7624
+This is track_id: 3
+This is bounding box: [611, 167][640, 193]
+min distance to camera: 33.762447
+Processing Image NO.: 000075
+Mean after IQR outlier removal: 32.5984
+Sorted distances in ascending order: 32.5984
+This is track_id: 3
+This is bounding box: [610, 166][640, 193]
+min distance to camera: 32.598358
+Mean after IQR outlier removal: 16.3864
+Sorted distances in ascending order: 16.3864
+This is track_id: 4
+This is bounding box: [456, 173][511, 209]
+min distance to camera: 16.386381
+Processing Image NO.: 000076
+Processing Image NO.: 000077
+Processing Image NO.: 000078
+Mean after IQR outlier removal: 5.41478
+Sorted distances in ascending order: 5.32037, 5.43096, 5.49301
+This is track_id: 4
+This is bounding box: [351, 172][451, 232]
+min distance to camera: 5.414780
+Processing Image NO.: 000079
+Mean after IQR outlier removal: 9.77681
+Sorted distances in ascending order: 5.32037, 5.43096, 5.49301, 22.8629
+This is track_id: 4
+This is bounding box: [281, 176][418, 253]
+min distance to camera: 9.776808
+Processing Image NO.: 000080
+Mean after IQR outlier removal: 15.1752
+Sorted distances in ascending order: 4.19325, 4.30085, 4.36329, 47.8433
+This is track_id: 4
+This is bounding box: [281, 176][418, 253]
+min distance to camera: 15.175176
+Processing Image NO.: 000081
+Mean after IQR outlier removal: 48.2167
+Sorted distances in ascending order: 43.501, 52.9323
+This is track_id: 1
+This is bounding box: [513, 171][569, 214]
+min distance to camera: 48.216660
+Processing Image NO.: 000082
+Mean after IQR outlier removal: 44.7173
+Sorted distances in ascending order: 44.7173
+This is track_id: 1
+This is bounding box: [510, 172][567, 216]
+min distance to camera: 44.717300
+Processing Image NO.: 000083
+Mean after IQR outlier removal: 47.2044
+Sorted distances in ascending order: 43.5727, 50.836
+This is track_id: 1
+This is bounding box: [507, 173][566, 218]
+min distance to camera: 47.204353
+Processing Image NO.: 000084
+Mean after IQR outlier removal: 47.2044
+Sorted distances in ascending order: 43.5727, 50.836
+This is track_id: 1
+This is bounding box: [507, 173][566, 218]
+min distance to camera: 47.204353
+Processing Image NO.: 000085
+Mean after IQR outlier removal: 53.9098
+Sorted distances in ascending order: 53.9098
+This is track_id: 1
+This is bounding box: [504, 174][564, 220]
+min distance to camera: 53.909821
+Mean after IQR outlier removal: 37.1748
+Sorted distances in ascending order: 37.1748
+This is track_id: 3
+This is bounding box: [605, 169][640, 200]
+min distance to camera: 37.174801
+Processing Image NO.: 000086
+Mean after IQR outlier removal: 52.7286
+Sorted distances in ascending order: 52.7286
+This is track_id: 1
+This is bounding box: [500, 174][563, 221]
+min distance to camera: 52.728573
+Mean after IQR outlier removal: 36.9979
+Sorted distances in ascending order: 36.9979
+This is track_id: 3
+This is bounding box: [605, 169][640, 200]
+min distance to camera: 36.997902
+Processing Image NO.: 000087
+Mean after IQR outlier removal: 51.6509
+Sorted distances in ascending order: 51.6509
+This is track_id: 1
+This is bounding box: [497, 174][562, 222]
+min distance to camera: 51.650894
+Mean after IQR outlier removal: 35.9158
+Sorted distances in ascending order: 35.9158
+This is track_id: 3
+This is bounding box: [605, 169][640, 201]
+min distance to camera: 35.915806
+Processing Image NO.: 000088
+Mean after IQR outlier removal: 51.121
+Sorted distances in ascending order: 51.121
+This is track_id: 1
+This is bounding box: [493, 173][561, 224]
+min distance to camera: 51.121040
+Processing Image NO.: 000089
+Mean after IQR outlier removal: 35.0631
+Sorted distances in ascending order: 35.0631
+This is track_id: 3
+This is bounding box: [604, 169][640, 202]
+min distance to camera: 35.063053
+Mean after IQR outlier removal: 48.6194
+Sorted distances in ascending order: 48.6194
+This is track_id: 1
+This is bounding box: [485, 173][558, 226]
+min distance to camera: 48.619396
+Mean after IQR outlier removal: 34.0299
+Sorted distances in ascending order: 34.0299
+This is track_id: 3
+This is bounding box: [604, 169][640, 202]
+min distance to camera: 34.029934
+Processing Image NO.: 000090
+Mean after IQR outlier removal: 47.2961
+Sorted distances in ascending order: 47.2961
+This is track_id: 1
+This is bounding box: [480, 173][557, 228]
+min distance to camera: 47.296139
+Mean after IQR outlier removal: 35.1181
+Sorted distances in ascending order: 35.1181
+This is track_id: 3
+This is bounding box: [603, 169][640, 203]
+min distance to camera: 35.118065
+Mean after IQR outlier removal: 52.5619
+Sorted distances in ascending order: 30.2076, 35.0218, 66.7035, 78.3145
+This is track_id: 5
+This is bounding box: [439, 161][504, 210]
+min distance to camera: 52.561852
+Processing Image NO.: 000091
+Mean after IQR outlier removal: 47.678
+Sorted distances in ascending order: 46.7155, 48.6405
+This is track_id: 1
+This is bounding box: [475, 173][555, 229]
+min distance to camera: 47.677963
+Processing Image NO.: 000092
+Mean after IQR outlier removal: 45.6057
+Sorted distances in ascending order: 45.6057
+This is track_id: 1
+This is bounding box: [472, 173][554, 231]
+min distance to camera: 45.605667
+Mean after IQR outlier removal: 35.7916
+Sorted distances in ascending order: 35.7916
+This is track_id: 3
+This is bounding box: [602, 168][640, 203]
+min distance to camera: 35.791645
+Processing Image NO.: 000093
+Mean after IQR outlier removal: 44.4118
+Sorted distances in ascending order: 41.9662, 44.6044, 46.6647
+This is track_id: 1
+This is bounding box: [469, 173][552, 233]
+min distance to camera: 44.411800
+Mean after IQR outlier removal: 34.7829
+Sorted distances in ascending order: 34.7829
+This is track_id: 3
+This is bounding box: [602, 168][640, 203]
+min distance to camera: 34.782917
+Processing Image NO.: 000094
+Mean after IQR outlier removal: 44.4118
+Sorted distances in ascending order: 41.9662, 44.6044, 46.6647
+This is track_id: 1
+This is bounding box: [469, 173][552, 233]
+min distance to camera: 44.411800
+Mean after IQR outlier removal: 34.7829
+Sorted distances in ascending order: 34.7829
+This is track_id: 3
+This is bounding box: [602, 168][640, 203]
+min distance to camera: 34.782917
+Processing Image NO.: 000095
+Mean after IQR outlier removal: 43.3078
+Sorted distances in ascending order: 40.9637, 45.652
+This is track_id: 1
+This is bounding box: [466, 173][551, 235]
+min distance to camera: 43.307846
+Mean after IQR outlier removal: 28.7706
+Sorted distances in ascending order: 23.7801, 33.7612
+This is track_id: 3
+This is bounding box: [601, 168][640, 204]
+min distance to camera: 28.770638
+Mean after IQR outlier removal: 41.5136
+Sorted distances in ascending order: 37.6278, 45.3994
+This is track_id: 1
+This is bounding box: [462, 174][549, 238]
+min distance to camera: 41.513592
+Mean after IQR outlier removal: 29.1483
+Sorted distances in ascending order: 23.2739, 35.0227
+This is track_id: 3
+This is bounding box: [601, 169][640, 204]
+min distance to camera: 29.148348
+Mean after IQR outlier removal: 54.829
+Sorted distances in ascending order: 54.829
+This is track_id: 5
+This is bounding box: [214, 155][399, 268]
+min distance to camera: 54.829029
+Processing Image NO.: 000096
+Mean after IQR outlier removal: 39.9797
+Sorted distances in ascending order: 36.6304, 38.9185, 44.3903
+This is track_id: 1
+This is bounding box: [458, 175][548, 240]
+min distance to camera: 39.979748
+Mean after IQR outlier removal: 28.1321
+Sorted distances in ascending order: 22.2569, 34.0073
+This is track_id: 3
+This is bounding box: [601, 169][640, 205]
+min distance to camera: 28.132069
+Mean after IQR outlier removal: 32.4098
+Sorted distances in ascending order: 27.9581, 28.3945, 40.8769
+This is track_id: 5
+This is bounding box: [74, 152][349, 304]
+min distance to camera: 32.409832
+Processing Image NO.: 000097
+Mean after IQR outlier removal: 44.9136
+Sorted distances in ascending order: 44.9136
+This is track_id: 1
+This is bounding box: [453, 176][546, 243]
+min distance to camera: 44.913609
+Mean after IQR outlier removal: 35.4086
+Sorted distances in ascending order: 35.4086
+This is track_id: 3
+This is bounding box: [601, 169][640, 206]
+min distance to camera: 35.408630
+Mean after IQR outlier removal: 40.7117
+Sorted distances in ascending order: 40.7117
+This is track_id: 5
+This is bounding box: [0, 140][274, 368]
+min distance to camera: 40.711689
+Processing Image NO.: 000098
+Mean after IQR outlier removal: 40.5697
+Sorted distances in ascending order: 37.228, 43.9115
+This is track_id: 1
+This is bounding box: [448, 177][544, 247]
+min distance to camera: 40.569725
+Mean after IQR outlier removal: 22.1049
+Sorted distances in ascending order: 22.1049
+This is track_id: 3
+This is bounding box: [600, 170][641, 206]
+min distance to camera: 22.104872
+Processing Image NO.: 000099
+Mean after IQR outlier removal: 35.6554
+Sorted distances in ascending order: 32.7037, 35.1548, 35.7048, 36.1066, 43.3899
+This is track_id: 1
+This is bounding box: [443, 178][542, 250]
+min distance to camera: 35.655399
+Processing Image NO.: 000100
+Mean after IQR outlier removal: 35.6554
+Sorted distances in ascending order: 32.7037, 35.1548, 35.7048, 36.1066, 43.3899
+This is track_id: 1
+This is bounding box: [443, 178][542, 250]
+min distance to camera: 35.655399
+Processing Image NO.: 000101
+Mean after IQR outlier removal: 34.0414
+Sorted distances in ascending order: 32.6802, 33.2198, 33.9038, 35.1987, 35.2044, 43.3323
+This is track_id: 1
+This is bounding box: [438, 179][541, 253]
+min distance to camera: 34.041374
+Mean after IQR outlier removal: 32.7202
+Sorted distances in ascending order: 31.7081, 32.2581, 32.3101, 33.081, 34.2433, 42.3528
+This is track_id: 1
+This is bounding box: [432, 179][541, 256]
+min distance to camera: 32.720161
+Mean after IQR outlier removal: 20.5822
+Sorted distances in ascending order: 20.5822
+This is track_id: 3
+This is bounding box: [600, 171][641, 208]
+min distance to camera: 20.582169
+Processing Image NO.: 000102
+Processing Image NO.: 000103
+Mean after IQR outlier removal: 33.8874
+Sorted distances in ascending order: 30.742, 31.3021, 32.1264, 41.379
+This is track_id: 1
+This is bounding box: [427, 179][540, 259]
+min distance to camera: 33.887375
+Mean after IQR outlier removal: 33.8669
+Sorted distances in ascending order: 30.8733, 30.882, 31.0072, 31.9228, 32.6786, 38.8283, 40.8762
+This is track_id: 1
+This is bounding box: [420, 180][539, 263]
+min distance to camera: 33.866901
+Processing Image NO.: 000104
+Mean after IQR outlier removal: 33.4311
+Sorted distances in ascending order: 29.918, 29.9203, 30.9541, 31.1055, 31.7262, 33.5047, 35.9723, 37.8753, 39.9035
+This is track_id: 1
+This is bounding box: [414, 180][538, 266]
+min distance to camera: 33.431087
+Processing Image NO.: 000105
+Mean after IQR outlier removal: 33.0073
+Sorted distances in ascending order: 29.849, 29.9417, 30.6243, 30.9603, 32.4555, 34.6218, 37.0968, 38.5091
+This is track_id: 1
+This is bounding box: [407, 180][536, 269]
+min distance to camera: 33.007328
+Mean after IQR outlier removal: 24.7497
+Sorted distances in ascending order: 24.7497
+This is track_id: 3
+This is bounding box: [600, 171][642, 209]
+min distance to camera: 24.749706
+Processing Image NO.: 000106
+Mean after IQR outlier removal: 33.0073
+Sorted distances in ascending order: 29.849, 29.9417, 30.6243, 30.9603, 32.4555, 34.6218, 37.0968, 38.5091
+This is track_id: 1
+This is bounding box: [407, 180][536, 269]
+min distance to camera: 33.007328
+Mean after IQR outlier removal: 24.7497
+Sorted distances in ascending order: 24.7497
+This is track_id: 3
+This is bounding box: [600, 171][642, 209]
+min distance to camera: 24.749706
+Mean after IQR outlier removal: 32.0229
+Sorted distances in ascending order: 29.2823, 29.5742, 30.4778, 31.6518, 33.9668, 37.1847
+This is track_id: 1
+This is bounding box: [401, 180][534, 272]
+min distance to camera: 32.022907
+Mean after IQR outlier removal: 26.6152
+Sorted distances in ascending order: 26.6152
+This is track_id: 3
+This is bounding box: [599, 170][642, 209]
+min distance to camera: 26.615179
+Processing Image NO.: 000107
+Mean after IQR outlier removal: 31.2808
+Sorted distances in ascending order: 28.3509, 28.6587, 29.5408, 29.541, 30.7144, 33.0252, 34.1725, 36.2426
+This is track_id: 1
+This is bounding box: [394, 178][532, 272]
+min distance to camera: 31.280762
+Processing Image NO.: 000108
+Mean after IQR outlier removal: 29.689
+Sorted distances in ascending order: 27.4443, 28.4201, 28.6283, 29.8011, 29.8241, 30.5347, 30.7517, 32.1075
+This is track_id: 1
+This is bounding box: [387, 177][530, 275]
+min distance to camera: 29.688984
+Processing Image NO.: 000109
+Mean after IQR outlier removal: 29.689
+Sorted distances in ascending order: 27.4443, 28.4201, 28.6283, 29.8011, 29.8241, 30.5347, 30.7517, 32.1075
+This is track_id: 1
+This is bounding box: [387, 177][530, 275]
+min distance to camera: 29.688984
+Processing Image NO.: 000110
+Mean after IQR outlier removal: 28.3291
+Sorted distances in ascending order: 26.3747, 27.6001, 28.0553, 28.483, 28.9404, 29.2603, 29.5901, 33.3325
+This is track_id: 1
+This is bounding box: [379, 177][528, 278]
+min distance to camera: 28.329134
+Mean after IQR outlier removal: 27.7796
+Sorted distances in ascending order: 25.6807, 27.1072, 27.1293, 27.2412, 27.9367, 28.2622, 28.4236, 28.5073, 29.7279, 32.7669
+This is track_id: 1
+This is bounding box: [370, 176][526, 282]
+min distance to camera: 27.779564
+Processing Image NO.: 000111
+Mean after IQR outlier removal: 27.7796
+Sorted distances in ascending order: 25.6807, 27.1072, 27.1293, 27.2412, 27.9367, 28.2622, 28.4236, 28.5073, 29.7279, 32.7669
+This is track_id: 1
+This is bounding box: [370, 176][526, 282]
+min distance to camera: 27.779564
+Processing Image NO.: 000112
+Mean after IQR outlier removal: 27.97
+Sorted distances in ascending order: 10.5826, 24.832, 26.259, 26.273, 26.3926, 27.0797, 27.4298, 27.5906, 27.6699, 28.884, 29.9178, 31.4084, 31.9038
+This is track_id: 1
+This is bounding box: [362, 177][524, 286]
+min distance to camera: 27.970047
+Mean after IQR outlier removal: 27.5772
+Sorted distances in ascending order: 24.0086, 25.2296, 25.436, 25.442, 25.5692, 26.248, 26.6228, 26.7832, 26.8575, 26.9306, 28.0645, 28.0888, 29.1094, 31.0656, 31.7829, 33.9969
+This is track_id: 1
+This is bounding box: [354, 178][522, 291]
+min distance to camera: 27.577232
+Processing Image NO.: 000113
+Mean after IQR outlier removal: 27.5772
+Sorted distances in ascending order: 24.0086, 25.2296, 25.436, 25.442, 25.5692, 26.248, 26.6228, 26.7832, 26.8575, 26.9306, 28.0645, 28.0888, 29.1094, 31.0656, 31.7829, 33.9969
+This is track_id: 1
+This is bounding box: [354, 178][522, 291]
+min distance to camera: 27.577232
+Processing Image NO.: 000114
+Mean after IQR outlier removal: 26.0224
+Sorted distances in ascending order: 23.135, 24.2039, 24.6755, 24.8051, 25.1036, 25.7804, 25.9248, 26.2844, 26.8227, 27.2633, 27.8546, 30.415, 30.977
+This is track_id: 1
+This is bounding box: [344, 178][519, 296]
+min distance to camera: 26.022360
+Mean after IQR outlier removal: 26.0224
+Sorted distances in ascending order: 23.135, 24.2039, 24.6755, 24.8051, 25.1036, 25.7804, 25.9248, 26.2844, 26.8227, 27.2633, 27.8546, 30.415, 30.977
+This is track_id: 1
+This is bounding box: [344, 178][519, 296]
+min distance to camera: 26.022360
+Processing Image NO.: 000115
+Mean after IQR outlier removal: 24.9884
+Sorted distances in ascending order: 20.143, 22.526, 23.6355, 23.7907, 24.1149, 24.2531, 24.2987, 24.419, 24.54, 25.1629, 25.2032, 25.2152, 25.4135, 25.694, 25.8587, 27.7584, 27.931, 28.8442, 29.8402
+This is track_id: 1
+This is bounding box: [335, 179][517, 301]
+min distance to camera: 24.988424
+Processing Image NO.: 000116
+Mean after IQR outlier removal: 24.3897
+Sorted distances in ascending order: 22.8622, 23.0076, 23.3609, 23.4925, 23.5148, 23.6446, 23.7766, 24.0735, 24.3894, 24.407, 24.419, 24.4469, 24.6498, 24.7305, 24.9373, 25.0929, 26.9866, 27.2223, 27.4024, 28.0733, 48.0386
+This is track_id: 1
+This is bounding box: [324, 180][514, 307]
+min distance to camera: 24.389696
+Mean after IQR outlier removal: 24.3897
+Sorted distances in ascending order: 22.8622, 23.0076, 23.3609, 23.4925, 23.5148, 23.6446, 23.7766, 24.0735, 24.3894, 24.407, 24.419, 24.4469, 24.6498, 24.7305, 24.9373, 25.0929, 26.9866, 27.2223, 27.4024, 28.0733, 48.0386
+This is track_id: 1
+This is bounding box: [324, 180][514, 307]
+min distance to camera: 24.389696
+Processing Image NO.: 000117
+Mean after IQR outlier removal: 23.8051
+Sorted distances in ascending order: 9.50226, 9.95665, 20.0357, 21.4334, 22.111, 22.2461, 22.4437, 22.6304, 22.7524, 22.7544, 22.8921, 23.0356, 23.6434, 23.6569, 23.6744, 23.7139, 23.7139, 23.9082, 25.1574, 26.3685, 27.3232, 28.1365, 28.2758, 29.8611
+This is track_id: 1
+This is bounding box: [315, 180][512, 312]
+min distance to camera: 23.805092
+Processing Image NO.: 000118
+Mean after IQR outlier removal: 22.7057
+Sorted distances in ascending order: 8.869, 9.14593, 9.31032, 19.2031, 20.8266, 21.6947, 21.7244, 21.8295, 21.9436, 21.9894, 22.5169, 22.9313, 22.9495, 23.2578, 23.2578, 23.4721, 23.7219, 24.3741, 24.7818, 25.5221, 27.3953
+This is track_id: 1
+This is bounding box: [305, 181][509, 318]
+min distance to camera: 22.705673
+Mean after IQR outlier removal: 21.8548
+Sorted distances in ascending order: 8.38316, 8.54726, 18.4482, 20.0705, 20.9468, 21.0559, 21.0655, 21.1949, 21.2526, 21.3467, 21.418, 21.7898, 21.7952, 22.2242, 22.5416, 22.5416, 22.7564, 23.6139, 24.0641, 26.6582
+This is track_id: 1
+This is bounding box: [295, 182][507, 324]
+min distance to camera: 21.854847
+Processing Image NO.: 000119
+Mean after IQR outlier removal: 21.8548
+Sorted distances in ascending order: 8.38316, 8.54726, 18.4482, 20.0705, 20.9468, 21.0559, 21.0655, 21.1949, 21.2526, 21.3467, 21.418, 21.7898, 21.7952, 22.2242, 22.5416, 22.5416, 22.7564, 23.6139, 24.0641, 26.6582
+This is track_id: 1
+This is bounding box: [295, 182][507, 324]
+min distance to camera: 21.854847
+Processing Image NO.: 000120
+Mean after IQR outlier removal: 21.7105
+Sorted distances in ascending order: 19.3732, 20.2573, 20.5046, 20.6668, 20.7505, 20.8439, 21.0859, 21.2628, 21.3173, 21.7502, 21.8807, 22.0958, 22.4363, 22.9138, 23.3302, 23.4014, 25.2082, 29.7294, 35.1986, 37.2289, 44.4323
+This is track_id: 1
+This is bounding box: [285, 182][504, 330]
+min distance to camera: 21.710526
+Mean after IQR outlier removal: 65.5087
+Sorted distances in ascending order: 65.5087
+This is track_id: 2
+This is bounding box: [471, 174][549, 232]
+min distance to camera: 65.508743
+Processing Image NO.: 000121
+Mean after IQR outlier removal: 27.4505
+Sorted distances in ascending order: 20.09, 20.3618, 20.6463, 20.6721, 21.4341, 21.6574, 21.9373, 22.3473, 26.8106, 29.8876, 34.48, 36.4968, 43.6789, 43.8073
+This is track_id: 1
+This is bounding box: [273, 183][501, 337]
+min distance to camera: 27.450521
+Mean after IQR outlier removal: 65.2619
+Sorted distances in ascending order: 65.2619
+This is track_id: 2
+This is bounding box: [469, 175][548, 233]
+min distance to camera: 65.261902
+Processing Image NO.: 000122
+Mean after IQR outlier removal: 25.1835
+Sorted distances in ascending order: 8.09393, 20.0092, 20.4833, 20.7627, 21.0158, 21.5835, 22.0557, 24.1844, 24.3533, 26.3144, 27.706, 29.2072, 33.8471, 35.8632, 43.174
+This is track_id: 1
+This is bounding box: [265, 182][500, 339]
+min distance to camera: 25.183506
+Mean after IQR outlier removal: 64.5721
+Sorted distances in ascending order: 64.5721
+This is track_id: 2
+This is bounding box: [467, 175][547, 234]
+min distance to camera: 64.572060
+Processing Image NO.: 000123
+Mean after IQR outlier removal: 24.6487
+Sorted distances in ascending order: 7.48369, 18.7475, 19.4104, 19.475, 20.6819, 21.3399, 21.8012, 23.7066, 25.547, 26.9615, 29.8831, 33.8175, 34.4129
+This is track_id: 1
+This is bounding box: [257, 181][498, 341]
+min distance to camera: 24.648705
+Mean after IQR outlier removal: 64.7005
+Sorted distances in ascending order: 64.7005
+This is track_id: 2
+This is bounding box: [465, 175][546, 236]
+min distance to camera: 64.700455
+Processing Image NO.: 000124
+Mean after IQR outlier removal: 27.7249
+Sorted distances in ascending order: 20.5917, 20.6436, 21.1649, 24.9516, 24.9528, 27.9033, 29.237, 30.9212, 31.4643, 33.2177, 33.8129, 33.8379
+This is track_id: 1
+This is bounding box: [248, 181][497, 343]
+min distance to camera: 27.724899
+Mean after IQR outlier removal: 52.0313
+Sorted distances in ascending order: 33.8379, 58.2105, 64.0456
+This is track_id: 2
+This is bounding box: [463, 175][545, 236]
+min distance to camera: 52.031315
+Processing Image NO.: 000125
+Mean after IQR outlier removal: 30.2621
+Sorted distances in ascending order: 6.58465, 22.3906, 23.7493, 24.3571, 26.5121, 27.3099, 28.6294, 30.3231, 30.8558, 32.0212, 33.2292, 33.2536, 39.9895, 40.7871
+This is track_id: 1
+This is bounding box: [239, 180][495, 345]
+min distance to camera: 30.262142
+Mean after IQR outlier removal: 51.417
+Sorted distances in ascending order: 33.2292, 57.5937, 63.428
+This is track_id: 2
+This is bounding box: [461, 175][544, 237]
+min distance to camera: 51.416950
+Mean after IQR outlier removal: 30.2621
+Sorted distances in ascending order: 6.58465, 22.3906, 23.7493, 24.3571, 26.5121, 27.3099, 28.6294, 30.3231, 30.8558, 32.0212, 33.2292, 33.2536, 39.9895, 40.7871
+This is track_id: 1
+This is bounding box: [239, 180][495, 345]
+min distance to camera: 30.262142
+Mean after IQR outlier removal: 51.417
+Sorted distances in ascending order: 33.2292, 57.5937, 63.428
+This is track_id: 2
+This is bounding box: [461, 175][544, 237]
+min distance to camera: 51.416950
+Mean after IQR outlier removal: 27.0256
+Sorted distances in ascending order: 20.343, 29.9224, 30.8114
+This is track_id: 1
+This is bounding box: [233, 181][494, 349]
+min distance to camera: 27.025583
+Mean after IQR outlier removal: 60.8801
+Sorted distances in ascending order: 57.5845, 64.1757
+This is track_id: 2
+This is bounding box: [459, 175][543, 237]
+min distance to camera: 60.880119
+Processing Image NO.: 000126
+Processing Image NO.: 000127
+Mean after IQR outlier removal: 33.2157
+Sorted distances in ascending order: 22.9541, 23.4919, 23.492, 24.3109, 25.4711, 26.336, 29.8804, 30.2348, 31.7695, 32.323, 32.3388, 32.4229, 32.7687, 34.2768, 35.0219, 36.7845, 37.1646, 37.2259, 37.2661, 37.5697, 37.5935, 38.2195, 39.7353, 40.7533, 40.9771, 43.2266
+This is track_id: 1
+This is bounding box: [227, 181][492, 353]
+min distance to camera: 33.215733
+Mean after IQR outlier removal: 63.1813
+Sorted distances in ascending order: 57.0005, 63.5904, 68.953
+This is track_id: 2
+This is bounding box: [457, 175][542, 238]
+min distance to camera: 63.181286
+Mean after IQR outlier removal: 32.9586
+Sorted distances in ascending order: 32.9586
+This is track_id: 3
+This is bounding box: [591, 167][641, 212]
+min distance to camera: 32.958557
+Mean after IQR outlier removal: 33.2157
+Sorted distances in ascending order: 22.9541, 23.4919, 23.492, 24.3109, 25.4711, 26.336, 29.8804, 30.2348, 31.7695, 32.323, 32.3388, 32.4229, 32.7687, 34.2768, 35.0219, 36.7845, 37.1646, 37.2259, 37.2661, 37.5697, 37.5935, 38.2195, 39.7353, 40.7533, 40.9771, 43.2266
+This is track_id: 1
+This is bounding box: [227, 181][492, 353]
+min distance to camera: 33.215733
+Mean after IQR outlier removal: 63.1813
+Sorted distances in ascending order: 57.0005, 63.5904, 68.953
+This is track_id: 2
+This is bounding box: [457, 175][542, 238]
+min distance to camera: 63.181286
+Mean after IQR outlier removal: 32.9586
+Sorted distances in ascending order: 32.9586
+This is track_id: 3
+This is bounding box: [591, 167][641, 212]
+min distance to camera: 32.958557
+Processing Image NO.: 000128
+Mean after IQR outlier removal: 34.2163
+Sorted distances in ascending order: 17.8974, 27.3117, 30.8489, 31.019, 31.6804, 31.7664, 31.8974, 34.3306, 34.3843, 35.1661, 35.2226, 37.3315, 37.3917, 40.2375, 40.4401
+This is track_id: 1
+This is bounding box: [221, 182][490, 357]
+min distance to camera: 34.216301
+Mean after IQR outlier removal: 63.8115
+Sorted distances in ascending order: 57.8561, 65.6585, 67.9198
+This is track_id: 2
+This is bounding box: [455, 175][541, 239]
+min distance to camera: 63.811451
+Mean after IQR outlier removal: 32.7227
+Sorted distances in ascending order: 32.7227
+This is track_id: 3
+This is bounding box: [591, 167][641, 212]
+min distance to camera: 32.722710
+Processing Image NO.: 000129
+Mean after IQR outlier removal: 38.2146
+Sorted distances in ascending order: 6.75086, 6.99899, 30.4531, 34.6929, 34.8488, 36.1252, 36.6287, 36.6968, 36.7565, 36.9766, 37.2139, 37.2997, 38.5815, 39.1523, 39.226, 39.909, 40.0147, 42.0465, 42.1422, 42.5099, 44.8035
+This is track_id: 1
+This is bounding box: [215, 183][488, 361]
+min distance to camera: 38.214615
+Mean after IQR outlier removal: 63.236
+Sorted distances in ascending order: 57.2812, 65.0827, 67.344
+This is track_id: 2
+This is bounding box: [453, 176][540, 239]
+min distance to camera: 63.235950
+Processing Image NO.: 000130
+Mean after IQR outlier removal: 36.746
+Sorted distances in ascending order: 6.7911, 25.9531, 31.5745, 34.3696, 36.0393, 36.3569, 36.8658, 37.1077, 37.1945, 37.4892, 38.4322, 42.0307, 44.5018
+This is track_id: 1
+This is bounding box: [208, 184][486, 366]
+min distance to camera: 36.746040
+Mean after IQR outlier removal: 64.7253
+Sorted distances in ascending order: 58.9711, 67.234, 67.971
+This is track_id: 2
+This is bounding box: [452, 176][539, 240]
+min distance to camera: 64.725349
+Mean after IQR outlier removal: 35.6416
+Sorted distances in ascending order: 35.6416
+This is track_id: 3
+This is bounding box: [590, 168][640, 214]
+min distance to camera: 35.641632
+Mean after IQR outlier removal: 36.746
+Sorted distances in ascending order: 6.7911, 25.9531, 31.5745, 34.3696, 36.0393, 36.3569, 36.8658, 37.1077, 37.1945, 37.4892, 38.4322, 42.0307, 44.5018
+This is track_id: 1
+This is bounding box: [208, 184][486, 366]
+min distance to camera: 36.746040
+Mean after IQR outlier removal: 64.7253
+Sorted distances in ascending order: 58.9711, 67.234, 67.971
+This is track_id: 2
+This is bounding box: [452, 176][539, 240]
+min distance to camera: 64.725349
+Mean after IQR outlier removal: 35.6416
+Sorted distances in ascending order: 35.6416
+This is track_id: 3
+This is bounding box: [590, 168][640, 214]
+min distance to camera: 35.641632
+Processing Image NO.: 000131
+Mean after IQR outlier removal: 36.328
+Sorted distances in ascending order: 27.1929, 28.0245, 32.2872, 34.9744, 36.1208, 37.6216, 38.5593, 38.6862, 39.4977, 40.2985, 41.0965, 41.5767, 50.3654
+This is track_id: 1
+This is bounding box: [195, 186][482, 373]
+min distance to camera: 36.328026
+Mean after IQR outlier removal: 65.881
+Sorted distances in ascending order: 60.5506, 67.8342, 69.2581
+This is track_id: 2
+This is bounding box: [449, 177][537, 242]
+min distance to camera: 65.880959
+Processing Image NO.: 000132
+Mean after IQR outlier removal: 36.328
+Sorted distances in ascending order: 27.1929, 28.0245, 32.2872, 34.9744, 36.1208, 37.6216, 38.5593, 38.6862, 39.4977, 40.2985, 41.0965, 41.5767, 50.3654
+This is track_id: 1
+This is bounding box: [187, 187][480, 373]
+min distance to camera: 36.328026
+Mean after IQR outlier removal: 65.881
+Sorted distances in ascending order: 60.5506, 67.8342, 69.2581
+This is track_id: 2
+This is bounding box: [447, 178][536, 243]
+min distance to camera: 65.880959
+Processing Image NO.: 000133
+Mean after IQR outlier removal: 40.8151
+Sorted distances in ascending order: 7.03606, 7.21615, 22.9404, 26.1774, 34.2817, 34.9547, 36.2449, 37.2864, 38.0977, 38.4784, 38.5243, 38.6283, 39.0523, 39.3556, 39.4349, 39.8184, 41.2721, 41.5219, 41.9091, 42.3006, 42.5662, 43.6463, 43.7205, 44.222, 45.4293, 47.1918, 50.8096
+This is track_id: 1
+This is bounding box: [180, 188][478, 373]
+min distance to camera: 40.815094
+Mean after IQR outlier removal: 67.6303
+Sorted distances in ascending order: 62.9548, 69.477, 70.4592
+This is track_id: 2
+This is bounding box: [445, 178][535, 244]
+min distance to camera: 67.630310
+Processing Image NO.: 000134
+Mean after IQR outlier removal: 40.8151
+Sorted distances in ascending order: 7.03606, 7.21615, 22.9404, 26.1774, 34.2817, 34.9547, 36.2449, 37.2864, 38.0977, 38.4784, 38.5243, 38.6283, 39.0523, 39.3556, 39.4349, 39.8184, 41.2721, 41.5219, 41.9091, 42.3006, 42.5662, 43.6463, 43.7205, 44.222, 45.4293, 47.1918, 50.8096
+This is track_id: 1
+This is bounding box: [180, 188][478, 373]
+min distance to camera: 40.815094
+Mean after IQR outlier removal: 67.6303
+Sorted distances in ascending order: 62.9548, 69.477, 70.4592
+This is track_id: 2
+This is bounding box: [445, 178][535, 244]
+min distance to camera: 67.630310
+Processing Image NO.: 000135
+Mean after IQR outlier removal: 40.3247
+Sorted distances in ascending order: 6.71419, 16.7855, 27.9307, 28.2678, 32.4487, 35.7619, 36.3147, 37.6071, 37.8837, 38.1379, 38.5845, 38.9444, 39.0542, 39.3504, 40.0413, 40.8041, 41.053, 41.2307, 41.8135, 41.8574, 41.8771, 42.1176, 42.2138, 42.3712, 43.735, 46.2323, 48.0333, 50.3224, 51.7355, 72.0329
+This is track_id: 1
+This is bounding box: [172, 189][476, 373]
+min distance to camera: 40.324688
+Mean after IQR outlier removal: 70.3104
+Sorted distances in ascending order: 62.4368, 68.958, 69.9402, 72.0329, 77.2875
+This is track_id: 2
+This is bounding box: [443, 178][534, 244]
+min distance to camera: 70.310371
+Mean after IQR outlier removal: 33.332
+Sorted distances in ascending order: 33.332
+This is track_id: 3
+This is bounding box: [586, 170][638, 217]
+min distance to camera: 33.331989
+Processing Image NO.: 000136
+Mean after IQR outlier removal: 39.6051
+Sorted distances in ascending order: 26.3961, 27.5298, 31.6134, 31.6338, 33.1962, 35.2617, 35.4084, 35.5091, 35.9524, 36.2056, 36.9175, 37.1799, 37.7859, 38.444, 38.7856, 39.3476, 39.5156, 39.5376, 39.8466, 39.9029, 41.0569, 41.5622, 41.8007, 41.8988, 41.909, 43.5296, 43.8359, 45.8025, 46.151, 48.0624, 51.037, 51.4019, 52.949, 56.1869, 70.8405
+This is track_id: 1
+This is bounding box: [160, 189][475, 373]
+min distance to camera: 39.605053
+Mean after IQR outlier removal: 71.0242
+Sorted distances in ascending order: 65.5399, 70.2994, 70.8405, 77.4171
+This is track_id: 2
+This is bounding box: [442, 178][533, 245]
+min distance to camera: 71.024223
+Processing Image NO.: 000137
+Mean after IQR outlier removal: 39.1807
+Sorted distances in ascending order: 27.0427, 31.153, 31.1776, 32.1, 32.6951, 32.7887, 34.35, 35.4897, 35.7318, 35.9369, 36.4435, 36.7342, 36.983, 37.2907, 37.3424, 37.6917, 37.906, 37.9623, 38.1896, 38.3068, 38.9499, 39.0557, 39.0578, 39.2979, 39.3455, 40.5977, 41.0318, 41.1161, 41.3627, 41.4156, 41.43, 43.0507, 43.553, 43.7805, 43.9228, 45.1948, 45.3235, 45.5876, 45.6589, 50.5575, 53.8034, 66.8786, 70.3353
+This is track_id: 1
+This is bounding box: [150, 189][473, 373]
+min distance to camera: 39.180714
+Mean after IQR outlier removal: 71.3583
+Sorted distances in ascending order: 65.0286, 69.7871, 70.3353, 71.9103, 74.183, 76.9054
+This is track_id: 2
+This is bounding box: [440, 178][532, 246]
+min distance to camera: 71.358261
+Processing Image NO.: 000138
+Mean after IQR outlier removal: 38.9882
+Sorted distances in ascending order: 26.8543, 28.7349, 31.7553, 32.5063, 33.5006, 34.1729, 35.0264, 35.198, 35.2712, 35.579, 35.6079, 35.9539, 35.9676, 36.1353, 36.6914, 36.7257, 36.8138, 36.9236, 37.219, 37.2649, 37.3086, 37.3278, 38.2259, 39.1837, 39.5454, 39.8859, 40.5717, 40.6392, 40.7103, 42.4674, 42.8841, 43.1961, 43.7946, 44.51, 44.6562, 44.7191, 44.9687, 45.1836, 45.2809, 46.6993, 48.2945, 53.5488, 59.3047, 66.6218, 67.6809
+This is track_id: 1
+This is bounding box: [140, 189][470, 373]
+min distance to camera: 38.988190
+Mean after IQR outlier removal: 72.8161
+Sorted distances in ascending order: 67.6809, 67.8131, 73.1631, 74.7749, 75.4224, 78.0423
+This is track_id: 2
+This is bounding box: [438, 179][531, 246]
+min distance to camera: 72.816093
+Processing Image NO.: 000139
+Mean after IQR outlier removal: 39.5488
+Sorted distances in ascending order: 28.6768, 31.9534, 32.0461, 32.7425, 32.8322, 33.7264, 33.9998, 34.7181, 34.7804, 35.1124, 35.469, 35.6549, 35.7774, 35.9013, 36.0881, 36.2318, 36.2771, 36.3251, 36.4559, 36.7306, 36.8034, 37.0701, 37.3139, 37.6269, 37.7485, 38.41, 38.7061, 38.7925, 39.0961, 39.4369, 39.6989, 40.0447, 40.8664, 41.7439, 41.983, 42.3998, 42.7303, 42.9311, 43.3227, 43.6861, 44.1567, 44.2092, 44.4694, 44.6769, 44.8084, 45.3702, 46.1926, 47.6585, 53.0661, 54.5191, 55.9526, 61.47, 64.8054, 66.111, 67.1667
+This is track_id: 1
+This is bounding box: [129, 189][468, 373]
+min distance to camera: 39.548832
+Mean after IQR outlier removal: 71.9191
+Sorted distances in ascending order: 54.5191, 55.9526, 67.1667, 67.292, 72.6411, 72.6411, 74.253, 77.5208
+This is track_id: 2
+This is bounding box: [436, 179][530, 247]
+min distance to camera: 71.919121
+Mean after IQR outlier removal: 39.5488
+Sorted distances in ascending order: 28.6768, 31.9534, 32.0461, 32.7425, 32.8322, 33.7264, 33.9998, 34.7181, 34.7804, 35.1124, 35.469, 35.6549, 35.7774, 35.9013, 36.0881, 36.2318, 36.2771, 36.3251, 36.4559, 36.7306, 36.8034, 37.0701, 37.3139, 37.6269, 37.7485, 38.41, 38.7061, 38.7925, 39.0961, 39.4369, 39.6989, 40.0447, 40.8664, 41.7439, 41.983, 42.3998, 42.7303, 42.9311, 43.3227, 43.6861, 44.1567, 44.2092, 44.4694, 44.6769, 44.8084, 45.3702, 46.1926, 47.6585, 53.0661, 54.5191, 55.9526, 61.47, 64.8054, 66.111, 67.1667
+This is track_id: 1
+This is bounding box: [129, 189][468, 373]
+min distance to camera: 39.548832
+Mean after IQR outlier removal: 71.9191
+Sorted distances in ascending order: 54.5191, 55.9526, 67.1667, 67.292, 72.6411, 72.6411, 74.253, 77.5208
+This is track_id: 2
+This is bounding box: [436, 179][530, 247]
+min distance to camera: 71.919121
+Processing Image NO.: 000140
+Processing Image NO.: 000141
+Mean after IQR outlier removal: 36.1635
+Sorted distances in ascending order: 6.58362, 20.634, 24.8539, 25.9363, 26.914, 28.1688, 28.9992, 29.3525, 30.4333, 30.5413, 31.088, 32.8273, 32.9159, 33.2202, 33.254, 33.609, 33.7471, 33.8465, 34.0489, 34.0567, 34.2054, 34.2796, 34.5454, 34.6006, 34.7908, 35.1286, 35.1914, 35.3273, 35.5581, 35.5772, 35.7565, 35.8853, 36.1021, 36.7358, 37.9063, 38.0695, 38.1845, 39.2155, 40.0278, 42.7677, 42.8141, 42.8423, 42.8522, 42.9953, 43.1344, 43.2807, 44.9403, 44.9991, 46.8104, 48.4189, 56.7867, 59.6342, 60.4257, 63.1605, 64.0822
+This is track_id: 1
+This is bounding box: [106, 189][464, 373]
+min distance to camera: 36.163536
+Mean after IQR outlier removal: 67.0004
+Sorted distances in ascending order: 44.9403, 56.7867, 63.1605, 68.9667, 73.7619, 73.7619, 76.1934, 78.4321
+This is track_id: 2
+This is bounding box: [432, 179][527, 248]
+min distance to camera: 67.000443
+Mean after IQR outlier removal: 36.1635
+Sorted distances in ascending order: 6.58362, 20.634, 24.8539, 25.9363, 26.914, 28.1688, 28.9992, 29.3525, 30.4333, 30.5413, 31.088, 32.8273, 32.9159, 33.2202, 33.254, 33.609, 33.7471, 33.8465, 34.0489, 34.0567, 34.2054, 34.2796, 34.5454, 34.6006, 34.7908, 35.1286, 35.1914, 35.3273, 35.5581, 35.5772, 35.7565, 35.8853, 36.1021, 36.7358, 37.9063, 38.0695, 38.1845, 39.2155, 40.0278, 42.7677, 42.8141, 42.8423, 42.8522, 42.9953, 43.1344, 43.2807, 44.9403, 44.9991, 46.8104, 48.4189, 56.7867, 59.6342, 60.4257, 63.1605, 64.0822
+This is track_id: 1
+This is bounding box: [106, 189][464, 373]
+min distance to camera: 36.163536
+Mean after IQR outlier removal: 67.0004
+Sorted distances in ascending order: 44.9403, 56.7867, 63.1605, 68.9667, 73.7619, 73.7619, 76.1934, 78.4321
+This is track_id: 2
+This is bounding box: [432, 179][527, 248]
+min distance to camera: 67.000443
+Processing Image NO.: 000142
+Mean after IQR outlier removal: 36.1325
+Sorted distances in ascending order: 22.8839, 25.1988, 27.3147, 28.0212, 28.0891, 28.2529, 29.7566, 31.1568, 31.1725, 31.4998, 31.9835, 32.1368, 32.3049, 33.0284, 33.1971, 33.6694, 33.8359, 34.2558, 34.2759, 34.3148, 34.3335, 35.0465, 35.1075, 35.6013, 35.9139, 36.2162, 36.3632, 37.997, 38.3927, 39.6417, 39.731, 39.9734, 40.0131, 40.2604, 40.9037, 40.9822, 41.5197, 43.3414, 44.9816, 45.0707, 45.6337, 46.0279, 47.0336, 53.3949, 59.342, 59.666, 62.1727
+This is track_id: 1
+This is bounding box: [81, 189][459, 373]
+min distance to camera: 36.132488
+Mean after IQR outlier removal: 75.624
+Sorted distances in ascending order: 44.9816, 70.6324, 75.0304, 77.4936, 79.3397
+This is track_id: 2
+This is bounding box: [428, 179][525, 250]
+min distance to camera: 75.624039
+Processing Image NO.: 000143
+Mean after IQR outlier removal: 33.2335
+Sorted distances in ascending order: 24.733, 24.9729, 26.8503, 27.41, 27.5571, 27.8753, 30.7375, 30.7456, 31.5694, 31.8897, 32.2648, 32.6352, 33.1853, 33.411, 33.7818, 33.8415, 33.9186, 34.4587, 34.6118, 34.6131, 34.8176, 35.4244, 35.4734, 35.7278, 35.8748, 36.437, 39.4854, 39.5555, 40.5084, 42.6373, 44.4841, 46.5435, 52.8993, 61.6771
+This is track_id: 1
+This is bounding box: [67, 189][457, 373]
+min distance to camera: 33.233471
+Mean after IQR outlier removal: 75.1201
+Sorted distances in ascending order: 44.4841, 70.1291, 74.5261, 76.9893, 78.8358
+This is track_id: 2
+This is bounding box: [426, 180][524, 250]
+min distance to camera: 75.120087
+Processing Image NO.: 000144
+Mean after IQR outlier removal: 34.6103
+Sorted distances in ascending order: 24.1089, 24.3558, 24.5424, 24.7615, 25.4524, 25.6366, 31.1228, 31.2189, 31.3971, 31.7133, 32.0551, 32.6906, 33.1362, 33.3924, 33.48, 33.5738, 33.8528, 33.8847, 34.4138, 34.9665, 35.0083, 35.606, 35.8158, 36.0334, 36.1904, 37.186, 38.0157, 38.2806, 38.868, 39.5176, 39.6173, 40.4287, 40.7371, 43.269, 44.0858, 44.7145, 47.4529, 52.2144, 53.9535, 57.3426, 60.2615
+This is track_id: 1
+This is bounding box: [53, 189][454, 373]
+min distance to camera: 34.610348
+Mean after IQR outlier removal: 76.7482
+Sorted distances in ascending order: 71.8237, 76.1786, 78.1575, 80.8328
+This is track_id: 2
+This is bounding box: [425, 179][523, 251]
+min distance to camera: 76.748161
+Mean after IQR outlier removal: 30.8854
+Sorted distances in ascending order: 30.8854
+This is track_id: 3
+This is bounding box: [581, 170][636, 220]
+min distance to camera: 30.885420
+Processing Image NO.: 000145
+Mean after IQR outlier removal: 34.6103
+Sorted distances in ascending order: 24.1089, 24.3558, 24.5424, 24.7615, 25.4524, 25.6366, 31.1228, 31.2189, 31.3971, 31.7133, 32.0551, 32.6906, 33.1362, 33.3924, 33.48, 33.5738, 33.8528, 33.8847, 34.4138, 34.9665, 35.0083, 35.606, 35.8158, 36.0334, 36.1904, 37.186, 38.0157, 38.2806, 38.868, 39.5176, 39.6173, 40.4287, 40.7371, 43.269, 44.0858, 44.7145, 47.4529, 52.2144, 53.9535, 57.3426, 60.2615
+This is track_id: 1
+This is bounding box: [53, 189][454, 373]
+min distance to camera: 34.610348
+Mean after IQR outlier removal: 76.7482
+Sorted distances in ascending order: 71.8237, 76.1786, 78.1575, 80.8328
+This is track_id: 2
+This is bounding box: [425, 179][523, 251]
+min distance to camera: 76.748161
+Mean after IQR outlier removal: 30.8854
+Sorted distances in ascending order: 30.8854
+This is track_id: 3
+This is bounding box: [581, 170][636, 220]
+min distance to camera: 30.885420
+Processing Image NO.: 000146
+Mean after IQR outlier removal: 30.4121
+Sorted distances in ascending order: 20.6696, 21.3836, 22.3438, 23.4877, 23.6383, 23.6902, 23.8793, 24.1384, 24.2364, 24.287, 24.3633, 24.6306, 24.9036, 25.1648, 25.3191, 26.0848, 26.8183, 27.1063, 28.8607, 29.3439, 29.6302, 30.8006, 30.9781, 31.1242, 31.9975, 32.2718, 32.717, 32.7473, 32.9622, 33.0395, 33.4072, 34.525, 34.5563, 34.6971, 35.0338, 35.316, 38.5944, 38.9493, 39.4308, 39.8993, 40.241, 43.4691, 46.9844, 51.706, 59.7532
+This is track_id: 1
+This is bounding box: [39, 189][452, 373]
+min distance to camera: 30.412134
+Mean after IQR outlier removal: 76.231
+Sorted distances in ascending order: 43.4691, 71.3072, 75.6611, 77.64, 80.3155
+This is track_id: 2
+This is bounding box: [424, 179][523, 251]
+min distance to camera: 76.230972
+Mean after IQR outlier removal: 30.3604
+Sorted distances in ascending order: 30.3604
+This is track_id: 3
+This is bounding box: [581, 170][636, 220]
+min distance to camera: 30.360365
+Mean after IQR outlier removal: 30.3097
+Sorted distances in ascending order: 21.5045, 21.7995, 22.0185, 22.7517, 22.9763, 23.0831, 23.8187, 23.83, 24.0308, 24.1562, 24.4124, 25.0538, 25.3046, 26.2791, 26.3048, 26.5094, 27.7632, 28.2624, 28.8676, 28.9812, 29.52, 30.3424, 30.4254, 30.514, 30.5909, 30.6841, 30.7183, 31.1093, 31.4703, 31.4898, 32.0997, 32.3418, 32.513, 33.4777, 33.6183, 34.1732, 34.5933, 35.2755, 35.9523, 36.5246, 37.7522, 38.3133, 39.0336, 40.3933, 46.5065, 47.1036, 50.5629, 58.228, 121.478
+This is track_id: 1
+This is bounding box: [21, 189][449, 373]
+min distance to camera: 30.309660
+Mean after IQR outlier removal: 77.9602
+Sorted distances in ascending order: 73.2511, 77.5926, 78.8329, 82.1643
+This is track_id: 2
+This is bounding box: [422, 179][522, 251]
+min distance to camera: 77.960220
+Mean after IQR outlier removal: 30.7787
+Sorted distances in ascending order: 30.7787
+This is track_id: 3
+This is bounding box: [580, 170][636, 220]
+min distance to camera: 30.778727
+Processing Image NO.: 000147
+Mean after IQR outlier removal: 31.6348
+Sorted distances in ascending order: 21.0515, 22.2971, 22.9938, 23.2787, 23.3645, 23.5702, 23.701, 23.9441, 25.9033, 27.3134, 28.4998, 29.6048, 29.8613, 30.0215, 30.1625, 30.2979, 30.6729, 31.0854, 31.6948, 33.2187, 34.7892, 36.0426, 38.5454, 39.9405, 40.442, 42.3932, 46.0162, 46.6352, 50.069
+This is track_id: 1
+This is bounding box: [3, 189][446, 373]
+min distance to camera: 31.634846
+Mean after IQR outlier removal: 77.456
+Sorted distances in ascending order: 42.3932, 72.7478, 77.0877, 78.3282, 81.6604
+This is track_id: 2
+This is bounding box: [421, 178][521, 251]
+min distance to camera: 77.456047
+Mean after IQR outlier removal: 26.2117
+Sorted distances in ascending order: 26.2117
+This is track_id: 3
+This is bounding box: [580, 170][636, 220]
+min distance to camera: 26.211716
+Processing Image NO.: 000148
+Mean after IQR outlier removal: 31.6348
+Sorted distances in ascending order: 21.0515, 22.2971, 22.9938, 23.2787, 23.3645, 23.5702, 23.701, 23.9441, 25.9033, 27.3134, 28.4998, 29.6048, 29.8613, 30.0215, 30.1625, 30.2979, 30.6729, 31.0854, 31.6948, 33.2187, 34.7892, 36.0426, 38.5454, 39.9405, 40.442, 42.3932, 46.0162, 46.6352, 50.069
+This is track_id: 1
+This is bounding box: [3, 189][446, 373]
+min distance to camera: 31.634846
+Mean after IQR outlier removal: 77.456
+Sorted distances in ascending order: 42.3932, 72.7478, 77.0877, 78.3282, 81.6604
+This is track_id: 2
+This is bounding box: [421, 178][521, 251]
+min distance to camera: 77.456047
+Mean after IQR outlier removal: 26.2117
+Sorted distances in ascending order: 26.2117
+This is track_id: 3
+This is bounding box: [580, 170][636, 220]
+min distance to camera: 26.211716
+Processing Image NO.: 000149
+Mean after IQR outlier removal: 26.868
+Sorted distances in ascending order: 19.7393, 20.7359, 20.8923, 20.9627, 20.9726, 21.1405, 21.1706, 21.7806, 21.8135, 22.1137, 22.2352, 22.2689, 22.4359, 22.6479, 22.9835, 23.1839, 23.5066, 24.0111, 24.2532, 24.3281, 24.421, 24.7198, 25.2662, 25.535, 25.627, 25.72, 26.4732, 26.6963, 26.996, 27.154, 27.3777, 28.4632, 28.6364, 28.9846, 29.0046, 29.5748, 30.6477, 30.7434, 30.7962, 30.8923, 31.1231, 33.1225, 33.1852, 33.2986, 33.4938, 33.6689, 34.9348, 36.6385, 37.2383, 39.7909, 45.2199, 45.3174, 89.3431
+This is track_id: 1
+This is bounding box: [0, 189][443, 373]
+min distance to camera: 26.867992
+Mean after IQR outlier removal: 80.9538
+Sorted distances in ascending order: 74.83, 78.0639, 79.2462, 83.2857, 89.3431
+This is track_id: 2
+This is bounding box: [420, 179][521, 252]
+min distance to camera: 80.953789
+Mean after IQR outlier removal: 30.262
+Sorted distances in ascending order: 30.262
+This is track_id: 3
+This is bounding box: [580, 170][636, 221]
+min distance to camera: 30.261995
+Processing Image NO.: 000150
+Mean after IQR outlier removal: 25.7362
+Sorted distances in ascending order: 19.297, 19.4291, 20.3286, 20.5188, 20.5556, 20.6865, 20.7475, 21.381, 21.4111, 21.7128, 21.9995, 22.1975, 22.5258, 22.7362, 23.9123, 24.2484, 24.7953, 25.1186, 25.2112, 25.3033, 26.0022, 26.2243, 26.5249, 26.6821, 26.9148, 26.9437, 28.2117, 28.5175, 28.5287, 29.0977, 30.2435, 30.3394, 31.9927, 33.2461, 35.6829, 36.2136, 36.7574, 44.7368, 88.854
+This is track_id: 1
+This is bounding box: [0, 189][440, 373]
+min distance to camera: 25.736187
+Mean after IQR outlier removal: 85.3346
+Sorted distances in ascending order: 77.5679, 88.854, 89.5819
+This is track_id: 2
+This is bounding box: [419, 179][521, 253]
+min distance to camera: 85.334618
+Processing Image NO.: 000151
+Mean after IQR outlier removal: 23.9565
+Sorted distances in ascending order: 18.7528, 18.8635, 18.9702, 18.972, 19.0062, 19.0416, 19.4064, 19.4446, 19.4525, 20.0836, 20.1261, 20.2402, 20.259, 21.0232, 21.2788, 21.3335, 21.3396, 21.5718, 21.6203, 21.6523, 22.2628, 22.6929, 23.4062, 23.4462, 23.4993, 23.5063, 23.783, 24.2173, 24.7118, 24.805, 24.8332, 24.8963, 24.9983, 26.0596, 26.4584, 26.5283, 27.0586, 27.0983, 27.6396, 27.7958, 28.0582, 29.849, 31.232, 32.2242, 32.3595, 34.8936, 35.2021, 38.8324, 44.258, 44.476, 88.3687
+This is track_id: 1
+This is bounding box: [0, 189][436, 373]
+min distance to camera: 23.956459
+Mean after IQR outlier removal: 87.311
+Sorted distances in ascending order: 77.0751, 84.4735, 88.3687, 89.0908, 102.427
+This is track_id: 2
+This is bounding box: [418, 180][521, 254]
+min distance to camera: 87.310997
+Mean after IQR outlier removal: 29.2594
+Sorted distances in ascending order: 29.2594
+This is track_id: 3
+This is bounding box: [580, 170][636, 221]
+min distance to camera: 29.259422
+Mean after IQR outlier removal: 95.2966
+Sorted distances in ascending order: 90.8968, 99.6964
+This is track_id: 7
+This is bounding box: [477, 173][518, 198]
+min distance to camera: 95.296631
+Mean after IQR outlier removal: 23.9565
+Sorted distances in ascending order: 18.7528, 18.8635, 18.9702, 18.972, 19.0062, 19.0416, 19.4064, 19.4446, 19.4525, 20.0836, 20.1261, 20.2402, 20.259, 21.0232, 21.2788, 21.3335, 21.3396, 21.5718, 21.6203, 21.6523, 22.2628, 22.6929, 23.4062, 23.4462, 23.4993, 23.5063, 23.783, 24.2173, 24.7118, 24.805, 24.8332, 24.8963, 24.9983, 26.0596, 26.4584, 26.5283, 27.0586, 27.0983, 27.6396, 27.7958, 28.0582, 29.849, 31.232, 32.2242, 32.3595, 34.8936, 35.2021, 38.8324, 44.258, 44.476, 88.3687
+This is track_id: 1
+This is bounding box: [0, 189][436, 373]
+min distance to camera: 23.956459
+Mean after IQR outlier removal: 87.311
+Sorted distances in ascending order: 77.0751, 84.4735, 88.3687, 89.0908, 102.427
+This is track_id: 2
+This is bounding box: [418, 180][521, 254]
+min distance to camera: 87.310997
+Mean after IQR outlier removal: 29.2594
+Sorted distances in ascending order: 29.2594
+This is track_id: 3
+This is bounding box: [580, 170][636, 221]
+min distance to camera: 29.259422
+Mean after IQR outlier removal: 95.2966
+Sorted distances in ascending order: 90.8968, 99.6964
+This is track_id: 7
+This is bounding box: [477, 173][518, 198]
+min distance to camera: 95.296631
+Processing Image NO.: 000152
+Mean after IQR outlier removal: 23.4037
+Sorted distances in ascending order: 18.5092, 18.6802, 18.7435, 18.7848, 19.0117, 19.1253, 19.2397, 19.2874, 19.4806, 19.6563, 19.7006, 19.7377, 20.002, 21.2051, 21.4024, 21.6123, 22.4351, 22.457, 23.0422, 23.2303, 23.3073, 23.5046, 23.8987, 24.1654, 24.2413, 24.3311, 26.2052, 26.2863, 26.2978, 26.568, 26.7, 26.753, 29.5598, 30.8521, 31.6649, 32.7007, 33.5567, 38.3054, 42.5055, 44.2282
+This is track_id: 1
+This is bounding box: [0, 189][434, 373]
+min distance to camera: 23.403683
+Mean after IQR outlier removal: 91.8317
+Sorted distances in ascending order: 83.9762, 89.4453, 102.074
+This is track_id: 2
+This is bounding box: [418, 180][521, 254]
+min distance to camera: 91.831696
+Mean after IQR outlier removal: 28.6899
+Sorted distances in ascending order: 28.3248, 29.0551
+This is track_id: 3
+This is bounding box: [580, 169][636, 220]
+min distance to camera: 28.689934
+Mean after IQR outlier removal: 89.4453
+Sorted distances in ascending order: 89.4453
+This is track_id: 7
+This is bounding box: [469, 174][513, 200]
+min distance to camera: 89.445297
+Processing Image NO.: 000153
+Mean after IQR outlier removal: 23.0665
+Sorted distances in ascending order: 18.0762, 18.3644, 18.5904, 18.8181, 18.8807, 18.9765, 19.1294, 19.2202, 19.223, 19.2672, 19.3318, 19.3445, 20.3906, 21.1961, 21.3579, 22.016, 22.0407, 22.1719, 22.4323, 22.6432, 22.8361, 22.9141, 23.479, 23.7699, 23.7889, 23.9354, 23.9398, 24.3636, 24.9497, 25.4775, 25.5551, 25.8909, 26.1067, 26.2943, 28.6433, 29.5568, 30.3858, 33.0875, 33.1497, 42.0388
+This is track_id: 1
+This is bounding box: [0, 189][432, 373]
+min distance to camera: 23.066545
+Mean after IQR outlier removal: 85.0875
+Sorted distances in ascending order: 82.7974, 83.4987, 88.9663
+This is track_id: 2
+This is bounding box: [418, 180][520, 254]
+min distance to camera: 85.087456
+Mean after IQR outlier removal: 28.2044
+Sorted distances in ascending order: 27.8392, 28.5696
+This is track_id: 3
+This is bounding box: [579, 169][635, 220]
+min distance to camera: 28.204414
+Mean after IQR outlier removal: 98.6431
+Sorted distances in ascending order: 98.6431
+This is track_id: 7
+This is bounding box: [461, 174][508, 202]
+min distance to camera: 98.643059
+Processing Image NO.: 000154
+Mean after IQR outlier removal: 24.2976
+Sorted distances in ascending order: 18.187, 18.4928, 18.8166, 18.8512, 18.8725, 19.3883, 20.5904, 20.9648, 21.243, 21.6432, 21.7878, 21.996, 22.2583, 23.3521, 23.5589, 24.4342, 24.5123, 25.0311, 25.661, 25.8516, 28.1968, 29.1177, 29.9346, 30.6682, 30.7477, 31.5056, 31.9084, 32.7611, 45.1506
+This is track_id: 1
+This is bounding box: [0, 189][430, 373]
+min distance to camera: 24.297607
+Mean after IQR outlier removal: 82.7227
+Sorted distances in ascending order: 76.9441, 88.5014
+This is track_id: 2
+This is bounding box: [417, 179][521, 254]
+min distance to camera: 82.722740
+Mean after IQR outlier removal: 27.7308
+Sorted distances in ascending order: 27.3656, 28.096
+This is track_id: 3
+This is bounding box: [579, 169][635, 220]
+min distance to camera: 27.730806
+Mean after IQR outlier removal: 88.5014
+Sorted distances in ascending order: 88.5014
+This is track_id: 7
+This is bounding box: [453, 174][503, 204]
+min distance to camera: 88.501350
+Processing Image NO.: 000155
+Mean after IQR outlier removal: 26.8886
+Sorted distances in ascending order: 18.2589, 21.4786, 22.3977, 23.507, 23.9959, 24.6993, 26.6858, 26.9534, 27.8407, 28.0971, 31.1641, 32.1673, 32.4875, 36.707, 46.2571
+This is track_id: 1
+This is bounding box: [0, 188][427, 373]
+min distance to camera: 26.888584
+Mean after IQR outlier removal: 83.4768
+Sorted distances in ascending order: 77.2818, 83.2246, 89.9239
+This is track_id: 2
+This is bounding box: [417, 179][521, 254]
+min distance to camera: 83.476784
+Mean after IQR outlier removal: 29.0018
+Sorted distances in ascending order: 28.8372, 29.1663
+This is track_id: 3
+This is bounding box: [580, 170][636, 221]
+min distance to camera: 29.001762
+Mean after IQR outlier removal: 89.9239
+Sorted distances in ascending order: 89.9239
+This is track_id: 7
+This is bounding box: [443, 175][497, 206]
+min distance to camera: 89.923927
+Mean after IQR outlier removal: 26.682
+Sorted distances in ascending order: 18.5017, 18.8462, 22.4806, 22.8424, 24.1721, 24.2223, 24.4638, 25.917, 26.2537, 26.5129, 26.9362, 26.9454, 27.3326, 27.4, 27.6573, 29.3463, 29.8264, 29.8803, 30.2856, 30.2902, 30.7865, 31.0027, 31.7841, 45.1968
+This is track_id: 1
+This is bounding box: [0, 188][425, 373]
+min distance to camera: 26.682018
+Mean after IQR outlier removal: 89.4644
+Sorted distances in ascending order: 89.4644
+This is track_id: 2
+This is bounding box: [417, 180][521, 255]
+min distance to camera: 89.464447
+Mean after IQR outlier removal: 28.5358
+Sorted distances in ascending order: 28.3714, 28.7003
+This is track_id: 3
+This is bounding box: [580, 170][636, 221]
+min distance to camera: 28.535843
+Mean after IQR outlier removal: 89.4644
+Sorted distances in ascending order: 89.4644
+This is track_id: 7
+This is bounding box: [432, 175][490, 209]
+min distance to camera: 89.464447
+Processing Image NO.: 000156
+Mean after IQR outlier removal: 26.682
+Sorted distances in ascending order: 18.5017, 18.8462, 22.4806, 22.8424, 24.1721, 24.2223, 24.4638, 25.917, 26.2537, 26.5129, 26.9362, 26.9454, 27.3326, 27.4, 27.6573, 29.3463, 29.8264, 29.8803, 30.2856, 30.2902, 30.7865, 31.0027, 31.7841, 45.1968
+This is track_id: 1
+This is bounding box: [0, 188][425, 373]
+min distance to camera: 26.682018
+Mean after IQR outlier removal: 89.4644
+Sorted distances in ascending order: 89.4644
+This is track_id: 2
+This is bounding box: [417, 180][521, 255]
+min distance to camera: 89.464447
+Mean after IQR outlier removal: 28.5358
+Sorted distances in ascending order: 28.3714, 28.7003
+This is track_id: 3
+This is bounding box: [580, 170][636, 221]
+min distance to camera: 28.535843
+Mean after IQR outlier removal: 89.4644
+Sorted distances in ascending order: 89.4644
+This is track_id: 7
+This is bounding box: [432, 175][490, 209]
+min distance to camera: 89.464447
+Mean after IQR outlier removal: 28.5818
+Sorted distances in ascending order: 24.2135, 24.9385, 25.5878, 25.9711, 28.2551, 28.8346, 29.3601, 29.8872, 31.345, 32.5295, 33.477, 46.8337
+This is track_id: 1
+This is bounding box: [0, 189][424, 373]
+min distance to camera: 28.581762
+Mean after IQR outlier removal: 87.1888
+Sorted distances in ascending order: 73.5827, 83.4115, 91.912, 99.849
+This is track_id: 2
+This is bounding box: [417, 178][521, 253]
+min distance to camera: 87.188789
+Mean after IQR outlier removal: 29.7603
+Sorted distances in ascending order: 29.7603
+This is track_id: 3
+This is bounding box: [580, 170][637, 222]
+min distance to camera: 29.760260
+Mean after IQR outlier removal: 91.912
+Sorted distances in ascending order: 91.912
+This is track_id: 7
+This is bounding box: [419, 176][482, 212]
+min distance to camera: 91.911957
+Processing Image NO.: 000157
+Mean after IQR outlier removal: 28.5818
+Sorted distances in ascending order: 24.2135, 24.9385, 25.5878, 25.9711, 28.2551, 28.8346, 29.3601, 29.8872, 31.345, 32.5295, 33.477, 46.8337
+This is track_id: 1
+This is bounding box: [0, 189][424, 373]
+min distance to camera: 28.581762
+Mean after IQR outlier removal: 87.1888
+Sorted distances in ascending order: 73.5827, 83.4115, 91.912, 99.849
+This is track_id: 2
+This is bounding box: [417, 178][521, 253]
+min distance to camera: 87.188789
+Mean after IQR outlier removal: 29.7603
+Sorted distances in ascending order: 29.7603
+This is track_id: 3
+This is bounding box: [580, 170][637, 222]
+min distance to camera: 29.760260
+Mean after IQR outlier removal: 91.912
+Sorted distances in ascending order: 91.912
+This is track_id: 7
+This is bounding box: [419, 176][482, 212]
+min distance to camera: 91.911957
+Processing Image NO.: 000158
+Mean after IQR outlier removal: 29.2244
+Sorted distances in ascending order: 22.9712, 25.6243, 25.8864, 27.1298, 27.6613, 28.453, 28.8514, 28.883, 28.954, 29.0242, 29.1109, 29.6718, 29.7397, 30.0723, 30.5011, 30.8829, 31.1877, 31.6362, 32.7698, 38.2813, 45.1957
+This is track_id: 1
+This is bounding box: [0, 189][424, 373]
+min distance to camera: 29.224434
+Mean after IQR outlier removal: 82.6317
+Sorted distances in ascending order: 81.3191, 83.9443
+This is track_id: 2
+This is bounding box: [416, 180][521, 256]
+min distance to camera: 82.631699
+Mean after IQR outlier removal: 30.6132
+Sorted distances in ascending order: 30.6132
+This is track_id: 3
+This is bounding box: [581, 171][637, 222]
+min distance to camera: 30.613176
+Mean after IQR outlier removal: 33.6254
+Sorted distances in ascending order: 21.5696, 25.218, 27.8132, 28.4086, 29.2954, 29.6222, 29.7337, 30.4982, 30.7974, 33.2461, 35.0107, 36.3238, 38.1997, 40.026, 40.4619, 41.6092, 42.6691, 44.7543, 101.105
+This is track_id: 1
+This is bounding box: [0, 189][423, 373]
+min distance to camera: 33.625381
+Mean after IQR outlier removal: 84.3599
+Sorted distances in ascending order: 75.5785, 83.4722, 94.0289
+This is track_id: 2
+This is bounding box: [416, 179][521, 255]
+min distance to camera: 84.359863
+Mean after IQR outlier removal: 29.2632
+Sorted distances in ascending order: 29.2632
+This is track_id: 3
+This is bounding box: [581, 171][637, 223]
+min distance to camera: 29.263195
+Processing Image NO.: 000159
+Mean after IQR outlier removal: 33.9809
+Sorted distances in ascending order: 27.38, 27.9608, 28.9756, 29.1667, 29.2973, 30.111, 31.0867, 31.7691, 32.8357, 33.9727, 37.359, 38.1496, 39.5535, 39.5629, 42.2056, 44.3076, 100.646
+This is track_id: 1
+This is bounding box: [0, 190][422, 373]
+min distance to camera: 33.980862
+Mean after IQR outlier removal: 82.9933
+Sorted distances in ascending order: 82.9933
+This is track_id: 2
+This is bounding box: [416, 181][521, 258]
+min distance to camera: 82.993286
+Mean after IQR outlier removal: 29.2078
+Sorted distances in ascending order: 28.7741, 29.6416
+This is track_id: 3
+This is bounding box: [581, 172][638, 223]
+min distance to camera: 29.207848
+Processing Image NO.: 000160
+Mean after IQR outlier removal: 33.2222
+Sorted distances in ascending order: 26.674, 27.5535, 28.6351, 29.3993, 31.321, 32.4147, 37.0041, 38.0304, 39.1233, 42.0664, 100.276
+This is track_id: 1
+This is bounding box: [0, 190][422, 373]
+min distance to camera: 33.222172
+Mean after IQR outlier removal: 98.4545
+Sorted distances in ascending order: 98.4545
+This is track_id: 2
+This is bounding box: [416, 180][522, 257]
+min distance to camera: 98.454468
+Mean after IQR outlier removal: 29.7413
+Sorted distances in ascending order: 29.0175, 30.4651
+This is track_id: 3
+This is bounding box: [582, 172][638, 224]
+min distance to camera: 29.741268
+Processing Image NO.: 000161
+Mean after IQR outlier removal: 33.2222
+Sorted distances in ascending order: 26.674, 27.5535, 28.6351, 29.3993, 31.321, 32.4147, 37.0041, 38.0304, 39.1233, 42.0664, 100.276
+This is track_id: 1
+This is bounding box: [0, 190][422, 373]
+min distance to camera: 33.222172
+Mean after IQR outlier removal: 98.4545
+Sorted distances in ascending order: 98.4545
+This is track_id: 2
+This is bounding box: [416, 180][522, 257]
+min distance to camera: 98.454468
+Mean after IQR outlier removal: 29.7413
+Sorted distances in ascending order: 29.0175, 30.4651
+This is track_id: 3
+This is bounding box: [582, 172][638, 224]
+min distance to camera: 29.741268
+Processing Image NO.: 000162
+Mean after IQR outlier removal: 36.4178
+Sorted distances in ascending order: 27.099, 27.1236, 27.3852, 28.9411, 31.0029, 32.8124, 33.2249, 37.5626, 40.3951, 43.2759, 45.3466, 47.3502, 51.9117, 99.8137
+This is track_id: 1
+This is bounding box: [0, 191][421, 373]
+min distance to camera: 36.417793
+Mean after IQR outlier removal: 29.9695
+Sorted distances in ascending order: 29.9695
+This is track_id: 3
+This is bounding box: [582, 172][639, 224]
+min distance to camera: 29.969460
+Mean after IQR outlier removal: 28.9411
+Sorted distances in ascending order: 28.9411
+This is track_id: 7
+This is bounding box: [306, 184][422, 244]
+min distance to camera: 28.941057
+Processing Image NO.: 000163
+Mean after IQR outlier removal: 38.3492
+Sorted distances in ascending order: 26.4979, 31.139, 36.2707, 36.5774, 37.5377, 39.9571, 42.1105, 44.8521
+This is track_id: 1
+This is bounding box: [0, 192][420, 373]
+min distance to camera: 38.349205
+Mean after IQR outlier removal: 30.4427
+Sorted distances in ascending order: 30.4427
+This is track_id: 3
+This is bounding box: [583, 173][639, 225]
+min distance to camera: 30.442675
+Mean after IQR outlier removal: 41.405
+Sorted distances in ascending order: 40.0968, 42.0076, 42.1105
+This is track_id: 7
+This is bounding box: [208, 187][378, 268]
+min distance to camera: 41.404972
+Processing Image NO.: 000164
+Mean after IQR outlier removal: 48.8484
+Sorted distances in ascending order: 25.5215, 27.5903, 34.318, 37.1276, 37.2642, 37.4812, 40.5467, 44.0473, 51.4942, 52.3171, 52.9236, 57.3204, 59.0677, 63.9807, 64.2228, 67.3074, 77.8912
+This is track_id: 1
+This is bounding box: [0, 193][419, 373]
+min distance to camera: 48.848351
+Mean after IQR outlier removal: 29.9633
+Sorted distances in ascending order: 29.9633
+This is track_id: 3
+This is bounding box: [583, 174][640, 226]
+min distance to camera: 29.963255
+Mean after IQR outlier removal: 38.0343
+Sorted distances in ascending order: 25.5215, 36.9817, 37.1276, 37.4812, 40.5467, 59.0677
+This is track_id: 7
+This is bounding box: [131, 190][346, 287]
+min distance to camera: 38.034290
+Processing Image NO.: 000165
+Mean after IQR outlier removal: 58.8997
+Sorted distances in ascending order: 46.2365, 51.0386, 56.8433, 63.5249, 63.7663, 63.9743, 66.9135
+This is track_id: 1
+This is bounding box: [0, 194][417, 373]
+min distance to camera: 58.899654
+Mean after IQR outlier removal: 28.0227
+Sorted distances in ascending order: 28.0227, 28.0227
+This is track_id: 3
+This is bounding box: [584, 175][641, 227]
+min distance to camera: 28.022749
+Mean after IQR outlier removal: 64.8043
+Sorted distances in ascending order: 46.2365, 63.5249, 63.9743, 66.9135
+This is track_id: 7
+This is bounding box: [15, 193][303, 315]
+min distance to camera: 64.804253
+Processing Image NO.: 000166
+Mean after IQR outlier removal: 56.7517
+Sorted distances in ascending order: 46.2614, 53.6413, 55.497, 63.7366, 64.6223
+This is track_id: 1
+This is bounding box: [0, 195][416, 373]
+min distance to camera: 56.751720
+Mean after IQR outlier removal: 28.6476
+Sorted distances in ascending order: 28.6476, 28.6476
+This is track_id: 3
+This is bounding box: [584, 175][641, 227]
+min distance to camera: 28.647627
+Mean after IQR outlier removal: 46.2614
+Sorted distances in ascending order: 46.2614
+This is track_id: 7
+This is bounding box: [0, 197][244, 360]
+min distance to camera: 46.261410
+Mean after IQR outlier removal: 87.3598
+Sorted distances in ascending order: 87.3598
+This is track_id: 8
+This is bounding box: [466, 171][515, 205]
+min distance to camera: 87.359840
+Processing Image NO.: 000167
+Mean after IQR outlier removal: 57.0546
+Sorted distances in ascending order: 37.8012, 45.8435, 49.1755, 49.8988, 53.1903, 55.0243, 56.5501, 57.652, 58.5923, 62.8628, 64.1704, 64.7519, 69.1798, 74.0709
+This is track_id: 1
+This is bounding box: [0, 196][415, 373]
+min distance to camera: 57.054558
+Mean after IQR outlier removal: 139.845
+Sorted distances in ascending order: 136.28, 143.409
+This is track_id: 2
+This is bounding box: [414, 184][524, 264]
+min distance to camera: 139.844971
+Mean after IQR outlier removal: 28.1439
+Sorted distances in ascending order: 28.1439, 28.1439
+This is track_id: 3
+This is bounding box: [584, 176][642, 228]
+min distance to camera: 28.143858
+Processing Image NO.: 000168
+Mean after IQR outlier removal: 48.8585
+Sorted distances in ascending order: 33.103, 33.2304, 33.5348, 33.9902, 34.8516, 36.0305, 37.3767, 39.4406, 45.7497, 49.4317, 53.0926, 54.5497, 56.0771, 57.1765, 62.3963, 68.7044, 73.5994, 77.1177
+This is track_id: 1
+This is bounding box: [0, 192][414, 373]
+min distance to camera: 48.858494
+Mean after IQR outlier removal: 135.71
+Sorted distances in ascending order: 128.435, 135.783, 142.911
+This is track_id: 2
+This is bounding box: [413, 184][524, 264]
+min distance to camera: 135.709641
+Mean after IQR outlier removal: 27.6391
+Sorted distances in ascending order: 27.6391
+This is track_id: 3
+This is bounding box: [585, 176][643, 228]
+min distance to camera: 27.639109
+Mean after IQR outlier removal: 128.435
+Sorted distances in ascending order: 128.435
+This is track_id: 8
+This is bounding box: [446, 172][503, 211]
+min distance to camera: 128.434769
+Processing Image NO.: 000169
+Mean after IQR outlier removal: 45.5978
+Sorted distances in ascending order: 23.2358, 33.8627, 34.4641, 35.6504, 36.8621, 38.3771, 55.1463, 56.4616, 69.3487, 72.5693
+This is track_id: 1
+This is bounding box: [0, 196][413, 373]
+min distance to camera: 45.597801
+Mean after IQR outlier removal: 139.036
+Sorted distances in ascending order: 139.036
+This is track_id: 2
+This is bounding box: [413, 183][523, 264]
+min distance to camera: 139.035889
+Mean after IQR outlier removal: 29.3339
+Sorted distances in ascending order: 29.3339
+This is track_id: 3
+This is bounding box: [585, 176][643, 229]
+min distance to camera: 29.333887
+Processing Image NO.: 000170
+Mean after IQR outlier removal: 45.5978
+Sorted distances in ascending order: 23.2358, 33.8627, 34.4641, 35.6504, 36.8621, 38.3771, 55.1463, 56.4616, 69.3487, 72.5693
+This is track_id: 1
+This is bounding box: [0, 196][413, 373]
+min distance to camera: 45.597801
+Mean after IQR outlier removal: 139.036
+Sorted distances in ascending order: 139.036
+This is track_id: 2
+This is bounding box: [413, 183][523, 264]
+min distance to camera: 139.035889
+Mean after IQR outlier removal: 29.3339
+Sorted distances in ascending order: 29.3339
+This is track_id: 3
+This is bounding box: [585, 176][643, 229]
+min distance to camera: 29.333887
+Processing Image NO.: 000171
+Mean after IQR outlier removal: 49.4663
+Sorted distances in ascending order: 26.238, 30.4456, 32.8449, 32.995, 34.0323, 34.2796, 37.9573, 42.3179, 52.3371, 54.6754, 55.4343, 55.9886, 56.1518, 57.4649, 60.5037, 62.0607, 68.875, 72.0998, 73.1573
+This is track_id: 1
+This is bounding box: [0, 196][412, 373]
+min distance to camera: 49.466267
+Mean after IQR outlier removal: 28.8309
+Sorted distances in ascending order: 28.8309
+This is track_id: 3
+This is bounding box: [586, 176][644, 229]
+min distance to camera: 28.830862
+Processing Image NO.: 000172
+Mean after IQR outlier removal: 49.3214
+Sorted distances in ascending order: 20.6459, 30.0099, 32.0131, 32.753, 32.8698, 37.5142, 37.9667, 48.0683, 49.0623, 51.8455, 54.1729, 55.4836, 56.9675, 60.012, 68.3691, 71.599, 72.6511, 75.781
+This is track_id: 1
+This is bounding box: [0, 194][411, 373]
+min distance to camera: 49.321369
+Mean after IQR outlier removal: 138.007
+Sorted distances in ascending order: 138.007
+This is track_id: 2
+This is bounding box: [412, 182][523, 264]
+min distance to camera: 138.007294
+Mean after IQR outlier removal: 28.2896
+Sorted distances in ascending order: 28.2896
+This is track_id: 3
+This is bounding box: [586, 176][645, 229]
+min distance to camera: 28.289631
+Mean after IQR outlier removal: 46.562
+Sorted distances in ascending order: 17.2767, 21.8145, 29.7004, 32.5405, 32.7181, 34.998, 35.2324, 44.6153, 47.5753, 48.5381, 54.2056, 55.5703, 56.5032, 59.5678, 61.3642, 66.9598, 67.7086, 71.2281
+This is track_id: 1
+This is bounding box: [0, 194][410, 373]
+min distance to camera: 46.562046
+Mean after IQR outlier removal: 137.302
+Sorted distances in ascending order: 137.302
+This is track_id: 2
+This is bounding box: [411, 182][523, 264]
+min distance to camera: 137.301819
+Mean after IQR outlier removal: 29.4934
+Sorted distances in ascending order: 29.4934
+This is track_id: 3
+This is bounding box: [587, 175][645, 229]
+min distance to camera: 29.493359
+Processing Image NO.: 000173
+Mean after IQR outlier removal: 48.6534
+Sorted distances in ascending order: 21.3699, 31.8135, 32.6906, 34.9687, 35.1426, 35.9155, 36.8898, 37.1157, 37.8678, 43.4985, 47.1067, 47.689, 53.7294, 54.591, 55.0917, 56.0323, 59.1012, 59.7958, 65.7744, 66.4803, 67.2339, 68.3827, 70.7478
+This is track_id: 1
+This is bounding box: [0, 195][409, 373]
+min distance to camera: 48.653431
+Mean after IQR outlier removal: 133.999
+Sorted distances in ascending order: 131.203, 136.796
+This is track_id: 2
+This is bounding box: [410, 182][523, 265]
+min distance to camera: 133.999466
+Mean after IQR outlier removal: 28.9786
+Sorted distances in ascending order: 28.9786
+This is track_id: 3
+This is bounding box: [587, 175][646, 229]
+min distance to camera: 28.978630
+Mean after IQR outlier removal: 52.4758
+Sorted distances in ascending order: 52.4758
+This is track_id: 8
+This is bounding box: [355, 172][453, 234]
+min distance to camera: 52.475800
+Processing Image NO.: 000174
+Mean after IQR outlier removal: 48.6534
+Sorted distances in ascending order: 21.3699, 31.8135, 32.6906, 34.9687, 35.1426, 35.9155, 36.8898, 37.1157, 37.8678, 43.4985, 47.1067, 47.689, 53.7294, 54.591, 55.0917, 56.0323, 59.1012, 59.7958, 65.7744, 66.4803, 67.2339, 68.3827, 70.7478
+This is track_id: 1
+This is bounding box: [0, 195][409, 373]
+min distance to camera: 48.653431
+Mean after IQR outlier removal: 133.999
+Sorted distances in ascending order: 131.203, 136.796
+This is track_id: 2
+This is bounding box: [410, 182][523, 265]
+min distance to camera: 133.999466
+Mean after IQR outlier removal: 28.9786
+Sorted distances in ascending order: 28.9786
+This is track_id: 3
+This is bounding box: [587, 175][646, 229]
+min distance to camera: 28.978630
+Mean after IQR outlier removal: 52.4758
+Sorted distances in ascending order: 52.4758
+This is track_id: 8
+This is bounding box: [355, 172][453, 234]
+min distance to camera: 52.475800
+Processing Image NO.: 000175
+Mean after IQR outlier removal: 47.0152
+Sorted distances in ascending order: 16.5884, 22.2613, 32.2711, 32.3533, 34.7058, 35.4784, 36.4607, 36.6739, 37.4258, 43.688, 47.2423, 47.6054, 53.2654, 53.5107, 54.1366, 54.6255, 55.5732, 58.6457, 59.3279, 65.3032, 66.0131, 67.915, 70.2798
+This is track_id: 1
+This is bounding box: [0, 193][408, 373]
+min distance to camera: 47.015236
+Mean after IQR outlier removal: 114.486
+Sorted distances in ascending order: 76.4389, 130.715, 136.305
+This is track_id: 2
+This is bounding box: [409, 182][523, 265]
+min distance to camera: 114.486137
+Mean after IQR outlier removal: 28.4819
+Sorted distances in ascending order: 28.4819
+This is track_id: 3
+This is bounding box: [588, 175][647, 229]
+min distance to camera: 28.481909
+Processing Image NO.: 000176
+Mean after IQR outlier removal: 50.2745
+Sorted distances in ascending order: 21.8256, 32.0834, 34.4179, 38.547, 42.7191, 46.8874, 47.7609, 50.1264, 55.057, 57.6487, 62.3603, 64.9546, 65.1014, 65.1202, 69.5078
+This is track_id: 1
+This is bounding box: [0, 195][406, 373]
+min distance to camera: 50.274509
+Mean after IQR outlier removal: 94.5496
+Sorted distances in ascending order: 76.0951, 76.9128, 130.641
+This is track_id: 2
+This is bounding box: [407, 182][523, 265]
+min distance to camera: 94.549583
+Mean after IQR outlier removal: 29.0429
+Sorted distances in ascending order: 29.0429
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 29.042912
+Mean after IQR outlier removal: 62.2644
+Sorted distances in ascending order: 42.8605, 67.02, 76.9128
+This is track_id: 8
+This is bounding box: [281, 171][418, 250]
+min distance to camera: 62.264416
+Processing Image NO.: 000177
+Mean after IQR outlier removal: 47.724
+Sorted distances in ascending order: 21.7758, 30.5678, 31.6577, 35.5814, 37.0806, 37.66, 43.2173, 43.4485, 44.1714, 47.2833, 49.6564, 50.8717, 51.3209, 52.3717, 54.0237, 54.2065, 57.178, 64.4632, 64.6152, 64.6331, 66.4188, 89.7231
+This is track_id: 1
+This is bounding box: [0, 195][405, 373]
+min distance to camera: 47.723957
+Mean after IQR outlier removal: 84.5013
+Sorted distances in ascending order: 75.5814, 93.4212
+This is track_id: 2
+This is bounding box: [406, 182][523, 266]
+min distance to camera: 84.501259
+Mean after IQR outlier removal: 28.5144
+Sorted distances in ascending order: 28.5144
+This is track_id: 3
+This is bounding box: [589, 175][649, 229]
+min distance to camera: 28.514355
+Mean after IQR outlier removal: 53.257
+Sorted distances in ascending order: 41.6468, 49.6564, 51.3209, 52.3717, 54.2065, 57.178, 66.4188
+This is track_id: 8
+This is bounding box: [227, 170][395, 263]
+min distance to camera: 53.257015
+Mean after IQR outlier removal: 93.4212
+Sorted distances in ascending order: 93.4212
+This is track_id: 9
+This is bounding box: [417, 177][483, 217]
+min distance to camera: 93.421150
+Processing Image NO.: 000178
+Mean after IQR outlier removal: 50.0574
+Sorted distances in ascending order: 29.5016, 31.245, 34.5994, 36.6777, 37.2172, 42.9928, 45.2073, 49.5153, 51.9198, 52.0542, 53.7536, 54.6569, 63.9942, 64.1503, 64.1675, 89.2663
+This is track_id: 1
+This is bounding box: [0, 194][403, 373]
+min distance to camera: 50.057449
+Mean after IQR outlier removal: 75.095
+Sorted distances in ascending order: 75.095
+This is track_id: 2
+This is bounding box: [405, 181][523, 266]
+min distance to camera: 75.095009
+Mean after IQR outlier removal: 28.0212
+Sorted distances in ascending order: 28.0212
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 28.021170
+Mean after IQR outlier removal: 48.7117
+Sorted distances in ascending order: 37.2172, 45.2073, 49.5153, 51.9198, 53.7536, 54.6569
+This is track_id: 8
+This is bounding box: [152, 169][365, 281]
+min distance to camera: 48.711674
+Mean after IQR outlier removal: 75.9238
+Sorted distances in ascending order: 75.9238
+This is track_id: 9
+This is bounding box: [399, 177][474, 221]
+min distance to camera: 75.923790
+Processing Image NO.: 000179
+Mean after IQR outlier removal: 52.4668
+Sorted distances in ascending order: 30.8471, 30.9817, 36.787, 42.5483, 44.0899, 45.5521, 51.4792, 53.3119, 53.6787, 63.5349, 63.6955, 63.7118, 65.4974, 88.8203
+This is track_id: 1
+This is bounding box: [0, 193][402, 373]
+min distance to camera: 52.466839
+Mean after IQR outlier removal: 27.5303
+Sorted distances in ascending order: 27.5303
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 27.530302
+Mean after IQR outlier removal: 36.1833
+Sorted distances in ascending order: 18.2666, 18.4889, 30.8471, 30.9817, 32.0281, 36.787, 44.0899, 45.5521, 51.4792, 53.3119, 88.8203
+This is track_id: 8
+This is bounding box: [40, 168][325, 307]
+min distance to camera: 36.183258
+Processing Image NO.: 000180
+Mean after IQR outlier removal: 54.1808
+Sorted distances in ascending order: 36.3212, 41.9881, 50.7857, 54.6179, 59.8066, 62.2174, 62.9464, 64.7632
+This is track_id: 1
+This is bounding box: [0, 195][400, 373]
+min distance to camera: 54.180820
+Mean after IQR outlier removal: 76.1512
+Sorted distances in ascending order: 76.1512
+This is track_id: 2
+This is bounding box: [401, 182][520, 268]
+min distance to camera: 76.151237
+Mean after IQR outlier removal: 28.4845
+Sorted distances in ascending order: 28.4845
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 28.484539
+Mean after IQR outlier removal: 45.6749
+Sorted distances in ascending order: 36.3212, 40.9748, 50.7857, 54.6179
+This is track_id: 8
+This is bounding box: [0, 166][270, 350]
+min distance to camera: 45.674904
+Processing Image NO.: 000181
+Mean after IQR outlier removal: 55.5866
+Sorted distances in ascending order: 35.9053, 49.2445, 50.3417, 50.5257, 54.1734, 59.3471, 61.7583, 62.4131, 64.3033, 67.8537
+This is track_id: 1
+This is bounding box: [0, 192][399, 373]
+min distance to camera: 55.586609
+Mean after IQR outlier removal: 113.266
+Sorted distances in ascending order: 113.266
+This is track_id: 2
+This is bounding box: [399, 182][519, 269]
+min distance to camera: 113.266464
+Mean after IQR outlier removal: 27.9926
+Sorted distances in ascending order: 27.9926
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 27.992632
+Mean after IQR outlier removal: 35.9053
+Sorted distances in ascending order: 35.9053
+This is track_id: 8
+This is bounding box: [0, 166][187, 365]
+min distance to camera: 35.905338
+Mean after IQR outlier removal: 47.9001
+Sorted distances in ascending order: 47.9001
+This is track_id: 9
+This is bounding box: [319, 181][431, 242]
+min distance to camera: 47.900131
+Processing Image NO.: 000182
+Mean after IQR outlier removal: 47.1955
+Sorted distances in ascending order: 35.781, 38.2202, 41.7055, 43.2976, 44.6821, 48.8967, 62.189, 62.792
+This is track_id: 1
+This is bounding box: [0, 195][397, 373]
+min distance to camera: 47.195507
+Mean after IQR outlier removal: 112.713
+Sorted distances in ascending order: 112.713
+This is track_id: 2
+This is bounding box: [397, 183][517, 270]
+min distance to camera: 112.713066
+Mean after IQR outlier removal: 29.0102
+Sorted distances in ascending order: 29.0102
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 29.010170
+Mean after IQR outlier removal: 45.0708
+Sorted distances in ascending order: 45.0708
+This is track_id: 9
+This is bounding box: [277, 183][411, 253]
+min distance to camera: 45.070774
+Mean after IQR outlier removal: 47.1955
+Sorted distances in ascending order: 35.781, 38.2202, 41.7055, 43.2976, 44.6821, 48.8967, 62.189, 62.792
+This is track_id: 1
+This is bounding box: [0, 195][397, 373]
+min distance to camera: 47.195507
+Mean after IQR outlier removal: 112.713
+Sorted distances in ascending order: 112.713
+This is track_id: 2
+This is bounding box: [397, 183][517, 270]
+min distance to camera: 112.713066
+Mean after IQR outlier removal: 29.0102
+Sorted distances in ascending order: 29.0102
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 29.010170
+Mean after IQR outlier removal: 45.0708
+Sorted distances in ascending order: 45.0708
+This is track_id: 9
+This is bounding box: [277, 183][411, 253]
+min distance to camera: 45.070774
+Processing Image NO.: 000183
+Mean after IQR outlier removal: 51.432
+Sorted distances in ascending order: 42.871, 43.2988, 48.4598, 53.4357, 58.793, 61.7335
+This is track_id: 1
+This is bounding box: [0, 194][395, 373]
+min distance to camera: 51.431988
+Mean after IQR outlier removal: 28.5126
+Sorted distances in ascending order: 28.5126
+This is track_id: 3
+This is bounding box: [589, 175][648, 229]
+min distance to camera: 28.512569
+Mean after IQR outlier removal: 47.5575
+Sorted distances in ascending order: 41.8123, 46.5223, 48.4598, 53.4357
+This is track_id: 9
+This is bounding box: [221, 186][386, 268]
+min distance to camera: 47.557541
+Processing Image NO.: 000184
+Mean after IQR outlier removal: 44.1963
+Sorted distances in ascending order: 29.8144, 30.2963, 35.26, 40.8367, 43.8134, 55.739, 56.5143, 61.296
+This is track_id: 1
+This is bounding box: [0, 200][391, 373]
+min distance to camera: 44.196266
+Mean after IQR outlier removal: 65.3977
+Sorted distances in ascending order: 65.3977
+This is track_id: 2
+This is bounding box: [390, 187][514, 277]
+min distance to camera: 65.397743
+Mean after IQR outlier removal: 28.0399
+Sorted distances in ascending order: 28.0399
+This is track_id: 3
+This is bounding box: [588, 176][647, 230]
+min distance to camera: 28.039879
+Mean after IQR outlier removal: 43.1752
+Sorted distances in ascending order: 29.8144, 35.26, 38.5486, 55.739, 56.5143
+This is track_id: 9
+This is bounding box: [34, 188][315, 313]
+min distance to camera: 43.175243
+Mean after IQR outlier removal: 64.0236
+Sorted distances in ascending order: 64.0236
+This is track_id: 10
+This is bounding box: [459, 171][509, 210]
+min distance to camera: 64.023590
+Processing Image NO.: 000185
+Mean after IQR outlier removal: 56.635
+Sorted distances in ascending order: 44.1441, 52.12, 60.3716, 62.6863, 63.853
+This is track_id: 1
+This is bounding box: [0, 200][388, 373]
+min distance to camera: 56.634960
+Mean after IQR outlier removal: 87.6255
+Sorted distances in ascending order: 64.4341, 110.817
+This is track_id: 2
+This is bounding box: [388, 186][513, 277]
+min distance to camera: 87.625465
+Mean after IQR outlier removal: 27.0382
+Sorted distances in ascending order: 27.0382
+This is track_id: 3
+This is bounding box: [588, 177][647, 230]
+min distance to camera: 27.038151
+Mean after IQR outlier removal: 45.48
+Sorted distances in ascending order: 40.4748, 44.1441, 45.1813, 52.12
+This is track_id: 9
+This is bounding box: [0, 190][260, 356]
+min distance to camera: 45.480034
+Processing Image NO.: 000186
+Mean after IQR outlier removal: 56.635
+Sorted distances in ascending order: 44.1441, 52.12, 60.3716, 62.6863, 63.853
+This is track_id: 1
+This is bounding box: [0, 200][388, 373]
+min distance to camera: 56.634960
+Mean after IQR outlier removal: 87.6255
+Sorted distances in ascending order: 64.4341, 110.817
+This is track_id: 2
+This is bounding box: [388, 186][513, 277]
+min distance to camera: 87.625465
+Mean after IQR outlier removal: 27.0382
+Sorted distances in ascending order: 27.0382
+This is track_id: 3
+This is bounding box: [588, 177][647, 230]
+min distance to camera: 27.038151
+Mean after IQR outlier removal: 45.48
+Sorted distances in ascending order: 40.4748, 44.1441, 45.1813, 52.12
+This is track_id: 9
+This is bounding box: [0, 190][260, 356]
+min distance to camera: 45.480034
+Processing Image NO.: 000187
+Mean after IQR outlier removal: 39.7759
+Sorted distances in ascending order: 30.0061, 33.2904, 37.2774, 38.0121, 39.1126, 39.57, 40.1677, 43.5672, 47.6268, 49.1286, 79.2362
+This is track_id: 1
+This is bounding box: [0, 199][382, 373]
+min distance to camera: 39.775887
+Mean after IQR outlier removal: 108.04
+Sorted distances in ascending order: 63.4722, 102.286, 128.836, 137.564
+This is track_id: 2
+This is bounding box: [383, 184][511, 276]
+min distance to camera: 108.039581
+Mean after IQR outlier removal: 28.1168
+Sorted distances in ascending order: 28.1168
+This is track_id: 3
+This is bounding box: [588, 176][646, 229]
+min distance to camera: 28.116840
+Processing Image NO.: 000188
+Mean after IQR outlier removal: 39.7759
+Sorted distances in ascending order: 30.0061, 33.2904, 37.2774, 38.0121, 39.1126, 39.57, 40.1677, 43.5672, 47.6268, 49.1286, 79.2362
+This is track_id: 1
+This is bounding box: [0, 199][382, 373]
+min distance to camera: 39.775887
+Mean after IQR outlier removal: 108.04
+Sorted distances in ascending order: 63.4722, 102.286, 128.836, 137.564
+This is track_id: 2
+This is bounding box: [383, 184][511, 276]
+min distance to camera: 108.039581
+Mean after IQR outlier removal: 28.1168
+Sorted distances in ascending order: 28.1168
+This is track_id: 3
+This is bounding box: [588, 176][646, 229]
+min distance to camera: 28.116840
+Processing Image NO.: 000189
+Mean after IQR outlier removal: 41.7404
+Sorted distances in ascending order: 29.7102, 36.9344, 38.7276, 43.3228, 43.3243, 47.1577, 53.0061
+This is track_id: 1
+This is bounding box: [0, 200][379, 373]
+min distance to camera: 41.740425
+Mean after IQR outlier removal: 121.966
+Sorted distances in ascending order: 107.279, 136.652
+This is track_id: 2
+This is bounding box: [381, 184][510, 276]
+min distance to camera: 121.965897
+Mean after IQR outlier removal: 28.9003
+Sorted distances in ascending order: 28.9003
+This is track_id: 3
+This is bounding box: [588, 175][646, 227]
+min distance to camera: 28.900286
+Processing Image NO.: 000190
+Mean after IQR outlier removal: 46.7218
+Sorted distances in ascending order: 46.7218
+This is track_id: 1
+This is bounding box: [0, 200][375, 373]
+min distance to camera: 46.721844
+Mean after IQR outlier removal: 121.512
+Sorted distances in ascending order: 106.825, 136.199
+This is track_id: 2
+This is bounding box: [379, 182][509, 275]
+min distance to camera: 121.511795
+Mean after IQR outlier removal: 28.4319
+Sorted distances in ascending order: 28.4319
+This is track_id: 3
+This is bounding box: [588, 174][645, 226]
+min distance to camera: 28.431921
+Mean after IQR outlier removal: 71.3364
+Sorted distances in ascending order: 71.3364
+This is track_id: 10
+This is bounding box: [383, 166][462, 223]
+min distance to camera: 71.336403
+Processing Image NO.: 000191
+Mean after IQR outlier removal: 24.122
+Sorted distances in ascending order: 17.0978, 22.6445, 23.4302, 23.4753, 23.7678, 23.8006, 24.6631, 26.0415, 26.2111, 26.3321, 27.8784, 36.1481, 46.3022, 50.7271
+This is track_id: 1
+This is bounding box: [0, 200][372, 373]
+min distance to camera: 24.122042
+Mean after IQR outlier removal: 59.9927
+Sorted distances in ascending order: 11.3291, 62.2643, 106.385
+This is track_id: 2
+This is bounding box: [377, 182][508, 276]
+min distance to camera: 59.992661
+Mean after IQR outlier removal: 27.9733
+Sorted distances in ascending order: 27.9733
+This is track_id: 3
+This is bounding box: [588, 173][645, 225]
+min distance to camera: 27.973305
+Mean after IQR outlier removal: 62.2643
+Sorted distances in ascending order: 62.2643
+This is track_id: 10
+This is bounding box: [360, 166][450, 228]
+min distance to camera: 62.264332
+Processing Image NO.: 000192
+Mean after IQR outlier removal: 34.414
+Sorted distances in ascending order: 24.4442, 25.6736, 25.98, 26.2154, 27.5092, 35.6059, 35.7687, 42.6821, 43.9384, 56.3225
+This is track_id: 1
+This is bounding box: [0, 201][369, 373]
+min distance to camera: 34.413990
+Mean after IQR outlier removal: 29.0535
+Sorted distances in ascending order: 29.0535
+This is track_id: 3
+This is bounding box: [588, 171][645, 223]
+min distance to camera: 29.053535
+Mean after IQR outlier removal: 32.3623
+Sorted distances in ascending order: 16.5272, 27.0972, 42.3118, 43.5132
+This is track_id: 1
+This is bounding box: [0, 200][365, 373]
+min distance to camera: 32.362343
+Mean after IQR outlier removal: 28.5842
+Sorted distances in ascending order: 28.5842
+This is track_id: 3
+This is bounding box: [588, 171][644, 222]
+min distance to camera: 28.584198
+Processing Image NO.: 000193
+Mean after IQR outlier removal: 30.9062
+Sorted distances in ascending order: 24.3728, 26.7021, 26.9085, 27.315, 27.3625, 28.2931, 29.9406, 30.4552, 30.8703, 31.4816, 31.8179, 32.1527, 32.4409, 32.6332, 32.8402, 34.8382, 35.0234, 40.863, 43.1153
+This is track_id: 1
+This is bounding box: [0, 200][362, 373]
+min distance to camera: 30.906168
+Mean after IQR outlier removal: 66.5172
+Sorted distances in ascending order: 18.5119, 66.5982, 79.0988, 101.86
+This is track_id: 2
+This is bounding box: [372, 182][505, 277]
+min distance to camera: 66.517197
+Mean after IQR outlier removal: 28.1408
+Sorted distances in ascending order: 28.1408
+This is track_id: 3
+This is bounding box: [588, 170][644, 221]
+min distance to camera: 28.140821
+Mean after IQR outlier removal: 42.842
+Sorted distances in ascending order: 42.842
+This is track_id: 10
+This is bounding box: [249, 163][396, 253]
+min distance to camera: 42.842045
+Processing Image NO.: 000194
+Mean after IQR outlier removal: 30.9062
+Sorted distances in ascending order: 24.3728, 26.7021, 26.9085, 27.315, 27.3625, 28.2931, 29.9406, 30.4552, 30.8703, 31.4816, 31.8179, 32.1527, 32.4409, 32.6332, 32.8402, 34.8382, 35.0234, 40.863, 43.1153
+This is track_id: 1
+This is bounding box: [0, 200][362, 373]
+min distance to camera: 30.906168
+Mean after IQR outlier removal: 66.5172
+Sorted distances in ascending order: 18.5119, 66.5982, 79.0988, 101.86
+This is track_id: 2
+This is bounding box: [372, 182][505, 277]
+min distance to camera: 66.517197
+Mean after IQR outlier removal: 28.1408
+Sorted distances in ascending order: 28.1408
+This is track_id: 3
+This is bounding box: [588, 170][644, 221]
+min distance to camera: 28.140821
+Mean after IQR outlier removal: 42.842
+Sorted distances in ascending order: 42.842
+This is track_id: 10
+This is bounding box: [249, 163][396, 253]
+min distance to camera: 42.842045
+Processing Image NO.: 000195
+Mean after IQR outlier removal: 34.019
+Sorted distances in ascending order: 32.7591, 33.5949, 35.7029
+This is track_id: 1
+This is bounding box: [0, 200][361, 373]
+min distance to camera: 34.018963
+Mean after IQR outlier removal: 64.4187
+Sorted distances in ascending order: 63.4016, 65.4359
+This is track_id: 2
+This is bounding box: [370, 181][504, 276]
+min distance to camera: 64.418732
+Mean after IQR outlier removal: 29.0926
+Sorted distances in ascending order: 29.0926
+This is track_id: 3
+This is bounding box: [587, 170][643, 220]
+min distance to camera: 29.092615
+Mean after IQR outlier removal: 40.7622
+Sorted distances in ascending order: 39.7366, 41.7878
+This is track_id: 10
+This is bounding box: [186, 162][368, 267]
+min distance to camera: 40.762234
+Processing Image NO.: 000196
+Mean after IQR outlier removal: 30.4141
+Sorted distances in ascending order: 30.4141
+This is track_id: 1
+This is bounding box: [0, 202][361, 373]
+min distance to camera: 30.414051
+Mean after IQR outlier removal: 75.3841
+Sorted distances in ascending order: 62.9865, 65.0156, 98.1501
+This is track_id: 2
+This is bounding box: [368, 183][504, 279]
+min distance to camera: 75.384056
+Mean after IQR outlier removal: 28.6549
+Sorted distances in ascending order: 28.6549
+This is track_id: 3
+This is bounding box: [587, 169][643, 220]
+min distance to camera: 28.654860
+Mean after IQR outlier removal: 37.2429
+Sorted distances in ascending order: 37.2429
+This is track_id: 10
+This is bounding box: [101, 160][334, 287]
+min distance to camera: 37.242920
+Processing Image NO.: 000197
+Mean after IQR outlier removal: 48.7335
+Sorted distances in ascending order: 39.9843, 57.4828
+This is track_id: 1
+This is bounding box: [0, 202][361, 373]
+min distance to camera: 48.733536
+Mean after IQR outlier removal: 81.2323
+Sorted distances in ascending order: 64.6173, 81.3256, 97.754
+This is track_id: 2
+This is bounding box: [367, 182][503, 279]
+min distance to camera: 81.232300
+Mean after IQR outlier removal: 28.2405
+Sorted distances in ascending order: 28.2405
+This is track_id: 3
+This is bounding box: [587, 168][642, 219]
+min distance to camera: 28.240513
+Mean after IQR outlier removal: 37.1497
+Sorted distances in ascending order: 37.1497
+This is track_id: 10
+This is bounding box: [0, 157][289, 316]
+min distance to camera: 37.149719
+Mean after IQR outlier removal: 43.4142
+Sorted distances in ascending order: 43.4142
+This is track_id: 1
+This is bounding box: [0, 200][361, 373]
+min distance to camera: 43.414227
+Mean after IQR outlier removal: 75.6063
+Sorted distances in ascending order: 58.9784, 64.123, 83.3832, 95.9405
+This is track_id: 2
+This is bounding box: [365, 181][502, 278]
+min distance to camera: 75.606277
+Mean after IQR outlier removal: 28.7236
+Sorted distances in ascending order: 28.7236
+This is track_id: 3
+This is bounding box: [588, 168][642, 218]
+min distance to camera: 28.723633
+Mean after IQR outlier removal: 41.156
+Sorted distances in ascending order: 40.6774, 41.6345
+This is track_id: 10
+This is bounding box: [0, 154][225, 352]
+min distance to camera: 41.155952
+Processing Image NO.: 000198
+Mean after IQR outlier removal: 33.343
+Sorted distances in ascending order: 33.343
+This is track_id: 1
+This is bounding box: [0, 200][361, 373]
+min distance to camera: 33.343025
+Mean after IQR outlier removal: 83.9266
+Sorted distances in ascending order: 58.5815, 63.7208, 82.9835, 130.421
+This is track_id: 2
+This is bounding box: [365, 181][502, 277]
+min distance to camera: 83.926605
+Mean after IQR outlier removal: 28.3071
+Sorted distances in ascending order: 28.3071
+This is track_id: 3
+This is bounding box: [588, 168][642, 217]
+min distance to camera: 28.307077
+Mean after IQR outlier removal: 34.1465
+Sorted distances in ascending order: 32.8823, 33.343, 33.4172, 34.3978, 34.4245, 35.1677, 35.3929
+This is track_id: 10
+This is bounding box: [0, 156][130, 354]
+min distance to camera: 34.146484
+Processing Image NO.: 000199
+Mean after IQR outlier removal: 55.2388
+Sorted distances in ascending order: 53.0082, 55.6446, 57.0636
+This is track_id: 1
+This is bounding box: [0, 201][361, 373]
+min distance to camera: 55.238796
+Mean after IQR outlier removal: 130.039
+Sorted distances in ascending order: 130.039
+This is track_id: 2
+This is bounding box: [365, 181][501, 278]
+min distance to camera: 130.038940
+Mean after IQR outlier removal: 27.8997
+Sorted distances in ascending order: 27.8997
+This is track_id: 3
+This is bounding box: [588, 169][642, 218]
+min distance to camera: 27.899729
+Mean after IQR outlier removal: 68.9137
+Sorted distances in ascending order: 67.4136, 70.4137
+This is track_id: 11
+This is bounding box: [410, 176][480, 218]
+min distance to camera: 68.913666
+Processing Image NO.: 000200
+Mean after IQR outlier removal: 55.2388
+Sorted distances in ascending order: 53.0082, 55.6446, 57.0636
+This is track_id: 1
+This is bounding box: [0, 201][361, 373]
+min distance to camera: 55.238796
+Mean after IQR outlier removal: 130.039
+Sorted distances in ascending order: 130.039
+This is track_id: 2
+This is bounding box: [365, 181][501, 278]
+min distance to camera: 130.038940
+Mean after IQR outlier removal: 27.8997
+Sorted distances in ascending order: 27.8997
+This is track_id: 3
+This is bounding box: [588, 169][642, 218]
+min distance to camera: 27.899729
+Mean after IQR outlier removal: 68.9137
+Sorted distances in ascending order: 67.4136, 70.4137
+This is track_id: 11
+This is bounding box: [410, 176][480, 218]
+min distance to camera: 68.913666
+Processing Image NO.: 000201
+Mean after IQR outlier removal: 53.9925
+Sorted distances in ascending order: 52.678, 55.307
+This is track_id: 1
+This is bounding box: [0, 205][361, 373]
+min distance to camera: 53.992500
+Mean after IQR outlier removal: 102.616
+Sorted distances in ascending order: 72.5487, 93.3055, 102.004, 107.944, 110.212, 129.681
+This is track_id: 2
+This is bounding box: [365, 180][501, 276]
+min distance to camera: 102.615776
+Mean after IQR outlier removal: 27.5212
+Sorted distances in ascending order: 27.5212
+This is track_id: 3
+This is bounding box: [588, 170][641, 218]
+min distance to camera: 27.521187
+Processing Image NO.: 000202
+Mean after IQR outlier removal: 47.7247
+Sorted distances in ascending order: 47.7247
+This is track_id: 1
+This is bounding box: [0, 202][364, 373]
+min distance to camera: 47.724712
+Mean after IQR outlier removal: 120.604
+Sorted distances in ascending order: 92.9374, 101.629, 107.577, 180.274
+This is track_id: 2
+This is bounding box: [365, 183][501, 279]
+min distance to camera: 120.604332
+Mean after IQR outlier removal: 27.1395
+Sorted distances in ascending order: 27.1395
+This is track_id: 3
+This is bounding box: [588, 171][641, 219]
+min distance to camera: 27.139490
+Mean after IQR outlier removal: 143.926
+Sorted distances in ascending order: 107.577, 180.274
+This is track_id: 11
+This is bounding box: [369, 178][456, 228]
+min distance to camera: 143.925583
+Processing Image NO.: 000203
+Mean after IQR outlier removal: 27.5748
+Sorted distances in ascending order: 27.5748
+This is track_id: 3
+This is bounding box: [588, 171][640, 220]
+min distance to camera: 27.574812
+Processing Image NO.: 000204
+Mean after IQR outlier removal: 86.5018
+Sorted distances in ascending order: 86.5018
+This is track_id: 1
+This is bounding box: [0, 202][369, 373]
+min distance to camera: 86.501793
+Mean after IQR outlier removal: 109.506
+Sorted distances in ascending order: 109.506
+This is track_id: 2
+This is bounding box: [366, 184][500, 279]
+min distance to camera: 109.506210
+Mean after IQR outlier removal: 28.2553
+Sorted distances in ascending order: 28.2553
+This is track_id: 3
+This is bounding box: [587, 172][640, 220]
+min distance to camera: 28.255299
+Processing Image NO.: 000205
+Mean after IQR outlier removal: 31.6958
+Sorted distances in ascending order: 26.3619, 37.0296
+This is track_id: 1
+This is bounding box: [0, 201][370, 373]
+min distance to camera: 31.695776
+Mean after IQR outlier removal: 116.17
+Sorted distances in ascending order: 106.718, 125.621
+This is track_id: 2
+This is bounding box: [367, 183][500, 278]
+min distance to camera: 116.169907
+Mean after IQR outlier removal: 27.873
+Sorted distances in ascending order: 27.873
+This is track_id: 3
+This is bounding box: [588, 172][640, 219]
+min distance to camera: 27.872952
+Mean after IQR outlier removal: 79.4756
+Sorted distances in ascending order: 38.7711, 46.7914, 106.718, 125.621
+This is track_id: 11
+This is bounding box: [261, 183][402, 258]
+min distance to camera: 79.475586
+Processing Image NO.: 000206
+Mean after IQR outlier removal: 62.4839
+Sorted distances in ascending order: 25.9909, 36.6808, 124.78
+This is track_id: 1
+This is bounding box: [0, 201][372, 373]
+min distance to camera: 62.483929
+Mean after IQR outlier removal: 108.476
+Sorted distances in ascending order: 91.7089, 125.243
+This is track_id: 2
+This is bounding box: [368, 183][500, 277]
+min distance to camera: 108.475937
+Mean after IQR outlier removal: 27.4766
+Sorted distances in ascending order: 27.4766
+This is track_id: 3
+This is bounding box: [588, 171][639, 218]
+min distance to camera: 27.476585
+Mean after IQR outlier removal: 64.1948
+Sorted distances in ascending order: 36.6808, 91.7089
+This is track_id: 11
+This is bounding box: [199, 185][375, 274]
+min distance to camera: 64.194847
+Processing Image NO.: 000207
+Mean after IQR outlier removal: 109.953
+Sorted distances in ascending order: 37.758, 182.149
+This is track_id: 1
+This is bounding box: [0, 199][375, 373]
+min distance to camera: 109.953415
+Mean after IQR outlier removal: 29.1113
+Sorted distances in ascending order: 29.1113
+This is track_id: 3
+This is bounding box: [588, 171][639, 217]
+min distance to camera: 29.111313
+Mean after IQR outlier removal: 37.9462
+Sorted distances in ascending order: 36.7581, 37.758, 38.1668, 39.102
+This is track_id: 11
+This is bounding box: [113, 188][340, 296]
+min distance to camera: 37.946236
+Mean after IQR outlier removal: 76.355
+Sorted distances in ascending order: 76.355
+This is track_id: 1
+This is bounding box: [0, 200][378, 373]
+min distance to camera: 76.355019
+Mean after IQR outlier removal: 28.7492
+Sorted distances in ascending order: 28.7492
+This is track_id: 3
+This is bounding box: [588, 170][638, 216]
+min distance to camera: 28.749220
+Mean after IQR outlier removal: 36.6436
+Sorted distances in ascending order: 36.6436
+This is track_id: 11
+This is bounding box: [0, 191][294, 330]
+min distance to camera: 36.643555
+Processing Image NO.: 000208
+Mean after IQR outlier removal: 28.3721
+Sorted distances in ascending order: 28.3721
+This is track_id: 3
+This is bounding box: [588, 170][638, 215]
+min distance to camera: 28.372055
+Processing Image NO.: 000209
+Mean after IQR outlier removal: 34.8409
+Sorted distances in ascending order: 34.8409
+This is track_id: 1
+This is bounding box: [0, 198][383, 373]
+min distance to camera: 34.840855
+Mean after IQR outlier removal: 28.0126
+Sorted distances in ascending order: 28.0126
+This is track_id: 3
+This is bounding box: [588, 170][637, 216]
+min distance to camera: 28.012596
+Processing Image NO.: 000210
+Mean after IQR outlier removal: 121.867
+Sorted distances in ascending order: 121.867
+This is track_id: 1
+This is bounding box: [0, 197][383, 373]
+min distance to camera: 121.867020
+Mean after IQR outlier removal: 28.4158
+Sorted distances in ascending order: 28.4158
+This is track_id: 3
+This is bounding box: [587, 171][637, 216]
+min distance to camera: 28.415834
+Processing Image NO.: 000211
+Mean after IQR outlier removal: 78.579
+Sorted distances in ascending order: 31.3787, 34.2358, 170.123
+This is track_id: 1
+This is bounding box: [0, 199][385, 373]
+min distance to camera: 78.579041
+Mean after IQR outlier removal: 28.06
+Sorted distances in ascending order: 28.06
+This is track_id: 3
+This is bounding box: [587, 172][636, 217]
+min distance to camera: 28.059990
+Processing Image NO.: 000212
+Mean after IQR outlier removal: 34.896
+Sorted distances in ascending order: 34.896
+This is track_id: 1
+This is bounding box: [0, 201][386, 373]
+min distance to camera: 34.895962
+Mean after IQR outlier removal: 27.7161
+Sorted distances in ascending order: 27.7161
+This is track_id: 3
+This is bounding box: [587, 173][636, 218]
+min distance to camera: 27.716053
+Processing Image NO.: 000213
+Mean after IQR outlier removal: 28.0969
+Sorted distances in ascending order: 28.0969
+This is track_id: 3
+This is bounding box: [587, 174][635, 218]
+min distance to camera: 28.096869
+Processing Image NO.: 000214
+Mean after IQR outlier removal: 186.35
+Sorted distances in ascending order: 186.35
+This is track_id: 1
+This is bounding box: [0, 198][388, 373]
+min distance to camera: 186.350266
+Mean after IQR outlier removal: 27.7285
+Sorted distances in ascending order: 27.7285
+This is track_id: 3
+This is bounding box: [586, 174][634, 218]
+min distance to camera: 27.728491
+Processing Image NO.: 000215
+Mean after IQR outlier removal: 103.168
+Sorted distances in ascending order: 103.168
+This is track_id: 1
+This is bounding box: [0, 199][389, 373]
+min distance to camera: 103.167923
+Mean after IQR outlier removal: 27.3318
+Sorted distances in ascending order: 27.3318
+This is track_id: 3
+This is bounding box: [586, 174][633, 218]
+min distance to camera: 27.331797
+Processing Image NO.: 000216
+Mean after IQR outlier removal: 103.168
+Sorted distances in ascending order: 103.168
+This is track_id: 1
+This is bounding box: [0, 199][389, 373]
+min distance to camera: 103.167923
+Mean after IQR outlier removal: 27.3318
+Sorted distances in ascending order: 27.3318
+This is track_id: 3
+This is bounding box: [586, 174][633, 218]
+min distance to camera: 27.331797
+Processing Image NO.: 000217
+Mean after IQR outlier removal: 46.7038
+Sorted distances in ascending order: 33.4664, 33.5493, 33.6125, 86.1873, 168.647
+This is track_id: 1
+This is bounding box: [0, 198][389, 373]
+min distance to camera: 46.703850
+Mean after IQR outlier removal: 27.6621
+Sorted distances in ascending order: 27.6621
+This is track_id: 3
+This is bounding box: [585, 175][633, 218]
+min distance to camera: 27.662077
+Processing Image NO.: 000218
+Mean after IQR outlier removal: 216.808
+Sorted distances in ascending order: 33.1472, 185.262, 432.015
+This is track_id: 1
+This is bounding box: [0, 198][389, 373]
+min distance to camera: 216.808090
+Mean after IQR outlier removal: 27.2592
+Sorted distances in ascending order: 27.2592
+This is track_id: 3
+This is bounding box: [585, 175][632, 217]
+min distance to camera: 27.259245
+Mean after IQR outlier removal: 184.878
+Sorted distances in ascending order: 184.878
+This is track_id: 1
+This is bounding box: [0, 200][389, 373]
+min distance to camera: 184.878006
+Mean after IQR outlier removal: 26.8191
+Sorted distances in ascending order: 26.8191
+This is track_id: 3
+This is bounding box: [584, 175][631, 217]
+min distance to camera: 26.819122
+Processing Image NO.: 000219
+Mean after IQR outlier removal: 184.478
+Sorted distances in ascending order: 184.478
+This is track_id: 1
+This is bounding box: [0, 199][389, 373]
+min distance to camera: 184.478027
+Mean after IQR outlier removal: 28.0311
+Sorted distances in ascending order: 28.0311
+This is track_id: 3
+This is bounding box: [584, 175][630, 218]
+min distance to camera: 28.031061
+Processing Image NO.: 000220
+Mean after IQR outlier removal: 31.1431
+Sorted distances in ascending order: 30.6671, 31.6191
+This is track_id: 1
+This is bounding box: [0, 200][389, 373]
+min distance to camera: 31.143120
+Mean after IQR outlier removal: 27.5903
+Sorted distances in ascending order: 27.5903
+This is track_id: 3
+This is bounding box: [583, 176][630, 218]
+min distance to camera: 27.590347
+Processing Image NO.: 000221
+Mean after IQR outlier removal: 30.7405
+Sorted distances in ascending order: 30.2857, 30.6871, 31.2486
+This is track_id: 1
+This is bounding box: [0, 200][389, 373]
+min distance to camera: 30.740471
+Mean after IQR outlier removal: 27.1326
+Sorted distances in ascending order: 27.1326
+This is track_id: 3
+This is bounding box: [583, 176][629, 218]
+min distance to camera: 27.132633
+Mean after IQR outlier removal: 47.6845
+Sorted distances in ascending order: 47.6845
+This is track_id: 12
+This is bounding box: [234, 187][373, 261]
+min distance to camera: 47.684505
+Processing Image NO.: 000222
+Mean after IQR outlier removal: 70.8815
+Sorted distances in ascending order: 30.6363, 111.127
+This is track_id: 1
+This is bounding box: [0, 198][389, 373]
+min distance to camera: 70.881523
+Mean after IQR outlier removal: 75.1099
+Sorted distances in ascending order: 39.093, 111.127
+This is track_id: 12
+This is bounding box: [164, 189][340, 277]
+min distance to camera: 75.109871
+Processing Image NO.: 000223
+Mean after IQR outlier removal: 70.8815
+Sorted distances in ascending order: 30.6363, 111.127
+This is track_id: 1
+This is bounding box: [0, 198][389, 373]
+min distance to camera: 70.881523
+Mean after IQR outlier removal: 75.1099
+Sorted distances in ascending order: 39.093, 111.127
+This is track_id: 12
+This is bounding box: [164, 189][340, 277]
+min distance to camera: 75.109871
+Processing Image NO.: 000224
+Mean after IQR outlier removal: 30.0587
+Sorted distances in ascending order: 29.4436, 30.6738
+This is track_id: 1
+This is bounding box: [0, 197][389, 373]
+min distance to camera: 30.058706
+Mean after IQR outlier removal: 117.142
+Sorted distances in ascending order: 117.142
+This is track_id: 2
+This is bounding box: [399, 184][507, 263]
+min distance to camera: 117.141907
+Mean after IQR outlier removal: 28.5424
+Sorted distances in ascending order: 28.5424
+This is track_id: 3
+This is bounding box: [582, 177][627, 219]
+min distance to camera: 28.542450
+Mean after IQR outlier removal: 30.0587
+Sorted distances in ascending order: 29.4436, 30.6738
+This is track_id: 12
+This is bounding box: [59, 192][295, 301]
+min distance to camera: 30.058706
+Processing Image NO.: 000225
+Mean after IQR outlier removal: 38.3067
+Sorted distances in ascending order: 29.8552, 46.7582
+This is track_id: 1
+This is bounding box: [0, 198][387, 373]
+min distance to camera: 38.306664
+Mean after IQR outlier removal: 27.787
+Sorted distances in ascending order: 27.787
+This is track_id: 3
+This is bounding box: [581, 176][627, 218]
+min distance to camera: 27.786968
+Processing Image NO.: 000226
+Mean after IQR outlier removal: 38.3067
+Sorted distances in ascending order: 29.8552, 46.7582
+This is track_id: 1
+This is bounding box: [0, 198][387, 373]
+min distance to camera: 38.306664
+Mean after IQR outlier removal: 27.787
+Sorted distances in ascending order: 27.787
+This is track_id: 3
+This is bounding box: [581, 176][627, 218]
+min distance to camera: 27.786968
+Processing Image NO.: 000227
+Mean after IQR outlier removal: 142.604
+Sorted distances in ascending order: 28.2025, 31.0247, 368.585
+This is track_id: 1
+This is bounding box: [0, 200][386, 373]
+min distance to camera: 142.604172
+Mean after IQR outlier removal: 27.273
+Sorted distances in ascending order: 27.273
+This is track_id: 3
+This is bounding box: [580, 176][626, 218]
+min distance to camera: 27.272972
+Processing Image NO.: 000228
+Mean after IQR outlier removal: 199.324
+Sorted distances in ascending order: 30.5309, 368.117
+This is track_id: 1
+This is bounding box: [0, 201][386, 373]
+min distance to camera: 199.323959
+Processing Image NO.: 000229
+Mean after IQR outlier removal: 40.0005
+Sorted distances in ascending order: 29.7519, 29.9947, 44.2893, 46.4493, 49.517, 367.62
+This is track_id: 1
+This is bounding box: [0, 196][384, 373]
+min distance to camera: 40.000450
+Processing Image NO.: 000230
+Mean after IQR outlier removal: 56.3307
+Sorted distances in ascending order: 23.5801, 33.471, 39.1321, 39.2376, 45.1226, 157.441, 450.071
+This is track_id: 1
+This is bounding box: [0, 200][383, 373]
+min distance to camera: 56.330719
+Processing Image NO.: 000231
+Mean after IQR outlier removal: 34.7955
+Sorted distances in ascending order: 22.9447, 23.1137, 33.0035, 35.5561, 38.6639, 38.7694, 51.5176, 449.578
+This is track_id: 1
+This is bounding box: [0, 200][382, 373]
+min distance to camera: 34.795544
+Processing Image NO.: 000232
+Mean after IQR outlier removal: 37.2077
+Sorted distances in ascending order: 22.3139, 35.0783, 38.2622, 38.2825, 365.844
+This is track_id: 1
+This is bounding box: [0, 202][381, 373]
+min distance to camera: 37.207695
+Processing Image NO.: 000233
+Mean after IQR outlier removal: 159.298
+Sorted distances in ascending order: 37.7986, 37.8189, 74.6402, 154.828, 157.148, 326.331, 326.523
+This is track_id: 1
+This is bounding box: [0, 200][381, 373]
+min distance to camera: 159.298172
+Processing Image NO.: 000234
+Mean after IQR outlier removal: 55.7526
+Sorted distances in ascending order: 37.3658, 74.1394
+This is track_id: 1
+This is bounding box: [0, 201][380, 373]
+min distance to camera: 55.752594
+Processing Image NO.: 000235
+Mean after IQR outlier removal: 166.602
+Sorted distances in ascending order: 21.6318, 35.8482, 39.366, 73.0235, 324.912, 504.83
+This is track_id: 1
+This is bounding box: [0, 201][378, 373]
+min distance to camera: 166.602020
+Processing Image NO.: 000236
+Mean after IQR outlier removal: 166.602
+Sorted distances in ascending order: 21.6318, 35.8482, 39.366, 73.0235, 324.912, 504.83
+This is track_id: 1
+This is bounding box: [0, 201][378, 373]
+min distance to camera: 166.602020
+Processing Image NO.: 000237
+Mean after IQR outlier removal: 139.249
+Sorted distances in ascending order: 20.9028, 21.1152, 31.1648, 32.9782, 35.3529, 35.3851, 39.0043, 53.8053, 67.1601, 72.5059, 263.219, 263.22, 324.18, 324.415, 504.33
+This is track_id: 1
+This is bounding box: [0, 199][378, 373]
+min distance to camera: 139.249268
+Mean after IQR outlier removal: 39.0043
+Sorted distances in ascending order: 39.0043
+This is track_id: 13
+This is bounding box: [319, 183][419, 246]
+min distance to camera: 39.004253
+Processing Image NO.: 000238
+Mean after IQR outlier removal: 36.3589
+Sorted distances in ascending order: 20.3898, 34.8847, 34.917, 39.2751, 53.3374
+This is track_id: 1
+This is bounding box: [0, 201][377, 373]
+min distance to camera: 36.358929
+Processing Image NO.: 000239
+Mean after IQR outlier removal: 45.3615
+Sorted distances in ascending order: 31.836, 33.4923, 34.2044, 34.8482, 65.7109, 72.0768, 502.601
+This is track_id: 1
+This is bounding box: [0, 201][372, 373]
+min distance to camera: 45.361454
+Mean after IQR outlier removal: 23.695
+Sorted distances in ascending order: 23.695
+This is track_id: 16
+This is bounding box: [600, 176][626, 202]
+min distance to camera: 23.694979
+Processing Image NO.: 000240
+Mean after IQR outlier removal: 85.5248
+Sorted distances in ascending order: 31.3678, 34.361, 190.846
+This is track_id: 1
+This is bounding box: [0, 204][369, 373]
+min distance to camera: 85.524834
+Mean after IQR outlier removal: 89.121
+Sorted distances in ascending order: 36.3533, 40.1639, 190.846
+This is track_id: 13
+This is bounding box: [141, 189][330, 294]
+min distance to camera: 89.120972
+Mean after IQR outlier removal: 23.103
+Sorted distances in ascending order: 23.103
+This is track_id: 16
+This is bounding box: [599, 176][626, 203]
+min distance to camera: 23.103025
+Processing Image NO.: 000241
+Mean after IQR outlier removal: 51.9397
+Sorted distances in ascending order: 32.9141, 70.9653
+This is track_id: 1
+This is bounding box: [0, 203][365, 373]
+min distance to camera: 51.939713
+Mean after IQR outlier removal: 32.9141
+Sorted distances in ascending order: 32.9141
+This is track_id: 13
+This is bounding box: [17, 192][277, 326]
+min distance to camera: 32.914143
+Processing Image NO.: 000242
+Mean after IQR outlier removal: 54.9788
+Sorted distances in ascending order: 43.5963, 50.9549, 70.3851
+This is track_id: 1
+This is bounding box: [0, 206][361, 373]
+min distance to camera: 54.978794
+Mean after IQR outlier removal: 50.9549
+Sorted distances in ascending order: 50.9549
+This is track_id: 13
+This is bounding box: [0, 196][199, 373]
+min distance to camera: 50.954933
+Processing Image NO.: 000243
+Mean after IQR outlier removal: 54.9788
+Sorted distances in ascending order: 43.5963, 50.9549, 70.3851
+This is track_id: 1
+This is bounding box: [0, 206][361, 373]
+min distance to camera: 54.978794
+Mean after IQR outlier removal: 50.9549
+Sorted distances in ascending order: 50.9549
+This is track_id: 13
+This is bounding box: [0, 196][199, 373]
+min distance to camera: 50.954933
+Processing Image NO.: 000244
+Mean after IQR outlier removal: 38.592
+Sorted distances in ascending order: 32.5469, 32.9463, 33.6828, 35.0374, 36.6845, 39.4166, 45.7668, 52.6546, 152.217
+This is track_id: 1
+This is bounding box: [0, 206][357, 373]
+min distance to camera: 38.591984
+Processing Image NO.: 000245
+Processing Image NO.: 000246
+Mean after IQR outlier removal: 55.5755
+Sorted distances in ascending order: 54.7572, 56.3938
+This is track_id: 2
+This is bounding box: [371, 184][495, 269]
+min distance to camera: 55.575489
+Processing Image NO.: 000247
+Mean after IQR outlier removal: 54.1121
+Sorted distances in ascending order: 54.1121
+This is track_id: 2
+This is bounding box: [366, 185][493, 272]
+min distance to camera: 54.112133
+Processing Image NO.: 000248
+Processing Image NO.: 000249
+Processing Image NO.: 000250
+Mean after IQR outlier removal: 46.9394
+Sorted distances in ascending order: 38.0917, 39.163, 41.8577, 41.8795, 47.1331, 59.5894, 60.8618
+This is track_id: 2
+This is bounding box: [357, 184][489, 274]
+min distance to camera: 46.939445
+Processing Image NO.: 000251
+Mean after IQR outlier removal: 50.0021
+Sorted distances in ascending order: 37.961, 44.1296, 48.5766, 59.0425, 60.301
+This is track_id: 2
+This is bounding box: [350, 184][486, 275]
+min distance to camera: 50.002136
+Processing Image NO.: 000252
+Mean after IQR outlier removal: 36.3738
+Sorted distances in ascending order: 30.614, 34.438, 35.0204, 35.2867, 36.9977, 37.2004, 37.3468, 37.4175, 39.1155, 40.3011, 48.391, 59.6667
+This is track_id: 2
+This is bounding box: [344, 184][483, 278]
+min distance to camera: 36.373802
+Mean after IQR outlier removal: 35.9783
+Sorted distances in ascending order: 33.8151, 34.3951, 34.6614, 36.3744, 36.5835, 36.7293, 36.7941, 38.4731, 42.8976
+This is track_id: 2
+This is bounding box: [337, 187][480, 284]
+min distance to camera: 35.978256
+Processing Image NO.: 000253
+Mean after IQR outlier removal: 35.897
+Sorted distances in ascending order: 30.465, 34.009, 34.4321, 35.7866, 35.8936, 35.9005, 36.3, 36.5502, 38.3043, 58.2888
+This is track_id: 2
+This is bounding box: [331, 184][478, 282]
+min distance to camera: 35.897026
+Processing Image NO.: 000254
+Processing Image NO.: 000255
+Mean after IQR outlier removal: 35.5199
+Sorted distances in ascending order: 27.8061, 33.4133, 33.8386, 34.6781, 35.1981, 35.2996, 35.3045, 35.7061, 37.6915, 38.549, 68.6541
+This is track_id: 2
+This is bounding box: [324, 184][475, 285]
+min distance to camera: 35.519882
+Processing Image NO.: 000256
+Mean after IQR outlier removal: 33.4017
+Sorted distances in ascending order: 29.5947, 32.449, 32.5642, 32.8335, 33.0314, 33.4407, 33.6247, 33.9733, 34.2523, 34.4465, 40.6508, 46.375
+This is track_id: 2
+This is bounding box: [317, 184][472, 287]
+min distance to camera: 33.401733
+Mean after IQR outlier removal: 36.2765
+Sorted distances in ascending order: 28.9866, 31.9632, 32.2394, 32.4302, 32.8395, 33.03, 33.6285, 38.9257, 43.155, 55.5669, 384.391
+This is track_id: 2
+This is bounding box: [309, 183][470, 288]
+min distance to camera: 36.276493
+Processing Image NO.: 000257
+Mean after IQR outlier removal: 32.2054
+Sorted distances in ascending order: 28.4048, 31.3884, 31.6695, 31.8552, 32.2644, 32.7734, 33.2819, 38.3286, 39.4063
+This is track_id: 2
+This is bounding box: [301, 186][467, 295]
+min distance to camera: 32.205448
+Mean after IQR outlier removal: 81.9011
+Sorted distances in ascending order: 81.9011
+This is track_id: 14
+This is bounding box: [458, 175][496, 201]
+min distance to camera: 81.901054
+Processing Image NO.: 000258
+Mean after IQR outlier removal: 30.8282
+Sorted distances in ascending order: 30.2599, 30.6007, 30.7747, 30.8109, 30.8663, 31.2357, 31.249, 32.0919, 37.8304
+This is track_id: 2
+This is bounding box: [294, 183][464, 293]
+min distance to camera: 30.828165
+Processing Image NO.: 000259
+Mean after IQR outlier removal: 30.8282
+Sorted distances in ascending order: 30.2599, 30.6007, 30.7747, 30.8109, 30.8663, 31.2357, 31.249, 32.0919, 37.8304
+This is track_id: 2
+This is bounding box: [294, 183][464, 293]
+min distance to camera: 30.828165
+Processing Image NO.: 000260
+Mean after IQR outlier removal: 29.7848
+Sorted distances in ascending order: 26.5104, 26.7212, 26.8451, 26.9263, 28.0084, 28.1215, 28.9643, 29.4043, 29.4559, 29.5055, 29.6765, 30.7769, 36.2402, 39.8314, 49.184, 50.041, 382.477
+This is track_id: 2
+This is bounding box: [286, 185][461, 298]
+min distance to camera: 29.784847
+Processing Image NO.: 000261
+Mean after IQR outlier removal: 28.0658
+Sorted distances in ascending order: 25.885, 26.2021, 26.3067, 26.7571, 27.389, 28.3468, 28.8381, 28.8922, 29.0628, 29.0859, 29.8845, 30.1395, 35.595, 39.2106, 48.5608
+This is track_id: 2
+This is bounding box: [278, 185][458, 301]
+min distance to camera: 28.065813
+Processing Image NO.: 000262
+Viewer thread finished.
+Viewer started, waiting for thread.
+System::StopViewer()
+System::StopViewer() done
+Tracking thread joined...
+-------
+
+median tracking time: 0.0410395
+mean tracking time: 0.0403569
+
+Saving keyframe trajectory to Results/0018/Result_Tracking18_KF.txt ...
+
+trajectory saved!
+
+Saving camera trajectory to Results/0018/Res_Tracking18_tum.txt ...
+
+trajectory saved!
+
+Saving camera trajectory to Results/0018/Res_Tracking07_kitti.txt ...
+
+Saving to KITTI pose file
+
+trajectory saved!

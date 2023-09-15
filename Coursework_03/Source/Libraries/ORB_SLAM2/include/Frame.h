@@ -66,7 +66,7 @@ public:
         ORBVocabulary *voc, cv::Mat &K, cv::Mat &distCoef, const float &bf,
         const float &thDepth,
         // add param
-        std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result
+        std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string, int>>& detect_result
         // end add param
         );
 

@@ -256,7 +256,7 @@ cv::Mat Tracking::GrabImageRGBD(const cv::Mat &imRGB, const cv::Mat &imD,
 cv::Mat Tracking::GrabImageMonocular(const cv::Mat &im,
                                      const double &timestamp,
                                      // add new param
-                                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result
+                                     std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string, int>>& detect_result
                                      // END ADDING NEW PARAM
                                      ) {
   mImGray = im;
@@ -761,8 +761,15 @@ void Tracking::CreateInitialMapMonocular() {
 
 
   float odometryScale;
-  // odometryScale = 10.5f; // this is for VO 03 
-  odometryScale = 15.6f;
+  // odometryScale = 1.0f;
+  // odometryScale = 10.5f; // this is fsor VO 03 
+  // odometryScale = 14.825223f; // this for tracking 00
+  // odometryScale = 14.027603; // this for tracking 01
+  // odometryScale = 10.786808; // this for tracking 07
+  // odometryScale = 18.909594f; // this is for tracking 09
+  // odometryScale = 33.882953f; // this is for tracking 14
+  // odometryScale = 30.700725f; // this is for tracking 18
+  odometryScale = 72.287178; // this for tracking 20
 
 
   // odometryScale = dist0/1.0f;

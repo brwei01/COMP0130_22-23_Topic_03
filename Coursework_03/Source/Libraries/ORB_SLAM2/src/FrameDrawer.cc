@@ -104,18 +104,22 @@ cv::Mat FrameDrawer::DrawFrame() {
       std::cout << objects_curFD[k]->ndetect_class << std::endl;          
       // THIS CAN BE ANNOTATED
       */
-      if (objects_curFD[k] -> sdetect_class == "Car" || objects_curFD[k] -> sdetect_class == "Cyclist")
+      if (objects_curFD[k] -> sdetect_class == "Car" || objects_curFD[k] -> sdetect_class == "Cyclist" ||
+      objects_curFD[k] -> sdetect_class == "Van" || objects_curFD[k] -> sdetect_class == "Truck" ||
+      objects_curFD[k] -> sdetect_class == "Pedestrian")
       {
-        // 3D BIRDVIEW BBOX ON MAP
-        vector<double> box_BV = objects_curFD[k] -> vbbox_birdview;
-        double left_BV = box_BV[0];
-        double top_BV = box_BV[1];
-        double right_BV = box_BV[2];
-        double bottom_BV = box_BV[3];
+
+        // 2D BOUNDING BOX ON FRAME
+        vector<double> box = objects_curFD[k]->vbbox_2d;
+        double left = box[0];
+        double top = box[1];
+        double right = box[2];
+        double bottom = box[3];
         
         bool updated = false;
-        // initialize distance
-        float dist2cam = 999.0f;
+        // initialize distance (for median or mean calculation)
+        std::vector<float> distances;
+
         for (int i=0; i<n; i++)
         {
 
@@ -153,28 +157,12 @@ cv::Mat FrameDrawer::DrawFrame() {
             // *********************
             // MODIFICATIONS: make the selected dot red
 
-            // 2D BBOX ON FRAME
-            /*
-            vector<double> box = objects_curFD[k]->vbbox_2d;
-            double left = box[0];
-            double top = box[1];
-            double right = box[2];
-            double bottom = box[3];
-
+            // 2D point coordinates on frame
             float kp_u = vCurrentKeys[i].keypoints[0].pt.x;
             float kp_v = vCurrentKeys[i].keypoints[0].pt.y;
-            */
-
-            // 3Dp point coordinates 
-            float PcX = vCurrentKeys[i].mapPointCoords[0];
-            float PcY = vCurrentKeys[i].mapPointCoords[1];
-            float PcZ = vCurrentKeys[i].mapPointCoords[2];
-
-            std::cout << "***************** the birdview bbox: " << left_BV << top_BV << right_BV << bottom_BV << endl; 
-            std::cout << "================= the point under camera coords: " << PcX << PcZ << endl;
 
             // if (kp_u > left + 2 && kp_u < right - 2 && kp_v > top + 2 && kp_v < bottom - 2)
-            if (PcX > left_BV && PcX < right_BV && PcZ > top_BV && PcZ < bottom_BV)
+            if (kp_u > left + 2 && kp_u < right - 2 && kp_v > top + 2 && kp_v < bottom - 2)
             {
               /*
               // Get distance and convert to string
@@ -183,9 +171,9 @@ cv::Mat FrameDrawer::DrawFrame() {
               */
 
               // update the dist to cam of this point
-              if (vCurrentKeys[i].info < dist2cam && !std::isnan(vCurrentKeys[i].info) && vCurrentKeys[i].info>0) // and theres a minimum distance can be updated
+              if (!std::isnan(vCurrentKeys[i].info) && vCurrentKeys[i].info>0) // and theres a minimum distance can be updated
               {
-                dist2cam = vCurrentKeys[i].info;
+                distances.push_back(vCurrentKeys[i].info);
                 updated = true;
               }  
               // Draw points
@@ -209,45 +197,117 @@ cv::Mat FrameDrawer::DrawFrame() {
           }  
         } // end enumerate points
 
-      
 
-        if(updated){
-                
-          // draw bounding box
-          cv::Point pt11, pt22;
-          pt11 = cv::Point(objects_curFD[k]->vbbox_2d[0], objects_curFD[k]->vbbox_2d[1]);
-          pt22 = cv::Point(objects_curFD[k]->vbbox_2d[2], objects_curFD[k]->vbbox_2d[3]);
-          
-          // Add text displaying dist2cam over the bounding box
-          // std::cout << "car detected!" << pt11 << pt22 << std::endl;
-          cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
-          std::cout << "This is bounding box: " << pt11 << pt22 << std::endl;
-          std::cout << "Corresponding birdview bbox: " << left_BV << ' '<< top_BV << ' ' << right_BV << ' ' << bottom_BV << endl; 
-          std::cout << "min distance to camera: " << std::to_string(dist2cam) << std::endl;
-          std::string labelText = "Distance: " + std::to_string(dist2cam);
-          // show only 2 decimal places
-          size_t decimalPos = labelText.find('.');
-          if (decimalPos != std::string::npos && labelText.size() > decimalPos + 3) {
-              labelText = labelText.substr(0, decimalPos + 3);
+        // Sort the vector in ascending order
+        std::sort(distances.begin(), distances.end());
+
+        if (!distances.empty())
+        {
+          int size = distances.size();
+
+          // Calculate the first quartile (Q1) and third quartile (Q3)
+          int lowerQIndex = size / 4;
+          int upperQIndex = (3 * size) / 4;
+          float lowerQ = distances[lowerQIndex];
+          float upperQ = distances[upperQIndex];
+
+          // Calculate the interquartile range (IQR)
+          float iqr = upperQ - lowerQ;
+
+          // Define the lower and upper bounds for outliers
+          float lowerBound = lowerQ - 1.5f * iqr;
+          float upperBound = upperQ + 1.5f * iqr;
+
+          // Create a vector to store the filtered distances
+          std::vector<float> filteredDistances;
+
+          // Filter out the outliers
+          for (int i = 0; i < size; ++i) {
+              float distance = distances[i];
+              if (distance >= lowerBound && distance <= upperBound) {
+                  filteredDistances.push_back(distance);
+              }
           }
 
+          // Calculate the mean of filtered distances
+          float filteredSum = 0.0f;
+          int filteredSize = filteredDistances.size();
+          for (int i = 0; i < filteredSize; ++i) {
+              filteredSum += filteredDistances[i];
+          }
 
-          int font = cv::LINE_AA;
-          double fontScale = 0.5;
-          int thickness = 2;
-          cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
-          cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
+          float dist2cam = filteredSum / filteredSize;
 
-          // Check if dist2cam is smaller than 10 and add a "Caution" prompt
-          if (dist2cam < 5) {
-            std::string cautionText = "Caution";
-            int cautionFont = cv::FONT_HERSHEY_SIMPLEX;
-            double cautionFontScale = 0.5;
-            int cautionThickness = 2;
-            cv::Point cautionTextPosition(pt11.x, pt11.y - 20); // Adjust the position as needed
-            cv::putText(im, cautionText, cautionTextPosition, cautionFont, cautionFontScale, cv::Scalar(0, 0, 255), cautionThickness);
-          }    
+          std::cout << "Mean after IQR outlier removal: " << dist2cam << std::endl;
+          
+          // Print out the items in 'distances' in a line
+          std::cout << "Sorted distances in ascending order: ";
+          for (int i = 0; i < size; ++i) {
+              std::cout << distances[i];
+              if (i < size - 1) {
+                  std::cout << ", "; // Add a comma and space for separation
+              }
+          }
+          std::cout << std::endl;
+          /*
+          // MEDIAN
+          float dist2cam;
+          int size = distances.size();
+          if (size % 2 == 0) {
+              // If the size is even, take the average of the two middle values
+              dist2cam = (distances[size / 2 - 1] + distances[size / 2]) / 2.0f;
+          } else {
+              // If the size is odd, take the middle value
+              dist2cam = distances[size / 2];
+          }
+          */
+
+
+          if(updated){
+                  
+            // draw bounding box
+            cv::Point pt11, pt22;
+            pt11 = cv::Point(objects_curFD[k]->vbbox_2d[0], objects_curFD[k]->vbbox_2d[1]);
+            pt22 = cv::Point(objects_curFD[k]->vbbox_2d[2], objects_curFD[k]->vbbox_2d[3]);
+            
+            // Add text displaying dist2cam over the bounding box
+            // std::cout << "car detected!" << pt11 << pt22 << std::endl;
+            cv::rectangle(im, pt11, pt22, cv::Scalar(0,200,200));
+            int track_id =  objects_curFD[k]->ntrack_id;
+            std::cout << "This is track_id: " << track_id << std::endl;
+            std::cout << "This is bounding box: " << pt11 << pt22 << std::endl;
+            std::cout << "min distance to camera: " << std::to_string(dist2cam) << std::endl;
+            std::string labelText =  std::to_string(dist2cam);
+            // show only 2 decimal places
+            size_t decimalPos = labelText.find('.');
+            if (decimalPos != std::string::npos && labelText.size() > decimalPos + 3) {
+                labelText = labelText.substr(0, decimalPos + 3);
+            }
+            labelText = "id:" + std::to_string(track_id) + ' ' + labelText;
+
+
+            int font = cv::LINE_AA;
+            double fontScale = 0.5;
+            int thickness = 2;
+            cv::Point textPosition(pt11.x, pt11.y - 5); // Adjust the position as needed
+            cv::putText(im, labelText, textPosition, font, fontScale, cv::Scalar(0, 0, 255), thickness);
+
+            // Check if dist2cam is smaller than 10 and add a "Caution" prompt
+            if (dist2cam < 5) {
+              std::string cautionText = "Caution";
+              int cautionFont = cv::FONT_HERSHEY_SIMPLEX;
+              double cautionFontScale = 0.5;
+              int cautionThickness = 2;
+              cv::Point cautionTextPosition(pt11.x, pt11.y - 20); // Adjust the position as needed
+              cv::putText(im, cautionText, cautionTextPosition, cautionFont, cautionFontScale, cv::Scalar(0, 0, 255), cautionThickness);
+            }    
+          }
         }
+
+
+      
+
+
 
 
       } // if detection result is car
@@ -353,7 +413,6 @@ void FrameDrawer::Update(Tracking *pTracker) {
           // std::cout << "distance to camera" << dist2cam << std::endl;
 
           // 3D POINT BIRDVEW transfered from absolute coordinates to camera coordinate system
-          
           
           cv::Mat P = pMP->GetWorldPos();  
           const cv::Mat Pc = mRcw_curr*P+mtcw_curr; 

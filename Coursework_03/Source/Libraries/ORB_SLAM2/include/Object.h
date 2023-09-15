@@ -19,13 +19,6 @@ namespace ORB_SLAM2
         ~Object();
 
         public:
-        enum classname
-        {
-            person = 3,
-            car = 1
-        };
-
-        public:
         vector<double> vdetect_parameter;
         int ndetect_class;
         bool bdynamic_;
@@ -35,11 +28,17 @@ namespace ORB_SLAM2
         int GetDetectClass();      
     };
 
+
+
     class Object3D
     {
     public:
         Object3D();
-        Object3D(const int& nframe_id_, const vector<double>& vbbox_2d_, const vector<double>& vbbox_birdview_, const string& sdetect_class_);
+        Object3D(const int& nframe_id_, 
+                const vector<double>& vbbox_2d_, 
+                const vector<double>& vbbox_birdview_, 
+                const string& sdetect_class_,
+                const int& ntrack_id_);
         ~Object3D();
 
     public:
@@ -47,12 +46,14 @@ namespace ORB_SLAM2
         vector<double> vbbox_2d;
         vector<double> vbbox_birdview;
         string sdetect_class;
+        int ntrack_id;
 
     public:
         int GetFrameID();
         vector<double> Get2dBbox();
         vector<double> GetBboxBV();
         string GetDetectClassBV();
+        int GetTrackID();
     };
 
 }

@@ -191,7 +191,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
              ORBextractor *extractor, ORBVocabulary *voc, cv::Mat &K,
              cv::Mat &distCoef, const float &bf, const float &thDepth,
              // add new variable: detect_result
-             std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string>>& detect_result
+             std::vector<std::tuple<int, std::vector<double>, std::vector<double>, std::string, int>>& detect_result
              // end adding new variable
              )
     : mpORBvocabulary(voc), mpORBextractorLeft(extractor),
@@ -206,6 +206,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
   vector<double> vbbox_2d;
   vector<double> vbbox_birdview;
   std::string sdetect_class;
+  int ntrack_id;
 
   for(int k = 0; k<detect_result.size(); ++k)
   {
@@ -213,7 +214,8 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp,
     vbbox_2d = std::get<1>(detect_result[k]);  
     vbbox_birdview = std::get<2>(detect_result[k]);  
     sdetect_class = std::get<3>(detect_result[k]);  
-    std::shared_ptr<Object3D> obj = make_shared<Object3D>(nframe_id, vbbox_2d, vbbox_birdview, sdetect_class);
+    ntrack_id = std::get<4>(detect_result[k]);
+    std::shared_ptr<Object3D> obj = make_shared<Object3D>(nframe_id, vbbox_2d, vbbox_birdview, sdetect_class, ntrack_id);
     objects_cur_.push_back(obj);
   }
   // END MODIFICATION

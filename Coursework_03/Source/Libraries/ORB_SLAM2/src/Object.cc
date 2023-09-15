@@ -35,13 +35,15 @@ namespace ORB_SLAM2
         vbbox_2d = {0,0,0,0};
         vbbox_birdview = {0,0,0,0};
         sdetect_class = "DoNotCare";
+        ntrack_id = -1;
     }
 
     Object3D::Object3D( const int& nframe_id_,
                     const std::vector<double>& vbbox_2d_,
                     const std::vector<double>& vbbox_birdview_,
-                    const std::string& sdetect_class_):
-    nframe_id(nframe_id_), vbbox_2d(vbbox_2d_), vbbox_birdview(vbbox_birdview_), sdetect_class(sdetect_class_){}
+                    const std::string& sdetect_class_,
+                    const int& ntrack_id_):
+    nframe_id(nframe_id_), vbbox_2d(vbbox_2d_), vbbox_birdview(vbbox_birdview_), sdetect_class(sdetect_class_), ntrack_id(ntrack_id_){}
 
     Object3D::~Object3D(){}
 
@@ -63,6 +65,11 @@ namespace ORB_SLAM2
     string Object3D::GetDetectClassBV()
     {
         return sdetect_class;
+    }
+
+    int Object3D::GetTrackID()
+    {
+        return ntrack_id;
     }
 
 
